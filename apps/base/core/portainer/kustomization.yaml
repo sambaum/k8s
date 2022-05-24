@@ -1,0 +1,5 @@
+resources:
+  - helmrepository.yaml
+  # - portainer-ingress.yaml
+  - release.yaml
+  - namespace.yaml

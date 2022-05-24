@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: monitoring
+spec:
+  releaseName: loki-stack
+  chart:
+    spec:
+      chart: loki-stack
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    loki:
+      enabled: true
+      isDefault: false
+      persistence:
+        enabled: true
+        storageClassName: openebs-local-hostpath-monitoring-data
+        accessModes:
+          - ReadWriteOnce
+        size: 1Gi
+      config:
+        compactor:
+          compaction_interval: 10m
+          retention_enabled: true
+          retention_delete_delay: 2h
+          retention_delete_worker_count: 150
+        limits_config:
+          retention_period: 14d
+          # retention_stream:
+          # - selector: '{host="OPNsense.int.sambaum.ch"}'
+          #   priority: 1
+          #   period: 7d
+    promtail:
+      enabled: true
+      syslogService:
+        enabled: true
+        port: 1514
+      extraScrapeConfigs:
+        - job_name: syslog
+          syslog:
+            listen_address: 0.0.0.0:1514
+            idle_timeout: 60s
+            label_structured_data: yes
+            labels:
+              job: "syslog"
+          relabel_configs:
+            - source_labels: ['__syslog_message_hostname']
+              target_label: 'host'
+    grafana:
+      enabled: false
+      sidecar:
+        datasources:
+          enabled: true
+      # image:
+      #   tag: 8.1.6

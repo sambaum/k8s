@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: portainer
+  namespace: default
+spec:
+  releaseName: portainer
+  targetNamespace: default
+  chart:
+    spec:
+      chart: portainer
+      sourceRef:
+        kind: HelmRepository
+        name: portainer
+        namespace: flux-system
+  interval: 1m
+  install:
+    remediation:
+      retries: 3
+  values:
+    service:
+      type: ClusterIP
+    persistence:
+      enabled: true
+      storageClass: openebs-local-hostpath-conf
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      subPath: "portainer"
+      existingClaim: openebs-local-hostpath-conf-pvc
+    ingress:
+      enabled: true
+      # ingressClassName: nginx
+      annotations:
+        # kubernetes.io/ingress.class: public
+        # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600" # Recommendation for Websockets
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600" # Recommendation for Websockets
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        flame.pawelmalak/type: application
+        flame.pawelmalak/name: Portainer
+        flame.pawelmalak/url: https://example.com
+        flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
+      labels: {}
+      hosts:
+        - paths:
+           - path: "/"
+          host: "example.com"
+      pathType: Prefix
+      tls:
+      - hosts:
+        - "example.com"
+        secretName: portainer-tls

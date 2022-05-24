@@ -1,0 +1,14 @@
+resources:
+  - ../../../base/monitoring/loki-stack/
+patches:
+  - target:
+      kind: HelmRelease
+      name: loki-stack
+    patch: |-
+      - op: add
+        path: /spec/values/loki/config/limits_config
+        value:
+         retention_stream:
+         - selector: '{host="OPNsense.int.sambaum.ch"}'
+           priority: 1
+           period: 7d

@@ -1,0 +1,48 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kubernetes-dashboard
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: kubernetes-dashboard
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-dashboard
+        namespace: flux-system
+      # version: 'v3.23.0'
+  install:
+    crds: Create
+  interval: 1m
+  releaseName: kubernetes-dashboard
+  targetNamespace: default
+  upgrade:
+    crds: CreateReplace
+  values:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        # kubernetes.io/ingress.class: public
+        # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        flame.pawelmalak/type: application
+        flame.pawelmalak/name: Kubernetes-Dashboard
+        flame.pawelmalak/url: https://example.com
+        flame.pawelmalak/icon: https://cdn2.iconfinder.com/data/icons/mixd/512/20_kubernetes-512.png
+      labels: {}
+      hosts:
+        - "example.com"
+      path: /
+      # backend:
+      #     port:
+      #       number: 443
+      pathType: Prefix
+      tls:
+      - hosts:
+        - "example.com"
+        secretName: kubernetes-dashboard-tls

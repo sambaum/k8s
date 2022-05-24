@@ -1,0 +1,4 @@
+resources:
+  - helmrepository.yaml
+  - release.yaml
+  - dashboard-admin.yaml

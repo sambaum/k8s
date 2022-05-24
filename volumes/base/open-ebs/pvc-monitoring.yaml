@@ -1,0 +1,13 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: openebs-local-hostpath-monitoring-conf-pvc
+  namespace: monitoring
+spec:
+  storageClassName: openebs-local-hostpath-monitoring-conf
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50G
