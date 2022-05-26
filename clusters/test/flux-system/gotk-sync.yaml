@@ -8,10 +8,10 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: main
+    branch: test
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/sambaum/kubernetes-seebach-flux
+  url: ssh://git@github.com/sambaum/k8s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization

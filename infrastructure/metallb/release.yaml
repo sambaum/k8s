@@ -28,4 +28,4 @@ spec:
        - name: default
          protocol: layer2
          addresses:
-         - 192.168.1.32/32
+         - "${METALLB_ADDRESS_POOLS}"
