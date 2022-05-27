@@ -22,3 +22,9 @@ spec:
   targetNamespace: ingress-nginx
   upgrade:
     crds: CreateReplace
+  values:
+    controller:
+      service:
+        loadBalancerIP: "${NGINX_LOADBALANCER_IP}"
+
+# https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
