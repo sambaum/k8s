@@ -46,7 +46,7 @@ spec:
           containerPort: 1514
           service:
             port: 1514
-            externalTrafficPolicy: Local
+            # externalTrafficPolicy: Local
       config:
         snippets:
           extraScrapeConfigs: |
