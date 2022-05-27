@@ -6,4 +6,4 @@ metadata:
   name: cluster-settings
 data:
   METALLB_ADDRESS_POOLS: "192.168.1.32-192.168.1.33"
-  NGINX_LOADBALANCER_IP: "192.168.1.33"
+  NGINX_LOADBALANCER_IP: "192.168.1.32"
