@@ -1,0 +1,92 @@
+---
+# Page meta info, like heading, footer text and nav links
+pageInfo:
+  title: Dashy
+  description: Welcome to Sam's Dashboard
+  navLinks:
+    - title: GitHub
+      path: https://github.com/Lissy93/dashy
+    - title: Documentation
+      path: https://dashy.to/docs
+
+# Optional app settings and configuration
+appConfig:
+  theme: colorful
+  hideComponents:
+    hideHeading: true
+    hideNav: true
+    hideSettings: true
+
+# Main content - An array of sections, each containing an array of items
+sections:
+  - name: Network
+    icon: fas fa-network-wired
+    # displayData:
+    #   itemSize: small
+    items:
+      - title: OPNSense
+        description: Firewall
+        icon: si-opnsense
+        url: https://opnsense.example.com
+
+  - name: Infrastructure
+    icon: fas fa-server
+    items:
+      - title: Proxmox
+        description: Hypervisor
+        icon: si-proxmox
+        url: https://proxmox.example.com:8006
+        # statusCheck: true
+
+  - name: Other
+    icon: fas fa-server
+    items:
+      - title: Other
+        description: Other
+        icon: si-proxmox
+        url: https://other.example.com:8006
+        # statusCheck: true
+
+  - name: Today
+    icon: far fa-smile-beam
+    displayData:
+      collapsed: false
+      hideForGuests: false
+    widgets:
+      - type: clock
+        options:
+          format: de-CH
+      - type: weather
+        options:
+          apiKey: efdbade728b37086877a5e83442004db
+          city: Zurich
+
+  - name: Getting Started
+    icon: fas fa-rocket
+    items:
+      - title: Dashy Live
+        description: Development a project management links for Dashy
+        icon: https://i.ibb.co/qWWpD0v/astro-dab-128.png
+        url: https://live.dashy.to/
+        target: newtab
+      - title: GitHub
+        description: Source Code, Issues and Pull Requests
+        url: https://github.com/lissy93/dashy
+        icon: favicon
+      - title: Docs
+        description: Configuring & Usage Documentation
+        provider: Dashy.to
+        icon: far fa-book
+        url: https://dashy.to/docs
+      - title: Showcase
+        description: See how others are using Dashy
+        url: https://github.com/Lissy93/dashy/blob/master/docs/showcase.md
+        icon: far fa-grin-hearts
+      - title: Config Guide
+        description: See full list of configuration options
+        url: https://github.com/Lissy93/dashy/blob/master/docs/configuring.md
+        icon: fas fa-wrench
+      - title: Support
+        description: Get help with Dashy, raise a bug, or get in contact
+        url: https://github.com/Lissy93/dashy/blob/master/.github/SUPPORT.md
+        icon: far fa-hands-helping

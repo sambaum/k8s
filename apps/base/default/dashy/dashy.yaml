@@ -1,0 +1,98 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashy
+  namespace: default
+  labels:
+    app: dashy
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashy
+  template:
+    metadata:
+      labels:
+        app: dashy
+    spec:
+      initContainers:
+        - name: create-config
+          image: busybox:1.34.1
+          command:
+            [
+              'wget',
+              '-O',
+              '/app/public/conf.yml',
+              'https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml',
+            ]
+          volumeMounts:
+            - mountPath: /app/public
+              name: settings-dir
+            - mountPath: /app/public/conf.yml
+              name: settings
+      containers:
+        - name: dashy
+          image: lissy93/dashy:2.0.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /app/public/conf.yml
+              name: settings
+      volumes:
+        - name: settings-dir
+          hostPath:
+            path: /conf/default/dashy
+            type: DirectoryOrCreate
+        - name: settings
+          hostPath:
+            path: /conf/default/dashy/conf.yml
+            type: FileOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dashy-service
+  namespace: default
+spec:
+  selector:
+    app: dashy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashy-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Dashy
+    flame.pawelmalak/url: https://dashy.example.com
+    flame.pawelmalak/icon: https://dashy.to/img/dashy.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'dashy.example.com'
+      secretName: dashy-tls
+  rules:
+    - host: dashy.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: dashy-service
+                port:
+                  number: 80
