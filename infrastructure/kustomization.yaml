@@ -1,9 +1,8 @@
 resources:
   - namespaces
-  - cert-manager
-  - openebs-operator
+  # - cert-manager
+  # - openebs-operator
   - sealed-secrets
   - calico
   - ingress-nginx
-  - podmonitor
   - metallb

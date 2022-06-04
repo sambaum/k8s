@@ -27,6 +27,7 @@ spec:
           command:
             [
               'wget',
+              '-nc',
               '-O',
               '/app/public/conf.yml',
               'https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml',
