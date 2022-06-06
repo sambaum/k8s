@@ -23,14 +23,15 @@ spec:
     spec:
       initContainers:
         - name: create-config
-          image: busybox:1.34.1
+          image: mwendler/wget
           command:
             [
               'wget',
-              '-nc',
+              '-c',
               '-O',
               '/app/public/conf.yml',
               'https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml',
+              '--no-check-certificate',
             ]
           volumeMounts:
             - mountPath: /app/public

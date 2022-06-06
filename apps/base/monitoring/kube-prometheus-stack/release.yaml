@@ -17,14 +17,12 @@ spec:
     remediation:
       retries: 3
 
-
   values:
     defaultRules:
       rules:
         kubeScheduler: false
     kubeApiServer:
       enabled: false
-
 
     grafana:
       enabled: true
@@ -62,7 +60,6 @@ spec:
         - hosts:
           - "example.com"
           secretName: grafana-tls
-
 
     prometheus:
       enabled: true
@@ -167,4 +164,3 @@ spec:
         - hosts:
           - "example.com"
           secretName: prometheus-tls
-

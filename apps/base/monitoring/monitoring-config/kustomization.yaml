@@ -11,3 +11,9 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: "1"
+  - name: grafana-dashboards-default
+    files:
+      - custom-dashboards/node-pods-sam.json
+    options:
+      labels:
+        grafana_dashboard: "1"
