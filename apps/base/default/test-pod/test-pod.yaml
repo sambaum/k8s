@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-pod
+  namespace: default
+  labels:
+    app: test-pod
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-pod
+  template:
+    metadata:
+      labels:
+        app: test-pod
+      annotations: {
+          cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]',
+        }
+    spec:
+      containers:
+        - name: test-pod
+          image: curlimages/curl
+          command: ['/bin/sh', '-c', '--']
+          args: ['while true; do sleep 30; done;']
+          imagePullPolicy: Always
