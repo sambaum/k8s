@@ -1,8 +1,5 @@
 resources:
   - namespaces
-  # - cert-manager
-  # - openebs-operator
   - sealed-secrets
-  - calico
   - ingress-nginx
   - metallb
