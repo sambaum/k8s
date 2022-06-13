@@ -1,0 +1,100 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: sabnzbd
+ namespace: default
+ labels:
+   app: sabnzbd
+ annotations:
+   keel.sh/policy: major
+   keel.sh/trigger: poll
+   keel.sh/approvals: "1"
+   keel.sh/pollSchedule: "@hourly"
+spec:
+ replicas: 1
+ selector:
+    matchLabels:
+      app: sabnzbd
+ template:
+   metadata:
+     labels:
+       app: sabnzbd
+   spec:
+    containers:
+       - name: sabnzbd
+         image: linuxserver/sabnzbd:3.5.3
+         imagePullPolicy: Always
+         ports:
+           - containerPort: 6789
+         volumeMounts:
+           - mountPath: /config
+             name: config
+             subPath: sabnzbd
+           - mountPath: /downloads
+             name: sabnzbd-downloads
+             subPath: Downloads
+           - mountPath: /incomplete-downloads
+             name: sabnzbd-incomplete
+             subPath: sabnzbd/incomplete-downloads
+         env:
+         - name: PUID
+           value: "0"
+         - name: PGID
+           value: "0"
+         - name: TZ
+           value: "Europe/Zurich"
+    volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: sabnzbd-incomplete
+        persistentVolumeClaim:
+          claimName: local-temp-pvc
+      - name: sabnzbd-downloads
+        persistentVolumeClaim:
+          claimName: nas-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sabnzbd-service
+  namespace: default
+spec:
+  selector:
+    app: sabnzbd
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sabnzbd-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/client-max-body-size: 100m
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: SABnzbd
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1578567856_SABnzbd_256.png
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - "example.com"
+    secretName: sabnzbd.int-tls
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: sabnzbd-service
+            port:
+              number: 8080

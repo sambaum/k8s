@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-temp-pvc
+  namespace: default
 spec:
   volumeName: nas-temp-pv
   accessModes:
@@ -15,6 +16,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-temp-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
@@ -33,6 +35,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-media-pvc
+  namespace: default
 spec:
   volumeName: nas-media-pv
   accessModes:
@@ -46,6 +49,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-media-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
@@ -64,6 +68,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-sam-pvc
+  namespace: default
 spec:
   volumeName: nas-sam-pv
   accessModes:
@@ -77,6 +82,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-sam-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
@@ -95,6 +101,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-carol-pvc
+  namespace: default
 spec:
   volumeName: nas-carol-pv
   accessModes:
@@ -108,6 +115,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-carol-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
@@ -126,6 +134,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-other-pvc
+  namespace: default
 spec:
   volumeName: nas-other-pv
   accessModes:
@@ -139,6 +148,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-other-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
@@ -157,6 +167,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nas-backup-pvc
+  namespace: default
 spec:
   volumeName: nas-backup-pv
   accessModes:
@@ -170,6 +181,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nas-backup-pv
+  namespace: default
 spec:
   storageClassName: ""
   claimRef:
