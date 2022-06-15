@@ -7,10 +7,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: http://dashboard.t21.circle.ispin.ch/
+        value: dashboard.t21.circle.ispin.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [http://dashboard.t21.circle.ispin.ch/]
+        value: [dashboard.t21.circle.ispin.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
         value: https://dashboard.t21.circle.ispin.ch/
@@ -23,13 +23,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/values/ingress/hosts/0
-        value: http://dashboard.t21.circle.ispin.ch/
+        value: dashboard.t21.circle.ispin.ch
       - op: replace
         path: /spec/values/ingress/tls/0/hosts/0
-        value: http://dashboard.t21.circle.ispin.ch/
+        value: dashboard.t21.circle.ispin.ch
       - op: replace
         path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-        value: https://dashboard.t21.circle.ispin.ch/
+        value: http://dashboard.t21.circle.ispin.ch/
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

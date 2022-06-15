@@ -13,7 +13,7 @@ patches:
         value: [portainer.t21.circle.ispin.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://portainer.t21.circle.ispin.ch
+        value: http://portainer.t21.circle.ispin.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
@@ -29,7 +29,7 @@ patches:
         value: portainer.t21.circle.ispin.ch
       - op: replace
         path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-        value: https://portainer.t21.circle.ispin.ch
+        value: http://portainer.t21.circle.ispin.ch
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

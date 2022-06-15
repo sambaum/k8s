@@ -13,7 +13,7 @@ patches:
         value: [flame.t21.circle.ispin.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://flame.t21.circle.ispin.ch
+        value: http://flame.t21.circle.ispin.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
