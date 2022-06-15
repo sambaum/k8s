@@ -1,0 +1,19 @@
+resources:
+  - ../../../base/default/dashy/
+patches:
+  - target:
+      kind: Ingress
+      name: dashy-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: dashy.t21.circle.ispin.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [dashy.t21.circle.ispin.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://dashy.t21.circle.ispin.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging

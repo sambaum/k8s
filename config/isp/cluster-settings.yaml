@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-settings
+data:
+  METALLB_ADDRESS_POOLS: "172.22.21.18-172.22.21.19"
+  NGINX_LOADBALANCER_IP: "172.22.21.18"
+  SYSLOG_LOADBALANCER_IP: "172.22.21.19"
