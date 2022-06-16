@@ -14,6 +14,7 @@ spec:
         kind: HelmRepository
         name: portainer
         namespace: flux-system
+      version: '1.0.30'
   interval: 1m
   install:
     remediation:
@@ -26,7 +27,7 @@ spec:
       storageClass: openebs-local-hostpath-conf
       accessMode: ReadWriteOnce
       size: 1Gi
-      subPath: "portainer"
+      subPath: 'portainer'
       existingClaim: openebs-local-hostpath-conf-pvc
     ingress:
       enabled: true
@@ -34,8 +35,8 @@ spec:
       annotations:
         # kubernetes.io/ingress.class: public
         # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600" # Recommendation for Websockets
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600" # Recommendation for Websockets
+        nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+        nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: letsencrypt-staging
         flame.pawelmalak/type: application
@@ -45,10 +46,10 @@ spec:
       labels: {}
       hosts:
         - paths:
-           - path: "/"
-          host: "example.com"
+            - path: '/'
+          host: 'example.com'
       pathType: Prefix
       tls:
-      - hosts:
-        - "example.com"
-        secretName: portainer-tls
+        - hosts:
+            - 'example.com'
+          secretName: portainer-tls

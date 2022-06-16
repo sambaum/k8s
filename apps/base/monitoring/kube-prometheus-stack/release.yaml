@@ -12,6 +12,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
+      version: '36.0.1'
   interval: 1m
   install:
     remediation:
@@ -38,7 +39,7 @@ spec:
         size: 1Gi
         finalizers:
           - kubernetes.io/pvc-protection
-        subPath: "grafana"
+        subPath: 'grafana'
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc
       ingress:
         enabled: true
@@ -53,13 +54,13 @@ spec:
           flame.pawelmalak/icon: https://user-images.githubusercontent.com/10999/43383564-afa9ea6c-93db-11e8-855b-de8be4f79756.png
         labels: {}
         hosts:
-          - "example.com"
+          - 'example.com'
         path: /
         pathType: Prefix
         tls:
-        - hosts:
-          - "example.com"
-          secretName: grafana-tls
+          - hosts:
+              - 'example.com'
+            secretName: grafana-tls
 
     prometheus:
       enabled: true
@@ -69,85 +70,84 @@ spec:
             app.kubernetes.io/part-of: flux
         retention: 30d
         storageSpec:
-         volumeClaimTemplate:
-           spec:
-             storageClassName: openebs-local-hostpath-monitoring-data
-             accessModes: ["ReadWriteOnce"]
-             resources:
-               requests:
-                 storage: 1Gi
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-local-hostpath-monitoring-data
+              accessModes: ['ReadWriteOnce']
+              resources:
+                requests:
+                  storage: 1Gi
         additionalScrapeConfigs:
-        - job_name: opnsense
-          static_configs:
-          - targets: ['opnsense.int.sambaum.ch:9100']
-            labels:
-              group: 'Firewall'
-          metric_relabel_configs:
-          - source_labels: [device]
-            action: replace
-            regex: "re0"
-            replacement: "LAN"
-            target_label: "device"
-          - source_labels: [device]
-            action: replace
-            regex: "em0"
-            replacement: "WAN"
-            target_label: "device"
-          - source_labels: [device]
-            action: replace
-            regex: "re2_vlan102"
-            replacement: "Quarantine"
-            target_label: "device"
-          - source_labels: [device]
-            action: replace
-            regex: "ovpnc2"
-            replacement: "ExpressVPNNL"
-            target_label: "device"
-          - source_labels: [device]
-            action: drop
-            regex: "re2"
-          - source_labels: [device]
-            action: drop
-            regex: "lo0"
-          - source_labels: [device]
-            action: drop
-            regex: "pflog0"
-        - job_name: proxmox
-          scrape_interval: 5s
-          static_configs:
-          - targets: ['proxmox.int.sambaum.ch:9100']
-            labels:
-              group: 'proxmox'
-        - job_name: diskstation
-          static_configs:
-          - targets: ['nas.int.sambaum.ch:9100']
-            labels:
-              group: 'DiskStation'
-        - job_name: diskstation-snmp
-          static_configs:
-            - targets:
-              - nas.int.sambaum.ch
-              labels:
-                Device: '1'
-          metrics_path: /snmp
-          params:
-            module: [synology]
-          relabel_configs:
-            - source_labels: [__address__]
-              target_label: __param_target
-            - source_labels: [__param_target]
-              target_label: instance
-            - target_label: __address__
-              replacement: nas.int.sambaum.ch:9116
-        - job_name: 'uptime'
-          scheme: https
-          static_configs:
-            - targets: ['uptime.int.sambaum.ch:443']
+          - job_name: opnsense
+            static_configs:
+              - targets: ['opnsense.int.sambaum.ch:9100']
+                labels:
+                  group: 'Firewall'
+            metric_relabel_configs:
+              - source_labels: [device]
+                action: replace
+                regex: 're0'
+                replacement: 'LAN'
+                target_label: 'device'
+              - source_labels: [device]
+                action: replace
+                regex: 'em0'
+                replacement: 'WAN'
+                target_label: 'device'
+              - source_labels: [device]
+                action: replace
+                regex: 're2_vlan102'
+                replacement: 'Quarantine'
+                target_label: 'device'
+              - source_labels: [device]
+                action: replace
+                regex: 'ovpnc2'
+                replacement: 'ExpressVPNNL'
+                target_label: 'device'
+              - source_labels: [device]
+                action: drop
+                regex: 're2'
+              - source_labels: [device]
+                action: drop
+                regex: 'lo0'
+              - source_labels: [device]
+                action: drop
+                regex: 'pflog0'
+          - job_name: proxmox
+            scrape_interval: 5s
+            static_configs:
+              - targets: ['proxmox.int.sambaum.ch:9100']
+                labels:
+                  group: 'proxmox'
+          - job_name: diskstation
+            static_configs:
+              - targets: ['nas.int.sambaum.ch:9100']
+                labels:
+                  group: 'DiskStation'
+          - job_name: diskstation-snmp
+            static_configs:
+              - targets:
+                  - nas.int.sambaum.ch
+                labels:
+                  Device: '1'
+            metrics_path: /snmp
+            params:
+              module: [synology]
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                target_label: instance
+              - target_label: __address__
+                replacement: nas.int.sambaum.ch:9116
+          - job_name: 'uptime'
+            scheme: https
+            static_configs:
+              - targets: ['uptime.int.sambaum.ch:443']
       ingress:
         enabled: true
         ingressClassName: nginx
         annotations:
-          # kubernetes.io/ingress.class: public
           cert-manager.io/cluster-issuer: letsencrypt-staging
           nginx.ingress.kubernetes.io/configuration-snippet: |
             more_set_headers "X-Frame-Options: allow";
@@ -157,10 +157,10 @@ spec:
           flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/prometheus-282488.png
         labels: {}
         hosts:
-          - "example.com"
+          - 'example.com'
         path: /
         pathType: Prefix
         tls:
-        - hosts:
-          - "example.com"
-          secretName: prometheus-tls
+          - hosts:
+              - 'example.com'
+            secretName: prometheus-tls

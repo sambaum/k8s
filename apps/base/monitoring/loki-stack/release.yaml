@@ -12,6 +12,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
+      version: '2.6.4'
   interval: 5m
   install:
     remediation:
@@ -34,10 +35,6 @@ spec:
           retention_delete_worker_count: 150
         limits_config:
           retention_period: 14d
-          # retention_stream:
-          # - selector: '{host="OPNsense.int.sambaum.ch"}'
-          #   priority: 1
-          #   period: 7d
     promtail:
       enabled: true
       extraPorts:
@@ -46,7 +43,6 @@ spec:
           containerPort: 1514
           service:
             port: 1514
-            # externalTrafficPolicy: Local
       config:
         snippets:
           extraScrapeConfigs: |
@@ -65,5 +61,3 @@ spec:
       sidecar:
         datasources:
           enabled: true
-      # image:
-      #   tag: 8.1.6

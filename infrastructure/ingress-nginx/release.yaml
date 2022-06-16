@@ -13,8 +13,7 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-  timeout: 60s
-      # version: 'v3.23.0'
+      version: '4.1.4'
   install:
     crds: Create
   interval: 1m0s
@@ -25,6 +24,5 @@ spec:
   values:
     controller:
       service:
-        loadBalancerIP: "${NGINX_LOADBALANCER_IP}"
-
+        loadBalancerIP: '${NGINX_LOADBALANCER_IP}'
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
