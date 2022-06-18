@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ../../../base/monitoring/monitoring-config/
-configMapGenerator:
-  - name: grafana-dashboards-test
-    files:
-      - custom-dashboards/opnsense.json
-    options:
-      labels:
-        grafana_dashboard: "1"
+# configMapGenerator:
+#   - name: grafana-dashboards-test
+#     files:
+#       - ../../../base/monitoring/monitoring-config/custom-dashboards/opnsense.json
+#     options:
+#       labels:
+#         grafana_dashboard: "1"

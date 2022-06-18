@@ -128,7 +128,9 @@
   "refresh": "",
   "schemaVersion": 36,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Sam"
+  ],
   "templating": {
     "list": [
       {

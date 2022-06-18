@@ -63,7 +63,9 @@
   ],
   "schemaVersion": 36,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Sam"
+  ],
   "templating": {
     "list": []
   },
@@ -75,6 +77,6 @@
   "timezone": "",
   "title": "Alert Dashboard",
   "uid": "9WfqX3U7k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

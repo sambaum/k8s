@@ -1270,7 +1270,8 @@
   "style": "dark",
   "tags": [
     "Kubernetes",
-    "Prometheus"
+    "Prometheus",
+    "Sam"
   ],
   "templating": {
     "list": [

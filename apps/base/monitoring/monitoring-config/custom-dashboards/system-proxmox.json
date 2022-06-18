@@ -27,7 +27,7 @@
   "gnetId": 9893,
   "graphTooltip": 0,
   "id": 249,
-  "iteration": 1654795734193,
+  "iteration": 1655593072876,
   "links": [
     {
       "icon": "external link",
@@ -313,7 +313,7 @@
           "step": 20
         }
       ],
-      "title": "CPU usage5m	",
+      "title": "CPU usage（5m）",
       "type": "gauge"
     },
     {
@@ -396,7 +396,7 @@
           "step": 20
         }
       ],
-      "title": "CPU iowait5m	",
+      "title": "CPU iowait（5m）",
       "type": "gauge"
     },
     {
@@ -1186,7 +1186,7 @@
         "uid": "prometheus"
       },
       "decimals": 2,
-      "description": "node_disk_io_time_seconds_total\nThe number of milliseconds the disk spends on input/output operations. This value is the accumulated value.Milliseconds Spent Doing I/Os	\n\nirate(node_disk_io_time_seconds_total[1m])\nCalculate the rate per second: (last value - last previous value) / timestamp difference, that is, the percentage of time that the disk spends on I/O operations in 1 second.",
+      "description": "node_disk_io_time_seconds_total：\nThe number of milliseconds the disk spends on input/output operations. This value is the accumulated value.（Milliseconds Spent Doing I/Os）\n\nirate(node_disk_io_time_seconds_total[1m])：\nCalculate the rate per second: (last value - last previous value) / timestamp difference, that is, the percentage of time that the disk spends on I/O operations in 1 second.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1272,7 +1272,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "CPU usage, disk I/O operations per second take time%	",
+      "title": "CPU usage, disk I/O operations per second take time（%）",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1541,7 +1541,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Disk read and write rateIOPS	",
+      "title": "Disk read and write rate（IOPS）",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1556,7 +1556,7 @@
       "yaxes": [
         {
           "format": "iops",
-          "label": "Read (-) / write+	I/O ops/sec",
+          "label": "Read (-) / write（+）I/O ops/sec",
           "logBase": 1,
           "show": true
         },
@@ -1889,7 +1889,7 @@
       "yaxes": [
         {
           "format": "bps",
-          "label": "Upload (-) / Download+	",
+          "label": "Upload (-) / Download（+）",
           "logBase": 1,
           "show": true
         },
@@ -3085,7 +3085,8 @@
   "style": "dark",
   "tags": [
     "StarsL",
-    "Prometheus"
+    "Prometheus",
+    "Sam"
   ],
   "templating": {
     "list": [
@@ -3337,6 +3338,6 @@
   "timezone": "browser",
   "title": "System (Proxmox)",
   "uid": "cUqo37s7k",
-  "version": 27,
+  "version": 28,
   "weekStart": ""
 }

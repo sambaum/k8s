@@ -25,7 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 53,
-  "iteration": 1654542069271,
+  "iteration": 1655591203008,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1149,8 +1149,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1247,8 +1246,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1305,7 +1303,8 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "kubernetes-mixin"
+    "kubernetes-mixin",
+    "Sam"
   ],
   "templating": {
     "list": [
@@ -1419,8 +1418,8 @@
     ]
   },
   "timezone": "utc",
-  "title": "Kubernetes / Compute Resources / Node (Pods) Sam 3",
+  "title": "Kubernetes / Compute Resources / Node (Pods) Sam",
   "uid": "200ac8fdbfbb74b39aff88118e4d1c2e",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }
