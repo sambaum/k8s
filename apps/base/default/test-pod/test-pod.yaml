@@ -20,9 +20,7 @@ spec:
     metadata:
       labels:
         app: test-pod
-      annotations: {
-          cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]',
-        }
+      annotations: { cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]' }
     spec:
       containers:
         - name: test-pod

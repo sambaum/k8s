@@ -2,50 +2,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: syslog-ng
- namespace: default
- labels:
-   app: syslog-ng
- annotations:
-   keel.sh/policy: major
-   keel.sh/trigger: poll
-   keel.sh/approvals: "1"
-   keel.sh/pollSchedule: "@hourly"
+  name: syslog-ng
+  namespace: default
+  labels:
+    app: syslog-ng
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
 spec:
- replicas: 1
- selector:
+  replicas: 1
+  selector:
     matchLabels:
       app: syslog-ng
- template:
-   metadata:
-     labels:
-       app: syslog-ng
-   spec:
-    containers:
-       - name: syslog-ng
-         image: linuxserver/syslog-ng:3.30.1
-         imagePullPolicy: Always
-         volumeMounts:
-           - mountPath: /config
-             name: config
-             subPath: syslog-ng
-           - mountPath: /var/log
-             name: temp
-             subPath: syslog-ng
-         env:
-         - name: PUID
-           value: "0"
-         - name: PGID
-           value: "0"
-         - name: TZ
-           value: "Europe/Zurich"
-    volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: local-conf-pvc
-      - name: temp
-        persistentVolumeClaim:
-          claimName: local-temp-pvc
+  template:
+    metadata:
+      labels:
+        app: syslog-ng
+    spec:
+      containers:
+        - name: syslog-ng
+          image: linuxserver/syslog-ng:3.30.1
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: syslog-ng
+            - mountPath: /var/log
+              name: temp
+              subPath: syslog-ng
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: temp
+          persistentVolumeClaim:
+            claimName: local-temp-pvc
 ---
 kind: Service
 apiVersion: v1
@@ -53,16 +53,16 @@ metadata:
   namespace: default
   name: syslog-ng-service-601-tcp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "share-syslog-ng"
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
 spec:
   type: LoadBalancer
-  loadBalancerIP: "${SYSLOG_LOADBALANCER_IP}"
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
   selector:
     app: syslog-ng
   ports:
-  - protocol: TCP
-    port: 601
-    targetPort: 601
+    - protocol: TCP
+      port: 601
+      targetPort: 601
 ---
 kind: Service
 apiVersion: v1
@@ -70,16 +70,16 @@ metadata:
   namespace: default
   name: syslog-ng-service-514-udp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "share-syslog-ng"
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
 spec:
   type: LoadBalancer
-  loadBalancerIP: "${SYSLOG_LOADBALANCER_IP}"
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
   selector:
     app: syslog-ng
   ports:
-  - protocol: UDP
-    port: 514
-    targetPort: 514
+    - protocol: UDP
+      port: 514
+      targetPort: 514
 ---
 kind: Service
 apiVersion: v1
@@ -87,13 +87,13 @@ metadata:
   namespace: default
   name: syslog-ng-service-514-tcp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "share-syslog-ng"
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
 spec:
   type: LoadBalancer
-  loadBalancerIP: "${SYSLOG_LOADBALANCER_IP}"
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
   selector:
     app: syslog-ng
   ports:
-  - protocol: TCP
-    port: 514
-    targetPort: 514
+    - protocol: TCP
+      port: 514
+      targetPort: 514

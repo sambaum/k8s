@@ -2,45 +2,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: flame
- namespace: default
- labels:
-   app: flame
- annotations:
-   keel.sh/policy: major
-   keel.sh/trigger: poll
-   keel.sh/approvals: "1"
-   keel.sh/pollSchedule: "@hourly"
+  name: flame
+  namespace: default
+  labels:
+    app: flame
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
 spec:
- replicas: 1
- selector:
+  replicas: 1
+  selector:
     matchLabels:
       app: flame
- template:
-   metadata:
-     labels:
-       app: flame
-   spec:
-    containers:
-       - name: flame
-         image: pawelmalak/flame:2.3.0
-         imagePullPolicy: Always
-         ports:
-           - containerPort: 5005
-         volumeMounts:
-           - mountPath: /app/data
-             name: config
-             subPath: flame
-         env:
-         - name: TZ
-           value: "Europe/Zurich"
-         - name: PASSWORD
-           value: "password"
-    serviceAccountName: flame
-    volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: local-conf-pvc
+  template:
+    metadata:
+      labels:
+        app: flame
+    spec:
+      containers:
+        - name: flame
+          image: pawelmalak/flame:2.3.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5005
+          volumeMounts:
+            - mountPath: /app/data
+              name: config
+              subPath: flame
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: PASSWORD
+              value: 'password'
+      serviceAccountName: flame
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
 ---
 kind: Service
 apiVersion: v1
@@ -51,9 +51,9 @@ spec:
   selector:
     app: flame
   ports:
-  - protocol: TCP
-    port: 5005
-    targetPort: 5005
+    - protocol: TCP
+      port: 5005
+      targetPort: 5005
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -69,17 +69,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - "example.com"
-    secretName: flame-tls
+    - hosts:
+        - 'example.com'
+      secretName: flame-tls
   rules:
-  - host: example.com
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: flame-service
-            port:
-              number: 5005
+    - host: example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: flame-service
+                port:
+                  number: 5005
