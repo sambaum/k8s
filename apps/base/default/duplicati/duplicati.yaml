@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: duplicati
-          image: linuxserver/duplicati:2.0.6-development
+          image: linuxserver/duplicati:2.0.6
           imagePullPolicy: Always
           ports:
             - containerPort: 8200
