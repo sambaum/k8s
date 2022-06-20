@@ -1,0 +1,43 @@
+resources:
+  - ../../../base/default/duplicati/
+patches:
+  - target:
+      kind: Ingress
+      name: duplicati-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: duplicati.t21.circle.ispin.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [duplicati.t21.circle.ispin.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: http://duplicati.t21.circle.ispin.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+  - target:
+      kind: Deployment
+      name: duplicati
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - mountPath: /config
+            name: config
+            subPath: duplicati
+          - mountPath: /source/conf
+            name: config
+          - mountPath: /backup
+            name: backup
+            subPath: duplicati
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
+          - name: backup
+            persistentVolumeClaim:
+              claimName: local-data-pvc
