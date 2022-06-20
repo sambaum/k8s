@@ -27,7 +27,7 @@
   "gnetId": 15356,
   "graphTooltip": 0,
   "id": 245,
-  "iteration": 1654795589933,
+  "iteration": 1655726124316,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -2205,6 +2205,6 @@
   "timezone": "",
   "title": "Proxmox [Flux]",
   "uid": "IfgdXjtnk",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }

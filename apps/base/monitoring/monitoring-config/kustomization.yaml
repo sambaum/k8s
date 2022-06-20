@@ -10,7 +10,7 @@ configMapGenerator:
       - cluster.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-default
     files:
       - custom-dashboards/alerts-dashboard.json
@@ -20,35 +20,35 @@ configMapGenerator:
       - custom-dashboards/storage.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-proxmox
     files:
       - custom-dashboards/proxmox-flux.json
-      - custom-dashboards/system-proxmox.json # PROBLEM
+      - custom-dashboards/system-proxmox.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-opnsense
     files:
       - custom-dashboards/opnsense.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-synology1
     files:
-      - custom-dashboards/synology-nas-overview.json # PROBLEM
+      - custom-dashboards/synology-nas-overview.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-synology2
     files:
       - custom-dashboards/synology-nas-detail.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
   - name: grafana-dashboards-other
     files:
       - custom-dashboards/uptime-kuma.json
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: '1'
