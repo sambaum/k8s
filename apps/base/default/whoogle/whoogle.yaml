@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoogle
+  namespace: default
+  labels:
+    app: whoogle
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoogle
+  template:
+    metadata:
+      labels:
+        app: whoogle
+    spec:
+      containers:
+        - name: whoogle
+          image: benbusby/whoogle-search
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoogle-service
+  namespace: default
+spec:
+  selector:
+    app: whoogle
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoogle-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: whoogle
+    flame.pawelmalak/url: https://example.com
+    # whoogle.pawelmalak/icon: https://preview.redd.it/wg339t74xqi81.png?width=1266&format=png&auto=webp&s=c1e89307b1000fe7436a239f70d3a346ec629812
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'whoogle.int.sambaum.ch'
+      secretName: whoogle-tls
+  rules:
+    - host: whoogle.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: whoogle-service
+                port:
+                  number: 5000

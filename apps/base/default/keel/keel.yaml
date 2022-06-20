@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keel
+  namespace: default
+  labels:
+    app: keel
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keel
+  template:
+    metadata:
+      labels:
+        app: keel
+    spec:
+      containers:
+        - name: keel
+          image: keelhq/keel:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9300
+          env:
+            - name: BASIC_AUTH_USER
+              value: admin
+            - name: BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keel-basic-auth-password-secret
+                  key: BASIC_AUTH_PASSWORD
+                  optional: false
+            - name: WEBHOOK_ENDPOINT
+              value: 'http://keel-telegram-bot.int.sambaum.ch/'
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: keel-service
+  namespace: default
+spec:
+  selector:
+    app: keel
+  ports:
+    - protocol: TCP
+      port: 9300
+      targetPort: 9300
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keel-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Keel.sh
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://keel.sh/img/logo_small.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'keel.int.sambaum.ch'
+      secretName: keel-tls
+  rules:
+    - host: keel.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: keel-service
+                port:
+                  number: 9300
+#kubectl create secret generic keel-basic-auth-password-secret --dry-run=client --from-literal=BASIC_AUTH_PASSWORD=mysecretvalue -o yaml | \
+#kubeseal \
+#  --controller-name=sealed-secrets-controller \
+#  --controller-namespace=default \
+#  --format yaml > keel-secret.yaml

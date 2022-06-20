@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: keel-telegram-bot
+ labels:
+   app: keel-telegram-bot
+ annotations:
+   keel.sh/policy: force
+   keel.sh/trigger: poll
+   keel.sh/approvals: "1"
+   keel.sh/pollSchedule: "@hourly"
+spec:
+ replicas: 1
+ selector:
+    matchLabels:
+      app: keel-telegram-bot
+ template:
+   metadata:
+     labels:
+       app: keel-telegram-bot
+   spec:
+    containers:
+       - name: keel-telegram-bot
+         image: markusressel/keel-telegram-bot:latest
+         imagePullPolicy: Always
+         volumeMounts:
+           - mountPath: /app/keel-telegram-bot.yaml
+             name: settings
+         env:
+         - name: TZ
+           value: "Europe/Zurich"
+    volumes:
+      - name: settings
+        hostPath:
+          path: /conf/keel-telegram-bot/keel-telegram-bot.yaml
+          type: FileOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: keel-telegram-bot-service
+spec:
+  selector:
+    app: keel-telegram-bot
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keel-telegram-bot-ingress
+spec:
+  rules:
+  - host: keel-telegram-bot.int.sambaum.ch
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: keel-telegram-bot-service
+            port:
+              number: 5000

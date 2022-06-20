@@ -1,0 +1,118 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpipam
+  namespace: default
+  labels:
+    app: phpipam
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpipam
+  template:
+    metadata:
+      labels:
+        app: phpipam
+    spec:
+      containers:
+        - name: phpipam
+          image: phpipam/phpipam-www:v1.5.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: IPAM_DATABASE_HOST
+              value: 'phpipam-mariadb'
+            - name: IPAM_DATABASE_PASS
+              value: 'my_secret_phpipam_pass'
+            - name: IPAM_DATABASE_WEBHOST
+              value: '%'
+        - name: phpipam-cron
+          image: phpipam/phpipam-cron:v1.5.0
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: IPAM_DATABASE_HOST
+              value: 'phpipam-mariadb'
+            - name: IPAM_DATABASE_PASS
+              value: 'my_secret_phpipam_pass'
+            - name: SCAN_INTERVAL
+              value: '10m'
+        - name: phpipam-mariadb
+          image: mariadb:10.8.2
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: config
+              subPath: phpipam/mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'my_secret_mysql_root_pass'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpipam-service
+  namespace: default
+spec:
+  selector:
+    app: phpipam
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpipam-mariadb
+  namespace: default
+spec:
+  selector:
+    app: phpipam
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phpipam-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: '{php} IPAM'
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://www.axonius.com/hs-fs/hubfs/Adapter%20Logos/php_ipam_adapter.png?length=600&name=php_ipam_adapter.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'phpipam.int.sambaum.ch'
+      secretName: phpipam-tls
+  rules:
+    - host: phpipam.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: phpipam-service
+                port:
+                  number: 80

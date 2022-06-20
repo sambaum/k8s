@@ -1,0 +1,95 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  namespace: default
+  labels:
+    app: bazarr
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bazarr
+  template:
+    metadata:
+      labels:
+        app: bazarr
+    spec:
+      containers:
+        - name: bazarr
+          image: linuxserver/bazarr:1.0.4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 6767
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: bazarr
+            - mountPath: /tv
+              name: media
+              subPath: Video/Series
+            - mountPath: /movies
+              name: media
+              subPath: Video/Movies
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: bazarr-service
+  namespace: default
+spec:
+  selector:
+    app: bazarr
+  ports:
+    - protocol: TCP
+      port: 6767
+      targetPort: 6767
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bazarr-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Bazarr
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://user-images.githubusercontent.com/26902309/41456760-be00043e-7081-11e8-9646-1b724037b4ff.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'bazarr.int.sambaum.ch'
+      secretName: bazarr-tls
+  rules:
+    - host: bazarr.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: bazarr-service
+                port:
+                  number: 6767

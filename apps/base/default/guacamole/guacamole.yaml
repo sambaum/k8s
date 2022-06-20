@@ -1,0 +1,96 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guacamole
+  namespace: default
+  labels:
+    app: guacamole
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guacamole
+  template:
+    metadata:
+      labels:
+        app: guacamole
+    spec:
+      containers:
+        - name: guacamole
+          image: maxwaldorf/guacamole:1.4.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: guacamole
+          env:
+            - name: EXTENSIONS
+              value: 'auth-totp'
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: guacamole-service
+  namespace: default
+spec:
+  selector:
+    app: guacamole
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: guacamole-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffering: 'off'
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Guacamole
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://icons.iconarchive.com/icons/sonya/swarm/256/Guacamole-icon.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'guacamole.int.sambaum.ch'
+        - 'guacamole.sambaum.ch'
+      secretName: guacamole-tls
+  rules:
+    - host: guacamole.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: guacamole-service
+                port:
+                  number: 8080
+    - host: guacamole.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: guacamole-service
+                port:
+                  number: 8080

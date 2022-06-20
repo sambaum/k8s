@@ -1,0 +1,118 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashplan
+  namespace: default
+  labels:
+    app: crashplan
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crashplan
+  template:
+    metadata:
+      labels:
+        app: crashplan
+    spec:
+      containers:
+        - name: crashplan
+          image: jlesage/crashplan-pro:v2.17.0
+          ports:
+            - containerPort: 5800
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: crashplan
+            - mountPath: /usr/local/crashplan/cache
+              name: temp
+              subPath: crashplan
+            - mountPath: /mnt/NetworkDrives/media/
+              name: nas-media
+            - mountPath: /mnt/NetworkDrives/sam/
+              name: nas-sam
+            - mountPath: /mnt/NetworkDrives/carol/
+              name: nas-carol
+            - mountPath: /mnt/NetworkDrives/other/
+              name: nas-other
+            - mountPath: /mnt/NetworkDrives/backup/
+              name: nas-backup
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: USER_ID
+              value: '0'
+            - name: GROUP_ID
+              value: '0'
+            - name: CRASHPLAN_SRV_MAX_MEM
+              value: '16G'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: temp
+          persistentVolumeClaim:
+            claimName: local-temp-pvc
+        - name: nas-media
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+        - name: nas-sam
+          persistentVolumeClaim:
+            claimName: nas-sam-pvc
+        - name: nas-carol
+          persistentVolumeClaim:
+            claimName: nas-carol-pvc
+        - name: nas-other
+          persistentVolumeClaim:
+            claimName: nas-other-pvc
+        - name: nas-backup
+          persistentVolumeClaim:
+            claimName: nas-backup-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: crashplan-service
+  namespace: default
+spec:
+  selector:
+    app: crashplan
+  ports:
+    - protocol: TCP
+      port: 5800
+      targetPort: 5800
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: crashplan-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Crashplan
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://cdn.icon-icons.com/icons2/2407/PNG/512/crashplan_icon_146200.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'crashplan.int.sambaum.ch'
+      secretName: crashplan-tls
+  rules:
+    - host: crashplan.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: crashplan-service
+                port:
+                  number: 5800

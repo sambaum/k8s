@@ -1,0 +1,128 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicati
+  namespace: default
+  labels:
+    app: duplicati
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: duplicati
+  template:
+    metadata:
+      labels:
+        app: duplicati
+    spec:
+      containers:
+        - name: duplicati
+          image: linuxserver/duplicati:2.0.6-development
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8200
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: duplicati
+            - mountPath: /tmp
+              name: temp
+              subPath: duplicati
+            - mountPath: /source/sam
+              name: nas-sam
+            - mountPath: /source/media
+              name: nas-media
+            - mountPath: /source/carol
+              name: nas-carol
+            - mountPath: /source/other
+              name: nas-other
+            - mountPath: /source/backup
+              name: nas-backup
+            - mountPath: /source/conf
+              name: config
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+          # resources:
+          #   limits:
+          #     cpu: "1.5"
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
+        - name: temp
+          persistentVolumeClaim:
+            claimName: local-temp-pvc
+        - name: nas-temp
+          persistentVolumeClaim:
+            claimName: nas-temp-pvc
+        - name: nas-sam
+          persistentVolumeClaim:
+            claimName: nas-sam-pvc
+        - name: nas-media
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+        - name: nas-carol
+          persistentVolumeClaim:
+            claimName: nas-carol-pvc
+        - name: nas-other
+          persistentVolumeClaim:
+            claimName: nas-other-pvc
+        - name: nas-backup
+          persistentVolumeClaim:
+            claimName: nas-backup-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: duplicati-service
+  namespace: default
+spec:
+  selector:
+    app: duplicati
+  ports:
+    - protocol: TCP
+      port: 8200
+      targetPort: 8200
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: duplicati-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Duplicati
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://www.duplicati.com/images/duplicati-fb-share-v1.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'duplicati.int.sambaum.ch'
+      secretName: duplicati-tls
+  rules:
+    - host: duplicati.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: duplicati-service
+                port:
+                  number: 8200

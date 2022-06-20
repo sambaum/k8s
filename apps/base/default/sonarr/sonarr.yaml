@@ -1,0 +1,95 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: default
+  labels:
+    app: sonarr
+  annotations:
+    keel.sh/policy: minor
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+        - name: sonarr
+          image: linuxserver/sonarr:3.0.8
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8989
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: sonarr
+            - mountPath: /downloads
+              name: media
+              subPath: Downloads
+            - mountPath: /tv
+              name: media
+              subPath: Video/Series
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sonarr-service
+  namespace: default
+spec:
+  selector:
+    app: sonarr
+  ports:
+    - protocol: TCP
+      port: 8989
+      targetPort: 8989
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Sonarr
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://forums-sonarr-tv.s3.dualstack.us-east-1.amazonaws.com/original/2X/e/ef4553fe96f04a298ec502279731579698e96a9b.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'sonarr.int.sambaum.ch'
+      secretName: sonarr-tls
+  rules:
+    - host: sonarr.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: sonarr-service
+                port:
+                  number: 8989

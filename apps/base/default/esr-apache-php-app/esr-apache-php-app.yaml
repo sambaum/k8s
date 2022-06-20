@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esr-apache-php-app
+  namespace: default
+  labels:
+    app: esr-apache-php-app
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esr-apache-php-app
+  template:
+    metadata:
+      labels:
+        app: esr-apache-php-app
+    spec:
+      containers:
+        - name: esr-apache-php-app
+          image: babatundebusari/docker-apache-php-fpm:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: config
+              subPath: esr-apache-php-app
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: esr-apache-php-app-service
+  namespace: default
+spec:
+  selector:
+    app: esr-apache-php-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: esr-apache-php-app-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: ESR
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://www.phoenixdruck.ch/wp-content/uploads/2017/03/Einzahlungsscheine.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'esr.int.sambaum.ch'
+      secretName: esr-tls
+  rules:
+    - host: esr.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: esr-apache-php-app-service
+                port:
+                  number: 80

@@ -1,0 +1,116 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission
+  namespace: default
+  labels:
+    app: transmission
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission
+      annotations: {
+          # "cni.projectcalico.org/ipAddrs": "[\"10.1.1.2\"]" # replace with cni.projectcalico.org/ipv4pools: '["pool-1", "pool-2"]'
+          cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]',
+        }
+    spec:
+      containers:
+        - name: transmission
+          image: linuxserver/transmission:version-3.00-r2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: transmission
+            - mountPath: /downloads
+              name: transmission-downloads
+              subPath: Downloads
+            - mountPath: /watch
+              name: transmission-downloads
+              subPath: Downloads/watched/transmission
+            - mountPath: /incomplete-downloads
+              name: transmission-incomplete
+              subPath: transmission/incomplete-downloads
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: TRANSMISSION_WEB_HOME
+              value: '/flood-for-transmission/'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: transmission-incomplete
+          persistentVolumeClaim:
+            claimName: local-temp-pvc
+        - name: transmission-downloads
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: transmission-service
+  namespace: default
+spec:
+  selector:
+    app: transmission
+  ports:
+    - protocol: TCP
+      port: 9091
+      targetPort: 9091
+      name: webui
+    - protocol: TCP
+      port: 51413
+      targetPort: 51413
+      name: torrentporttcp
+    - protocol: UDP
+      port: 51413
+      targetPort: 51413
+      name: torrentportudp
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: transmission-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Transmission Flood
+    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'transmission.int.sambaum.ch'
+      secretName: transmission-tls
+  rules:
+    - host: transmission.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: transmission-service
+                port:
+                  number: 9091

@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: searcharr
+  namespace: default
+  labels:
+    app: searcharr
+  annotations:
+    keel.sh/policy: 'glob:v*'
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: searcharr
+  template:
+    metadata:
+      labels:
+        app: searcharr
+    spec:
+      containers:
+        - name: searcharr
+          image: toddrob/searcharr:v2
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /app/data
+              name: config
+              subPath: searcharr/data
+            - mountPath: /app/settings.py
+              name: settings
+              # subPath: searcharr/settings.py
+            - mountPath: /app/logs
+              name: data
+              subPath: searcharr
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
+        - name: settings
+          hostPath:
+            path: /conf/searcharr/settings.py
+            type: FileOrCreate
