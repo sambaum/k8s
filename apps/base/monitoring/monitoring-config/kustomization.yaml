@@ -52,3 +52,6 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: '1'
+generatorOptions:
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
