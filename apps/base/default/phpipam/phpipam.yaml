@@ -103,10 +103,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'phpipam.int.sambaum.ch'
+        - 'example.com'
       secretName: phpipam-tls
   rules:
-    - host: phpipam.int.sambaum.ch
+    - host: example.com
       http:
         paths:
           - pathType: Prefix
