@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  url: https://metallb.github.io/metallb
+  url: https://charts.bitnami.com/bitnami
