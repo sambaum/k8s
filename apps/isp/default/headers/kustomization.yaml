@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/default/flame/
+  - ../../../base/default/headers/
 patches:
   - target:
       kind: Ingress
-      name: flame-ingress
+      name: headers-ingress
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: flame.t21.circle.ispin.ch
+        value: headers.t21.circle.ispin.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [flame.t21.circle.ispin.ch]
+        value: [headers.t21.circle.ispin.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: http://flame.t21.circle.ispin.ch
+        value: http://headers.t21.circle.ispin.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

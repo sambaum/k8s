@@ -93,6 +93,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: phpipam-ingress
+  namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
@@ -103,10 +104,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'phpipam.int.sambaum.ch'
+        - 'example.com'
       secretName: phpipam-tls
   rules:
-    - host: phpipam.int.sambaum.ch
+    - host: example.com
       http:
         paths:
           - pathType: Prefix
