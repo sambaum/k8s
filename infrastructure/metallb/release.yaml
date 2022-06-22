@@ -16,7 +16,7 @@ spec:
       version: '2.2.0'
   install:
     crds: Create
-  interval: 1m0s
+  interval: 10m
   releaseName: metallb
   targetNamespace: flux-system
   upgrade:

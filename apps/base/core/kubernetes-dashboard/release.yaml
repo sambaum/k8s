@@ -16,7 +16,7 @@ spec:
       version: '5.7.0'
   install:
     crds: Create
-  interval: 1m
+  interval: 10m
   releaseName: kubernetes-dashboard
   targetNamespace: default
   upgrade:
