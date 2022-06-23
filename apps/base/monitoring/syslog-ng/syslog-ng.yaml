@@ -21,6 +21,21 @@ spec:
       labels:
         app: syslog-ng
     spec:
+      initContainers:
+        - name: create-config
+          image: mwendler/wget
+          command:
+            [
+              'wget',
+              '-O',
+              '/config/syslog-ng.conf',
+              'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
+              '--no-check-certificate',
+            ]
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: syslog-ng
       containers:
         - name: syslog-ng
           image: linuxserver/syslog-ng:3.30.1
