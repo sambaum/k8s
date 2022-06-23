@@ -30,7 +30,7 @@ spec:
               '-c',
               '-O',
               '/app/public/conf.yml',
-              'https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml',
+              'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/dashy/conf.yml',
               '--no-check-certificate',
             ]
           volumeMounts:
