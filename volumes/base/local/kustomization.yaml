@@ -1,2 +1,3 @@
 resources:
-  - volumes.yaml
+  - volumes-default.yaml
+  - volumes-monitoring.yaml

@@ -57,10 +57,10 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: local-conf-pvc
+            claimName: local-conf-monitoring-pvc
         - name: temp
           persistentVolumeClaim:
-            claimName: local-temp-pvc
+            claimName: local-temp-monitoring-pvc
 ---
 kind: Service
 apiVersion: v1
