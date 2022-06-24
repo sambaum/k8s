@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: syslog-ng
-  namespace: default
+  namespace: monitoring
   labels:
     app: syslog-ng
   annotations:
@@ -65,7 +65,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: default
+  namespace: monitoring
   name: syslog-ng-service-601-tcp
   annotations:
     metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
@@ -82,7 +82,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: default
+  namespace: monitoring
   name: syslog-ng-service-514-udp
   annotations:
     metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
@@ -99,7 +99,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: default
+  namespace: monitoring
   name: syslog-ng-service-514-tcp
   annotations:
     metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
