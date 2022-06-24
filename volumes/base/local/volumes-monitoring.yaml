@@ -34,7 +34,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage-monitoring
   local:
-    path: /conf/default
+    path: /conf/monitoring
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -72,7 +72,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage-monitoring
   local:
-    path: /data/default
+    path: /data/monitoring
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -110,7 +110,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage-monitoring
   local:
-    path: /temp/default
+    path: /temp/monitoring
   nodeAffinity:
     required:
       nodeSelectorTerms:
