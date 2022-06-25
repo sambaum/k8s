@@ -1,2 +1,17 @@
 resources:
   - ../../../base/monitoring/syslog-ng/
+patches:
+  - target:
+      kind: HelmRelease
+      name: kube-prometheus-stack
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/initContainers/0/command
+        value:
+          [
+            'wget',
+            '-O',
+            '/config/syslog-ng.conf',
+            'https://raw.githubusercontent.com/sambaum/k8s/master/apps/home/monitoring/syslog-ng/syslog-ng.conf',
+            '--no-check-certificate',
+          ]
