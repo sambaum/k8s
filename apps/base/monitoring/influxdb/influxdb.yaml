@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: influxdb
-  namespace: default
+  namespace: monitoring
   labels:
     app: influxdb
   annotations:
@@ -34,32 +34,19 @@ spec:
             - mountPath: /var/lib/influxdb2
               name: data
               subPath: influxdb
-          env:
-          # - name: DOCKER_INFLUXDB_INIT_MODE
-          #   value: "setup"
-          # - name: DOCKER_INFLUXDB_INIT_USERNAME
-          #   value: "root"
-          # - name: DOCKER_INFLUXDB_INIT_PASSWORD
-          #   value: "root"
-          # - name: DOCKER_INFLUXDB_INIT_ORG
-          #   value: "sam"
-          # - name: DOCKER_INFLUXDB_INIT_BUCKET
-          #   value: "sambucket"
-          # - name: DOCKER_INFLUXDB_INIT_RETENTION
-          #   value: "1w"
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: local-conf-pvc
+            claimName: local-conf-monitoring-pvc
         - name: data
           persistentVolumeClaim:
-            claimName: local-data-pvc
+            claimName: local-data-monitoring-pvc
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: influxdb-service
-  namespace: default
+  namespace: monitoring
 spec:
   selector:
     app: influxdb
@@ -72,7 +59,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: influxdb-ingress
-  namespace: default
+  namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
@@ -83,10 +70,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'influxdb.int.sambaum.ch'
+        - 'example.com'
       secretName: influxdb-tls
   rules:
-    - host: influxdb.int.sambaum.ch
+    - host: example.com
       http:
         paths:
           - pathType: Prefix

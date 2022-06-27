@@ -3,3 +3,4 @@ resources:
   - loki-stack
   - monitoring-config
   - syslog-ng
+  - influxdb
