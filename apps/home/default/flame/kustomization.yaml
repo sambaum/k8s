@@ -16,4 +16,4 @@ patches:
         value: https://flame.dumpster.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production

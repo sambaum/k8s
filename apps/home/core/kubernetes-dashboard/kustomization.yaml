@@ -16,7 +16,7 @@ patches:
         value: https://dashboard.dumpster.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production
   - target:
       kind: HelmRelease
       name: kubernetes-dashboard
@@ -32,4 +32,4 @@ patches:
         value: https://dashboard.dumpster.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production

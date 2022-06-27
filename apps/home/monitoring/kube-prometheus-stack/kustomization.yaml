@@ -16,7 +16,7 @@ patches:
         value: grafana.dumpster.int.sambaum.ch
       - op: replace
         path: /spec/values/grafana/ingress/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production
 
       - op: replace
         path: /spec/values/prometheus/ingress/hosts/0
@@ -29,7 +29,7 @@ patches:
         value: prometheus.dumpster.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production
 
       - op: add
         path: /spec/values/prometheus/prometheusSpec

@@ -16,4 +16,4 @@ patches:
         value: https://portainer.dumpster.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+        value: letsencrypt-production
