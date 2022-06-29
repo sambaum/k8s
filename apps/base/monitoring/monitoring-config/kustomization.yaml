@@ -27,7 +27,7 @@ configMapGenerator:
         grafana_dashboard: '1'
   - name: grafana-dashboards-proxmox
     files:
-      - custom-dashboards/proxmox-flux.json
+      # - custom-dashboards/proxmox-flux.json
       - custom-dashboards/system-proxmox.json
     options:
       labels:
