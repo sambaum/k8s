@@ -60,10 +60,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'organizr.int.sambaum.ch'
+        - 'organizr.example.com'
       secretName: organizr-tls
   rules:
-    - host: organizr.int.sambaum.ch
+    - host: organizr.example.com
       http:
         paths:
           - pathType: Prefix

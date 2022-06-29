@@ -50,16 +50,16 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-staging
           flame.pawelmalak/type: application
           flame.pawelmalak/name: Grafana
-          flame.pawelmalak/url: https://example.com
+          flame.pawelmalak/url: https://grafana.example.com
           flame.pawelmalak/icon: https://user-images.githubusercontent.com/10999/43383564-afa9ea6c-93db-11e8-855b-de8be4f79756.png
         labels: {}
         hosts:
-          - 'example.com'
+          - 'grafana.example.com'
         path: /
         pathType: Prefix
         tls:
           - hosts:
-              - 'example.com'
+              - 'grafana.example.com'
             secretName: grafana-tls
 
     prometheus:
@@ -86,14 +86,14 @@ spec:
             more_set_headers "X-Frame-Options: allow";
           flame.pawelmalak/type: application
           flame.pawelmalak/name: Prometheus
-          flame.pawelmalak/url: https://example.com
+          flame.pawelmalak/url: https://prometheus.example.com
           flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/prometheus-282488.png
         labels: {}
         hosts:
-          - 'example.com'
+          - 'prometheus.example.com'
         path: /
         pathType: Prefix
         tls:
           - hosts:
-              - 'example.com'
+              - 'prometheus.example.com'
             secretName: prometheus-tls

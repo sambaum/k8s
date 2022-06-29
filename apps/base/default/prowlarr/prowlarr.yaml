@@ -61,16 +61,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Prowlarr
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://prowlarr.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/prowlarr-banner.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'prowlarr.int.sambaum.ch'
+        - 'prowlarr.example.com'
       secretName: prowlarr-tls
   rules:
-    - host: prowlarr.int.sambaum.ch
+    - host: prowlarr.example.com
       http:
         paths:
           - pathType: Prefix

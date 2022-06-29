@@ -37,7 +37,7 @@ spec:
                   key: BASIC_AUTH_PASSWORD
                   optional: false
             - name: WEBHOOK_ENDPOINT
-              value: 'http://keel-telegram-bot.int.sambaum.ch/'
+              value: 'http://keel-telegram-bot.example.com/'
 ---
 kind: Service
 apiVersion: v1
@@ -61,16 +61,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Keel.sh
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://keel.example.com
     flame.pawelmalak/icon: https://keel.sh/img/logo_small.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'keel.int.sambaum.ch'
+        - 'keel.example.com'
       secretName: keel-tls
   rules:
-    - host: keel.int.sambaum.ch
+    - host: keel.example.com
       http:
         paths:
           - pathType: Prefix

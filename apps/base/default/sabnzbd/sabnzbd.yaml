@@ -79,16 +79,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: SABnzbd
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://sabnzbd.example.com
     flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1578567856_SABnzbd_256.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'example.com'
+        - 'sabnzbd.example.com'
       secretName: sabnzbd.int-tls
   rules:
-    - host: example.com
+    - host: sabnzbd.example.com
       http:
         paths:
           - pathType: Prefix

@@ -64,27 +64,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Guacamole
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://guacamole.example.com
     flame.pawelmalak/icon: https://icons.iconarchive.com/icons/sonya/swarm/256/Guacamole-icon.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'guacamole.int.sambaum.ch'
-        - 'guacamole.sambaum.ch'
+        - 'guacamole.example.com'
       secretName: guacamole-tls
   rules:
-    - host: guacamole.int.sambaum.ch
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: guacamole-service
-                port:
-                  number: 8080
-    - host: guacamole.sambaum.ch
+    - host: guacamole.example.com
       http:
         paths:
           - pathType: Prefix

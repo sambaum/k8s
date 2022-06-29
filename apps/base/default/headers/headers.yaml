@@ -50,16 +50,16 @@ metadata:
   annotations:
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Headers
-    flame.pawelmalak/url: http://example.com
+    flame.pawelmalak/url: http://headers.example.com
     flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/HTTP_logo_-_2014.svg/290px-HTTP_logo_-_2014.svg.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'example.com'
+        - 'headers.example.com'
       secretName: headers-tls
   rules:
-    - host: example.com
+    - host: headers.example.com
       http:
         paths:
           - pathType: Prefix

@@ -74,16 +74,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Bazarr
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://bazarr.example.com
     flame.pawelmalak/icon: https://user-images.githubusercontent.com/26902309/41456760-be00043e-7081-11e8-9646-1b724037b4ff.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'bazarr.int.sambaum.ch'
+        - 'bazarr.example.com'
       secretName: bazarr-tls
   rules:
-    - host: bazarr.int.sambaum.ch
+    - host: bazarr.example.com
       http:
         paths:
           - pathType: Prefix

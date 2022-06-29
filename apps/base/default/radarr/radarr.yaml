@@ -74,16 +74,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Radarr
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://radarr.example.com
     flame.pawelmalak/icon: https://fleet.linuxserver.io/images/linuxserver_radarr.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'radarr.int.sambaum.ch'
+        - 'radarr.example.com'
       secretName: radarr-tls
   rules:
-    - host: radarr.int.sambaum.ch
+    - host: radarr.example.com
       http:
         paths:
           - pathType: Prefix

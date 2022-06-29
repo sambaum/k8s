@@ -41,15 +41,15 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-staging
         flame.pawelmalak/type: application
         flame.pawelmalak/name: Portainer
-        flame.pawelmalak/url: https://example.com
+        flame.pawelmalak/url: https://portainer.example.com
         flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
       labels: {}
       hosts:
         - paths:
             - path: '/'
-          host: 'example.com'
+          host: 'portainer.example.com'
       pathType: Prefix
       tls:
         - hosts:
-            - 'example.com'
+            - 'portainer.example.com'
           secretName: portainer-tls

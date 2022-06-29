@@ -98,16 +98,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: '{php} IPAM'
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://phpipam.example.com
     flame.pawelmalak/icon: https://www.axonius.com/hs-fs/hubfs/Adapter%20Logos/php_ipam_adapter.png?length=600&name=php_ipam_adapter.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'example.com'
+        - 'phpipam.example.com'
       secretName: phpipam-tls
   rules:
-    - host: example.com
+    - host: phpipam.example.com
       http:
         paths:
           - pathType: Prefix

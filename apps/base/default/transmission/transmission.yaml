@@ -95,16 +95,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Transmission Flood
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://transmission.example.com
     flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'transmission.int.sambaum.ch'
+        - 'transmission.example.com'
       secretName: transmission-tls
   rules:
-    - host: transmission.int.sambaum.ch
+    - host: transmission.example.com
       http:
         paths:
           - pathType: Prefix
