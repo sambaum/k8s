@@ -1,0 +1,198 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-temp-pvc
+  namespace: default
+spec:
+  volumeName: nas-temp-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-temp-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-temp-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume2/Temp"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-media-pvc
+  namespace: default
+spec:
+  volumeName: nas-media-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-media-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-media-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume1/Media"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-sam-pvc
+  namespace: default
+spec:
+  volumeName: nas-sam-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-sam-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-sam-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume1/Sam"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-carol-pvc
+  namespace: default
+spec:
+  volumeName: nas-carol-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-carol-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-carol-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume1/Carol"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-other-pvc
+  namespace: default
+spec:
+  volumeName: nas-other-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-other-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-other-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume1/Other"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-backup-pvc
+  namespace: default
+spec:
+  volumeName: nas-backup-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-backup-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  claimRef:
+    name: nas-backup-pvc
+    namespace: default
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nas-databus.int.sambaum.ch
+    path: "/volume2/Backup"
+---
+
