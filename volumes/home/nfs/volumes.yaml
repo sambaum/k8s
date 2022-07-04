@@ -19,9 +19,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-temp-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
@@ -52,9 +49,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-media-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
@@ -85,9 +79,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-sam-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
@@ -118,9 +109,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-carol-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
@@ -151,9 +139,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-other-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
@@ -184,9 +169,6 @@ metadata:
   namespace: default
 spec:
   storageClassName: ""
-  claimRef:
-    name: nas-backup-pvc
-    namespace: default
   capacity:
     storage: 10Gi
   accessModes:
