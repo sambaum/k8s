@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/default/emby/
+  - ../../../base/default/sonarr/
 patches:
   - target:
       kind: Ingress
-      name: emby-ingress
+      name: sonarr-ingress
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: emby.int.sambaum.ch
+        value: sonarr.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [emby.int.sambaum.ch]
+        value: [sonarr.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://emby.int.sambaum.ch
+        value: https://sonarr.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production

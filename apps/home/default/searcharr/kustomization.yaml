@@ -1,0 +1,10 @@
+resources:
+  - ../../../base/default/searcharr/
+patches:
+  - target:
+      kind: Deployment
+      name: searcharr
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/2/hostPath/path
+        value: /conf/default/searcharr/settings.py

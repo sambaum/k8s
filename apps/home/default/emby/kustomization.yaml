@@ -1,0 +1,39 @@
+resources:
+  - ../../../base/default/emby/
+patches:
+  - target:
+      kind: Ingress
+      name: emby-ingress
+    patch: |-
+      - op: add
+        path: /spec/rules
+        value:
+          - host: emby.sambaum.ch
+            http:
+              paths:
+              - pathType: Prefix
+                path: "/"
+                backend:
+                  service:
+                    name: emby-service
+                    port:
+                      number: 8096
+          - host: emby.int.sambaum.ch
+            http:
+              paths:
+              - pathType: Prefix
+                path: "/"
+                backend:
+                  service:
+                    name: emby-service
+                    port:
+                      number: 8096
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [emby.int.sambaum.ch, emby.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://emby.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production

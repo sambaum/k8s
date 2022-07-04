@@ -37,9 +37,6 @@ spec:
             - mountPath: /data/tvshows
               name: media
               subPath: Video/Series
-            # - mountPath: /data/home-videos
-            #   name: nas-sam
-            #   subPath: Personal/Videos/Done
             - mountPath: /data/home-videos
               name: media
               subPath: Video/Home-Movies
