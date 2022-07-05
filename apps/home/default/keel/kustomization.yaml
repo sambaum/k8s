@@ -1,0 +1,47 @@
+resources:
+  - ../../../base/default/keel/
+patches:
+  - target:
+      kind: Ingress
+      name: keel-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: keel.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [keel.int.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://keel.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+  - target:
+      kind: Ingress
+      name: keel-telegram-bot-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: keel-telegram-bot.int.sambaum.ch
+  - target:
+      kind: Deployment
+      name: keel
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/2/value
+        value: 'http://keel-telegram-bot.int.sambaum.ch/'
+  - target:
+      kind: SealedSecret
+      name: keel-basic-auth-password-secret
+    patch: |-
+      - op: replace
+        path: /spec/encryptedData/BASIC_AUTH_PASSWORD
+        value: AgAwnWH+LJ6nByh+BpE7rob4DR/GdV3YJP057BDwuLdwU9VWXqbfm89gRuF7BS8nk3ulqB+YvQX3H4bjJnjB5EkAzzo43okmuyfrIj6eqD8s/uuTRSUxrnwtWNRgjgb84EkzCLSrCVZS+hUrBTXeoPNjX12WW87KFjwlDDA1/WJ7HoQS65aXEhfdHDVACawegcr8/FZq+eBRwx+sqiYsw8WR6BEYUUqGfr0Nw7myfDHrJHyOCG7jsP7oKLom9M26cKRM7CN6X2DqCLWH0u5vXjUbkOuVRM2ugtKwmQkq8BVSAG6tzCXLjFU/agva39e3JAqpEGUm6AM77u1v67ZxxFjbOqeBNt+5DYgIpt+DrNQ4a9WRef/MNCQ9MsbTNhIRVsgsDCZ+bzQQ4YFceIvGUuleT6AEmVNT/CwU5D7Ir0KP4pAh9DYnNJKvLeh835LDdjSm++wjdcq/2drD7F/Xkv9oFOXwS7TtvAPbGNy0fX0+NhYWjfi5f305FAU1T5LnZ8iB8QEoWb0K9gZr2R4B/5qAQAKt8v+Kv3pXzPznQd4peq0zOcPQyN1mf4IVULGFRC4qwsVkpZj6MVOfVTMgdYQnItr8/Bq1x++X2+6Gq30yqB16bOYoFlKd6bBW3JMFUVITAoJ+oQ5PZ83iy3AcwV6ir3iHDperO5mct5WkAI54ScZvRXhlOPEQF6npzkEaP4yrKmgTJIKFVahoKZs=
+
+
+#kubectl create secret generic keel-basic-auth-password-secret --dry-run=client --from-literal=BASIC_AUTH_PASSWORD=mysecretvalue -o yaml | \
+#kubeseal \
+#  --controller-name=sealed-secrets-controller \
+#  --controller-namespace=default \
+#  --format yaml > keel-secret.yaml

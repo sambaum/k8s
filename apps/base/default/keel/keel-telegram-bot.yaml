@@ -54,7 +54,7 @@ metadata:
   name: keel-telegram-bot-ingress
 spec:
   rules:
-  - host: keel-telegram-bot.int.sambaum.ch
+  - host: keel-telegram-bot.example.com
     http:
       paths:
       - pathType: Prefix
