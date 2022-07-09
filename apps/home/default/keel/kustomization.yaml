@@ -30,7 +30,14 @@ patches:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/env/2/value
-        value: 'http://keel-telegram-bot.int.sambaum.ch/'
+        value: http://keel-telegram-bot-service:5000
+  - target:
+      kind: Deployment
+      name: keel-telegram-bot
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/0/hostPath/path
+        value: /conf/default/keel-telegram-bot/keel-telegram-bot.yaml
   - target:
       kind: SealedSecret
       name: keel-basic-auth-password-secret
