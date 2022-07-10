@@ -77,6 +77,12 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+
+        podMonitorNamespaceSelector: {}
+        podMonitorSelector:
+          matchLabels:
+            app.kubernetes.io/component: monitoring
+
       ingress:
         enabled: true
         ingressClassName: nginx
