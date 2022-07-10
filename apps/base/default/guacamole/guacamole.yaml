@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: guacamole
-          image: maxwaldorf/guacamole:1.4.1
+          image: maxwaldorf/guacamole:1.4.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
