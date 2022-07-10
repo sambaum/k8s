@@ -67,7 +67,7 @@ spec:
       prometheusSpec:
         podMonitorSelector:
           matchLabels:
-            app.kubernetes.io/part-of: flux
+            app.kubernetes.io/component: monitoring
         retention: 30d
         storageSpec:
           volumeClaimTemplate:
@@ -77,11 +77,6 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-
-        podMonitorNamespaceSelector: {}
-        podMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/component: monitoring
 
       ingress:
         enabled: true
