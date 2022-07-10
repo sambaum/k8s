@@ -16,7 +16,7 @@ spec:
       version: '4.1.4'
   install:
     crds: Create
-  interval: 10m
+  interval: 30m
   releaseName: ingress-nginx
   targetNamespace: ingress-nginx
   upgrade:

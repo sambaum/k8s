@@ -13,7 +13,7 @@ spec:
         name: grafana
         namespace: flux-system
       version: '2.6.4'
-  interval: 10m
+  interval: 30m
   install:
     remediation:
       retries: 3
@@ -29,7 +29,7 @@ spec:
         size: 1Gi
       config:
         compactor:
-          compaction_interval: 10m
+          compaction_interval: 30m
           retention_enabled: true
           retention_delete_delay: 2h
           retention_delete_worker_count: 150
