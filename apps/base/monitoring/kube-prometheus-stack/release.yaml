@@ -65,6 +65,7 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
+        podMonitorNamespaceSelector: {}
         podMonitorSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring
