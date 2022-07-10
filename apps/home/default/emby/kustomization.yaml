@@ -5,7 +5,7 @@ patches:
       kind: Ingress
       name: emby-ingress
     patch: |-
-      - op: add
+      - op: replace
         path: /spec/rules
         value:
           - host: emby.sambaum.ch

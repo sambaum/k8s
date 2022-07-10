@@ -5,9 +5,10 @@ patches:
       kind: HelmRelease
       name: loki-stack
     patch: |-
-      - op: add
+      - op: replace
         path: /spec/values/loki/config/limits_config
         value:
+         retention_period: 14d
          retention_stream:
          - selector: '{host="OPNsense.int.sambaum.ch"}'
            priority: 1
