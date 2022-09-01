@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: crashplan
-          image: jlesage/crashplan-pro:v2.17.0
+          image: jlesage/crashplan-pro:v2.17.2
           ports:
             - containerPort: 5800
           volumeMounts:
