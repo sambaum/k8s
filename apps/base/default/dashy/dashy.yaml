@@ -24,14 +24,11 @@ spec:
       initContainers:
         - name: create-config
           image: mwendler/wget
-          command:
+          command: ["/bin/sh"]
+          args:
             [
-              'wget',
               '-c',
-              '-O',
-              '/app/public/conf.yml',
-              'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/dashy/conf.yml',
-              '--no-check-certificate',
+              'if [ -s /app/public/conf.yml ]; then echo file already there; else wget -c -O /app/public/conf.yml https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml --no-check-certificate; fi'
             ]
           volumeMounts:
             - mountPath: /app/public
