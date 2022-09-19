@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: paperless
-          image: linuxserver/paperless-ngx:1.7.1
+          image: linuxserver/paperless-ngx:1.8.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
@@ -71,6 +71,7 @@ spec:
               value: 'true'
             - name: PAPERLESS_URL
               value: https://paperless.example.com
+
       volumes:
         - name: config
           persistentVolumeClaim:
