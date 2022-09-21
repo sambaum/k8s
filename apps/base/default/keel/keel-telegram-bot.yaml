@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: keel-telegram-bot
-          image: markusressel/keel-telegram-bot:latest
+          image: markusressel/keel-telegram-bot:1.2.0
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/keel-telegram-bot.yaml
