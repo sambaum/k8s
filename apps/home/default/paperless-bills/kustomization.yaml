@@ -1,0 +1,82 @@
+resources:
+  - ../../../base/default/paperless/
+
+patches:
+  - target:
+      kind: Deployment
+      name: paperless
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: paperless-bills
+      - op: replace
+        path: /metadata/labels/app
+        value: paperless-bills
+      - op: replace
+        path: /spec/selector/matchLabels/app
+        value: paperless-bills
+      - op: replace
+        path: /spec/template/metadata/labels/app
+        value: paperless-bills
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/0/subPath
+        value: paperless-bills
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/1/subPath
+        value: paperless-bills
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/2/subPath
+        value: P-Consume/Bills
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/3/subPath
+        value: P-Bills
+      - op: remove
+        path: /spec/template/spec/containers/0/env/5/value
+        value: admin
+      - op: replace
+        path: /spec/template/spec/containers/0/env/9/value
+        value: '{created_year}/{created}'
+      - op: replace
+        path: /spec/template/spec/containers/0/env/14/value
+        value: https://paperless-bills.int.sambaum.ch
+
+  - target:
+      kind: Service
+      name: paperless-service
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: paperless-service-bills
+      - op: replace
+        path: /spec/selector/app
+        value: paperless-bills
+
+  - target:
+      kind: Ingress
+      name: paperless-ingress
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: paperless-ingress-bills
+      - op: replace
+        path: /spec/rules/0/host
+        value: paperless-bills.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [paperless-bills.int.sambaum.ch]
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: paperless-bills-tls
+      - op: replace
+        path: /spec/rules/0/http/paths/0/backend/service/name
+        value: paperless-service-bills
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://paperless-bills.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1name
+        value: Paperless Bills
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+
