@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tandoor
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: tandoor
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: gabe565
+        namespace: flux-system
+      version: '0.1.1'
+  install:
+    crds: Create
+  interval: 30m
+  releaseName: tandoor
+  targetNamespace: default
+  upgrade:
+    crds: CreateReplace
+  values:
+    postgresql:
+      enabled: true
+      auth:
+        password: ""
+    # image:
+    #   repository: tuetenk0pp/sharelatex-full
+    #   tag: 3.1.0.3
+    #   pullPolicy: IfNotPresent
+    env:
+      SECRET_KEY: xUIkfJOgzEvQJ1eP2/yFGsjo8OJMTs74Fg0c/RocAZTWr9MRbi
+      POSTGRES_PASSWORD: ""
+    # mongodb:
+    #   enabled: true
+    # redis:
+    #   enabled: true
+    #   master:
+    #     persistence:s
+    #       enabled: true
+    #       storageClass: openebs-local-hostpath-conf
+    #       existingClaim: openebs-local-hostpath-conf-pvc
+    #       subPath: 'tandoor/redis-master'
+    #   replica:
+    #     persistence:
+    #       enabled: true
+    #       storageClass: openebs-local-hostpath-conf
+    #       existingClaim: openebs-local-hostpath-conf-pvc
+    #       subPath: 'tandoor/redis-replica'
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+          # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+          # nginx.ingress.kubernetes.io/proxy-body-size: 100m
+          cert-manager.io/cluster-issuer: letsencrypt-staging
+          flame.pawelmalak/type: application
+          flame.pawelmalak/name: tandoor
+          flame.pawelmalak/url: https://tandoor.int.sambaum.ch # change later
+          flame.pawelmalak/icon: https://external-preview.redd.it/NDcQYuXgW9VjbOf6vea7Pco8HGQIfqY_5fTRvVAuq7M.jpg?width=640&crop=smart&auto=webp&s=2c7a295fca4eba6ae6675cca2507cf68ac3e767e
+        hosts:
+          - host: 'tandoor.int.sambaum.ch' # change later
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - 'tandoor.int.sambaum.ch' # change later
+            secretName: tandoor-tls
+
+# https://tandoor.int.sambaum.ch/launchpad
