@@ -59,17 +59,11 @@ patches:
         path: /metadata/name
         value: paperless-ingress-kids
       - op: replace
-        path: /spec/rules/0/host
-        value: paperless-kids.int.sambaum.ch
-      - op: replace
         path: /spec/tls/0/hosts
         value: [paperless-kids.int.sambaum.ch]
       - op: replace
         path: /spec/tls/0/secretName
         value: paperless-kids-tls
-      - op: replace
-        path: /spec/rules/0/http/paths/0/backend/service/name
-        value: paperless-service-kids
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
         value: https://paperless-kids.int.sambaum.ch
@@ -79,4 +73,22 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
-
+      - op: add
+        path: /spec/rules
+        value:
+          - host: paperless-kids.int.sambaum.ch
+            http:
+              paths:
+                - pathType: Prefix
+                  path: '/'
+                  backend:
+                    service:
+                      name: paperless-service-kids
+                      port:
+                        number: 8000
+# - op: replace
+#   path: /spec/rules/0/host
+#   value: paperless-kids.int.sambaum.ch
+# - op: replace
+#   path: /spec/rules/0/http/paths/0/backend/service/name
+#   value: paperless-service-kids

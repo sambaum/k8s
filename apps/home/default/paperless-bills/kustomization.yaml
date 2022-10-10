@@ -59,17 +59,11 @@ patches:
         path: /metadata/name
         value: paperless-ingress-bills
       - op: replace
-        path: /spec/rules/0/host
-        value: paperless-bills.int.sambaum.ch
-      - op: replace
         path: /spec/tls/0/hosts
         value: [paperless-bills.int.sambaum.ch]
       - op: replace
         path: /spec/tls/0/secretName
         value: paperless-bills-tls
-      - op: replace
-        path: /spec/rules/0/http/paths/0/backend/service/name
-        value: paperless-service-bills
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
         value: https://paperless-bills.int.sambaum.ch
@@ -79,4 +73,23 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
+      - op: add
+        path: /spec/rules
+        value:
+          - host: paperless-bills.int.sambaum.ch
+            http:
+              paths:
+                - pathType: Prefix
+                  path: '/'
+                  backend:
+                    service:
+                      name: paperless-service-bills
+                      port:
+                        number: 8000
 
+# - op: replace
+#   path: /spec/rules/0/host
+#   value: paperless-bills.int.sambaum.ch
+# - op: replace
+#   path: /spec/rules/0/http/paths/0/backend/service/name
+#   value: paperless-service-bills
