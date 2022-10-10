@@ -1,3 +1,5 @@
+nameprefix: kids-
+
 resources:
   - ../../../base/default/paperless/
 
