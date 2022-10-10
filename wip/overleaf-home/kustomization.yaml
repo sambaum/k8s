@@ -17,3 +17,6 @@ patches:
       - op: replace
         path: /spec/values/ingress/main/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
+      - op: replace
+        path: /spec/values/env/SHARELATEX_SITE_URL
+        value: https://overleaf.int.sambaum.ch/

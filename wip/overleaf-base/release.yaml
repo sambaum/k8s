@@ -30,8 +30,20 @@ spec:
       REDIS_HOST: overleaf-redis-master
       SHARELATEX_MONGO_URL: mongodb://overleaf-mongodb/sharelatex
       SHARELATEX_REDIS_HOST: overleaf-redis-master
+      SHARELATEX_SITE_URL: www.example.com
+      SHARELATEX_BEHIND_PROXY: true
+      TZ: Europe/Zurich
     mongodb:
       enabled: true
+      persistence:
+        enabled: true
+        storageClass: openebs-local-hostpath-conf
+        existingClaim: openebs-local-hostpath-conf-pvc
+        subPath: 'overleaf/mongodb'
+        resourcePolicy: keep
+      # resources:
+      #   limits:
+      #     cpu: '50m'
     redis:
       enabled: true
       master:
@@ -57,15 +69,15 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-staging
           flame.pawelmalak/type: application
           flame.pawelmalak/name: Overleaf
-          flame.pawelmalak/url: https://example.com # change later
+          flame.pawelmalak/url: https://example.com
           flame.pawelmalak/icon: https://nodesk.co/remote-companies/assets/logos/overleaf.c23e764e96ecc7507e702b5d55072de821ccfb2d72d1582eded3c85cdb83395a.png
         hosts:
-          - host: 'example.com' # change later
+          - host: 'example.com'
             paths:
               - path: /
         tls:
           - hosts:
-              - 'example.com' # change later
+              - 'example.com'
             secretName: overleaf-tls
 
 # https://overleaf.int.sambaum.ch/launchpad
