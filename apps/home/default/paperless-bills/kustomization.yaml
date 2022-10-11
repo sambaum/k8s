@@ -1,4 +1,6 @@
 namesuffix: -bills
+commonLabels:
+  app: paperless-bills
 
 resources:
   - ../../../base/default/paperless/
@@ -8,15 +10,15 @@ patches:
       kind: Deployment
       name: paperless
     patch: |-
-      - op: replace
-        path: /metadata/labels/app
-        value: paperless-bills
-      - op: replace
-        path: /spec/selector/matchLabels/app
-        value: paperless-bills
-      - op: replace
-        path: /spec/template/metadata/labels/app
-        value: paperless-bills
+      # - op: replace
+      #   path: /metadata/labels/app
+      #   value: paperless-bills
+      # - op: replace
+      #   path: /spec/selector/matchLabels/app
+      #   value: paperless-bills
+      # - op: replace
+      #   path: /spec/template/metadata/labels/app
+      #   value: paperless-bills
       - op: replace
         path: /spec/template/spec/containers/0/volumeMounts/0/subPath
         value: paperless-bills
@@ -39,13 +41,13 @@ patches:
         path: /spec/template/spec/containers/0/env/14/value
         value: https://paperless-bills.int.sambaum.ch
 
-  - target:
-      kind: Service
-      name: paperless-service
-    patch: |-
-      - op: replace
-        path: /spec/selector/app
-        value: paperless-bills
+  # - target:
+  #     kind: Service
+  #     name: paperless-service
+  #   patch: |-
+  #     - op: replace
+  #       path: /spec/selector/app
+  #       value: paperless-bills
 
   - target:
       kind: Ingress
