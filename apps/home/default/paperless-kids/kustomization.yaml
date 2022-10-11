@@ -8,9 +8,6 @@ patches:
       kind: Deployment
       name: paperless
     patch: |-
-      # - op: replace
-      #   path: /metadata/name
-      #   value: paperless-kids
       - op: replace
         path: /metadata/labels/app
         value: paperless-kids
@@ -46,9 +43,6 @@ patches:
       kind: Service
       name: paperless-service
     patch: |-
-      # - op: replace
-      #   path: /metadata/name
-      #   value: paperless-service-kids
       - op: replace
         path: /spec/selector/app
         value: paperless-kids
@@ -57,9 +51,6 @@ patches:
       kind: Ingress
       name: paperless-ingress
     patch: |-
-      # - op: replace
-      #   path: /metadata/name
-      #   value: paperless-ingress-kids
       - op: replace
         path: /spec/tls/0/hosts
         value: [paperless-kids.int.sambaum.ch]
@@ -78,6 +69,3 @@ patches:
       - op: replace
         path: /spec/rules/0/host
         value: paperless-kids.int.sambaum.ch
-      # - op: replace
-      #   path: /spec/rules/0/http/paths/0/backend/service/name
-      #   value: paperless-service-kids
