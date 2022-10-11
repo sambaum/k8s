@@ -1,0 +1,137 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overleaf
+  namespace: default
+  labels:
+    app: overleaf
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: overleaf
+  template:
+    metadata:
+      labels:
+        app: overleaf
+    spec:
+      containers:
+        - name: overleaf
+          image: tuetenk0pp/sharelatex-full
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/lib/sharelatex
+              name: config
+              subPath: overleaf/overleaf
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: SHARELATEX_MONGO_URL
+              value: mongodb://overleaf-service-mongo/sharelatex
+            - name: SHARELATEX_REDIS_HOST
+              value: overleaf-service-redis
+            - name: REDIS_HOST
+              value: overleaf-service-redis
+            - name: EMAIL_CONFIRMATION_DISABLED
+              value: 'true'
+            - name: SHARELATEX_SITE_URL
+              value: https://overleaf.example.com
+        - name: mongo
+          image: mongo:4.4
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: config
+              subPath: overleaf/mongodb
+        - name: redis
+          image: redis:5
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: /data
+              name: config
+              subPath: overleaf/redis
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: overleaf-service
+  namespace: default
+spec:
+  selector:
+    app: overleaf
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: overleaf-service-mongo
+  namespace: default
+spec:
+  selector:
+    app: overleaf
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: overleaf-service-redis
+  namespace: default
+spec:
+  selector:
+    app: overleaf
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: overleaf-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: overleaf
+    flame.pawelmalak/url: https://overleaf.example.com
+    flame.pawelmalak/icon: https://nodesk.co/remote-companies/assets/logos/overleaf.c23e764e96ecc7507e702b5d55072de821ccfb2d72d1582eded3c85cdb83395a.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'overleaf.example.com'
+      secretName: overleaf-tls
+  rules:
+    - host: overleaf.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: overleaf-service
+                port:
+                  number: 80
