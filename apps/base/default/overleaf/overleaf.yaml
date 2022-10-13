@@ -7,7 +7,7 @@ metadata:
   labels:
     app: overleaf
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: minor
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: overleaf
-          image: tuetenk0pp/sharelatex-full
+          image: tuetenk0pp/sharelatex-full:3.1.0.3
           imagePullPolicy: Always
           ports:
             - containerPort: 80
