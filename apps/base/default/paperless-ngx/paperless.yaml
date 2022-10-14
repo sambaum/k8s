@@ -1,0 +1,185 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  namespace: default
+  labels:
+    app: paperless
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      containers:
+        - name: paperless
+          image: paperlessngx/paperless-ngx:1.9.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: paperless
+            - mountPath: /data
+              name: data
+              subPath: paperless
+            - mountPath: /consume
+              name: nas-sam
+              subPath: Paperless-Consume
+            - mountPath: /media
+              name: nas-sam
+              subPath: Paperless
+          env:
+            - name: USERMAP_UID
+              value: '0'
+            - name: USERMAP_GID
+              value: '0'
+            - name: PAPERLESS_TIME_ZONE
+              value: 'Europe/Zurich'
+            - name: PAPERLESS_CONSUMPTION_DIR
+              value: '/consume'
+            - name: PAPERLESS_CONSUMER_POLLING
+              value: '3'
+            - name: PAPERLESS_AUTO_LOGIN_USERNAME
+              value: 'sam'
+            - name: PAPERLESS_FILENAME_FORMAT
+              value: '{document_type}/{created_year}/{correspondent}-{created}-{tag_list}-{title}-ASN{asn}'
+            - name: PAPERLESS_MEDIA_ROOT
+              value: '/media'
+            - name: PAPERLESS_WEBSERVER_WORKERS
+              value: '4'
+            - name: PAPERLESS_IGNORE_DATES
+              value: '02.08.1985,16.12.1979,09.12.2016,19.03.2020'
+            - name: PAPERLESS_CONSUMER_RECURSIVE
+              value: 'true'
+            - name: PAPERLESS_URL
+              value: https://paperless.example.com
+            - name: PAPERLESS_FILENAME_FORMAT_REMOVE_NONE
+              value: 'true'
+            - name: PAPERLESS_REDIS
+              value: redis://paperless-broker:6379
+            - name: PAPERLESS_DATA_DIR
+              value: /config
+            - name: PAPERLESS_DBHOST
+              value: paperless-db
+        - name: paperless-broker
+          image: redis:7
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: /data
+              name: config
+              subPath: paperless/redis
+        - name: paperless-db
+          image: postgres:13
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: config
+              subPath: paperless/postgres
+          env:
+            - name: POSTGRES_DB
+              value: paperless
+            - name: POSTGRES_USER
+              value: paperless
+            - name: POSTGRES_PASSWORD
+              value: paperless
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
+        - name: nas-sam
+          persistentVolumeClaim:
+            claimName: nas-sam-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: paperless-service
+  namespace: default
+spec:
+  selector:
+    app: paperless
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: paperless-broker
+  namespace: default
+spec:
+  selector:
+    app: paperless
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: paperless-db
+  namespace: default
+spec:
+  selector:
+    app: paperless
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Frame-Options: allow";
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Paperless
+    flame.pawelmalak/url: https://paperless.example.com
+    flame.pawelmalak/icon: leaf
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'paperless.example.com'
+      secretName: paperless-tls
+  rules:
+    - host: paperless.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: paperless-service
+                port:
+                  number: 8000
+
+# Migrate to PostgreSQL, run the following commands
+# inside the paperless container:
+# python3 manage.py dumpdata --database=sqlite --exclude=contenttypes --exclude=auth.Permission > data.json
+# python3 manage.py loaddata data.json
