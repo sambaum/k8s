@@ -30,7 +30,7 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
-              subPath: paperless
+              subPath: paperless/webserver
             - mountPath: /data
               name: data
               subPath: paperless
