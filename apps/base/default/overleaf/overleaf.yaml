@@ -45,7 +45,7 @@ spec:
             - name: SHARELATEX_SITE_URL
               value: https://overleaf.example.com
         - name: mongo
-          image: mongo:4.4
+          image: mongo:4.4.17
           ports:
             - containerPort: 27017
           volumeMounts:

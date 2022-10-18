@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.6
+          image: linuxserver/emby:4.7.8
           imagePullPolicy: Always
           ports:
             - containerPort: 8096
