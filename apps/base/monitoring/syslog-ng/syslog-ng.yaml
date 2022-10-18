@@ -38,7 +38,7 @@ spec:
               subPath: syslog-ng
       containers:
         - name: syslog-ng
-          image: linuxserver/syslog-ng:3.30.1
+          image: linuxserver/syslog-ng:3.36.1
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /config
