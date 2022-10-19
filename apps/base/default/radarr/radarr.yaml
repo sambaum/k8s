@@ -24,7 +24,7 @@ spec:
       containers:
         - name: radarr
           image: linuxserver/radarr:4.2.4
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 7878
           volumeMounts:

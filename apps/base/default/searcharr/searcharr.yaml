@@ -24,7 +24,7 @@ spec:
       containers:
         - name: searcharr
           image: toddrob/searcharr:v2
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/data
               name: config

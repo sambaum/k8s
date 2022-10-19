@@ -24,7 +24,7 @@ spec:
       containers:
         - name: overleaf
           image: tuetenk0pp/sharelatex-full:3.1.0.3
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           volumeMounts:

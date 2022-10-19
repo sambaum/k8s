@@ -39,7 +39,7 @@ spec:
       containers:
         - name: syslog-ng
           image: linuxserver/syslog-ng:3.36.1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /config
               name: config

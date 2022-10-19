@@ -24,7 +24,7 @@ spec:
       containers:
         - name: flame
           image: pawelmalak/flame:2.3.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5005
           volumeMounts:

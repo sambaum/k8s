@@ -24,7 +24,7 @@ spec:
       containers:
         - name: prowlarr
           image: linuxserver/prowlarr:develop
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9696
           volumeMounts:

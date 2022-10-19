@@ -28,7 +28,7 @@ spec:
       containers:
         - name: transmission
           image: linuxserver/transmission:version-3.00-r2
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9091
           volumeMounts:

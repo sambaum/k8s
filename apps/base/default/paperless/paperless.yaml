@@ -24,7 +24,7 @@ spec:
       containers:
         - name: paperless
           image: linuxserver/paperless-ngx:1.8.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
           volumeMounts:

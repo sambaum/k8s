@@ -24,7 +24,7 @@ spec:
       containers:
         - name: keel-telegram-bot
           image: markusressel/keel-telegram-bot:1.2.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/keel-telegram-bot.yaml
               name: settings
