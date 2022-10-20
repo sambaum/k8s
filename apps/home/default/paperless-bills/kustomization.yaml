@@ -34,7 +34,7 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/env/6/value
         # value: '{created_year}/{created}'
-        value: '{created_year}/{created} {title} {tag_list}'
+        value: '{document_type}/{created_year}/{created} {title} {tag_list}'
       - op: replace
         path: /spec/template/spec/containers/0/env/11/value
         value: https://paperless-bills.int.sambaum.ch
