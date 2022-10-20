@@ -3,7 +3,7 @@ commonLabels:
   app: paperless-kids
 
 resources:
-  - ../../../base/default/paperless/
+  - ../../../base/default/paperless-ngx/
 
 patches:
   - target:
@@ -12,7 +12,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/volumeMounts/0/subPath
-        value: paperless-kids
+        value: paperless-kids/webserver
+      - op: replace
+        path: /spec/template/spec/containers/1/volumeMounts/0/subPath
+        value: paperless-kids/redis
+      - op: replace
+        path: /spec/template/spec/containers/2/volumeMounts/0/subPath
+        value: paperless-kids/postgres
       - op: replace
         path: /spec/template/spec/containers/0/volumeMounts/1/subPath
         value: paperless-kids
@@ -26,11 +32,17 @@ patches:
         path: /spec/template/spec/containers/0/env/5/value
         value: admin
       - op: replace
-        path: /spec/template/spec/containers/0/env/9/value
+        path: /spec/template/spec/containers/0/env/6/value
         value: '{document_type}/{created_year}/{created}-{title}'
       - op: replace
-        path: /spec/template/spec/containers/0/env/14/value
+        path: /spec/template/spec/containers/0/env/11/value
         value: https://paperless-kids.int.sambaum.ch
+      - op: replace
+        path: /spec/template/spec/containers/0/env/13/value
+        value: redis://paperless-broker-kids:6379
+      - op: replace # op: remove, if you want to use SQLite; op: replace, if you want Postgres
+        path: /spec/template/spec/containers/0/env/15/value
+        value: paperless-db-kids
 
   - target:
       kind: Ingress
