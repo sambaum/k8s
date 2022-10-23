@@ -1,0 +1,68 @@
+namesuffix: -household
+commonLabels:
+  app: paperless-household
+
+resources:
+  - ../../../base/default/paperless-ngx/
+
+patches:
+  - target:
+      kind: Deployment
+      name: paperless
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/0/subPath
+        value: paperless-household/webserver
+      - op: replace
+        path: /spec/template/spec/containers/1/volumeMounts/0/subPath
+        value: paperless-household/redis
+      - op: replace
+        path: /spec/template/spec/containers/2/volumeMounts/0/subPath
+        value: paperless-household/postgres
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/1/subPath
+        value: paperless-household
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/2/subPath
+        value: P-Consume/Household
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts/3/subPath
+        value: P-Household
+      - op: remove
+        path: /spec/template/spec/containers/0/env/5/value
+        value: admin
+      - op: replace
+        path: /spec/template/spec/containers/0/env/6/value
+        value: '{document_type}/{created_year}/{created}-{title}'
+      - op: replace
+        path: /spec/template/spec/containers/0/env/11/value
+        value: https://paperless-household.int.sambaum.ch
+      - op: replace
+        path: /spec/template/spec/containers/0/env/13/value
+        value: redis://paperless-broker-household:6379
+      - op: replace # op: remove, if you want to use SQLite; op: replace, if you want Postgres
+        path: /spec/template/spec/containers/0/env/15/value
+        value: paperless-db-household
+
+  - target:
+      kind: Ingress
+      name: paperless-ingress
+    patch: |-
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [paperless-household.int.sambaum.ch]
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: paperless-household-tls
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://paperless-household.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1name
+        value: Paperless household
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+      - op: replace
+        path: /spec/rules/0/host
+        value: paperless-household.int.sambaum.ch
