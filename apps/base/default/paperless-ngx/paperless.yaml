@@ -183,3 +183,5 @@ spec:
 # inside the paperless container:
 # python3 manage.py dumpdata --database=sqlite --exclude=contenttypes --exclude=auth.Permission > data.json
 # python3 manage.py loaddata data.json
+# Initialize superuser
+# python3 manage.py python3 manage.py loaddata
