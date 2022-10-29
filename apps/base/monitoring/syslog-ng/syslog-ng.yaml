@@ -25,12 +25,16 @@ spec:
         - name: create-config
           image: mwendler/wget
           command:
+            # [
+            #   'wget',
+            #   '-O',
+            #   '/config/syslog-ng.conf',
+            #   'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
+            #   '--no-check-certificate',
+            # ]
             [
-              'wget',
-              '-O',
-              '/config/syslog-ng.conf',
-              'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
-              '--no-check-certificate',
+              '-c',
+              'if [ -s /config/syslog-ng.conf ]; then echo file already there; else wget -c -O /config/syslog-ng.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf --no-check-certificate; fi'
             ]
           volumeMounts:
             - mountPath: /config
