@@ -13,6 +13,9 @@ patches:
         path: /spec/rules/0/host
         value: duplicati-test.int.sambaum.ch
       - op: replace
+        path: /spec/tls/0/secretName
+        value: duplicati-test-tls
+      - op: replace
         path: /spec/tls/0/hosts
         value: [duplicati-test.int.sambaum.ch]
       - op: replace
@@ -23,7 +26,7 @@ patches:
         value: letsencrypt-production
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1name
-        value: Paperless Test
+        value: Duplicati Test
 
   - target:
       kind: Deployment
