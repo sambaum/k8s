@@ -1,3 +1,7 @@
+namesuffix: -prod
+commonLabels:
+  app: duplicati-prod
+
 resources:
   - ../../../base/default/duplicati/
 patches:
@@ -9,6 +13,9 @@ patches:
         path: /spec/rules/0/host
         value: duplicati.int.sambaum.ch
       - op: replace
+        path: /spec/tls/0/secretName
+        value: duplicati-prod-tls
+      - op: replace
         path: /spec/tls/0/hosts
         value: [duplicati.int.sambaum.ch]
       - op: replace
@@ -17,6 +24,9 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1name
+        value: Duplicati Prod
 
   - target:
       kind: Deployment
