@@ -35,7 +35,7 @@ spec:
               subPath: wekan/wekan-app
       containers:
         - name: wekan
-          image: quay.io/wekan/wekan:v6.53
+          image: quay.io/wekan/wekan:v6.54
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
