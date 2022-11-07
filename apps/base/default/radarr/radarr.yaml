@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: radarr
-          image: linuxserver/radarr:4.1.0
-          imagePullPolicy: Always
+          image: linuxserver/radarr:4.2.4
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 7878
           volumeMounts:
@@ -74,16 +75,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Radarr
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://radarr.example.com
     flame.pawelmalak/icon: https://fleet.linuxserver.io/images/linuxserver_radarr.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'radarr.int.sambaum.ch'
+        - 'radarr.example.com'
       secretName: radarr-tls
   rules:
-    - host: radarr.int.sambaum.ch
+    - host: radarr.example.com
       http:
         paths:
           - pathType: Prefix

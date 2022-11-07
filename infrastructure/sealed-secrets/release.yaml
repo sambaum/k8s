@@ -12,10 +12,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: sealed-secrets
-      version: '2.2.0'
+      version: '2.7.x'
   install:
     crds: Create
-  interval: 1m0s
+  interval: 30m
   releaseName: sealed-secrets-controller
   targetNamespace: flux-system
   upgrade:

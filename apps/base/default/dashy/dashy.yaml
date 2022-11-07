@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -24,14 +25,11 @@ spec:
       initContainers:
         - name: create-config
           image: mwendler/wget
-          command:
+          command: ["/bin/sh"]
+          args:
             [
-              'wget',
               '-c',
-              '-O',
-              '/app/public/conf.yml',
-              'https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml',
-              '--no-check-certificate',
+              'if [ -s /app/public/conf.yml ]; then echo file already there; else wget -c -O /app/public/conf.yml https://raw.githubusercontent.com/sambaum/k8s/test/apps/base/default/dashy/conf.yaml --no-check-certificate; fi'
             ]
           volumeMounts:
             - mountPath: /app/public
@@ -40,8 +38,8 @@ spec:
               name: settings
       containers:
         - name: dashy
-          image: lissy93/dashy:2.0.7
-          imagePullPolicy: Always
+          image: lissy93/dashy:2.1.1
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           volumeMounts:

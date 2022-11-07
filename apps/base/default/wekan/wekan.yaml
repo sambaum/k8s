@@ -1,0 +1,126 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wekan
+  namespace: default
+  labels:
+    app: wekan
+  annotations:
+    keel.sh/policy: minor
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wekan
+  template:
+    metadata:
+      labels:
+        app: wekan
+    spec:
+      initContainers:
+        - name: take-data-dir-ownership
+          image: alpine:3
+          command:
+            - chown
+            - -R
+            - 999:999
+            - /data
+          volumeMounts:
+            - mountPath: /data
+              name: config
+              subPath: wekan/wekan-app
+      containers:
+        - name: wekan
+          image: quay.io/wekan/wekan:v6.54
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /data
+              name: config
+              subPath: wekan/wekan-app
+          env:
+            - name: WRITABLE_PATH
+              value: /data
+            - name: MONGO_URL
+              value: mongodb://wekan-service-mongo:27017/wekan
+            - name: ROOT_URL
+              value: https://wekan.example.com
+        - name: wekandb
+          image: mongo:5.0.13
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: config
+              subPath: wekan/mongodb
+            - mountPath: /dump
+              name: config
+              subPath: wekan/mongodb/dump
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wekan-service
+  namespace: default
+spec:
+  selector:
+    app: wekan
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wekan-service-mongo
+  namespace: default
+spec:
+  selector:
+    app: wekan
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wekan-ingress
+  namespace: default
+  annotations:
+    # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+    # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Wekan
+    flame.pawelmalak/url: https://wekan.example.com
+    flame.pawelmalak/icon: https://cdn.icon-icons.com/icons2/2108/PNG/512/wekan_icon_130787.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'wekan.example.com'
+      secretName: wekan-tls
+  rules:
+    - host: wekan.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: wekan-service
+                port:
+                  number: 8080

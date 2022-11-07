@@ -18,6 +18,9 @@ patches:
         path: /spec/values/grafana/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
 
+      - op: remove
+        path: /spec/values/grafana/ingress/tls
+
       - op: replace
         path: /spec/values/prometheus/ingress/hosts/0
         value: prometheus.t21.circle.ispin.ch
@@ -30,3 +33,6 @@ patches:
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
+
+      - op: remove
+        path: /spec/values/prometheus/ingress/tls

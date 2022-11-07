@@ -1,0 +1,93 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spotdl
+  namespace: default
+  labels:
+    app: spotdl
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spotdl
+  template:
+    metadata:
+      labels:
+        app: spotdl
+    spec:
+      containers:
+        - name: spotdl
+          image: spotdl/spotify-downloader:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8800
+          volumeMounts:
+            # - mountPath: /config
+            #   name: config
+            #   subPath: spotdl
+            - mountPath: /music
+              name: webdl-downloads
+              subPath: Downloads\complete\music
+          env:
+            # - name: PUID
+            #   value: '0'
+            # - name: PGID
+            #   value: '0'
+            # - name: TZ
+            #   value: 'Europe/Zurich'
+          args: ["download", "https://open.spotify.com/track/4fouWK6XVHhzl78KzQ1UjL?si=1ba5117094644d27"]
+      volumes:
+        # - name: config
+        #   persistentVolumeClaim:
+        #     claimName: local-conf-pvc
+        - name: webdl-downloads
+          persistentVolumeClaim:
+            claimName: nas-media-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spotdl-service
+  namespace: default
+spec:
+  selector:
+    app: spotdl
+  ports:
+    - protocol: TCP
+      port: 8800
+      targetPort: 8800
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spotdl-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: spotdl
+    flame.pawelmalak/url: https://spotdl.int.sambaum.ch
+    flame.pawelmalak/icon: https://user-images.githubusercontent.com/8685505/111490550-16013280-8776-11eb-8b7c-cbe02915436a.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'spotdl.int.sambaum.ch'
+      secretName: spotdl-tls
+  rules:
+    - host: spotdl.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: spotdl-service
+                port:
+                  number: 8800

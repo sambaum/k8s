@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rsync-home-videos
+  namespace: default
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rsync-home-videos
+            image: instrumentisto/rsync-ssh:alpine3.15
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - rsync -amv --include='*H265*' --include='folder.jpg' --include='movie.nfo' --include='*/' --exclude='*' /done/ /home-movies/
+            volumeMounts:
+              - mountPath: /done/
+                name: nas-sam
+                subPath: Personal/Videos/Done
+              - mountPath: /home-movies/
+                name: nas-media
+                subPath: Video/Home-Movies
+          restartPolicy: OnFailure
+          volumes:
+            - name: nas-sam
+              persistentVolumeClaim:
+                claimName: nas-sam-pvc
+            - name: nas-media
+              persistentVolumeClaim:
+                claimName: nas-media-pvc

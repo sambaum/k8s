@@ -1,0 +1,86 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  namespace: monitoring
+  labels:
+    app: influxdb
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - name: influxdb
+          image: influxdb:2.5.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - mountPath: /etc/influxdb2
+              name: config
+              subPath: influxdb
+            - mountPath: /var/lib/influxdb2
+              name: data
+              subPath: influxdb
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-monitoring-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-monitoring-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: influxdb-service
+  namespace: monitoring
+spec:
+  selector:
+    app: influxdb
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: influxdb-ingress
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Influxdb
+    flame.pawelmalak/url: https://influxdb.example.com
+    flame.pawelmalak/icon: https://assets.zabbix.com/img/brands/influxdb.svg
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'influxdb.example.com'
+      secretName: influxdb-tls
+  rules:
+    - host: influxdb.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: influxdb-service
+                port:
+                  number: 8086

@@ -17,6 +17,10 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
+
+      - op: remove
+        path: /spec/tls
+
   - target:
       kind: Deployment
       name: duplicati

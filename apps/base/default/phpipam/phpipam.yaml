@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -24,7 +25,7 @@ spec:
       containers:
         - name: phpipam
           image: phpipam/phpipam-www:v1.5.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           env:
@@ -38,7 +39,7 @@ spec:
               value: '%'
         - name: phpipam-cron
           image: phpipam/phpipam-cron:v1.5.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: TZ
               value: 'Europe/Zurich'
@@ -49,8 +50,8 @@ spec:
             - name: SCAN_INTERVAL
               value: '10m'
         - name: phpipam-mariadb
-          image: mariadb:10.8.2
-          imagePullPolicy: Always
+          image: mariadb:10.9.3
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: config
@@ -93,20 +94,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: phpipam-ingress
+  namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: '{php} IPAM'
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://phpipam.example.com
     flame.pawelmalak/icon: https://www.axonius.com/hs-fs/hubfs/Adapter%20Logos/php_ipam_adapter.png?length=600&name=php_ipam_adapter.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'phpipam.int.sambaum.ch'
+        - 'phpipam.example.com'
       secretName: phpipam-tls
   rules:
-    - host: phpipam.int.sambaum.ch
+    - host: phpipam.example.com
       http:
         paths:
           - pathType: Prefix

@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: dashy.dumpster.int.sambaum.ch
+        value: dashy.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [dashy.dumpster.int.sambaum.ch]
+        value: [dashy.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://dashy.dumpster.int.sambaum.ch
+        value: https://dashy.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production

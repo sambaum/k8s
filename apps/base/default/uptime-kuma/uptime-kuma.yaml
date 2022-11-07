@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: uptime-kuma
-          image: louislam/uptime-kuma:1.16.1
-          imagePullPolicy: Always
+          image: louislam/uptime-kuma:1.18.5
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3001
           volumeMounts:
@@ -67,16 +68,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Uptime-Kuma
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://uptime.example.com
     flame.pawelmalak/icon: https://opencollective-production.s3.us-west-1.amazonaws.com/af670e80-082d-11ec-9ccd-77fe5bcff8a2.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'uptime.int.sambaum.ch'
+        - 'uptime.example.com'
       secretName: uptime-tls
   rules:
-    - host: uptime.int.sambaum.ch
+    - host: uptime.example.com
       http:
         paths:
           - pathType: Prefix

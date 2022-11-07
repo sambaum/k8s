@@ -18,3 +18,5 @@ patches:
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
 
+      - op: remove
+        path: /spec/values/ingress/tls

@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -50,16 +51,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: whoogle
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://whoogle.example.com
     # whoogle.pawelmalak/icon: https://preview.redd.it/wg339t74xqi81.png?width=1266&format=png&auto=webp&s=c1e89307b1000fe7436a239f70d3a346ec629812
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'whoogle.int.sambaum.ch'
+        - 'whoogle.example.com'
       secretName: whoogle-tls
   rules:
-    - host: whoogle.int.sambaum.ch
+    - host: whoogle.example.com
       http:
         paths:
           - pathType: Prefix

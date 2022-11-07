@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,7 +24,7 @@ spec:
     spec:
       containers:
         - name: crashplan
-          image: jlesage/crashplan-pro:v2.17.0
+          image: jlesage/crashplan-pro:v22.11.1
           ports:
             - containerPort: 5800
           volumeMounts:
@@ -97,16 +98,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Crashplan
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://crashplan.example.com
     flame.pawelmalak/icon: https://cdn.icon-icons.com/icons2/2407/PNG/512/crashplan_icon_146200.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'crashplan.int.sambaum.ch'
+        - 'crashplan.example.com'
       secretName: crashplan-tls
   rules:
-    - host: crashplan.int.sambaum.ch
+    - host: crashplan.example.com
       http:
         paths:
           - pathType: Prefix

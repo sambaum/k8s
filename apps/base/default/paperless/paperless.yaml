@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: paperless
-          image: linuxserver/paperless-ngx:1.7.1
-          imagePullPolicy: Always
+          image: linuxserver/paperless-ngx:1.8.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
           volumeMounts:
@@ -70,7 +71,8 @@ spec:
             - name: PAPERLESS_CONSUMER_RECURSIVE
               value: 'true'
             - name: PAPERLESS_URL
-              value: https://paperless.int.sambaum.ch
+              value: https://paperless.example.com
+
       volumes:
         - name: config
           persistentVolumeClaim:
@@ -110,16 +112,16 @@ metadata:
       more_set_headers "X-Frame-Options: allow";
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Paperless
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://paperless.example.com
     flame.pawelmalak/icon: leaf
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'paperless.int.sambaum.ch'
+        - 'paperless.example.com'
       secretName: paperless-tls
   rules:
-    - host: paperless.int.sambaum.ch
+    - host: paperless.example.com
       http:
         paths:
           - pathType: Prefix

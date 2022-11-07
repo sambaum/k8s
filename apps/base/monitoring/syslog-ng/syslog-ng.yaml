@@ -1,0 +1,120 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syslog-ng
+  namespace: monitoring
+  labels:
+    app: syslog-ng
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syslog-ng
+  template:
+    metadata:
+      labels:
+        app: syslog-ng
+    spec:
+      initContainers:
+        - name: create-config
+          image: mwendler/wget
+          command: ["/bin/sh"]
+            # [
+            #   'wget',
+            #   '-O',
+            #   '/config/syslog-ng.conf',
+            #   'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
+            #   '--no-check-certificate',
+            # ]
+          args:
+            [
+              '-c',
+              'if [ -s /config/syslog-ng.conf ]; then echo file already there; else wget -c -O /config/syslog-ng.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf --no-check-certificate; fi'
+            ]
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: syslog-ng
+      containers:
+        - name: syslog-ng
+          image: linuxserver/syslog-ng:3.36.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: syslog-ng
+            - mountPath: /var/log
+              name: temp
+              subPath: syslog-ng
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-monitoring-pvc
+        - name: temp
+          persistentVolumeClaim:
+            claimName: local-temp-monitoring-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: monitoring
+  name: syslog-ng-service-601-tcp
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
+  selector:
+    app: syslog-ng
+  ports:
+    - protocol: TCP
+      port: 601
+      targetPort: 601
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: monitoring
+  name: syslog-ng-service-514-udp
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
+  selector:
+    app: syslog-ng
+  ports:
+    - protocol: UDP
+      port: 514
+      targetPort: 514
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: monitoring
+  name: syslog-ng-service-514-tcp
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${SYSLOG_LOADBALANCER_IP}'
+  selector:
+    app: syslog-ng
+  ports:
+    - protocol: TCP
+      port: 514
+      targetPort: 514

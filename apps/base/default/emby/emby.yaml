@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.2
-          imagePullPolicy: Always
+          image: linuxserver/emby:4.7.8
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8096
           volumeMounts:
@@ -37,9 +38,6 @@ spec:
             - mountPath: /data/tvshows
               name: media
               subPath: Video/Series
-            # - mountPath: /data/home-videos
-            #   name: nas-sam
-            #   subPath: Personal/Videos/Done
             - mountPath: /data/home-videos
               name: media
               subPath: Video/Home-Movies
@@ -88,27 +86,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Emby
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://emby.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/thewhobox/ioBroker.emby/HEAD/admin/emby.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'emby.int.sambaum.ch'
-        - 'emby.sambaum.ch'
+        - 'emby.example.com'
       secretName: emby-tls
   rules:
-    - host: emby.int.sambaum.ch
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: emby-service
-                port:
-                  number: 8096
-    - host: emby.sambaum.ch
+    - host: emby.example.com
       http:
         paths:
           - pathType: Prefix

@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: sonarr
-          image: linuxserver/sonarr:3.0.8
-          imagePullPolicy: Always
+          image: linuxserver/sonarr:3.0.9
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8989
           volumeMounts:
@@ -74,16 +75,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Sonarr
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://sonarr.example.com
     flame.pawelmalak/icon: https://forums-sonarr-tv.s3.dualstack.us-east-1.amazonaws.com/original/2X/e/ef4553fe96f04a298ec502279731579698e96a9b.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'sonarr.int.sambaum.ch'
+        - 'sonarr.example.com'
       secretName: sonarr-tls
   rules:
-    - host: sonarr.int.sambaum.ch
+    - host: sonarr.example.com
       http:
         paths:
           - pathType: Prefix

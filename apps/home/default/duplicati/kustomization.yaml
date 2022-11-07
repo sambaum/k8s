@@ -1,0 +1,85 @@
+namesuffix: -prod
+commonLabels:
+  app: duplicati-prod
+
+resources:
+  - ../../../base/default/duplicati/
+patches:
+  - target:
+      kind: Ingress
+      name: duplicati-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: duplicati.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: duplicati-prod-tls
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [duplicati.int.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://duplicati.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1name
+        value: Duplicati Prod
+
+  - target:
+      kind: Deployment
+      name: duplicati
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - mountPath: /config
+            name: config
+            subPath: duplicati
+          - mountPath: /tmp
+            name: temp
+            subPath: duplicati
+          - mountPath: /source/sam
+            name: nas-sam
+          - mountPath: /source/media
+            name: nas-media
+          - mountPath: /source/carol
+            name: nas-carol
+          - mountPath: /source/other
+            name: nas-other
+          - mountPath: /source/backup
+            name: nas-backup
+          - mountPath: /source/conf
+            name: config
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
+          - name: data
+            persistentVolumeClaim:
+              claimName: local-data-pvc
+          - name: temp
+            persistentVolumeClaim:
+              claimName: local-temp-pvc
+          - name: nas-temp
+            persistentVolumeClaim:
+              claimName: nas-temp-pvc
+          - name: nas-sam
+            persistentVolumeClaim:
+              claimName: nas-sam-pvc
+          - name: nas-media
+            persistentVolumeClaim:
+              claimName: nas-media-pvc
+          - name: nas-carol
+            persistentVolumeClaim:
+              claimName: nas-carol-pvc
+          - name: nas-other
+            persistentVolumeClaim:
+              claimName: nas-other-pvc
+          - name: nas-backup
+            persistentVolumeClaim:
+              claimName: nas-backup-pvc

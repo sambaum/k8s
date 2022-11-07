@@ -1,0 +1,19 @@
+resources:
+  - ../../../base/default/esr-apache-php-app/
+patches:
+  - target:
+      kind: Ingress
+      name: esr-apache-php-app-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: esr.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [esr.int.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://esr.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production

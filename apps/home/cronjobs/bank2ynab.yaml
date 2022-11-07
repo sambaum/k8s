@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bank2ynab
+  namespace: default
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: bank2ynab
+            image: faucet/python3:8.0.1
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - cd /crontab-ui/crontabs/bank2ynab/ && python3 /crontab-ui/crontabs/bank2ynab/bank2ynab.py
+            volumeMounts:
+              - mountPath: /crontab-ui/crontabs/
+                name: config
+                subPath: crontab-ui
+              - mountPath: /ynab-csv-source/
+                name: temp
+                subPath: YNAB
+          restartPolicy: OnFailure
+          volumes:
+            - name: config
+              persistentVolumeClaim:
+                claimName: local-conf-pvc
+            - name: temp
+              persistentVolumeClaim:
+                claimName: nas-temp-pvc

@@ -11,6 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
@@ -23,8 +24,8 @@ spec:
     spec:
       containers:
         - name: guacamole
-          image: maxwaldorf/guacamole:1.4.1
-          imagePullPolicy: Always
+          image: maxwaldorf/guacamole:1.4.2
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -64,27 +65,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Guacamole
-    flame.pawelmalak/url: https://example.com
+    flame.pawelmalak/url: https://guacamole.example.com
     flame.pawelmalak/icon: https://icons.iconarchive.com/icons/sonya/swarm/256/Guacamole-icon.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'guacamole.int.sambaum.ch'
-        - 'guacamole.sambaum.ch'
+        - 'guacamole.example.com'
       secretName: guacamole-tls
   rules:
-    - host: guacamole.int.sambaum.ch
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: guacamole-service
-                port:
-                  number: 8080
-    - host: guacamole.sambaum.ch
+    - host: guacamole.example.com
       http:
         paths:
           - pathType: Prefix

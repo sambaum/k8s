@@ -13,10 +13,10 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-      version: '5.7.0'
+      version: '5.x'
   install:
     crds: Create
-  interval: 1m
+  interval: 30m
   releaseName: kubernetes-dashboard
   targetNamespace: default
   upgrade:
@@ -30,14 +30,14 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-staging
         flame.pawelmalak/type: application
         flame.pawelmalak/name: Kubernetes-Dashboard
-        flame.pawelmalak/url: https://example.com
+        flame.pawelmalak/url: https://dashboard.example.com
         flame.pawelmalak/icon: https://cdn2.iconfinder.com/data/icons/mixd/512/20_kubernetes-512.png
       labels: {}
       hosts:
-        - 'example.com'
+        - 'dashboard.example.com'
       path: /
       pathType: Prefix
       tls:
         - hosts:
-            - 'example.com'
+            - 'dashboard.example.com'
           secretName: kubernetes-dashboard-tls
