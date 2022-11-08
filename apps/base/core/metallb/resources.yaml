@@ -5,4 +5,10 @@ metadata:
   namespace: flux-system
 spec:
   addresses:
-  - '192.0.2.1-192.0.2.3'
+  - 'x.x.x.x-x.x.x.x'
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: example
+  namespace: flux-system
