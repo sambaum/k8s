@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: metallb
         namespace: flux-system
-      version: '0.12.x'
+      version: '0.13.x'
   install:
     crds: Create
   interval: 30m
@@ -21,10 +21,9 @@ spec:
   targetNamespace: flux-system
   upgrade:
     crds: CreateReplace
-  values:
-    configInline:
-      address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - '${METALLB_ADDRESS_POOLS}'
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: example
+  namespace: flux-system
