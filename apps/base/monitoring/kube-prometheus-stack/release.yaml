@@ -12,11 +12,14 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      version: '36.x'
+      version: '41.x'
   interval: 30m
   install:
     remediation:
       retries: 3
+  upgrade:
+    crds: CreateReplace
+    force: true
 
   values:
     defaultRules:
