@@ -1,0 +1,147 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lychee
+  namespace: default
+  labels:
+    app: lychee
+  annotations:
+    keel.sh/policy: minor
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lychee
+  template:
+    metadata:
+      labels:
+        app: lychee
+    spec:
+      containers:
+        - name: lychee
+          image: linuxserver/lychee:4.4.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: lychee/lychee
+            - mountPath: /pictures
+              name: config
+              subPath: lychee/pictures
+            - mountPath: /import
+              name: nas-sam
+              subPath: Personal/Fotos/Publish/Events/2022
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: DB_HOST
+              value: 'lychee-service-mariadb'
+            - name: DB_USERNAME
+              value: 'lychee'
+            - name: DB_PASSWORD
+              value: 'dbpassword'
+            - name: DB_DATABASE
+              value: 'lychee'
+            - name: DB_PORT
+              value: '3306'
+            - name: PGID
+              value: '1000'
+            - name: PUID
+              value: '1000'
+            - name: TRUSTED_PROXIES
+              value: '*'
+        - name: mongo
+          image: linuxserver/mariadb:10.6.10
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: lychee/mariadb
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'rootpassword'
+            - name: MYSQL_DATABASE
+              value: 'lychee'
+            - name: MYSQL_USER
+              value: 'lychee'
+            - name: MYSQL_PASSWORD
+              value: 'dbpassword'
+            - name: PGID
+              value: '1000'
+            - name: PUID
+              value: '1000'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: nas-sam
+          persistentVolumeClaim:
+            claimName: nas-sam-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lychee-service
+  namespace: default
+spec:
+  selector:
+    app: lychee
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lychee-service-mariadb
+  namespace: default
+spec:
+  selector:
+    app: lychee
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lychee-ingress
+  namespace: default
+  annotations:
+    # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+    # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-body-size: 1000m
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Lychee
+    flame.pawelmalak/url: https://lychee.int.sambaum.ch
+    flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lychee-icon.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'lychee.int.sambaum.ch'
+      secretName: lychee-tls
+  rules:
+    - host: lychee.int.sambaum.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: lychee-service
+                port:
+                  number: 80
