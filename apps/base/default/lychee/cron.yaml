@@ -18,7 +18,6 @@ spec:
             - /bin/sh
             - -c
             - /usr/bin/php8 /app/lychee/artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
-            # - while true; do sleep 30; done;
             volumeMounts:
               - mountPath: /config
                 name: config

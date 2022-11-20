@@ -35,9 +35,6 @@ spec:
             - mountPath: /pictures
               name: config
               subPath: lychee/pictures
-            # - mountPath: /import
-            #   name: nas-sam
-            #   subPath: Personal/Fotos-Lychee-Testing
             - mountPath: /watch
               name: nas-sam
               subPath: Personal/Fotos-Lychee-Testing
@@ -123,22 +120,20 @@ metadata:
   name: lychee-ingress
   namespace: default
   annotations:
-    # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
-    # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-body-size: 1000m
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Lychee
-    flame.pawelmalak/url: https://lychee.int.sambaum.ch
+    flame.pawelmalak/url: https://lychee.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lychee-icon.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'lychee.int.sambaum.ch'
+        - 'lychee.example.com'
       secretName: lychee-tls
   rules:
-    - host: lychee.int.sambaum.ch
+    - host: lychee.example.com
       http:
         paths:
           - pathType: Prefix
