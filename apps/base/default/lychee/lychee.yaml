@@ -35,9 +35,12 @@ spec:
             - mountPath: /pictures
               name: config
               subPath: lychee/pictures
-            - mountPath: /import
+            # - mountPath: /import
+            #   name: nas-sam
+            #   subPath: Personal/Fotos-Lychee-Testing
+            - mountPath: /watch
               name: nas-sam
-              subPath: Personal/Fotos/Publish/Events/2022
+              subPath: Personal/Fotos-Lychee-Testing
           env:
             - name: TZ
               value: 'Europe/Zurich'

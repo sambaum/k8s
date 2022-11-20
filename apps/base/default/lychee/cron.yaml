@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: lychee-watch
+  namespace: default
+spec:
+  # schedule: "0 0 31 2 *"
+  schedule: "6 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: lychee-watch
+            image: linuxserver/lychee:4.4.0
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - /usr/bin/php8 /app/lychee/artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
+            # - while true; do sleep 30; done;
+            volumeMounts:
+              - mountPath: /config
+                name: config
+                subPath: lychee/lychee
+              - mountPath: /app/lychee/public/uploads # for unknown reasons this path is different when running with CronJob
+                name: config
+                subPath: lychee/pictures
+              - mountPath: /watch
+                name: nas-sam
+                subPath: Personal/Fotos-Lychee-Testing
+            env:
+              - name: TZ
+                value: 'Europe/Zurich'
+              - name: DB_HOST
+                value: 'lychee-service-mariadb'
+              - name: DB_USERNAME
+                value: 'lychee'
+              - name: DB_PASSWORD
+                value: 'dbpassword'
+              - name: DB_DATABASE
+                value: 'lychee'
+              - name: DB_PORT
+                value: '3306'
+              - name: PGID
+                value: '1000'
+              - name: PUID
+                value: '1000'
+              - name: TRUSTED_PROXIES
+                value: '*'
+          restartPolicy: OnFailure
+          volumes:
+            - name: config
+              persistentVolumeClaim:
+                claimName: local-conf-pvc
+            - name: nas-sam
+              persistentVolumeClaim:
+                claimName: nas-sam-pvc
