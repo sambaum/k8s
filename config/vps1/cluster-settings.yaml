@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  NGINX_LOADBALANCER_IP: "192.145.37.10"
+  NGINX_LOADBALANCER_IP: ""
