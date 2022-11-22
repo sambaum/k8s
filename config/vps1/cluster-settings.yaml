@@ -6,4 +6,4 @@ metadata:
   name: cluster-settings
 data:
   NGINX_LOADBALANCER_IP: ""
-  NGINX_CONTROLLER_SERVICE_TYPE: "ClusterIP"
+  NGINX_CONTROLLER_SERVICE_TYPE: "NodePort"
