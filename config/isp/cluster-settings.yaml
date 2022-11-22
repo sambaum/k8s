@@ -6,4 +6,5 @@ metadata:
   name: cluster-settings
 data:
   NGINX_LOADBALANCER_IP: "172.22.21.18"
+  NGINX_CONTROLLER_SERVICE_TYPE: "LoadBalancer"
   SYSLOG_LOADBALANCER_IP: "172.22.21.19"
