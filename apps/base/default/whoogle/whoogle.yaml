@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: whoogle
-          image: benbusby/whoogle-search:0.7.4
+          image: benbusby/whoogle-search:0.8.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
