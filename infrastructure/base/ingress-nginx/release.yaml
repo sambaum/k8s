@@ -24,6 +24,5 @@ spec:
   values:
     controller:
       service:
-        type: '${NGINX_CONTROLLER_SERVICE_TYPE}'
         loadBalancerIP: '${NGINX_LOADBALANCER_IP}'
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
