@@ -42,17 +42,17 @@ patches:
             metric_relabel_configs:
               - source_labels: [device]
                 action: replace
-                regex: 're0'
+                regex: 'igc1'
                 replacement: 'LAN'
                 target_label: 'device'
               - source_labels: [device]
                 action: replace
-                regex: 'em0'
+                regex: 'igc0'
                 replacement: 'WAN'
                 target_label: 'device'
               - source_labels: [device]
                 action: replace
-                regex: 're2_vlan102'
+                regex: 'igc2_vlan102'
                 replacement: 'Quarantine'
                 target_label: 'device'
               - source_labels: [device]
@@ -62,7 +62,7 @@ patches:
                 target_label: 'device'
               - source_labels: [device]
                 action: drop
-                regex: 're2'
+                regex: 'igc2'
               - source_labels: [device]
                 action: drop
                 regex: 'lo0'
