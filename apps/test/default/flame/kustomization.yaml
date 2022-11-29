@@ -22,7 +22,7 @@ patches:
         value: basic
       - op: add
         path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
-        value: basic-auth-test
+        value: basic-auth
       - op: add
         path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
         value: 'Authentication Required - foo'
