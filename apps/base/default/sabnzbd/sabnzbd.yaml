@@ -55,6 +55,11 @@ spec:
         - name: sabnzbd-downloads
           persistentVolumeClaim:
             claimName: nas-media-pvc
+      # Alpine workaround
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1
