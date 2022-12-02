@@ -31,7 +31,7 @@ spec:
       existingClaim: openebs-local-hostpath-conf-pvc
     ingress:
       enabled: true
-      # ingressClassName: nginx
+      ingressClassName: nginx
       annotations:
         # kubernetes.io/ingress.class: public
         kubernetes.io/ingress.class: nginx
