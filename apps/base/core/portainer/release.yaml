@@ -31,13 +31,13 @@ spec:
       existingClaim: openebs-local-hostpath-conf-pvc
     ingress:
       enabled: true
-      ingressClassName: nginx
+      # ingressClassName: nginx
       annotations:
         # kubernetes.io/ingress.class: public
+        kubernetes.io/ingress.class: nginx
         # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
         nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
-        # kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: letsencrypt-staging
         flame.pawelmalak/type: application
         flame.pawelmalak/name: Portainer
