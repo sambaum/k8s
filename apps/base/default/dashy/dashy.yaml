@@ -54,6 +54,10 @@ spec:
           hostPath:
             path: /conf/default/dashy/conf.yml
             type: FileOrCreate
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1

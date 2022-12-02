@@ -87,6 +87,10 @@ spec:
         - name: nas-sam
           persistentVolumeClaim:
             claimName: nas-sam-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1

@@ -52,7 +52,6 @@ spec:
         - name: media
           persistentVolumeClaim:
             claimName: nas-media-pvc
-      # Alpine workaround
       dnsConfig:
         options:
           - name: ndots

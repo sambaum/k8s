@@ -50,3 +50,7 @@ spec:
           hostPath:
             path: /conf/searcharr/settings.py
             type: FileOrCreate
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"

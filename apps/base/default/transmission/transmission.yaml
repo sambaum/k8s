@@ -64,6 +64,10 @@ spec:
         - name: transmission-downloads
           persistentVolumeClaim:
             claimName: nas-media-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1

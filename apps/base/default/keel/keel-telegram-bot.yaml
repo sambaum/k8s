@@ -37,6 +37,10 @@ spec:
           hostPath:
             path: /conf/keel-telegram-bot/keel-telegram-bot.yaml
             type: FileOrCreate
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1

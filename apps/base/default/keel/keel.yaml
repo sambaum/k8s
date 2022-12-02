@@ -40,6 +40,10 @@ spec:
                   optional: false
             - name: WEBHOOK_ENDPOINT
               value: 'http://keel-telegram-bot.example.com/'
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1

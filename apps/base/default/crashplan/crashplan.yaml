@@ -75,6 +75,10 @@ spec:
         - name: nas-backup
           persistentVolumeClaim:
             claimName: nas-backup-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
 ---
 kind: Service
 apiVersion: v1
