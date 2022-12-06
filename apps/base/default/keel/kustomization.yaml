@@ -1,4 +1,3 @@
 resources:
   - keel.yaml
-  - keel-secret.yaml
   - keel-telegram-bot.yaml
