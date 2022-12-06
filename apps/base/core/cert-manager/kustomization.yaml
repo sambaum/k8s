@@ -1,3 +1,2 @@
 resources:
-  - letsencrypt-cloudflare-secret.yaml
   - letsencrypt-cloudflare.yaml
