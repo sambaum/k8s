@@ -21,9 +21,3 @@ patches:
       - op: replace
         path: /spec/acme/solvers/0/dns01/cloudflare/email
         value: samuel.baumgartner@gmail.com
-
-# kubectl create secret generic cloudflare-api-token-secret -n cert-manager --dry-run=client --from-literal=api-token=mysecretvalue -o yaml | \
-# kubeseal \
-#   --controller-name=sealed-secrets-controller \
-#   --controller-namespace=flux-system \
-#   --format yaml > letsencrypt-secret-temp.yaml
