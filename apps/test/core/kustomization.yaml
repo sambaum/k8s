@@ -1,5 +1,4 @@
 resources:
-  - ../../base/core/cert-manager
   - kubernetes-dashboard
   - portainer
   - metallb
