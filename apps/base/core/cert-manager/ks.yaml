@@ -29,7 +29,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  wait: true
+  # wait: true
   dependsOn:
     - name: cluster-apps-cert-manager
   decryption:
