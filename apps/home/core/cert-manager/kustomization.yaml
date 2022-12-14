@@ -1,23 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../base/core/cert-manager/
-patches:
-  - target:
-      kind: ClusterIssuer
-      name: letsencrypt-staging
-    patch: |-
-      - op: replace
-        path: /spec/acme/email
-        value: samuel.baumgartner@gmail.com
-      - op: replace
-        path: /spec/acme/solvers/0/dns01/cloudflare/email
-        value: samuel.baumgartner@gmail.com
-  - target:
-      kind: ClusterIssuer
-      name: letsencrypt-production
-    patch: |-
-      - op: replace
-        path: /spec/acme/email
-        value: samuel.baumgartner@gmail.com
-      - op: replace
-        path: /spec/acme/solvers/0/dns01/cloudflare/email
-        value: samuel.baumgartner@gmail.com
+# patches:
+#   - target:
+#       kind: ClusterIssuer
+#       name: letsencrypt-staging
+#     patch: |-
+#       - op: replace
+#         path: /spec/acme/email
+#         value: samuel.baumgartner@gmail.com
+#       - op: replace
+#         path: /spec/acme/solvers/0/dns01/cloudflare/email
+#         value: samuel.baumgartner@gmail.com
+#   - target:
+#       kind: ClusterIssuer
+#       name: letsencrypt-production
+#     patch: |-
+#       - op: replace
+#         path: /spec/acme/email
+#         value: samuel.baumgartner@gmail.com
+#       - op: replace
+#         path: /spec/acme/solvers/0/dns01/cloudflare/email
+#         value: samuel.baumgartner@gmail.com

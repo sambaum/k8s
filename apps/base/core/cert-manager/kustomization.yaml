@@ -1,2 +1,2 @@
 resources:
-  - letsencrypt-cloudflare.yaml
+  - ks.yaml
