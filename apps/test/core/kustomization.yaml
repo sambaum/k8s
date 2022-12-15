@@ -1,4 +1,4 @@
 resources:
   - kubernetes-dashboard
   - portainer
-  - metallb
+  # - metallb
