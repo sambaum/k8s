@@ -8,4 +8,4 @@ patches:
     patch: |-
       - op: replace
         path: /spec/path
-        value: ./infrastructure/test/metallb/issuers
+        value: ./infrastructure/test/metallb/ippool

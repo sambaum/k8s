@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./infrastructure/base/metallb/issuers"
+  path: "./infrastructure/base/metallb/ippool"
   prune: true
   sourceRef:
     kind: GitRepository
