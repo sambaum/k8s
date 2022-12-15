@@ -1,5 +1,5 @@
 resources:
   - namespaces
-  - sealed-secrets
   - ingress-nginx
   - metallb
+  - cert-manager

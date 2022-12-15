@@ -1,5 +1,4 @@
 resources:
-  - cert-manager
   - openebs-operator
   - calico
   - podmonitor
