@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   addresses:
-  - 'x.x.x.x-x.x.x.x'
+  - '172.22.21.18-172.22.21.19'
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
