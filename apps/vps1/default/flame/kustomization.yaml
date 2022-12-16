@@ -1,5 +1,6 @@
 resources:
   - ../../../base/default/flame/
+  - secret-basic-auth-test.yaml
 patches:
   - target:
       kind: Ingress
@@ -17,3 +18,12 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
+      - op: add
+        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-type
+        value: basic
+      - op: add
+        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
+        value: basic-auth
+      - op: add
+        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
+        value: 'Authentication Required - foo'
