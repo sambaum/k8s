@@ -31,11 +31,8 @@ spec:
       existingClaim: openebs-local-hostpath-conf-pvc
     ingress:
       enabled: true
-      # ingressClassName: nginx
       annotations:
-        # kubernetes.io/ingress.class: public
         kubernetes.io/ingress.class: nginx
-        # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
         nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
         cert-manager.io/cluster-issuer: letsencrypt-staging
