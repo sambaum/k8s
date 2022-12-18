@@ -1,6 +1,6 @@
 resources:
   - ../../../base/default/flame/
-  - secret-basic-auth-test.yaml
+  - secret-basic-auth.yaml
 patches:
   - target:
       kind: Ingress
@@ -26,4 +26,4 @@ patches:
         value: basic-auth
       - op: add
         path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
-        value: 'Authentication Required - foo'
+        value: 'Authentication Required'
