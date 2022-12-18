@@ -1,6 +1,5 @@
 resources:
   - ../../../base/default/flame/
-  - secret-basic-auth.yaml
 patches:
   - target:
       kind: Ingress

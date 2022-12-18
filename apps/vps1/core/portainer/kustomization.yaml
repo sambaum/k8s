@@ -1,6 +1,5 @@
 resources:
   - ../../../base/core/portainer/
-  - secret-basic-auth.yaml
 patches:
   - target:
       kind: HelmRelease
