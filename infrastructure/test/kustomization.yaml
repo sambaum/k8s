@@ -1,6 +1,7 @@
 resources:
   - ../base
   - ../base/metallb
+  - shared-secrets
 patches:
   - target:
       kind: Kustomization
