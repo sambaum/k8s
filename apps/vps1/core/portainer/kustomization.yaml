@@ -21,11 +21,11 @@ patches:
         path: /spec/values/ingress/annotations/kubernetes.io~1ingress.class
         value: public
       - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-type
+        path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1auth-type
         value: basic
       - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
+        path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1auth-secret
         value: basic-auth
       - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
+        path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1auth-realm
         value: 'Authentication Required'
