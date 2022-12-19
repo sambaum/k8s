@@ -2454,7 +2454,7 @@
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan1\"}\t",
           "hide": false,
           "interval": "",
-          "legendFormat": "CPU FAN  ({{sensor}})",
+          "legendFormat": "CPU FAN ({{sensor}})",
           "refId": "B"
         },
         {
@@ -2465,7 +2465,7 @@
           "exemplar": true,
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan3\"}\t",
           "interval": "",
-          "legendFormat": "Rear FAN ({{sensor}})",
+          "legendFormat": "System 1: Rear FAN ({{sensor}})",
           "refId": "A"
         },
         {
@@ -2477,7 +2477,7 @@
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan4\"}\t",
           "hide": false,
           "interval": "",
-          "legendFormat": "Upper FAN ({{sensor}})",
+          "legendFormat": "System 2: Upper FAN Rear ({{sensor}})",
           "refId": "C"
         },
         {
@@ -2489,7 +2489,7 @@
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan5\"}\t",
           "hide": false,
           "interval": "",
-          "legendFormat": "Upper Fast FAN ({{sensor}})",
+          "legendFormat": "System 3: Upper FAN Fast ({{sensor}})",
           "refId": "D"
         }
       ],
