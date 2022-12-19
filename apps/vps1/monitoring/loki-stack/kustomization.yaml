@@ -1,0 +1,10 @@
+resources:
+  - ../../../base/monitoring/loki-stack/
+patches:
+  - target:
+      kind: HelmRelease
+      name: loki-stack
+    patch: |-
+      - op: replace
+        path: /spec/values/promtail/enabled
+        value: false
