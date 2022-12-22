@@ -36,8 +36,8 @@ spec:
               name: config
               subPath: lychee/pictures
             - mountPath: /watch
-              name: nas-sam
-              subPath: Personal/Fotos-Lychee-Testing
+              name: config
+              subPath: lychee/watch
           env:
             - name: TZ
               value: 'Europe/Zurich'
@@ -84,9 +84,6 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: local-conf-pvc
-        - name: nas-sam
-          persistentVolumeClaim:
-            claimName: nas-sam-pvc
       dnsConfig:
         options:
           - name: ndots
