@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rsync-photos-to-vps
+  namespace: default
+spec:
+  # schedule: "*/15 * * * *"
+  schedule: "*/15 1 1 1 1"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rsync-photos-to-vps
+            image: secoresearch/rsync
+            # args:
+            # - /bin/sh
+            # - -c
+            # - while true; do echo gugus; sleep 10; done
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: /photos/
+                name: nas-sam
+                subPath: Personal/Fotos-Lychee-Testing
+              - mountPath: /.ssh
+                name: config
+                subPath: rsync-photos-to-vps/.ssh
+              # - mountPath: /photos/
+              #   name: nas-media
+              #   subPath: Video/Home-Movies
+            env:
+              - name: SSH_PRIVATE_KEY
+                value: ''
+                valueFrom:
+                   secretKeyRef:
+                     name: rsync-photos-to-vps-key
+                     key: privatekey
+                     optional: false
+              - name: SSH_KNOWN_HOSTS
+                value: 'vmi1093363.sambaum.ch,192.145.37.10 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDpdOnCpYxVNfmMgq5CmX37lPUHhFxgPcTW/oFe9FvCRyLJJ/pcH09klg7jGobRGYfXW5k6q3PqAvwI9jXrf4TQ='
+              - name: RSYNC_SOURCE
+                value: '/photos/'
+              - name: RSYNC_TARGET
+                value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
+              - name: RSYNC_OPTIONS
+                value: '-avz'
+          restartPolicy: OnFailure
+          volumes:
+            - name: nas-sam
+              persistentVolumeClaim:
+                claimName: nas-sam-pvc
+            - name: config
+              persistentVolumeClaim:
+                claimName: local-conf-pvc
+            # - name: nas-media
+            #   persistentVolumeClaim:
+            #     claimName: nas-media-pvc
+          dnsConfig:
+            options:
+              - name: ndots
+                value: "1"
