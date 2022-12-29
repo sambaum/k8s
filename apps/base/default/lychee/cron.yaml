@@ -4,8 +4,7 @@ metadata:
   name: lychee-watch
   namespace: default
 spec:
-  # schedule: "0 0 31 2 *"
-  schedule: "6 * * * *"
+  schedule: "0 7 * * *"
   jobTemplate:
     spec:
       template:
