@@ -1,0 +1,3 @@
+resources:
+  - rsync-photos-to-vps-key.yaml
+  - rsync-photos-to-vps.yaml

@@ -1,3 +1,4 @@
 resources:
   - bank2ynab.yaml
   - rsync-home-videos.yaml
+  - rsync-photos-to-vps
