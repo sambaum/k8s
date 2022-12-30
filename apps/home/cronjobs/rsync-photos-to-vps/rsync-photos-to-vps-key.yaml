@@ -5,6 +5,7 @@ data:
 kind: Secret
 metadata:
     name: rsync-photos-to-vps-key
+    namespace: default
 sops:
     kms: []
     gcp_kms: []
