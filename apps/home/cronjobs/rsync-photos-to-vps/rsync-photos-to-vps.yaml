@@ -4,7 +4,7 @@ metadata:
   name: rsync-photos-to-vps
   namespace: default
 spec:
-  schedule: "0 13 * * *"
+  schedule: "0 15 * * *"
   jobTemplate:
     spec:
       template:
@@ -24,9 +24,6 @@ spec:
               - mountPath: /.ssh
                 name: config
                 subPath: rsync-photos-to-vps/.ssh
-              # - mountPath: /photos/
-              #   name: nas-media
-              #   subPath: Video/Home-Movies
             env:
               - name: SSH_PRIVATE_KEY
                 value: ''
@@ -51,9 +48,6 @@ spec:
             - name: config
               persistentVolumeClaim:
                 claimName: local-conf-pvc
-            # - name: nas-media
-            #   persistentVolumeClaim:
-            #     claimName: nas-media-pvc
           dnsConfig:
             options:
               - name: ndots
