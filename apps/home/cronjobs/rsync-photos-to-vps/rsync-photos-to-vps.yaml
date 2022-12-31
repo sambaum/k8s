@@ -4,7 +4,7 @@ metadata:
   name: rsync-photos-to-vps
   namespace: default
 spec:
-  schedule: "0 15 * * *"
+  schedule: "0 12 * * *"
   jobTemplate:
     spec:
       template:
@@ -20,7 +20,7 @@ spec:
             volumeMounts:
               - mountPath: /photos/
                 name: nas-sam
-                subPath: Personal/Fotos-Lychee-Testing
+                subPath: Personal/Fotos/Publish/Events
               - mountPath: /.ssh
                 name: config
                 subPath: rsync-photos-to-vps/.ssh
