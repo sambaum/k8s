@@ -24,7 +24,7 @@ spec:
               - mountPath: /conf
                 name: config
                 subPath: lychee/conf
-              - mountPath: /app/lychee/public/uploads # for unknown reasons this path is different when running with CronJob
+              - mountPath: /var/www/html/Lychee/public/uploads # for unknown reasons this path is different when running with CronJob
                 name: config
                 subPath: lychee/uploads
               - mountPath: /watch
