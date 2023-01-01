@@ -11,12 +11,15 @@ spec:
         spec:
           containers:
           - name: lychee-watch
-            image: lycheeorg/lychee:v4.6.5
+            image: lycheeorg/lychee:v4.5.3 #v4.6.5
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
             - -c
-            - /usr/bin/php8 /app/lychee/artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
+            - php artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
+            # - /bin/sh
+            # - -c
+            # - while true; do echo gugus; sleep 10; done
             volumeMounts:
               - mountPath: /conf
                 name: config
