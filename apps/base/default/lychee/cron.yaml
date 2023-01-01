@@ -11,22 +11,25 @@ spec:
         spec:
           containers:
           - name: lychee-watch
-            image: linuxserver/lychee:4.4.0
+            image: lycheeorg/lychee:v4.6.5
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
             - -c
             - /usr/bin/php8 /app/lychee/artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
             volumeMounts:
-              - mountPath: /config
+              - mountPath: /conf
                 name: config
-                subPath: lychee/lychee
+                subPath: lychee/conf
               - mountPath: /app/lychee/public/uploads # for unknown reasons this path is different when running with CronJob
                 name: config
-                subPath: lychee/pictures
+                subPath: lychee/uploads
               - mountPath: /watch
                 name: config
                 subPath: lychee/watch
+              - mountPath: /sym
+                name: config
+                subPath: lychee/sym
             env:
               - name: TZ
                 value: 'Europe/Zurich'
@@ -46,6 +49,8 @@ spec:
                 value: '1000'
               - name: TRUSTED_PROXIES
                 value: '*'
+              - name: DB_CONNECTION
+                value: 'mysql'
           restartPolicy: OnFailure
           volumes:
             - name: config
