@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: lychee.sambaum.ch
+        value: foto.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [lychee.sambaum.ch]
+        value: [foto.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://lychee.sambaum.ch
+        value: https://foto.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
