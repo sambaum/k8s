@@ -22,6 +22,20 @@ spec:
       labels:
         app: lychee
     spec:
+      initContainers:
+        - name: create-config
+          image: mwendler/wget
+          command: ["/bin/sh"]
+          args:
+            [
+              '-c',
+              'if [ -s /etc/nginx/nginx.conf ]; then echo file already there; else wget -c -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/lychee/nginx.conf --no-check-certificate; fi'
+            ]
+          volumeMounts:
+            - mountPath: /conf/default/lychee
+              name: settings-dir
+            - mountPath: /etc/nginx/nginx.conf
+              name: settings
       containers:
         - name: lychee
           image: lycheeorg/lychee:v4.5.3 #v4.6.5
@@ -41,6 +55,8 @@ spec:
             - mountPath: /watch
               name: config
               subPath: lychee/watch
+            - mountPath: /etc/nginx/nginx.conf
+              name: settings
           env:
             - name: TZ
               value: 'Europe/Zurich'
@@ -89,6 +105,14 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: local-conf-pvc
+        - name: settings-dir
+          hostPath:
+            path: /conf/default/lychee
+            type: DirectoryOrCreate
+        - name: settings
+          hostPath:
+            path: /conf/default/lychee/nginx.conf
+            type: FileOrCreate
       dnsConfig:
         options:
           - name: ndots
