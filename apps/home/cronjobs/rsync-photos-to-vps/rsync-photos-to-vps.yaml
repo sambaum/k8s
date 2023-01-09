@@ -39,7 +39,7 @@ spec:
               - name: RSYNC_TARGET
                 value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
               - name: RSYNC_OPTIONS
-                value: '-avz'
+                value: '-avzm --include="*/" --include="*.jpg" --exclude="*"'
           restartPolicy: OnFailure
           volumes:
             - name: nas-sam
