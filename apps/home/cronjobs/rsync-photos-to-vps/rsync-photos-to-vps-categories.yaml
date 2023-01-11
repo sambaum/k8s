@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: rsync-photos-to-vps
+  name: rsync-photos-to-vps-categories
   namespace: default
 spec:
   schedule: "0 12 * * *"
@@ -20,7 +20,7 @@ spec:
             volumeMounts:
               - mountPath: /photos/
                 name: nas-sam
-                subPath: Personal/Fotos/Publish/Events
+                subPath: Personal/Fotos/Publish/Categories
               - mountPath: /.ssh
                 name: config
                 subPath: rsync-photos-to-vps/.ssh
