@@ -25,7 +25,7 @@ spec:
   - ReadWriteMany
   nfs:
     server: nas-databus.int.sambaum.ch
-    path: "/volume2/Temp"
+    path: "/volume1/Temp"
 ---
 
 kind: PersistentVolumeClaim
@@ -175,6 +175,6 @@ spec:
   - ReadWriteMany
   nfs:
     server: nas-databus.int.sambaum.ch
-    path: "/volume2/Backup"
+    path: "/volume1/Backup"
 ---
 
