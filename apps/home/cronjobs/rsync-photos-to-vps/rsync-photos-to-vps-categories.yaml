@@ -9,21 +9,27 @@ spec:
     spec:
       template:
         spec:
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            fsGroup: 0
           containers:
           - name: rsync-photos-to-vps
             image: secoresearch/rsync
-            # args:
-            # - /bin/sh
-            # - -c
-            # - while true; do echo gugus; sleep 10; done
+            args:
+            - /bin/sh
+            - -c
+            - |
+                mkdir -p /root/.ssh
+                echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+                echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
+                chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
+                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: /photos/
                 name: nas-sam
                 subPath: Personal/Fotos/Publish/Categories
-              - mountPath: /.ssh
-                name: config
-                subPath: rsync-photos-to-vps/.ssh
             env:
               - name: SSH_PRIVATE_KEY
                 value: ''
@@ -38,16 +44,11 @@ spec:
                 value: '/photos/'
               - name: RSYNC_TARGET
                 value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
-              - name: RSYNC_OPTIONS
-                value: '-avzm --include="*/" --include="*.jpg" --exclude="*"'
           restartPolicy: OnFailure
           volumes:
             - name: nas-sam
               persistentVolumeClaim:
                 claimName: nas-sam-pvc
-            - name: config
-              persistentVolumeClaim:
-                claimName: local-conf-pvc
           dnsConfig:
             options:
               - name: ndots

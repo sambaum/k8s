@@ -13,32 +13,23 @@ spec:
             runAsUser: 0
             runAsGroup: 0
             fsGroup: 0
-          # initContainers:
-          # - name: init-rsync-photos-to-vps-events
-          #   image: busybox:1.34.1
-          #   command: ['sh', '-c', 'mkdir -p /root/.ssh/ && chown 1001:1001 /root/.ssh/ && chmod 600 /root/.ssh/ && touch /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa']
-          #   volumeMounts:
-          #     - mountPath: /.ssh
-          #       name: config
-          #       subPath: rsync-photos-to-vps
           containers:
           - name: rsync-photos-to-vps
             image: secoresearch/rsync
             args:
             - /bin/sh
             - -c
-            - mkdir -p /root/.ssh && chmod 600 /root/.ssh/ && echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa && echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts && chmod 600 /root/.ssh/id_rsa /root/.ssh/known_hosts && rsync -avzm --include "*/" --include "*.jpg" --exclude "*" /photos/ root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/
-            # - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts && rsync -avzm --include "*/" --include "*.jpg" --exclude "*" -e ssh -i /tmp/key -o UserKnownHostsFile=/tmp/known_hosts /photos/ root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/
-            # - while true; do echo foo; sleep 10; done
-            # - rsync -avzm --include "*/" --include "*.jpg" --exclude "*" -e ssh -i /tmp/key -o UserKnownHostsFile=/tmp/known_hosts /photos/ root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/
+            - |
+                mkdir -p /root/.ssh
+                echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+                echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
+                chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
+                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: /photos/
                 name: nas-sam
                 subPath: Personal/Fotos/Publish/Events/2005
-              - mountPath: /.ssh
-                name: config
-                subPath: rsync-photos-to-vps/.ssh
             env:
               - name: SSH_PRIVATE_KEY
                 value: ''
@@ -53,16 +44,11 @@ spec:
                 value: '/photos/'
               - name: RSYNC_TARGET
                 value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
-              - name: RSYNC_OPTIONS
-                value: '-avzm --include "*/" --include "*.jpg" --exclude "*"'
           restartPolicy: OnFailure
           volumes:
             - name: nas-sam
               persistentVolumeClaim:
                 claimName: nas-sam-pvc
-            - name: config
-              persistentVolumeClaim:
-                claimName: local-conf-pvc
           dnsConfig:
             options:
               - name: ndots
