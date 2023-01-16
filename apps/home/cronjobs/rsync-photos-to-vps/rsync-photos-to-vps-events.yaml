@@ -29,7 +29,7 @@ spec:
             volumeMounts:
               - mountPath: /photos/
                 name: nas-sam
-                subPath: Personal/Fotos/Publish/Events/2005
+                subPath: Personal/Fotos/Publish/Events
             env:
               - name: SSH_PRIVATE_KEY
                 value: ''
