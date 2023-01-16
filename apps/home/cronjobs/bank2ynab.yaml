@@ -32,3 +32,4 @@ spec:
             - name: temp
               persistentVolumeClaim:
                 claimName: nas-temp-pvc
+      ttlSecondsAfterFinished: 180

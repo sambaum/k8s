@@ -53,3 +53,4 @@ spec:
             options:
               - name: ndots
                 value: "1"
+      ttlSecondsAfterFinished: 172800

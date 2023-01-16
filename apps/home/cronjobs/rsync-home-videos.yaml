@@ -32,3 +32,4 @@ spec:
             - name: nas-media
               persistentVolumeClaim:
                 claimName: nas-media-pvc
+      ttlSecondsAfterFinished: 172800
