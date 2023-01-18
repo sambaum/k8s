@@ -122,7 +122,7 @@ metadata:
     flame.pawelmalak/type: application
     flame.pawelmalak/name: overleaf
     flame.pawelmalak/url: https://overleaf.example.com
-    flame.pawelmalak/icon: https://nodesk.co/remote-companies/assets/logos/overleaf.c23e764e96ecc7507e702b5d55072de821ccfb2d72d1582eded3c85cdb83395a.png
+    flame.pawelmalak/icon: https://images.ctfassets.net/nrgyaltdicpt/h9dpHuVys19B1sOAWvbP6/5f8d4c6d051f63e4ba450befd56f9189/ologo_square_colour_light_bg.svg
 spec:
   ingressClassName: nginx
   tls:
