@@ -1,0 +1,46 @@
+resources:
+  - ../../base/local/
+patches:
+  - target:
+      kind: PersistentVolume
+      name: local-conf-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]
+  - target:
+      kind: PersistentVolume
+      name: local-data-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]
+  - target:
+      kind: PersistentVolume
+      name: local-temp-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]
+
+  - target:
+      kind: PersistentVolume
+      name: local-conf-monitoring-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]
+  - target:
+      kind: PersistentVolume
+      name: local-data-monitoring-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]
+  - target:
+      kind: PersistentVolume
+      name: local-temp-monitoring-pv
+    patch: |-
+      - op: replace
+        path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
+        value: [dumpster]

@@ -1,0 +1,22 @@
+resources:
+  - ../../../base/core/kubernetes-dashboard/
+patches:
+  - target:
+      kind: HelmRelease
+      name: kubernetes-dashboard
+    patch: |-
+      - op: replace
+        path: /spec/values/ingress/hosts/0
+        value: dashboard.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/ingress/tls/0/hosts/0
+        value: dashboard.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/ingress/annotations/flame.pawelmalak~1url
+        value: https://dashboard.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+      - op: replace
+        path: /spec/values/ingress/annotations/kubernetes.io~1ingress.class
+        value: public
