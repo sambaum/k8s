@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: flame.deskcube.sambaum.ch
+        value: flame.deskcube.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [flame.deskcube.sambaum.ch]
+        value: [flame.deskcube.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://flame.deskcube.sambaum.ch
+        value: https://flame.deskcube.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
