@@ -40,7 +40,7 @@ spec:
       initContainers:
         - name: init-uptime-kuma
           image: busybox:1.34.1
-          command: ['sh', '-c', 'echo wait 180 seconds && sleep 180']
+          command: ['sh', '-c', 'echo wait 1 seconds && sleep 1']
       volumes:
         - name: config
           persistentVolumeClaim:

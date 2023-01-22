@@ -17,3 +17,10 @@ patches:
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
+  - target:
+      kind: Deployment
+      name: uptime-kuma
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/initContainers/0/command
+        value: ['sh', '-c', 'echo wait 180 seconds && sleep 180']
