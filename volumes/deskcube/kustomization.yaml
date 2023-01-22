@@ -1,4 +1,4 @@
 resources:
   - local
-  # - open-ebs
+  - open-ebs
   # - nfs
