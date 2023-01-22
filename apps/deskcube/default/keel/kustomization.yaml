@@ -1,0 +1,40 @@
+resources:
+  - ../../../base/default/keel/
+patches:
+  - target:
+      kind: Ingress
+      name: keel-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: keel.deskcube.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [keel.deskcube.int.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://keel.deskcube.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+  - target:
+      kind: Ingress
+      name: keel-telegram-bot-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: keel-telegram-bot.deskcube.int.sambaum.ch
+  - target:
+      kind: Deployment
+      name: keel
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/2/value
+        value: http://keel-telegram-bot-service:5000
+  - target:
+      kind: Deployment
+      name: keel-telegram-bot
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/0/hostPath/path
+        value: /conf/default/keel-telegram-bot/keel-telegram-bot.yaml
