@@ -24,7 +24,7 @@ spec:
                 echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
                 echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
                 chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
-                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
+                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET" --delete
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: /photos/
