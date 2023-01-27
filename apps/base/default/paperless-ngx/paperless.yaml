@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: paperless
-          image: paperlessngx/paperless-ngx:1.11.3
+          image: paperlessngx/paperless-ngx:1.12.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
