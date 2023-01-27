@@ -79,7 +79,7 @@ spec:
             - name: DB_CONNECTION
               value: 'mysql'
         - name: maria
-          image: mariadb:10.9
+          image: mariadb:10.10
           ports:
             - containerPort: 3306
           volumeMounts:
