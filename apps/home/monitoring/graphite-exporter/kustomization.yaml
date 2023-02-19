@@ -1,0 +1,16 @@
+resources:
+  - ../../../base/monitoring/graphite-exporter/
+patches:
+  - target:
+      kind: Ingress
+      name: graphite-exporter-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: graphite-exporter.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://graphite-exporter.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
