@@ -176,5 +176,3 @@ spec:
   nfs:
     server: nas-databus.int.sambaum.ch
     path: "/volume1/Backup"
----
-
