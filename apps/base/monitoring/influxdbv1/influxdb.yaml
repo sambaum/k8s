@@ -1,0 +1,117 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdbv1
+  namespace: monitoring
+  labels:
+    app: influxdbv1
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdbv1
+  template:
+    metadata:
+      labels:
+        app: influxdbv1
+    spec:
+      containers:
+        - name: influxdbv1
+          image: influxdb:1.8
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - mountPath: /etc/influxdb
+              name: config
+              subPath: influxdbv1
+            - mountPath: /root/.influxdb
+              name: data
+              subPath: influxdbv1
+      initContainers:
+        - name: influxdbv1-init
+          image: influxdb:1.8
+          imagePullPolicy: IfNotPresent
+          command: ['sh', '-c', 'if [ -s /etc/influxdb/influxdb.conf ]; then echo file already there; else influxd config > /etc/influxdb/influxdb.conf; fi']
+          # command: ['sh', '-c', 'influxd config > /etc/influxdb/influxdb.conf']
+          volumeMounts:
+            - mountPath: /etc/influxdb
+              name: config
+              subPath: influxdbv1
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-monitoring-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-monitoring-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: influxdbv1-service
+  namespace: monitoring
+spec:
+  selector:
+    app: influxdbv1
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: monitoring
+  name: influxdbv1-graphite-2003-tcp
+  # annotations:
+  #   metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${GRAPHITE_LOADBALANCER_IP}'
+  selector:
+    app: influxdbv1
+  ports:
+    - protocol: TCP
+      port: 2003
+      targetPort: 2003
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: influxdbv1-ingress
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Influxdbv1
+    flame.pawelmalak/url: https://influxdbv1.example.com
+    flame.pawelmalak/icon: https://assets.zabbix.com/img/brands/influxdb.svg
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'influxdbv1.example.com'
+      secretName: influxdbv1-tls
+  rules:
+    - host: influxdbv1.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: influxdbv1-service
+                port:
+                  number: 8086
