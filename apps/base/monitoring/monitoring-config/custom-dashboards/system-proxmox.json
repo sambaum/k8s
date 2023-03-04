@@ -26,6 +26,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 9893,
   "graphTooltip": 0,
+  "id": 249,
+  "iteration": 1655726025513,
   "links": [
     {
       "icon": "external link",
@@ -65,15 +67,10 @@
       "links": [],
       "maxPerRow": 6,
       "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "repeat": "node",
       "repeatDirection": "h",
       "style": {},
@@ -124,7 +121,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 5
+        "y": 3
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -144,7 +141,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "time() - node_boot_time_seconds{instance=~\"$node\"}",
@@ -202,7 +199,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 5
+        "y": 3
       },
       "id": 14,
       "links": [],
@@ -221,7 +218,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$node\", mode='system'}) by (cpu))",
@@ -286,7 +283,7 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 5
+        "y": 3
       },
       "id": 167,
       "links": [],
@@ -303,7 +300,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[5m])) * 100)",
@@ -316,7 +313,7 @@
           "step": 20
         }
       ],
-      "title": "CPU usage5m  ",
+      "title": "CPU usage（5m）",
       "type": "gauge"
     },
     {
@@ -369,7 +366,7 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 5
+        "y": 3
       },
       "id": 20,
       "links": [],
@@ -386,7 +383,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[5m])) * 100",
@@ -399,7 +396,7 @@
           "step": 20
         }
       ],
-      "title": "CPU iowait5m ",
+      "title": "CPU iowait（5m）",
       "type": "gauge"
     },
     {
@@ -442,7 +439,7 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 5
+        "y": 3
       },
       "hideTimeOverride": false,
       "id": 172,
@@ -460,7 +457,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
@@ -514,7 +511,7 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 5
+        "y": 3
       },
       "hideTimeOverride": false,
       "id": 16,
@@ -532,7 +529,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "node_filefd_allocated{instance=~\"$node\"}",
@@ -595,7 +592,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 5
+        "y": 3
       },
       "id": 166,
       "links": [],
@@ -612,7 +609,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "repeatDirection": "h",
       "targets": [
         {
@@ -676,7 +673,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 5
+        "y": 3
       },
       "id": 154,
       "links": [],
@@ -693,7 +690,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "repeatDirection": "h",
       "targets": [
         {
@@ -751,7 +748,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 7
+        "y": 5
       },
       "id": 75,
       "links": [],
@@ -770,7 +767,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
@@ -807,7 +804,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 10
+        "y": 8
       },
       "height": "300",
       "hiddenSeries": false,
@@ -832,7 +829,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -906,59 +903,45 @@
       }
     },
     {
+      "aliasColors": {
+        "/": "#eab839",
+        "/boot": "#bf1b00",
+        "/data": "#1f78c1"
+      },
+      "breakPoint": "100%",
+      "combine": {
+        "label": "Others",
+        "threshold": ""
+      },
       "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
+      "decimals": 1,
+      "fontSize": "50%",
+      "format": "bytes",
       "gridPos": {
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 10
+        "y": 8
       },
       "hideTimeOverride": false,
       "id": 171,
+      "legend": {
+        "header": "",
+        "percentage": false,
+        "percentageDecimals": 0,
+        "show": true,
+        "sideWidth": 142,
+        "values": true
+      },
+      "legendType": "Right side",
       "links": [],
       "maxDataPoints": 3,
-      "options": {
-        "displayLabels": [
-          "percent"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true,
-          "values": []
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": "2",
       "targets": [
         {
           "datasource": {
@@ -976,7 +959,8 @@
         }
       ],
       "title": "Total disk space",
-      "type": "piechart"
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
     },
     {
       "columns": [],
@@ -989,7 +973,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 10
+        "y": 8
       },
       "id": 164,
       "links": [],
@@ -1202,14 +1186,14 @@
         "uid": "prometheus"
       },
       "decimals": 2,
-      "description": "node_disk_io_time_seconds_total\nThe number of milliseconds the disk spends on input/output operations. This value is the accumulated value.Milliseconds Spent Doing I/Os \n\nirate(node_disk_io_time_seconds_total[1m])\nCalculate the rate per second: (last value - last previous value) / timestamp difference, that is, the percentage of time that the disk spends on I/O operations in 1 second.",
+      "description": "node_disk_io_time_seconds_total：\nThe number of milliseconds the disk spends on input/output operations. This value is the accumulated value.（Milliseconds Spent Doing I/Os）\n\nirate(node_disk_io_time_seconds_total[1m])：\nCalculate the rate per second: (last value - last previous value) / timestamp difference, that is, the percentage of time that the disk spends on I/O operations in 1 second.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 16
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1235,7 +1219,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1288,7 +1272,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "CPU usage, disk I/O operations per second take time% ",
+      "title": "CPU usage, disk I/O operations per second take time（%）",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1341,7 +1325,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 14
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1365,7 +1349,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1487,7 +1471,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 23
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1512,7 +1496,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1557,7 +1541,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Disk read and write rateIOPS ",
+      "title": "Disk read and write rate（IOPS）",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1572,7 +1556,7 @@
       "yaxes": [
         {
           "format": "iops",
-          "label": "Read (-) / write+  I/O ops/sec",
+          "label": "Read (-) / write（+）I/O ops/sec",
           "logBase": 1,
           "show": true
         },
@@ -1604,7 +1588,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 23
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1629,7 +1613,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1711,7 +1695,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 23
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1736,7 +1720,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1832,7 +1816,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 29
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1905,7 +1889,7 @@
       "yaxes": [
         {
           "format": "bps",
-          "label": "Upload (-) / Download+ ",
+          "label": "Upload (-) / Download（+）",
           "logBase": 1,
           "show": true
         },
@@ -1937,7 +1921,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 29
       },
       "height": "300",
       "hiddenSeries": false,
@@ -2149,7 +2133,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 37
       },
       "id": 169,
       "links": [],
@@ -2162,8 +2146,7 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "multi",
@@ -2341,7 +2324,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 47
       },
       "id": 177,
       "links": [],
@@ -2354,8 +2337,7 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "multi",
@@ -2443,7 +2425,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 57
       },
       "id": 179,
       "options": {
@@ -2455,8 +2437,7 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single",
@@ -2574,7 +2555,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 65
       },
       "id": 175,
       "links": [],
@@ -2587,8 +2568,7 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single",
@@ -2708,7 +2688,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 70
       },
       "id": 176,
       "links": [],
@@ -2721,7 +2701,6 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
           "sortBy": "Max",
           "sortDesc": true
         },
@@ -2822,7 +2801,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 82
+        "y": 80
       },
       "id": 173,
       "links": [],
@@ -2833,8 +2812,7 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single",
@@ -2919,7 +2897,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 82
+        "y": 80
       },
       "id": 180,
       "links": [],
@@ -2930,8 +2908,7 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single",
@@ -3065,7 +3042,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 89
+        "y": 87
       },
       "id": 174,
       "links": [],
@@ -3076,8 +3053,7 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single",
@@ -3105,7 +3081,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 37,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "StarsL",
@@ -3362,6 +3338,6 @@
   "timezone": "browser",
   "title": "System (Proxmox)",
   "uid": "cUqo37s7k",
-  "version": 2,
+  "version": 28,
   "weekStart": ""
 }
