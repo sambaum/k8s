@@ -1,0 +1,222 @@
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: nas2-temp-pvc
+#   namespace: default
+# spec:
+#   volumeName: nas2-temp-pv
+#   accessModes:
+#   - ReadWriteMany
+#   storageClassName: ""
+#   resources:
+#     requests:
+#       storage: 10Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: nas2-temp-pv
+#   namespace: default
+# spec:
+#   storageClassName: ""
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#   - ReadWriteMany
+#   nfs:
+#     server: truenas-databus.int.sambaum.ch
+#     path: "/mnt/pool1/temp"
+#   mountOptions:
+#     - nfsvers=4.1
+
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-temp-pvc
+  namespace: default
+spec:
+  volumeName: truenas-temp-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-temp-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/temp"
+  mountOptions:
+    - nfsvers=4.1
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-media-pvc
+  namespace: default
+spec:
+  volumeName: truenas-media-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-media-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/media"
+  mountOptions:
+    - nfsvers=4.1
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-sam-pvc
+  namespace: default
+spec:
+  volumeName: truenas-sam-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-sam-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/sam"
+  mountOptions:
+    - nfsvers=4.1
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-carol-pvc
+  namespace: default
+spec:
+  volumeName: truenas-carol-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-carol-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/carol"
+  mountOptions:
+    - nfsvers=4.1
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-other-pvc
+  namespace: default
+spec:
+  volumeName: truenas-other-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-other-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/other"
+  mountOptions:
+    - nfsvers=4.1
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-backup-pvc
+  namespace: default
+spec:
+  volumeName: truenas-backup-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-backup-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/backup"
+  mountOptions:
+    - nfsvers=4.1
