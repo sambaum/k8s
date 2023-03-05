@@ -1,3 +1,35 @@
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: nas2-temp-pvc
+#   namespace: default
+# spec:
+#   volumeName: nas2-temp-pv
+#   accessModes:
+#   - ReadWriteMany
+#   storageClassName: ""
+#   resources:
+#     requests:
+#       storage: 10Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: nas2-temp-pv
+#   namespace: default
+# spec:
+#   storageClassName: ""
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#   - ReadWriteMany
+#   nfs:
+#     server: truenas-databus.int.sambaum.ch
+#     path: "/mnt/pool1/temp"
+#   mountOptions:
+#     - nfsvers=4.1
+
+
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
