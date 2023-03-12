@@ -27,17 +27,17 @@ spec:
         - name: test-pod
           image: curlimages/curl
           command: ['/bin/sh', '-c', '--']
-          args: ['while true; do ls /temp; touch /temp/dumpster-write.txt; sleep 5; done;']
+          args: ['while true; do ls /media; touch /media/dumpster-write.txt; sleep 5; done;']
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /temp
-              name: temp
-              # subPath: nfs-test
+            - mountPath: /media
+              name: media
+              subPath: nfs-test
       dnsConfig:
         options:
           - name: ndots
             value: "1"
       volumes:
-        - name: temp
+        - name: media
           persistentVolumeClaim:
-            claimName: nas2-temp-pvc
+            claimName: truenas-media-pvc
