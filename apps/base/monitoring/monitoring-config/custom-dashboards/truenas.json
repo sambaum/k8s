@@ -3767,7 +3767,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -3814,7 +3814,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -4036,6 +4036,6 @@
   "timezone": "",
   "title": "TrueNAS Dashboard",
   "uid": "ruU9VdNMk",
-  "version": 30,
+  "version": 31,
   "weekStart": ""
 }
