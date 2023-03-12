@@ -28,8 +28,8 @@ spec:
           volumes:
             - name: nas-sam
               persistentVolumeClaim:
-                claimName: nas-sam-pvc
+                claimName: truenas-sam-pvc
             - name: nas-media
               persistentVolumeClaim:
-                claimName: nas-media-pvc
+                claimName: truenas-media-pvc
       ttlSecondsAfterFinished: 172800

@@ -48,7 +48,7 @@ spec:
           volumes:
             - name: nas-sam
               persistentVolumeClaim:
-                claimName: nas-sam-pvc
+                claimName: truenas-sam-pvc
           dnsConfig:
             options:
               - name: ndots

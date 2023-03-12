@@ -82,10 +82,10 @@ spec:
             claimName: local-data-pvc
         - name: nas-temp
           persistentVolumeClaim:
-            claimName: nas-temp-pvc
+            claimName: truenas-temp-pvc
         - name: nas-sam
           persistentVolumeClaim:
-            claimName: nas-sam-pvc
+            claimName: truenas-sam-pvc
 ---
 kind: Service
 apiVersion: v1

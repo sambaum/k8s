@@ -67,19 +67,19 @@
 #               claimName: local-temp-pvc
 #           - name: nas-temp
 #             persistentVolumeClaim:
-#               claimName: nas-temp-pvc
+#               claimName: truenas-temp-pvc
 #           - name: nas-sam
 #             persistentVolumeClaim:
-#               claimName: nas-sam-pvc
+#               claimName: truenas-sam-pvc
 #           - name: nas-media
 #             persistentVolumeClaim:
-#               claimName: nas-media-pvc
+#               claimName: truenas-media-pvc
 #           - name: nas-carol
 #             persistentVolumeClaim:
-#               claimName: nas-carol-pvc
+#               claimName: truenas-carol-pvc
 #           - name: nas-other
 #             persistentVolumeClaim:
-#               claimName: nas-other-pvc
+#               claimName: truenas-other-pvc
 #           - name: nas-backup
 #             persistentVolumeClaim:
-#               claimName: nas-backup-pvc
+#               claimName: truenas-backup-pvc

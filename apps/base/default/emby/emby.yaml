@@ -57,10 +57,10 @@ spec:
             claimName: local-conf-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: nas-media-pvc
+            claimName: truenas-media-pvc
         - name: nas-sam
           persistentVolumeClaim:
-            claimName: nas-sam-pvc
+            claimName: truenas-sam-pvc
       dnsConfig:
         options:
           - name: ndots

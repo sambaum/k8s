@@ -31,5 +31,5 @@ spec:
                 claimName: local-conf-pvc
             - name: temp
               persistentVolumeClaim:
-                claimName: nas-temp-pvc
+                claimName: truenas-temp-pvc
       ttlSecondsAfterFinished: 180
