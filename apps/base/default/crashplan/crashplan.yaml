@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: crashplan
-          image: jlesage/crashplan-pro:v23.01.1
+          image: jlesage/crashplan-pro:v23.03.1
           ports:
             - containerPort: 5800
           volumeMounts:
@@ -44,6 +44,8 @@ spec:
               name: nas-other
             - mountPath: /mnt/NetworkDrives/backup/
               name: nas-backup
+            - mountPath: /mnt/NetworkDrives/temp/
+              name: nas-temp
           env:
             - name: TZ
               value: 'Europe/Zurich'
@@ -75,6 +77,9 @@ spec:
         - name: nas-backup
           persistentVolumeClaim:
             claimName: truenas-backup-pvc
+        - name: nas-temp
+          persistentVolumeClaim:
+            claimName: truenas-temp-pvc
       dnsConfig:
         options:
           - name: ndots
