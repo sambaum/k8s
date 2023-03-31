@@ -1,6 +1,6 @@
-namesuffix: -prod
-commonLabels:
-  app: cloudberry-backup-prod
+# namesuffix: -prod
+# commonLabels:
+#   app: cloudberry-backup-prod
 
 resources:
   - ../../../base/default/cloudberry-backup/
@@ -26,7 +26,7 @@ patches:
         value: letsencrypt-production
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1name
-        value: CloudBerry Backup Prod
+        value: CloudBerry Backup
 
   - target:
       kind: Deployment
