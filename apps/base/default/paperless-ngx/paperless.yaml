@@ -165,7 +165,7 @@ metadata:
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Paperless
     flame.pawelmalak/url: https://paperless.example.com
-    flame.pawelmalak/icon: leaf
+    flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/paperless-ngx-logo.png
 spec:
   ingressClassName: nginx
   tls:
