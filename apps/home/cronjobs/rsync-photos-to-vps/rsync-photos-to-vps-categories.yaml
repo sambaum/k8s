@@ -4,7 +4,7 @@ metadata:
   name: rsync-photos-to-vps-categories
   namespace: default
 spec:
-  schedule: "0 12 * * *"
+  schedule: "0 12 * * 4"
   jobTemplate:
     spec:
       template:
