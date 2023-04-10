@@ -1,0 +1,122 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthchecks
+  namespace: default
+  labels:
+    app: healthchecks
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthchecks
+  template:
+    metadata:
+      labels:
+        app: healthchecks
+    spec:
+      containers:
+        - name: healthchecks
+          image: linuxserver/healthchecks:version-v2.7
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              subPath: healthchecks
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: DEBUG
+              value: 'True'
+            - name: REGENERATE_SETTINGS
+              value: 'true'
+            - name: SITE_ROOT
+              valueFrom:
+                secretKeyRef:
+                  name: healthchecks-secrets
+                  key: SITE_ROOT
+            - name: SUPERUSER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: healthchecks-secrets
+                  key: SUPERUSER_EMAIL
+            - name: SUPERUSER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: healthchecks-secrets
+                  key: SUPERUSER_PASSWORD
+            - name: TELEGRAM_BOT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: healthchecks-secrets
+                  key: TELEGRAM_BOT_NAME
+            - name: TELEGRAM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: healthchecks-secrets
+                  key: TELEGRAM_TOKEN
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: healthchecks-service
+  namespace: default
+spec:
+  selector:
+    app: healthchecks
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthchecks-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: healthchecks
+    flame.pawelmalak/url: https://healthchecks.example.com
+    flame.pawelmalak/icon: https://img.stackshare.io/service/5357/13053880.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'healthchecks.example.com'
+      secretName: healthchecks-tls
+  rules:
+    - host: healthchecks.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: healthchecks-service
+                port:
+                  number: 8000
+
+# For "one-off" Telegram integration see https://github.com/healthchecks/healthchecks/issues/115
