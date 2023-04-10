@@ -7,11 +7,31 @@ patches:
       name: healthchecks-ingress
     patch: |-
       - op: replace
-        path: /spec/rules/0/host
-        value: healthchecks.int.sambaum.ch
+        path: /spec/rules
+        value:
+          - host: healthchecks.int.sambaum.ch
+            http:
+              paths:
+              - pathType: Prefix
+                path: "/"
+                backend:
+                  service:
+                    name: healthchecks-service
+                    port:
+                      number: 8000
+          - host: healthchecks-seebach.sambaum.ch
+            http:
+              paths:
+              - pathType: Prefix
+                path: "/"
+                backend:
+                  service:
+                    name: healthchecks-service
+                    port:
+                      number: 8000
       - op: replace
         path: /spec/tls/0/hosts
-        value: [healthchecks.int.sambaum.ch]
+        value: [healthchecks-seebach.sambaum.ch, healthchecks.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
         value: https://healthchecks.int.sambaum.ch
