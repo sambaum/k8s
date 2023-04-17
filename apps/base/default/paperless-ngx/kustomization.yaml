@@ -1,2 +1,3 @@
 resources:
   - paperless.yaml
+  - paperless-ngx-image-automation.yaml
