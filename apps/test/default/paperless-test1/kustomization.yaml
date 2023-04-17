@@ -1,12 +1,12 @@
-namesuffix: -test1
+# namesuffix: -test1
 commonLabels:
   app: paperless-test1
 
 resources:
   - ../../../base/default/paperless-ngx/
 
-configurations:
-- ./kustomizeconfig/skip-secrets-prefix.yaml
+transformers:
+- ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
   - target:
