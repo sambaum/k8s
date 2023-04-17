@@ -74,6 +74,10 @@ spec:
               value: /config
             - name: PAPERLESS_DBHOST
               value: paperless-db
+            - name: PAPERLESS_ADMIN_USER
+              value: admin
+            - name: PAPERLESS_ADMIN_PASSWORD
+              value: admin
         - name: paperless-broker
           image: redis:7.0.5 # {"$imagepolicy": "flux-system:paperless-ngx-redis"}
           ports:
