@@ -1,2 +1,3 @@
 resources:
   - radarr.yaml
+  - radarr-image-automation.yaml
