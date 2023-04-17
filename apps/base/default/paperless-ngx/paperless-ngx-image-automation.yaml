@@ -60,6 +60,8 @@ metadata:
 spec:
   imageRepositoryRef:
     name: paperless-ngx-postgres
+  filterTags:
+    pattern: '^13\.\d{2}$'
   policy:
-    semver:
-      range: 13.x
+    alphabetical:
+      order: asc
