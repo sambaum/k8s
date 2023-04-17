@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: paperless
-          image: paperlessngx/paperless-ngx:1.12.1 # {"$imagepolicy": "flux-system:paperless-ngx"}
+          image: paperlessngx/paperless-ngx:1.12.2 # {"$imagepolicy": "flux-system:paperless-ngx"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
@@ -79,7 +78,7 @@ spec:
             - name: PAPERLESS_ADMIN_PASSWORD
               value: admin
         - name: paperless-broker
-          image: redis:7.0.5 # {"$imagepolicy": "flux-system:paperless-ngx-redis"}
+          image: redis:7.0.11 # {"$imagepolicy": "flux-system:paperless-ngx-redis"}
           ports:
             - containerPort: 6379
           volumeMounts:
@@ -87,7 +86,7 @@ spec:
               name: config
               subPath: paperless/redis
         - name: paperless-db
-          image: postgres:13.8 # {"$imagepolicy": "flux-system:paperless-ngx-postgres"}
+          image: postgres:13.10 # {"$imagepolicy": "flux-system:paperless-ngx-postgres"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
