@@ -1,2 +1,3 @@
 resources:
   - sonarr.yaml
+  - sonarr-image-automation.yaml
