@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,7 +35,7 @@ spec:
               subPath: wekan/wekan-app
       containers:
         - name: wekan
-          image: quay.io/wekan/wekan:v6.81 # {"$imagepolicy": "flux-system:wekan"}
+          image: quay.io/wekan/wekan:v6.84 # {"$imagepolicy": "flux-system:wekan"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -52,7 +51,7 @@ spec:
             - name: ROOT_URL
               value: https://wekan.example.com
         - name: wekandb
-          image: mongo:5.0.14 # {"$imagepolicy": "flux-system:wekan-mongo"}
+          image: mongo:5.0.16 # {"$imagepolicy": "flux-system:wekan-mongo"}
           ports:
             - containerPort: 27017
           volumeMounts:
