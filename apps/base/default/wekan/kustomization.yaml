@@ -1,2 +1,3 @@
 resources:
   - wekan.yaml
+  - wekan-image-automation.yaml
