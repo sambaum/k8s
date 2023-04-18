@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: influxdb
-          image: influxdb:2.6.1
+          image: influxdb:2.6.1 # {"$imagepolicy": "flux-system:influxdb"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8086
