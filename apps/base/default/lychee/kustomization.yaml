@@ -1,3 +1,4 @@
 resources:
   - lychee.yaml
   - cron.yaml
+  - lychee-image-automation.yaml

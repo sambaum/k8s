@@ -1,0 +1,44 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: lychee
+  namespace: flux-system
+spec:
+  image: lycheeorg/lychee
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: lychee
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: lychee
+  filterTags:
+    pattern: '^v4\.\d\.\d$'
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: lychee-mariadb
+  namespace: flux-system
+spec:
+  image: mariadb
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: lychee-mariadb
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: lychee-mariadb
+  policy:
+    semver:
+      range: 10.x.x

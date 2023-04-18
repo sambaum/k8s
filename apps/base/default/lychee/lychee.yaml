@@ -7,7 +7,7 @@ metadata:
   labels:
     app: lychee
   annotations:
-    keel.sh/policy: minor
+    keel.sh/policy: major
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -38,7 +38,7 @@ spec:
               name: settings
       containers:
         - name: lychee
-          image: lycheeorg/lychee:v4.5.3 #v4.6.5
+          image: lycheeorg/lychee:v4.5.3 # {"$imagepolicy": "flux-system:lychee"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
@@ -79,7 +79,7 @@ spec:
             - name: DB_CONNECTION
               value: 'mysql'
         - name: maria
-          image: mariadb:10.10
+          image: mariadb:10.10 # {"$imagepolicy": "flux-system:lychee-mariadb"}
           ports:
             - containerPort: 3306
           volumeMounts:
