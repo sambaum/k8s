@@ -6,7 +6,7 @@ metadata:
   labels:
     app: radarr
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: minor # prevent notifications about false 5.14 version
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
