@@ -7,7 +7,7 @@ metadata:
   labels:
     app: influxdbv1
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: minor
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: influxdbv1
-          image: influxdb:1.8
+          image: influxdb:1.8 # {"$imagepolicy": "flux-system:influxdbv1"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8086
@@ -37,7 +37,7 @@ spec:
               subPath: influxdbv1
       initContainers:
         - name: influxdbv1-init
-          image: influxdb:1.8
+          image: influxdb:1.8 # {"$imagepolicy": "flux-system:influxdbv1"}
           imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'if [ -s /etc/influxdb/influxdb.conf ]; then echo file already there; else influxd config > /etc/influxdb/influxdb.conf; fi']
           # command: ['sh', '-c', 'influxd config > /etc/influxdb/influxdb.conf']
