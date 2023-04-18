@@ -1,0 +1,21 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: healthchecks
+  namespace: flux-system
+spec:
+  image: linuxserver/healthchecks
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: healthchecks
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: healthchecks
+  policy:
+    semver:
+      range: 2.x.x

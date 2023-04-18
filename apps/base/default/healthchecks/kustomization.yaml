@@ -1,2 +1,3 @@
 resources:
   - healthchecks.yaml
+  - healthchecks-image-automation.yaml
