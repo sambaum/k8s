@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.11
+          image: linuxserver/emby:4.7.11 # {"$imagepolicy": "flux-system:emby"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8096
