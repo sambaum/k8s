@@ -16,6 +16,8 @@ metadata:
 spec:
   imageRepositoryRef:
     name: healthchecks
+  filterTags:
+    pattern: '^v2\.\d{1,2}\.\d{1,2}$'
   policy:
     semver:
       range: 2.x.x
