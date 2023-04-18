@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: duplicacy
-          image: saspus/duplicacy-web:latest
+          image: saspus/duplicacy-web:v1.7.2 # {"$imagepolicy": "flux-system:duplicacy"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3875

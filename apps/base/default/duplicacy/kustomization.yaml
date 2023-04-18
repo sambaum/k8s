@@ -1,2 +1,3 @@
 resources:
   - duplicacy.yaml
+  - duplicacy-image-automation.yaml

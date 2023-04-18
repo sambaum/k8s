@@ -1,0 +1,23 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: duplicacy
+  namespace: flux-system
+spec:
+  image: saspus/duplicacy-web
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: duplicacy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: duplicacy
+  filterTags:
+    pattern: '^v1\.\d{1,2}\.\d{1,2}$'
+  policy:
+    alphabetical:
+      order: asc
