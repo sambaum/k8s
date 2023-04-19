@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: keel-telegram-bot
-          image: markusressel/keel-telegram-bot:1.2.0 # {"$imagepolicy": "flux-system:keel-telegram-bot"}
+          image: markusressel/keel-telegram-bot:1.3.1 # {"$imagepolicy": "flux-system:keel-telegram-bot"}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/keel-telegram-bot.yaml
