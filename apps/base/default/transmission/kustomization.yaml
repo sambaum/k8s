@@ -1,2 +1,3 @@
 resources:
   - transmission.yaml
+  - transmission-image-automation.yaml
