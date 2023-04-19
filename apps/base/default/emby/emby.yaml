@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.10 # {"$imagepolicy": "flux-system:emby"}
+          image: linuxserver/emby:4.7.11 # {"$imagepolicy": "flux-system:emby"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8096
