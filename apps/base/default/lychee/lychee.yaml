@@ -6,7 +6,7 @@ metadata:
   labels:
     app: lychee
   annotations:
-    keel.sh/policy: minor # stay on 4.5 for now
+    keel.sh/policy: patch # stay on 4.5 for now
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
