@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,13 +21,12 @@ spec:
       labels:
         app: transmission
       annotations: {
-          # "cni.projectcalico.org/ipAddrs": "[\"10.1.1.2\"]" # replace with cni.projectcalico.org/ipv4pools: '["pool-1", "pool-2"]'
-          cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]',
-        }
+        # "cni.projectcalico.org/ipAddrs": "[\"10.1.1.2\"]" # replace with cni.projectcalico.org/ipv4pools: '["pool-1", "pool-2"]'
+        cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]'}
     spec:
       containers:
         - name: transmission
-          image: linuxserver/transmission:4.0.2 # {"$imagepolicy": "flux-system:transmission"}
+          image: linuxserver/transmission:4.0.3 # {"$imagepolicy": "flux-system:transmission"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9091
