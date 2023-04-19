@@ -1,0 +1,23 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: searcharr
+  namespace: flux-system
+spec:
+  image: toddrob/searcharr
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: searcharr
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: searcharr
+  filterTags:
+    pattern: '^v2\.\d{1,2}(\.\d{1,2})?$'
+  policy:
+    alphabetical:
+      order: asc
