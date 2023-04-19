@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: transmission
+  name: uptime-kuma
   namespace: flux-system
 spec:
   image: louislam/uptime-kuma
@@ -11,11 +11,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: transmission
+  name: uptime-kuma
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: transmission
+    name: uptime-kuma
   policy:
     semver:
       range: 1.x.x
