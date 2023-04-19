@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: whoogle
-          image: benbusby/whoogle-search:0.8.1
+          image: benbusby/whoogle-search:0.8.1 # {"$imagepolicy": "flux-system:whoogle"}
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
