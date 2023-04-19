@@ -6,7 +6,7 @@ metadata:
   labels:
     app: influxdbv1
   annotations:
-    keel.sh/policy: minor
+    keel.sh/policy: minor # Influxdb v1 instance
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
