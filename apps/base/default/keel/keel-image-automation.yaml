@@ -1,0 +1,46 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: keel
+  namespace: flux-system
+spec:
+  image: keelhq/keel
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: keel
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: keel
+  filterTags:
+  policy:
+    semver:
+      range: 0.x.x
+
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: keel-telegram-bot
+  namespace: flux-system
+spec:
+  image: markusressel/keel-telegram-bot
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: keel-telegram-bot
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: keel-telegram-bot
+  filterTags:
+  policy:
+    semver:
+      range: 1.x.x
