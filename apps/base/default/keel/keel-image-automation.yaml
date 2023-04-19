@@ -16,7 +16,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: keel
-  filterTags:
   policy:
     semver:
       range: 0.x.x
@@ -40,7 +39,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: keel-telegram-bot
-  filterTags:
   policy:
     semver:
       range: 1.x.x
