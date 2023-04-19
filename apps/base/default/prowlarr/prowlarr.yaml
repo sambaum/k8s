@@ -6,7 +6,7 @@ metadata:
   labels:
     app: prowlarr
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: 'regexp:^(\d{1,2}\.\d{1,2}\.\d{1,2})$' # to prevent stuff like 1.8.1259
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
