@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   image: linuxserver/syslog-ng
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy

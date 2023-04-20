@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   image: phpipam/phpipam-www
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -29,7 +29,7 @@ metadata:
   namespace: flux-system
 spec:
   image: phpipam/phpipam-cron
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -52,7 +52,7 @@ metadata:
   namespace: flux-system
 spec:
   image: mariadb
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy

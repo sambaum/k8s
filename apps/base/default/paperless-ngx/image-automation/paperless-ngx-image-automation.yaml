@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   image: paperlessngx/paperless-ngx
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -28,7 +28,7 @@ metadata:
   namespace: flux-system
 spec:
   image: redis
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -50,7 +50,7 @@ metadata:
   namespace: flux-system
 spec:
   image: postgres
-  interval: 1m0s
+  interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
