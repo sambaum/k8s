@@ -1,7 +1,3 @@
-# namesuffix: -prod
-# commonLabels:
-#   app: duplicacy-prod
-
 resources:
   - ../../../base/default/duplicacy/
 patches:
@@ -55,17 +51,17 @@ patches:
             name: nas-temp
           - mountPath: /storage/home-conf-default
             name: config
-          - mountPath: /storage/home-conf-monitoring
-            name: config-monitoring
+          # - mountPath: /storage/home-conf-monitoring
+          #   name: config-monitoring
       - op: add
         path: /spec/template/spec/volumes
         value:
           - name: config
             persistentVolumeClaim:
               claimName: local-conf-pvc
-          - name: config-monitoring
-            persistentVolumeClaim:
-              claimName: local-conf-monitoring-pvc
+          # - name: config-monitoring
+          #   persistentVolumeClaim:
+          #     claimName: local-conf-monitoring-pvc
           - name: data
             persistentVolumeClaim:
               claimName: local-data-pvc
