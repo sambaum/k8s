@@ -1,0 +1,63 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: overleaf
+  namespace: flux-system
+spec:
+  image: tuetenk0pp/sharelatex-full
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: overleaf
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: overleaf
+  policy:
+    semver:
+      range: 3.5.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: overleaf-mongo
+  namespace: flux-system
+spec:
+  image: mongo
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: overleaf-mongo
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: overleaf-mongo
+  policy:
+    semver:
+      range: 4.x.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: overleaf-redis
+  namespace: flux-system
+spec:
+  image: redis
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: overleaf-redis
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: overleaf-redis
+  policy:
+    semver:
+      range: 5.x.x

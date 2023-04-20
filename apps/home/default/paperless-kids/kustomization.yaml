@@ -1,9 +1,11 @@
-namesuffix: -kids
 commonLabels:
   app: paperless-kids
 
 resources:
   - ../../../base/default/paperless-ngx/
+
+transformers:
+- ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
   - target:

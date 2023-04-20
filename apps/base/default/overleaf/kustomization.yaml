@@ -1,2 +1,3 @@
 resources:
   - overleaf.yaml
+  - overleaf-image-automation.yaml

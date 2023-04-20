@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +6,7 @@ metadata:
   labels:
     app: keel-telegram-bot
   annotations:
-    keel.sh/policy: force
+    keel.sh/policy: major
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: keel-telegram-bot
-          image: markusressel/keel-telegram-bot:1.2.0
+          image: markusressel/keel-telegram-bot:1.2.0 # {"$imagepolicy": "flux-system:keel-telegram-bot"}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/keel-telegram-bot.yaml
@@ -54,21 +53,3 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: keel-telegram-bot-ingress
-#   namespace: default
-# spec:
-#   rules:
-#   - host: keel-telegram-bot.example.com
-#     http:
-#       paths:
-#       - pathType: Prefix
-#         path: "/"
-#         backend:
-#           service:
-#             name: keel-telegram-bot-service
-#             port:
-#               number: 5000

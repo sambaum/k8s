@@ -1,0 +1,21 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: whoogle
+  namespace: flux-system
+spec:
+  image: benbusby/whoogle-search
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: whoogle
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: whoogle
+  policy:
+    semver:
+      range: '>=0.8.1'

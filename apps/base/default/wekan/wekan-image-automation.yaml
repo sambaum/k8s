@@ -1,0 +1,44 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: wekan
+  namespace: flux-system
+spec:
+  image: quay.io/wekan/wekan
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: wekan
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: wekan
+  filterTags:
+    pattern: '^v6\.\d{1,2}$'
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: wekan-mongo
+  namespace: flux-system
+spec:
+  image: mongo
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: wekan-mongo
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: wekan-mongo
+  policy:
+    semver:
+      range: 5.0.x

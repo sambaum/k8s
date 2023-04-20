@@ -1,0 +1,20 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: syslog-ng
+  namespace: flux-system
+spec:
+  image: linuxserver/syslog-ng
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: syslog-ng
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: syslog-ng
+  policy:
+    semver:
+      range: 3.x.x

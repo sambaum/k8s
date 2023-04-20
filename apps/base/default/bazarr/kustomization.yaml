@@ -1,2 +1,3 @@
 resources:
   - bazarr.yaml
+  - bazarr-image-automation.yaml

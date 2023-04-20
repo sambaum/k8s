@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +6,7 @@ metadata:
   labels:
     app: emby
   annotations:
-    keel.sh/policy: minor
+    keel.sh/policy: 'regexp:^((4|5)\.\d{1,2}\.\d{1,2})$' # prevent notifications about false 7.0.19 release
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.11
+          image: linuxserver/emby:4.7.11 # {"$imagepolicy": "flux-system:emby"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8096

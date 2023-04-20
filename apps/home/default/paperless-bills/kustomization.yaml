@@ -1,9 +1,11 @@
-namesuffix: -bills
 commonLabels:
   app: paperless-bills
 
 resources:
   - ../../../base/default/paperless-ngx/
+
+transformers:
+- ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
   - target:

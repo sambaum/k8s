@@ -1,2 +1,3 @@
 resources:
   - syslog-ng.yaml
+  - syslog-ng-image-automation.yaml

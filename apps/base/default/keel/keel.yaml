@@ -7,7 +7,7 @@ metadata:
   labels:
     app: keel
   annotations:
-    keel.sh/policy: force
+    keel.sh/policy: major
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: keel
-          image: keelhq/keel:latest
+          image: keelhq/keel:0.18.0 # {"$imagepolicy": "flux-system:keel"}
           imagePullPolicy: Always
           ports:
             - containerPort: 9300

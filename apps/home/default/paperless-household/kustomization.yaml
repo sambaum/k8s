@@ -1,9 +1,12 @@
-namesuffix: -household
 commonLabels:
   app: paperless-household
 
 resources:
   - ../../../base/default/paperless-ngx/
+  - ../../../base/default/paperless-ngx/image-automation
+
+transformers:
+- ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
   - target:

@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +6,7 @@ metadata:
   labels:
     app: overleaf
   annotations:
-    keel.sh/policy: minor
+    keel.sh/policy: minor # prevent notifications about major mongo/redis updates
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@hourly'
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: overleaf
-          image: tuetenk0pp/sharelatex-full:3.1.0.3
+          image: tuetenk0pp/sharelatex-full:3.5.5 # {"$imagepolicy": "flux-system:overleaf"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
@@ -46,7 +45,7 @@ spec:
             - name: SHARELATEX_SITE_URL
               value: https://overleaf.example.com
         - name: mongo
-          image: mongo:4.4.18
+          image: mongo:4.4.20 # {"$imagepolicy": "flux-system:overleaf-mongo"}
           ports:
             - containerPort: 27017
           volumeMounts:
@@ -54,7 +53,7 @@ spec:
               name: config
               subPath: overleaf/mongodb
         - name: redis
-          image: redis:5
+          image: redis:5.0.14 # {"$imagepolicy": "flux-system:overleaf-redis"}
           ports:
             - containerPort: 6379
           volumeMounts:

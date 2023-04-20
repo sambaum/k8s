@@ -1,0 +1,79 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicacy
+  namespace: default
+  labels:
+    app: duplicacy
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@hourly'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: duplicacy
+  template:
+    metadata:
+      labels:
+        app: duplicacy
+    spec:
+      containers:
+        - name: duplicacy
+          image: saspus/duplicacy-web:v1.7.2 # {"$imagepolicy": "flux-system:duplicacy"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3875
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: duplicacy-service
+  namespace: default
+spec:
+  selector:
+    app: duplicacy
+  ports:
+    - protocol: TCP
+      port: 3875
+      targetPort: 3875
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: duplicacy-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: CloudBerry Backup
+    flame.pawelmalak/url: https://duplicacy.example.com
+    flame.pawelmalak/icon: https://forum.duplicacy.com/uploads/default/original/1X/4089f78ba8ab9f28af6720d200388356775cb8fa.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'duplicacy.example.com'
+      secretName: duplicacy-tls
+  rules:
+    - host: duplicacy.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: duplicacy-service
+                port:
+                  number: 3875

@@ -1,0 +1,85 @@
+# namesuffix: -prod
+# commonLabels:
+#   app: cloudberry-backup-prod
+
+resources:
+  - ../../../base/default/cloudberry-backup/
+patches:
+  - target:
+      kind: Ingress
+      name: cloudberry-backup-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: cloudberry-backup.int.sambaum.ch
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: cloudberry-backup-prod-tls
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: [cloudberry-backup.int.sambaum.ch]
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1url
+        value: https://cloudberry-backup.int.sambaum.ch
+      - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
+      - op: replace
+        path: /metadata/annotations/flame.pawelmalak~1name
+        value: CloudBerry Backup
+
+  - target:
+      kind: Deployment
+      name: cloudberry-backup
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - mountPath: /config
+            name: config
+            subPath: cloudberry-backup
+          - mountPath: /tmp
+            name: temp
+            subPath: cloudberry-backup
+          - mountPath: /storage/sam
+            name: nas-sam
+          - mountPath: /storage/media
+            name: nas-media
+          - mountPath: /storage/carol
+            name: nas-carol
+          - mountPath: /storage/other
+            name: nas-other
+          - mountPath: /storage/backup
+            name: nas-backup
+          - mountPath: /storage/temp
+            name: nas-temp
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
+          - name: data
+            persistentVolumeClaim:
+              claimName: local-data-pvc
+          - name: temp
+            persistentVolumeClaim:
+              claimName: local-temp-pvc
+          - name: nas-temp
+            persistentVolumeClaim:
+              claimName: truenas-temp-pvc
+          - name: nas-sam
+            persistentVolumeClaim:
+              claimName: truenas-sam-pvc
+          - name: nas-media
+            persistentVolumeClaim:
+              claimName: truenas-media-pvc
+          - name: nas-carol
+            persistentVolumeClaim:
+              claimName: truenas-carol-pvc
+          - name: nas-other
+            persistentVolumeClaim:
+              claimName: truenas-other-pvc
+          - name: nas-backup
+            persistentVolumeClaim:
+              claimName: truenas-backup-pvc

@@ -1,2 +1,3 @@
 resources:
   - prowlarr.yaml
+  - prowlarr-image-automation.yaml

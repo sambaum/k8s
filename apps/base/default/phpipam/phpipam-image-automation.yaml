@@ -1,0 +1,67 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: phpipam-www
+  namespace: flux-system
+spec:
+  image: phpipam/phpipam-www
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: phpipam-www
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: phpipam-www
+  filterTags:
+    pattern: '^v1\.\d{1,2}\.\d{1,2}$'
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: phpipam-cron
+  namespace: flux-system
+spec:
+  image: phpipam/phpipam-cron
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: phpipam-cron
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: phpipam-cron
+  filterTags:
+    pattern: '^v1\.\d{1,2}\.\d{1,2}$'
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: phpipam-mariadb
+  namespace: flux-system
+spec:
+  image: mariadb
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: phpipam-mariadb
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: phpipam-mariadb
+  policy:
+    semver:
+      range: 10.x.x
