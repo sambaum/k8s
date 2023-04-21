@@ -9,7 +9,7 @@ metadata:
     keel.sh/policy: minor # Influxdb v1 instance
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@hourly'
+    keel.sh/pollSchedule: '@daily'
     keel.sh/approvalDeadline: 672
 spec:
   replicas: 1

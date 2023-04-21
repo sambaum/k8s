@@ -9,7 +9,7 @@ metadata:
     keel.sh/policy: 'regexp:^((4|5)\.\d{1,2}\.\d{1,2})$' # prevent notifications about false 7.0.19 release
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@hourly'
+    keel.sh/pollSchedule: '@daily'
     keel.sh/approvalDeadline: 672
 spec:
   replicas: 1

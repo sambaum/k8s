@@ -10,7 +10,7 @@ metadata:
     keel.sh/policy: 'glob:v*'
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@hourly'
+    keel.sh/pollSchedule: '@daily'
     keel.sh/approvalDeadline: 672
 spec:
   replicas: 1
