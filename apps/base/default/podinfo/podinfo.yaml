@@ -56,7 +56,7 @@ metadata:
     flame.pawelmalak/type: application
     flame.pawelmalak/name: podinfo
     flame.pawelmalak/url: http://podinfo.example.com
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif
+    flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
 spec:
   ingressClassName: nginx
   tls:
