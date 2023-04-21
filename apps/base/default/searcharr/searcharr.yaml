@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: searcharr
-          image: toddrob/searcharr:v2.2 # {"$imagepolicy": "flux-system:searcharr"}
+          image: toddrob/searcharr:v3.2.1 # {"$imagepolicy": "flux-system:searcharr"}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/data
