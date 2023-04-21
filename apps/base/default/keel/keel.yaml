@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: keel
-          image: keelhq/keel:0.18.0 # {"$imagepolicy": "flux-system:keel"}
+          image: keelhq/keel:0.18.1 # {"$imagepolicy": "flux-system:keel"}
           imagePullPolicy: Always
           ports:
             - containerPort: 9300
