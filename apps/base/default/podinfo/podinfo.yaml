@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo
+  namespace: default
+  labels:
+    app: podinfo
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo:6.3.3 # {"$imagepolicy": "flux-system:podinfo"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9898
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: podinfo-service
+  namespace: default
+spec:
+  selector:
+    app: podinfo
+  ports:
+    - protocol: TCP
+      port: 9898
+      targetPort: 9898
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo-ingress
+  namespace: default
+  annotations:
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: podinfo
+    flame.pawelmalak/url: http://podinfo.example.com
+    flame.pawelmalak/icon: https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'podinfo.example.com'
+      secretName: podinfo-tls
+  rules:
+    - host: podinfo.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: podinfo-service
+                port:
+                  number: 9898
