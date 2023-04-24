@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: podinfo
-          image: stefanprodan/podinfo:6.3.3 # {"$imagepolicy": "flux-system:podinfo"}
+          image: stefanprodan/podinfo:6.3.5 # {"$imagepolicy": "flux-system:podinfo"}
           imagePullPolicy: Always
           ports:
             - containerPort: 9898
