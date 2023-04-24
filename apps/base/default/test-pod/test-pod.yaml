@@ -27,7 +27,7 @@ spec:
         - name: test-pod
           image: curlimages/curl
           command: ['/bin/sh', '-c', '--']
-          args: ['while true; do ls /media; touch /media/dumpster-write.txt; sleep 5; done;']
+          args: ['while true; do ls /media; sleep 5; done;']
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /media
