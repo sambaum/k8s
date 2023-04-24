@@ -2,4 +2,3 @@ resources:
   - keel.yaml
   - keel-telegram-bot.yaml
   - keel-basic-auth-password-secret.yaml
-  - keel-image-automation.yaml

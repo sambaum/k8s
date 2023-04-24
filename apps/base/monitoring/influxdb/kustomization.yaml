@@ -1,3 +1,2 @@
 resources:
   - influxdb.yaml
-  - influxdb-image-automation.yaml

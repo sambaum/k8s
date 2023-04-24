@@ -1,3 +1,2 @@
 resources:
   - uptime-kuma.yaml
-  - uptime-kuma-image-automation.yaml
