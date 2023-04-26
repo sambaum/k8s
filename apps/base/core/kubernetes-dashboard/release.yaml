@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-      version: '5.x'
+      version: '6.x'
   install:
     crds: Create
   interval: 30m
