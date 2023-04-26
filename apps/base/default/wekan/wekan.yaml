@@ -51,7 +51,7 @@ spec:
             - name: ROOT_URL
               value: https://wekan.example.com
         - name: wekandb
-          image: mongo:5.0.16 # {"$imagepolicy": "flux-system:wekan-mongo"}
+          image: mongo:5.0.17 # {"$imagepolicy": "flux-system:wekan-mongo"}
           ports:
             - containerPort: 27017
           volumeMounts:
