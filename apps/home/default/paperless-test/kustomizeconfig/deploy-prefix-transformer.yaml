@@ -1,0 +1,12 @@
+apiVersion: builtin
+kind: PrefixSuffixTransformer
+metadata:
+  name: customPrefixer
+suffix: "-test"
+fieldSpecs:
+- kind: Deployment
+  path: metadata/name
+- kind: Service
+  path: metadata/name
+- kind: Ingress
+  path: metadata/name
