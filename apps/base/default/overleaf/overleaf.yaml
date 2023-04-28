@@ -6,7 +6,7 @@ metadata:
   labels:
     app: overleaf
   annotations:
-    keel.sh/policy: minor # prevent notifications about major mongo/redis updates
+    keel.sh/policy: minor # prevent notifications about major mongo/redis updates. Stick to 3.1, because higher versions use too much idle CPU.
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@daily'
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: overleaf
-          image: tuetenk0pp/sharelatex-full:3.5.5 # {"$imagepolicy": "flux-system:overleaf"}
+          image: tuetenk0pp/sharelatex-full:3.1.0.3 # {"$imagepolicy": "flux-system:overleaf"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

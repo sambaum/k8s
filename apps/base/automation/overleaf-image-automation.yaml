@@ -18,7 +18,7 @@ spec:
     name: overleaf
   policy:
     semver:
-      range: 3.5.x
+      range: 3.1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
