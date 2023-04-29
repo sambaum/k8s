@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: lychee-watch
-            image: lycheeorg/lychee:v4.7.3 # {"$imagepolicy": "flux-system:lychee"}
+            image: lycheeorg/lychee:v4.5.3 # {"$imagepolicy": "flux-system:lychee"}
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
@@ -21,41 +21,41 @@ spec:
             # - -c
             # - while true; do echo gugus; sleep 10; done
             volumeMounts:
-              - mountPath: /conf
-                name: config
-                subPath: lychee/conf
-              - mountPath: /var/www/html/Lychee/public/uploads # for unknown reasons this path is different when running with CronJob
-                name: config
-                subPath: lychee/uploads
-              - mountPath: /watch
-                name: config
-                subPath: lychee/watch
-              - mountPath: /sym
-                name: config
-                subPath: lychee/sym
+            - mountPath: /conf
+              name: config
+              subPath: lychee/conf
+            - mountPath: /var/www/html/Lychee/public/uploads # for unknown reasons this path is different when running with CronJob
+              name: config
+              subPath: lychee/uploads
+            - mountPath: /watch
+              name: config
+              subPath: lychee/watch
+            - mountPath: /sym
+              name: config
+              subPath: lychee/sym
             env:
-              - name: TZ
-                value: 'Europe/Zurich'
-              - name: DB_HOST
-                value: 'lychee-service-mariadb'
-              - name: DB_USERNAME
-                value: 'lychee'
-              - name: DB_PASSWORD
-                value: 'dbpassword'
-              - name: DB_DATABASE
-                value: 'lychee'
-              - name: DB_PORT
-                value: '3306'
-              - name: PGID
-                value: '1000'
-              - name: PUID
-                value: '1000'
-              - name: TRUSTED_PROXIES
-                value: '*'
-              - name: DB_CONNECTION
-                value: 'mysql'
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: DB_HOST
+              value: 'lychee-service-mariadb'
+            - name: DB_USERNAME
+              value: 'lychee'
+            - name: DB_PASSWORD
+              value: 'dbpassword'
+            - name: DB_DATABASE
+              value: 'lychee'
+            - name: DB_PORT
+              value: '3306'
+            - name: PGID
+              value: '1000'
+            - name: PUID
+              value: '1000'
+            - name: TRUSTED_PROXIES
+              value: '*'
+            - name: DB_CONNECTION
+              value: 'mysql'
           restartPolicy: OnFailure
           volumes:
-            - name: config
-              persistentVolumeClaim:
-                claimName: local-conf-pvc
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
