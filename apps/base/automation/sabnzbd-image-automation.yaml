@@ -18,4 +18,4 @@ spec:
     name: sabnzbd
   policy:
     semver:
-      range: 3.7.x
+      range: 4.x.x
