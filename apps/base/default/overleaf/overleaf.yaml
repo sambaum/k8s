@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: overleaf
-          image: tuetenk0pp/sharelatex-full:3.5.5 # {"$imagepolicy": "flux-system:overleaf"}
+          image: tuetenk0pp/sharelatex-full:3.1.0.3 # {"$imagepolicy": "flux-system:overleaf"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
