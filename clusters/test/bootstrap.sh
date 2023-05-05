@@ -1,4 +1,4 @@
-export GITHUB_TOKEN=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
+export GITHUB_TOKEN=****
 
 microk8s config > ~/.kube/config
 
