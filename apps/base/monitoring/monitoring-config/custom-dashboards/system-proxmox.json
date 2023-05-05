@@ -73,7 +73,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "repeat": "node",
       "repeatDirection": "h",
       "style": {},
@@ -124,7 +124,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 2
+        "y": 3
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -144,7 +144,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "time() - node_boot_time_seconds{instance=~\"$node\"}",
@@ -202,7 +202,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 2
+        "y": 3
       },
       "id": 14,
       "links": [],
@@ -221,7 +221,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$node\", mode='system'}) by (cpu))",
@@ -286,7 +286,7 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 2
+        "y": 3
       },
       "id": 167,
       "links": [],
@@ -303,7 +303,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[5m])) * 100)",
@@ -369,7 +369,7 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 2
+        "y": 3
       },
       "id": 20,
       "links": [],
@@ -386,7 +386,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[5m])) * 100",
@@ -442,7 +442,7 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 2
+        "y": 3
       },
       "hideTimeOverride": false,
       "id": 172,
@@ -460,7 +460,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
@@ -514,7 +514,7 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 2
+        "y": 3
       },
       "hideTimeOverride": false,
       "id": 16,
@@ -532,7 +532,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "node_filefd_allocated{instance=~\"$node\"}",
@@ -595,7 +595,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 2
+        "y": 3
       },
       "id": 166,
       "links": [],
@@ -612,7 +612,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "repeatDirection": "h",
       "targets": [
         {
@@ -676,7 +676,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 2
+        "y": 3
       },
       "id": 154,
       "links": [],
@@ -693,7 +693,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "repeatDirection": "h",
       "targets": [
         {
@@ -751,7 +751,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 4
+        "y": 5
       },
       "id": 75,
       "links": [],
@@ -770,7 +770,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
@@ -807,7 +807,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 7
+        "y": 8
       },
       "height": "300",
       "hiddenSeries": false,
@@ -832,7 +832,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -930,7 +930,7 @@
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 7
+        "y": 8
       },
       "hideTimeOverride": false,
       "id": 171,
@@ -989,7 +989,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 8
       },
       "id": 164,
       "links": [],
@@ -1209,7 +1209,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1235,7 +1235,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1341,7 +1341,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 13
+        "y": 14
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1365,7 +1365,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1487,7 +1487,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 20
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1512,7 +1512,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1604,7 +1604,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 20
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1629,7 +1629,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1711,7 +1711,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 20
+        "y": 21
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1736,7 +1736,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1832,7 +1832,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1857,7 +1857,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1937,7 +1937,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 29
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1961,7 +1961,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "9.5.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2060,6 +2060,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2093,7 +2095,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "dark-yellow",
@@ -2190,14 +2193,32 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"nvme_nvme0\", sensor=\"temp3\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "SSD",
+          "legendFormat": "SSD 1",
+          "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"nvme_nvme1\", sensor=\"temp3\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "SSD 2",
+          "range": true,
+          "refId": "E"
         },
         {
           "datasource": {
@@ -2252,6 +2273,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2285,7 +2308,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "dark-yellow",
@@ -2341,7 +2365,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 47
       },
       "id": 177,
       "links": [],
@@ -2443,7 +2467,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 57
       },
       "id": 179,
       "options": {
@@ -2574,7 +2598,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 65
       },
       "id": 175,
       "links": [],
@@ -2708,7 +2732,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 70
       },
       "id": 176,
       "links": [],
@@ -2822,7 +2846,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 79
+        "y": 80
       },
       "id": 173,
       "links": [],
@@ -2919,7 +2943,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 79
+        "y": 80
       },
       "id": 180,
       "links": [],
@@ -3065,7 +3089,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 87
       },
       "id": 174,
       "links": [],
@@ -3105,7 +3129,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "StarsL",
