@@ -83,6 +83,3 @@ spec:
                 name: influxdb-service
                 port:
                   number: 8086
-
-# curl -G https://influxdbv1.int.sambaum.ch/query --data-urlencode "q=CREATE DATABASE graphite"
-# curl -XPOST 'https://influxdbv1.int.sambaum.ch/query' --data-urlencode 'q=CREATE DATABASE "graphite"'
