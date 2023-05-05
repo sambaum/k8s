@@ -7,21 +7,21 @@ patches:
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]
   - target:
       kind: PersistentVolume
       name: local-data-pv
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]
   - target:
       kind: PersistentVolume
       name: local-temp-pv
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]
 
   - target:
       kind: PersistentVolume
@@ -29,18 +29,18 @@ patches:
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]
   - target:
       kind: PersistentVolume
       name: local-data-monitoring-pv
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]
   - target:
       kind: PersistentVolume
       name: local-temp-monitoring-pv
     patch: |-
       - op: replace
         path: /spec/nodeAffinity/required/nodeSelectorTerms/0/matchExpressions/0/values
-        value: [kubus-test]
+        value: [composter]

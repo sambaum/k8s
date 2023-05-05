@@ -7,26 +7,26 @@ patches:
     patch: |-
       - op: replace
         path: /spec/values/grafana/ingress/hosts/0
-        value: grafana.kubus-test.int.sambaum.ch
+        value: grafana.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/grafana/ingress/tls/0/hosts/0
-        value: grafana.kubus-test.int.sambaum.ch
+        value: grafana.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/grafana/ingress/annotations/flame.pawelmalak~1url
-        value: grafana.kubus-test.int.sambaum.ch
+        value: grafana.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/grafana/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
 
       - op: replace
         path: /spec/values/prometheus/ingress/hosts/0
-        value: prometheus.kubus-test.int.sambaum.ch
+        value: prometheus.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/tls/0/hosts/0
-        value: prometheus.kubus-test.int.sambaum.ch
+        value: prometheus.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/flame.pawelmalak~1url
-        value: prometheus.kubus-test.int.sambaum.ch
+        value: prometheus.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

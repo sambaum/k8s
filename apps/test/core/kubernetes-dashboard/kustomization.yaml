@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: dashboard.kubus-test.int.sambaum.ch
+        value: dashboard.composter.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [dashboard.kubus-test.int.sambaum.ch]
+        value: [dashboard.composter.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://dashboard.kubus-test.int.sambaum.ch
+        value: https://dashboard.composter.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
@@ -23,13 +23,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/values/ingress/hosts/0
-        value: dashboard.kubus-test.int.sambaum.ch
+        value: dashboard.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/tls/0/hosts/0
-        value: dashboard.kubus-test.int.sambaum.ch
+        value: dashboard.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-        value: https://dashboard.kubus-test.int.sambaum.ch
+        value: https://dashboard.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
