@@ -39,7 +39,7 @@ patches:
         value: '{document_type}/{created_year}/{created} {title} {tag_list}'
       - op: replace
         path: /spec/template/spec/containers/0/env/11/value
-        value: https://paperless-test1.kubus-test.int.sambaum.ch
+        value: https://paperless-test1.composter.int.sambaum.ch
       - op: replace
         path: /spec/template/spec/containers/0/env/13/value
         value: redis://paperless-broker-test1:6379
@@ -53,13 +53,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/tls/0/hosts
-        value: [paperless-test1.kubus-test.int.sambaum.ch]
+        value: [paperless-test1.composter.int.sambaum.ch]
       - op: replace
         path: /spec/tls/0/secretName
         value: paperless-test1-tls
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://paperless-test1.kubus-test.int.sambaum.ch
+        value: https://paperless-test1.composter.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1name
         value: Paperless test1
@@ -68,4 +68,4 @@ patches:
         value: letsencrypt-production
       - op: replace
         path: /spec/rules/0/host
-        value: paperless-test1.kubus-test.int.sambaum.ch
+        value: paperless-test1.composter.int.sambaum.ch

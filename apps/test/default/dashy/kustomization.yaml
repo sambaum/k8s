@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: dashy.kubus-test.int.sambaum.ch
+        value: dashy.composter.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [dashy.kubus-test.int.sambaum.ch]
+        value: [dashy.composter.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://dashy.kubus-test.int.sambaum.ch
+        value: https://dashy.composter.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

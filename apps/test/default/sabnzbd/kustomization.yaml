@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: sabnzbd.kubus-test.int.sambaum.ch
+        value: sabnzbd.composter.int.sambaum.ch
       - op: replace
         path: /spec/tls/0/hosts
-        value: [sabnzbd.kubus-test.int.sambaum.ch]
+        value: [sabnzbd.composter.int.sambaum.ch]
       - op: replace
         path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://sabnzbd.kubus-test.int.sambaum.ch
+        value: https://sabnzbd.composter.int.sambaum.ch
       - op: replace
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging

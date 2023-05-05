@@ -7,13 +7,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/values/ingress/hosts/0/host
-        value: portainer.kubus-test.int.sambaum.ch
+        value: portainer.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/tls/0/hosts/0
-        value: portainer.kubus-test.int.sambaum.ch
+        value: portainer.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-        value: https://portainer.kubus-test.int.sambaum.ch
+        value: https://portainer.composter.int.sambaum.ch
       - op: replace
         path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-staging
