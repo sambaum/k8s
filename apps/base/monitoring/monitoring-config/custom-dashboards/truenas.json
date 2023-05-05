@@ -80,9 +80,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "alias": "Idle",
@@ -240,7 +241,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "datasource": {
@@ -344,7 +345,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "alias": "sda",
@@ -627,6 +628,102 @@
               "value": "disktemp"
             }
           ]
+        },
+        {
+          "alias": "sdg",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdg",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disktemp"
+            }
+          ]
+        },
+        {
+          "alias": "sdh",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disktemp"
+            }
+          ]
         }
       ],
       "title": "Current Disk Temperature (°C)",
@@ -634,16 +731,7 @@
         {
           "id": "filterFieldsByName",
           "options": {
-            "include": {
-              "names": [
-                "sda",
-                "sdb",
-                "sdc",
-                "sdd",
-                "sde",
-                "sdf"
-              ]
-            }
+            "include": {}
           }
         }
       ],
@@ -2727,6 +2815,117 @@
           ]
         },
         {
+          "alias": "sdg",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdg",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"da1.temperature\"",
+          "rawQuery": false,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disktemp"
+            }
+          ]
+        },
+        {
+          "alias": "sdh",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"da1.temperature\"",
+          "rawQuery": false,
+          "refId": "I",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disktemp"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$G/10-273.15",
+          "hide": false,
+          "refId": "CPU",
+          "type": "math"
+        },
+        {
           "alias": "CPU Temp",
           "datasource": {
             "type": "influxdb",
@@ -2773,17 +2972,6 @@
               "value": "cputemp"
             }
           ]
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$G/10-273.15",
-          "hide": false,
-          "refId": "CPU",
-          "type": "math"
         }
       ],
       "title": "Temperatures",
@@ -2836,9 +3024,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "alias": "Free",
@@ -3474,13 +3663,113 @@
               "value": "disk"
             }
           ]
+        },
+        {
+          "alias": "sdg",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdg",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "disk_io_time.io_time"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disk"
+            }
+          ]
+        },
+        {
+          "alias": "sdh",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "sdh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "disk_io_time.io_time"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "disk"
+            }
+          ]
         }
       ],
       "title": "Disk Busy (%)",
       "transformations": [
         {
           "id": "filterFieldsByName",
-          "options": {}
+          "options": {
+            "include": {
+              "pattern": ""
+            }
+          }
         }
       ],
       "type": "timeseries"
@@ -4003,7 +4292,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "TrueNAS",
@@ -4036,6 +4325,6 @@
   "timezone": "",
   "title": "TrueNAS Dashboard",
   "uid": "ruU9VdNMk",
-  "version": 31,
+  "version": 1,
   "weekStart": ""
 }
