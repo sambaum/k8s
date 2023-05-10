@@ -91,3 +91,16 @@ spec:
                 name: uptime-kuma-service
                 port:
                   number: 3001
+
+# Bulk-Change:
+# cd /app/data
+# sqlite3
+# .open kuma.db
+# .headers on
+# .mode column
+# SELECT * from monitor
+# PRAGMA table_info(monitor);
+# UPDATE monitor SET maxretries = 5;
+# UPDATE monitor SET interval = 600;
+# UPDATE monitor SET retry_interval = 60;
+# UPDATE monitor SET expiry_notification = 1;
