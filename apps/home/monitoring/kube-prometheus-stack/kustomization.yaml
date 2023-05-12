@@ -31,6 +31,9 @@ patches:
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
 
+      - op: replace
+        path: /spec/values/prometheus/prometheusSpec/retention
+        value: 60d
       - op: add
         path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
         value:
