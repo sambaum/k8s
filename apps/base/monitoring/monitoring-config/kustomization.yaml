@@ -38,18 +38,6 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: '1'
-  - name: grafana-dashboards-synology1
-    files:
-      - custom-dashboards/synology-nas-overview.json
-    options:
-      labels:
-        grafana_dashboard: '1'
-  - name: grafana-dashboards-synology2
-    files:
-      - custom-dashboards/synology-nas-detail.json
-    options:
-      labels:
-        grafana_dashboard: '1'
   - name: grafana-dashboards-other
     files:
       - custom-dashboards/uptime-kuma.json
