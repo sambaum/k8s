@@ -86,7 +86,7 @@ spec:
               name: config
               subPath: paperless/redis
         - name: paperless-db
-          image: postgres:13.10 # {"$imagepolicy": "flux-system:paperless-ngx-postgres"}
+          image: postgres:13.11 # {"$imagepolicy": "flux-system:paperless-ngx-postgres"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
