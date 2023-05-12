@@ -16,9 +16,11 @@ metadata:
 spec:
   imageRepositoryRef:
     name: overleaf
+  filterTags:
+    pattern: '^3\.1\.\d{1,2}\.\d{1,2}$'
   policy:
-    semver:
-      range: 3.1.x
+    alphabetical:
+      order: asc
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
