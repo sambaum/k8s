@@ -102,8 +102,6 @@ metadata:
   name: wekan-ingress
   namespace: default
   annotations:
-    # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
-    # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
