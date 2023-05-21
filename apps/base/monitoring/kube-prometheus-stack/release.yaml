@@ -81,7 +81,6 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-
       ingress:
         enabled: true
         ingressClassName: nginx

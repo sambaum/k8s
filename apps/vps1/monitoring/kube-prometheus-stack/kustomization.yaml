@@ -31,7 +31,6 @@ patches:
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
 
-
       - op: add
         path: /spec/values/prometheus/ingress/annotations/nginx.ingress.kubernetes.io~1auth-type
         value: basic

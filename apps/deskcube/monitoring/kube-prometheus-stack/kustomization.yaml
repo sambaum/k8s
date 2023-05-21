@@ -1,0 +1,23 @@
+resources:
+  - ../../../base/monitoring/kube-prometheus-stack/
+patches:
+  - target:
+      kind: HelmRelease
+      name: kube-prometheus-stack
+    patch: |-
+      - op: replace
+        path: /spec/values/grafana/enabled
+        value: false
+
+      - op: replace
+        path: /spec/values/prometheus/ingress/hosts/0
+        value: prometheus.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/prometheus/ingress/tls/0/hosts/0
+        value: prometheus.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/prometheus/ingress/annotations/flame.pawelmalak~1url
+        value: https://prometheus.deskcube.sambaum.ch
+      - op: replace
+        path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-production
