@@ -11,13 +11,13 @@ patches:
 
       - op: replace
         path: /spec/values/prometheus/ingress/hosts/0
-        value: prometheus.deskcube.sambaum.ch
+        value: prometheus.deskcube.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/tls/0/hosts/0
-        value: prometheus.deskcube.sambaum.ch
+        value: prometheus.deskcube.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/flame.pawelmalak~1url
-        value: https://prometheus.deskcube.sambaum.ch
+        value: https://prometheus.deskcube.int.sambaum.ch
       - op: replace
         path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-production
