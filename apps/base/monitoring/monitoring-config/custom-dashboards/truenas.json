@@ -4296,7 +4296,8 @@
     "FreeNAS",
     "InfluxDB",
     "Graphite",
-    "Sam"
+    "Sam",
+    "Starred"
   ],
   "templating": {
     "list": []

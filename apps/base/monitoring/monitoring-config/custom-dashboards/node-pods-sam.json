@@ -1304,7 +1304,8 @@
   "style": "dark",
   "tags": [
     "kubernetes-mixin",
-    "Sam"
+    "Sam",
+    "Starred"
   ],
   "templating": {
     "list": [

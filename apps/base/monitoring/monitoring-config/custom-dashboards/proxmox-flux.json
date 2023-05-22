@@ -2125,7 +2125,8 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "Sam"
+    "Sam",
+    "Starred"
   ],
   "templating": {
     "list": [

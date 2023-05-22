@@ -1239,7 +1239,8 @@
   "schemaVersion": 31,
   "style": "light",
   "tags": [
-    "flux"
+    "flux",
+    "Starred"
   ],
   "templating": {
     "list": [
