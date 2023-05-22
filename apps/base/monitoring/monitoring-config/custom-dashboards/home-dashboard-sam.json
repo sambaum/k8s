@@ -926,7 +926,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1
               }
             ]
           },
@@ -3100,13 +3100,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "My Home Dashboard",
   "uid": "ece76734-950e-41fb-a882-ba5093a4c323",
-  "version": 48,
+  "version": 1,
   "weekStart": ""
 }
