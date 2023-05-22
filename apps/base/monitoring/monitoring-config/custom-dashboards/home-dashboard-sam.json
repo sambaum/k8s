@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 502,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -927,7 +926,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1
               }
             ]
           },
@@ -2840,6 +2839,7 @@
       },
       {
         "current": {
+          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -2928,6 +2928,6 @@
   "timezone": "",
   "title": "My Home Dashboard",
   "uid": "ece76734-950e-41fb-a882-ba5093a4c323",
-  "version": 47,
+  "version": 48,
   "weekStart": ""
 }
