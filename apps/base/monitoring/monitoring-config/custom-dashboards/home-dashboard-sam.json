@@ -32,7 +32,7 @@
             "mode": "thresholds"
           },
           "decimals": 0,
-          "displayName": "${__field.labels.nodename}: ${__field.labels.host} (${__field.labels.type})",
+          "displayName": "${__field.labels.host} (${__field.labels.type}) :${__field.labels.nodename}",
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -2091,7 +2091,7 @@
         "uid": "prometheus"
       },
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 6,
         "x": 0,
         "y": 7
@@ -2107,7 +2107,7 @@
         "showSearch": true,
         "showStarred": false,
         "tags": [
-          "Sam"
+          "Starred"
         ]
       },
       "pluginVersion": "9.5.2",
@@ -2372,8 +2372,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
+        "type": "datasource",
+        "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
@@ -2410,10 +2410,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 6,
         "x": 0,
-        "y": 17
+        "y": 16
       },
       "id": 21,
       "links": [],
@@ -2448,7 +2448,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE1: CPU",
+          "legendFormat": "CPU PVE1",
           "range": true,
           "refId": "A"
         },
@@ -2540,9 +2540,68 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU",
+          "legendFormat": "CPU PVE2",
           "range": true,
           "refId": "G"
+        },
+        {
+          "alias": "ff",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "cputemp"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$H/10-273.15",
+          "hide": false,
+          "refId": "CPU TrueNAS",
+          "type": "math"
         }
       ],
       "timeFrom": "1w",
