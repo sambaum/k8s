@@ -23,16 +23,16 @@
   "panels": [
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "influxdb",
+        "uid": "bY0ll83nk"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "decimals": 0,
+          "displayName": "${__field.labels.nodename}: ${__field.labels.host} (${__field.labels.type})",
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -44,7 +44,7 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
+                "color": "orange",
                 "value": 70
               },
               {
@@ -58,14 +58,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 5,
+        "h": 4,
+        "w": 6,
         "x": 0,
         "y": 0
       },
-      "id": 14,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 22,
       "options": {
         "displayMode": "basic",
         "minVizHeight": 10,
@@ -79,108 +77,30 @@
           "values": false
         },
         "showUnfilled": true,
+        "text": {},
         "valueMode": "color"
       },
       "pluginVersion": "9.5.2",
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
           },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"proxmox.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"proxmox.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "PVE: Proxmox",
-          "range": true,
-          "refId": "A",
-          "step": 20
+          "query": "from(bucket: \"proxmox\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve\")\n  |> last()\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({ r with \n    _time: r._time,\n    _measurement: r.measurement,\n    _field: \"used_perc\",\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\n     }))\n  |> drop(columns: [\"avail\",\"used\"])\n",
+          "refId": "A"
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
           },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
           "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VM: Dumpster",
-          "range": true,
-          "refId": "F",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"proxmox2.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"proxmox2.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "PVE: Proxmox 2",
-          "range": true,
-          "refId": "B",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VM: Deskcube",
-          "range": true,
-          "refId": "E",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"opnsense.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"opnsense.int.sambaum.ch:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VM: OPNSense",
-          "range": true,
-          "refId": "C",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VPS1",
-          "range": true,
-          "refId": "D",
-          "step": 20
+          "query": "from(bucket: \"proxmox\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"system\")\r\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\r\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve2\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with \r\n    _time: r._time,\r\n    _measurement: r.measurement,\r\n    _field: \"used_perc\",\r\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\r\n     }))\r\n  |> drop(columns: [\"avail\",\"used\"])\r\n",
+          "refId": "B"
         }
       ],
-      "title": "Root partition usage",
+      "title": "Storage Pools",
       "type": "bargauge"
     },
     {
@@ -218,7 +138,7 @@
       "gridPos": {
         "h": 6,
         "w": 5,
-        "x": 5,
+        "x": 6,
         "y": 0
       },
       "id": 11,
@@ -395,8 +315,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 7,
-        "x": 10,
+        "w": 6,
+        "x": 11,
         "y": 0
       },
       "hideTimeOverride": true,
@@ -416,6 +336,9 @@
           "values": false
         },
         "showUnfilled": true,
+        "text": {
+          "valueSize": 13
+        },
         "valueMode": "color"
       },
       "pluginVersion": "9.5.2",
@@ -1004,6 +927,120 @@
     },
     {
       "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 4
+      },
+      "id": 14,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Dumpster",
+          "range": true,
+          "refId": "F",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Deskcube",
+          "range": true,
+          "refId": "E",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "VPS1",
+          "range": true,
+          "refId": "D",
+          "step": 20
+        }
+      ],
+      "title": "Root partition usage",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
@@ -1452,45 +1489,6 @@
         }
       ],
       "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 6,
-        "x": 0,
-        "y": 6
-      },
-      "id": 8,
-      "links": [],
-      "options": {
-        "folderId": 0,
-        "maxItems": 30,
-        "query": "",
-        "showHeadings": false,
-        "showRecentlyViewed": false,
-        "showSearch": true,
-        "showStarred": false,
-        "tags": [
-          "Sam"
-        ]
-      },
-      "pluginVersion": "9.5.2",
-      "tags": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "Dashboards",
-      "type": "dashlist"
     },
     {
       "datasource": {
@@ -2086,6 +2084,45 @@
       ],
       "title": "CPU Usage Dumpster",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 0,
+        "y": 7
+      },
+      "id": 8,
+      "links": [],
+      "options": {
+        "folderId": 0,
+        "maxItems": 30,
+        "query": "",
+        "showHeadings": false,
+        "showRecentlyViewed": false,
+        "showSearch": true,
+        "showStarred": false,
+        "tags": [
+          "Sam"
+        ]
+      },
+      "pluginVersion": "9.5.2",
+      "tags": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Dashboards",
+      "type": "dashlist"
     },
     {
       "datasource": {
