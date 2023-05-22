@@ -77,7 +77,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {},
+        "text": {
+          "titleSize": 11,
+          "valueSize": 13
+        },
         "valueMode": "color"
       },
       "pluginVersion": "9.5.2",
@@ -100,7 +103,7 @@
           "refId": "B"
         }
       ],
-      "title": "Storage Pools",
+      "title": "Proxmox Storage Pools",
       "type": "bargauge"
     },
     {
@@ -157,6 +160,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "text": {
+          "titleSize": 11,
+          "valueSize": 13
+        },
         "valueMode": "color"
       },
       "pluginVersion": "9.5.2",
@@ -172,7 +179,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE: Proxmox",
+          "legendFormat": "Proxmox",
           "range": true,
           "refId": "A",
           "step": 20
@@ -188,7 +195,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "VM: Dumpster",
+          "legendFormat": "Dumpster",
           "range": true,
           "refId": "F",
           "step": 20
@@ -204,7 +211,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE: Proxmox 2",
+          "legendFormat": "Proxmox 2",
           "range": true,
           "refId": "B",
           "step": 20
@@ -220,7 +227,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "VM: Deskcube",
+          "legendFormat": "Deskcube",
           "range": true,
           "refId": "E",
           "step": 20
@@ -236,7 +243,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "VM: OPNSense",
+          "legendFormat": "OPNSense",
           "range": true,
           "refId": "C",
           "step": 20
@@ -295,6 +302,7 @@
           "color": {
             "mode": "continuous-BlPu"
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -337,6 +345,7 @@
         },
         "showUnfilled": true,
         "text": {
+          "titleSize": 11,
           "valueSize": 13
         },
         "valueMode": "color"
@@ -354,7 +363,7 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 2,
-          "legendFormat": "PVE: Proxmox",
+          "legendFormat": "Proxmox",
           "refId": "A",
           "step": 40
         },
@@ -369,7 +378,7 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 2,
-          "legendFormat": "PVE: Proxmox2",
+          "legendFormat": "Proxmox2",
           "refId": "B",
           "step": 40
         },
@@ -384,7 +393,7 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 2,
-          "legendFormat": "VM: OPNSense",
+          "legendFormat": "OPNSense",
           "refId": "C",
           "step": 40
         },
@@ -399,7 +408,7 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 2,
-          "legendFormat": "VM: Deskcube",
+          "legendFormat": "Deskcube",
           "refId": "D",
           "step": 40
         },
@@ -414,7 +423,7 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 2,
-          "legendFormat": "VM: Dumpster",
+          "legendFormat": "Dumpster",
           "refId": "E",
           "step": 40
         },
@@ -828,7 +837,7 @@
           "type": "math"
         }
       ],
-      "title": "Space",
+      "title": "TrueNAS Space",
       "type": "piechart"
     },
     {
@@ -922,7 +931,7 @@
           "refId": "C"
         }
       ],
-      "title": "Failing Reconcilers",
+      "title": "Flux CD Failing Reconcilers",
       "type": "stat"
     },
     {
@@ -983,6 +992,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "text": {
+          "titleSize": 11,
+          "valueSize": 13
+        },
         "valueMode": "color"
       },
       "pluginVersion": "9.5.2",
@@ -1036,7 +1049,7 @@
           "step": 20
         }
       ],
-      "title": "Root partition usage",
+      "title": "VM's Root partition usage",
       "type": "bargauge"
     },
     {
@@ -1479,7 +1492,7 @@
         }
       ],
       "timeFrom": "1w",
-      "title": "TrueNAS Disk Temp Max Last 7d",
+      "title": "TrueNAS Disk Temp",
       "transformations": [
         {
           "id": "filterFieldsByName",
