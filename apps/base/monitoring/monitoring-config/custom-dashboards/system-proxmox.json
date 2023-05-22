@@ -2881,7 +2881,7 @@
           "refId": "A"
         }
       ],
-      "title": "E-Core Frequenzcy",
+      "title": "E-Core Frequency",
       "type": "timeseries"
     },
     {
@@ -2978,7 +2978,7 @@
           "refId": "A"
         }
       ],
-      "title": "P-Core Frequenzcy",
+      "title": "P-Core Frequency",
       "type": "timeseries"
     },
     {
