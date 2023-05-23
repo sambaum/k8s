@@ -19,7 +19,6 @@ configMapGenerator:
     files:
       - custom-dashboards/alerts-dashboard.json
       - custom-dashboards/node-pods-sam.json
-      - custom-dashboards/overview-sam.json
       - custom-dashboards/pods.json
       - custom-dashboards/storage.json
     options:
