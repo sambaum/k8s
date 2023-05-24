@@ -190,22 +190,6 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[5m])) * 100)",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Dumpster",
-          "range": true,
-          "refId": "F",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
           "hide": false,
@@ -214,22 +198,6 @@
           "legendFormat": "Proxmox 2",
           "range": true,
           "refId": "B",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[5m])) * 100)",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Deskcube",
-          "range": true,
-          "refId": "E",
           "step": 20
         },
         {
@@ -246,6 +214,38 @@
           "legendFormat": "OPNSense",
           "range": true,
           "refId": "C",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[5m])) * 100)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Dumpster",
+          "range": true,
+          "refId": "F",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+          },
+          "editorMode": "code",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[5m])) * 100)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Deskcube",
+          "range": true,
+          "refId": "E",
           "step": 20
         },
         {
