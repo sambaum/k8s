@@ -1420,7 +1420,7 @@
   },
   "timezone": "utc",
   "title": "Kubernetes / Compute Resources / Node (Pods) Sam",
-  "uid": "200ac8fdbfbb74b39aff88118e4d1c2e",
+  "uid": "compute-pods-sam",
   "version": 16,
   "weekStart": ""
 }

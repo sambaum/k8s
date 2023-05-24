@@ -2776,7 +2776,7 @@
   },
   "timezone": "browser",
   "title": "OpnSense Firewall",
-  "uid": "NvojMa7nk",
+  "uid": "opnsense-firewall",
   "version": 16,
   "weekStart": ""
 }

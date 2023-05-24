@@ -3386,7 +3386,7 @@
   },
   "timezone": "browser",
   "title": "System (Proxmox)",
-  "uid": "cUqo37s7k",
+  "uid": "system-proxmox",
   "version": 1,
   "weekStart": ""
 }
