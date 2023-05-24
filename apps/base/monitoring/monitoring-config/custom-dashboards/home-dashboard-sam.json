@@ -145,7 +145,12 @@
         "y": 0
       },
       "id": 11,
-      "links": [],
+      "links": [
+        {
+          "title": "System Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/system-proxmox/system-proxmox?orgId=1&refresh=30s"
+        }
+      ],
       "maxDataPoints": 100,
       "options": {
         "displayMode": "basic",
@@ -329,7 +334,12 @@
       },
       "hideTimeOverride": true,
       "id": 10,
-      "links": [],
+      "links": [
+        {
+          "title": "System Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/system-proxmox/system-proxmox?orgId=1&refresh=30s"
+        }
+      ],
       "maxDataPoints": 100,
       "options": {
         "displayMode": "basic",
@@ -489,7 +499,16 @@
         "y": 0
       },
       "id": 18,
-      "links": [],
+      "links": [
+        {
+          "title": "TrueNAS",
+          "url": "https://truenas.int.sambaum.ch/"
+        },
+        {
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+        }
+      ],
       "maxDataPoints": 100,
       "options": {
         "displayLabels": [
@@ -873,6 +892,16 @@
         "y": 0
       },
       "id": 1,
+      "links": [
+        {
+          "title": "TrueNAS",
+          "url": "https://truenas.int.sambaum.ch/"
+        },
+        {
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1567,6 +1596,16 @@
         "y": 6
       },
       "id": 17,
+      "links": [
+        {
+          "title": "TrueNAS",
+          "url": "https://truenas.int.sambaum.ch/"
+        },
+        {
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [],
@@ -2043,7 +2082,12 @@
       },
       "id": 5,
       "interval": "15s",
-      "links": [],
+      "links": [
+        {
+          "title": "Compute Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus&var-cluster=&var-node=dumpster"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [
@@ -2139,10 +2183,9 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
+        "type": "influxdb",
+        "uid": "PrQ94dx4k"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2155,24 +2198,21 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "none",
+            "fillOpacity": 40,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 2,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": 300000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2195,9 +2235,55 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "Bps"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Rx Databus"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tx Databus"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tx LAN"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -2205,57 +2291,197 @@
         "x": 6,
         "y": 12
       },
-      "id": 9,
-      "links": [],
+      "id": 20,
       "options": {
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "9.2.4",
       "targets": [
         {
+          "alias": "Rx Databus",
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
           },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "rate(node_network_receive_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$interval]) * 8 / 1014 > 0",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{device}} recv",
-          "range": true,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "enp5s0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
           "refId": "A",
-          "step": 60
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "if_octets.rx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
         },
         {
+          "alias": "Tx Databus",
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
           },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "rate(node_network_transmit_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$interval]) * 8 / 1024 > 0",
-          "format": "time_series",
-          "hide": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{device}} trans",
-          "range": true,
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "enp5s0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
           "refId": "B",
-          "step": 60
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "if_octets.tx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Rx LAN",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "enp4s0",
+          "orderByTime": "ASC",
+          "policy": "defaul",
+          "query": "SELECT last(\"if_octets.rx\") FROM \"default\".\"enp4s0\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "if_octets.rx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Tx LAN",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "enp4s0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "if_octets.tx"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
-      "title": "OPNSense Network Traffic / sec Receive",
+      "title": "TrueNAS Interface Traffic",
       "type": "timeseries"
     },
     {
@@ -2328,7 +2554,12 @@
       },
       "id": 16,
       "interval": "15s",
-      "links": [],
+      "links": [
+        {
+          "title": "Compute Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus-Deskcube&var-cluster=&var-node=deskcube"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [
@@ -2623,9 +2854,10 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
+        "type": "prometheus",
+        "uid": "prometheus"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2638,21 +2870,24 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 40,
-            "gradientMode": "opacity",
+            "fillOpacity": 20,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": 300000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2675,55 +2910,9 @@
               }
             ]
           },
-          "unit": "Bps"
+          "unit": "Kbits"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Rx Databus"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Tx Databus"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Tx LAN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2731,197 +2920,62 @@
         "x": 6,
         "y": 17
       },
-      "id": 20,
+      "id": 9,
+      "links": [
+        {
+          "title": "OPNSense Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/opnsense-firewall/opnsense-firewall?orgId=1&refresh=5s"
+        }
+      ],
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
+          "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "8.4.2",
       "targets": [
         {
-          "alias": "Rx Databus",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "enp5s0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(node_network_receive_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$interval]) * 8 / 1014 > 0",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{device}} recv",
+          "range": true,
           "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "if_octets.rx"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "step": 60
         },
         {
-          "alias": "Tx Databus",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "enp5s0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(node_network_transmit_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$interval]) * 8 / 1024 > 0",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{device}} trans",
+          "range": true,
           "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "if_octets.tx"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Rx LAN",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "enp4s0",
-          "orderByTime": "ASC",
-          "policy": "defaul",
-          "query": "SELECT last(\"if_octets.rx\") FROM \"default\".\"enp4s0\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "if_octets.rx"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Tx LAN",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "enp4s0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "if_octets.tx"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "step": 60
         }
       ],
-      "title": "TrueNAS Interface Traffic",
+      "title": "OPNSense Network Traffic / sec Receive",
       "type": "timeseries"
     },
     {
@@ -2994,7 +3048,12 @@
       },
       "id": 15,
       "interval": "15s",
-      "links": [],
+      "links": [
+        {
+          "title": "Compute Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus-VPS1&var-cluster=&var-node=vmi1093363"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [
