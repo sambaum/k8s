@@ -22,6 +22,7 @@ spec:
       labels:
         app: duplicacy
     spec:
+      hostname: duplicacy-seebach
       containers:
         - name: duplicacy
           image: saspus/duplicacy-web:v1.7.2 # {"$imagepolicy": "flux-system:duplicacy"}
