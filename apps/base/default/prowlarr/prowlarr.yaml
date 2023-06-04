@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: linuxserver/prowlarr:1.4.1 # {"$imagepolicy": "flux-system:prowlarr"}
+          image: linuxserver/prowlarr:1.5.2 # {"$imagepolicy": "flux-system:prowlarr"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9696
