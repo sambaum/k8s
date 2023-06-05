@@ -147,6 +147,7 @@
       "id": 11,
       "links": [
         {
+          "targetBlank": true,
           "title": "System Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/system-proxmox/system-proxmox?orgId=1&refresh=30s"
         }
@@ -336,6 +337,7 @@
       "id": 10,
       "links": [
         {
+          "targetBlank": true,
           "title": "System Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/system-proxmox/system-proxmox?orgId=1&refresh=30s"
         }
@@ -894,10 +896,7 @@
       "id": 1,
       "links": [
         {
-          "title": "TrueNAS",
-          "url": "https://truenas.int.sambaum.ch/"
-        },
-        {
+          "targetBlank": true,
           "title": "TrueNAS Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
         }
@@ -1598,10 +1597,7 @@
       "id": 17,
       "links": [
         {
-          "title": "TrueNAS",
-          "url": "https://truenas.int.sambaum.ch/"
-        },
-        {
+          "targetBlank": true,
           "title": "TrueNAS Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
         }
@@ -2084,6 +2080,7 @@
       "interval": "15s",
       "links": [
         {
+          "targetBlank": true,
           "title": "Compute Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus&var-cluster=&var-node=dumpster"
         }
@@ -2556,6 +2553,7 @@
       "interval": "15s",
       "links": [
         {
+          "targetBlank": true,
           "title": "Compute Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus-Deskcube&var-cluster=&var-node=deskcube"
         }
@@ -2923,6 +2921,7 @@
       "id": 9,
       "links": [
         {
+          "targetBlank": true,
           "title": "OPNSense Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/opnsense-firewall/opnsense-firewall?orgId=1&refresh=5s"
         }
@@ -3050,6 +3049,7 @@
       "interval": "15s",
       "links": [
         {
+          "targetBlank": true,
           "title": "Compute Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus-VPS1&var-cluster=&var-node=vmi1093363"
         }
