@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: healthchecks
-          image: linuxserver/healthchecks:2.8.1 # {"$imagepolicy": "flux-system:healthchecks"}
+          image: linuxserver/healthchecks:2.9.2 # {"$imagepolicy": "flux-system:healthchecks"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
