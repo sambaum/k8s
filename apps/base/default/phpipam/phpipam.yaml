@@ -49,7 +49,7 @@ spec:
             - name: SCAN_INTERVAL
               value: '10m'
         - name: phpipam-mariadb
-          image: mariadb:10.11.3 # {"$imagepolicy": "flux-system:phpipam-mariadb"}
+          image: mariadb:10.11.4 # {"$imagepolicy": "flux-system:phpipam-mariadb"}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /var/lib/mysql
