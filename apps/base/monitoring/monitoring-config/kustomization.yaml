@@ -24,24 +24,28 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: '1'
+
   - name: grafana-dashboards-proxmox
     files:
       - custom-dashboards/system-proxmox.json
     options:
       labels:
         grafana_dashboard: '1'
+
   - name: grafana-dashboards-opnsense
     files:
       - custom-dashboards/opnsense.json
     options:
       labels:
         grafana_dashboard: '1'
+
   - name: grafana-dashboards-truenas
     files:
       - custom-dashboards/truenas.json
     options:
       labels:
         grafana_dashboard: '1'
+
   - name: grafana-dashboards-home-dashboards
     files:
       - custom-dashboards/home-dashboard-sam.json
@@ -51,3 +55,10 @@ configMapGenerator:
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
+
+  - name: grafana-dashboards-logs
+    files:
+      - custom-dashboards/filtered-logs.json
+    options:
+      labels:
+        grafana_dashboard: '1'
