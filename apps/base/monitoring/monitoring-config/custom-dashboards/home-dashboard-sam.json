@@ -1116,6 +1116,13 @@
         "y": 4
       },
       "id": 24,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Show Logs",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/filtered-logs/filtered-logs"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
