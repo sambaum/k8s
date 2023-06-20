@@ -19,7 +19,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - cd /crontab-ui/crontabs/bank2ynab/ && python3 /crontab-ui/crontabs/bank2ynab/bank2ynab.py
+            - /crontab-ui/crontabs/revolut-fix-dates.sh
             volumeMounts:
               - mountPath: /crontab-ui/crontabs/
                 name: config
@@ -36,3 +36,5 @@ spec:
               persistentVolumeClaim:
                 claimName: truenas-temp-pvc
       ttlSecondsAfterFinished: 180
+
+# while true; do echo running... && sleep 60; done
