@@ -8,7 +8,7 @@ patches:
       - op: replace
         path: /spec/values/loki/config/limits_config
         value:
-         retention_period: 14d
+         retention_period: 60d
          retention_stream:
          - selector: '{host="OPNsense.int.sambaum.ch"}'
            priority: 1
