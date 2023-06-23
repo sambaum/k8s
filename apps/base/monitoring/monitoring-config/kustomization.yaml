@@ -39,6 +39,13 @@ configMapGenerator:
       labels:
         grafana_dashboard: '1'
 
+  - name: grafana-dashboards-other
+    files:
+      - custom-dashboards/uptime-kuma.json
+    options:
+      labels:
+        grafana_dashboard: '1'
+
   - name: grafana-dashboards-truenas
     files:
       - custom-dashboards/truenas.json
