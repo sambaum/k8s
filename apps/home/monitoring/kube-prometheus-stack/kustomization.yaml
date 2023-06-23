@@ -106,7 +106,8 @@ patches:
               - target_label: __address__
                 replacement: nas.int.sambaum.ch:9116
           - job_name: 'uptime'
-            scrape_interval: 5s
+            scrape_interval: 30s
+            metrics_path: '/metrics'
             scheme: https
             static_configs:
               - targets: ['uptime.int.sambaum.ch:443']
