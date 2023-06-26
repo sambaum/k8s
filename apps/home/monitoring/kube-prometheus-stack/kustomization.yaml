@@ -109,6 +109,8 @@ patches:
             scrape_interval: 30s
             metrics_path: '/metrics'
             scheme: https
+            tls_config:
+                insecure_skip_verify: true
             static_configs:
               - targets: ['uptime.int.sambaum.ch:443']
                 labels:
