@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-      version: '4.6.x'
+      version: '4.7.x'
   install:
     crds: Create
   interval: 30m
