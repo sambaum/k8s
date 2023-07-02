@@ -83,7 +83,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "alias": "Idle",
@@ -241,7 +241,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -307,11 +307,11 @@
               },
               {
                 "color": "dark-yellow",
-                "value": 45
+                "value": 48
               },
               {
                 "color": "dark-orange",
-                "value": 50
+                "value": 52
               },
               {
                 "color": "dark-red",
@@ -442,7 +442,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "alias": "sdd",
@@ -3124,7 +3124,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "alias": "Free",

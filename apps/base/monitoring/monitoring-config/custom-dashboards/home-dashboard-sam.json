@@ -83,7 +83,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -172,7 +172,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -363,7 +363,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -916,7 +916,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -1027,7 +1027,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -1105,11 +1105,11 @@
               },
               {
                 "color": "yellow",
-                "value": 45
+                "value": 48
               },
               {
                 "color": "orange",
-                "value": 50
+                "value": 52
               },
               {
                 "color": "red",
@@ -1242,7 +1242,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "alias": "sdd",
@@ -2268,7 +2268,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "tags": [],
       "targets": [
         {
@@ -2781,7 +2781,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
