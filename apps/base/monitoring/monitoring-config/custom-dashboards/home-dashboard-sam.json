@@ -987,11 +987,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 70
+                "value": 80
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 90
               }
             ]
           },
@@ -2739,15 +2739,15 @@
               },
               {
                 "color": "blue",
-                "value": 60
-              },
-              {
-                "color": "orange",
                 "value": 70
               },
               {
-                "color": "red",
+                "color": "orange",
                 "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
               }
             ]
           },
@@ -3372,7 +3372,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {},
