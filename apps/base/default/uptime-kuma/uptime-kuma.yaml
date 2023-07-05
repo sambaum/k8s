@@ -68,6 +68,8 @@ metadata:
   name: uptime-kuma-ingress
   namespace: default
   annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
     flame.pawelmalak/name: Uptime-Kuma
