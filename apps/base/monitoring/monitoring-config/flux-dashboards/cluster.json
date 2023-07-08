@@ -30,10 +30,10 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1652337714814,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "datasource": "${DS_PROMETHEUS}",
@@ -81,7 +81,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -91,8 +91,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Reconcilers",
       "type": "stat"
     },
@@ -138,7 +136,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -148,8 +146,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Failing Reconcilers",
       "type": "stat"
     },
@@ -199,7 +195,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -209,8 +205,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Kubernetes Manifests Sources",
       "type": "stat"
     },
@@ -256,7 +250,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -266,8 +260,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Failing Sources",
       "type": "stat"
     },
@@ -318,9 +310,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -330,8 +323,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Reconciler ops avg. duration",
       "type": "bargauge"
     },
@@ -382,9 +373,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -394,8 +386,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Source ops avg. duration",
       "type": "bargauge"
     },
@@ -419,7 +409,10 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "displayMode": "auto",
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": true,
             "inspect": false
           },
@@ -462,8 +455,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -477,7 +473,9 @@
       },
       "id": 33,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -492,7 +490,7 @@
           }
         ]
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -504,8 +502,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster reconciliation readiness ",
       "transformations": [
         {
@@ -547,7 +543,10 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "displayMode": "auto",
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": true,
             "inspect": false
           },
@@ -590,8 +589,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -605,7 +607,9 @@
       },
       "id": 34,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -620,7 +624,7 @@
           }
         ]
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "exemplar": true,
@@ -632,8 +636,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Source acquisition readiness ",
       "transformations": [
         {
@@ -690,10 +692,6 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -724,7 +722,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "9.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -743,9 +741,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Cluster reconciliation duration",
       "tooltip": {
         "shared": true,
@@ -754,33 +750,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -790,10 +777,6 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -843,9 +826,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Source acquisition duration",
       "tooltip": {
         "shared": true,
@@ -854,41 +835,33 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 36,
+  "schemaVersion": 38,
   "style": "light",
   "tags": [
-    "flux"
+    "flux",
+    "starred"
   ],
   "templating": {
     "list": [
@@ -903,13 +876,13 @@
             "$__all"
           ]
         },
-        "datasource": "$DS_PROMETHEUS",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "$DS_PROMETHEUS"
+        },
         "definition": "label_values(gotk_reconcile_condition, namespace)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "operator_namespace",
         "options": [],
@@ -928,10 +901,8 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": [
             "All"
           ],
@@ -939,13 +910,13 @@
             "$__all"
           ]
         },
-        "datasource": "$DS_PROMETHEUS",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "$DS_PROMETHEUS"
+        },
         "definition": "label_values(gotk_reconcile_condition, exported_namespace)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "namespace",
         "options": [],
@@ -1000,7 +971,9 @@
       "1d"
     ]
   },
+  "timezone": "",
   "title": "Flux Cluster Stats",
   "uid": "flux-cluster",
-  "version": 3
+  "version": 1,
+  "weekStart": ""
 }
