@@ -83,7 +83,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -172,7 +172,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -363,7 +363,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -916,7 +916,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1027,7 +1027,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1242,7 +1242,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "alias": "sdd",
@@ -2258,6 +2258,8 @@
       "links": [],
       "options": {
         "folderId": 0,
+        "includeVars": false,
+        "keepTime": false,
         "maxItems": 30,
         "query": "",
         "showHeadings": false,
@@ -2268,7 +2270,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "tags": [],
       "targets": [
         {
@@ -2781,7 +2783,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -2794,7 +2796,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU PVE1",
+          "legendFormat": "PVE1 CPU",
           "range": true,
           "refId": "A"
         },
@@ -2886,7 +2888,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU PVE2",
+          "legendFormat": "PVE2 CPU",
           "range": true,
           "refId": "G"
         },
@@ -2946,7 +2948,7 @@
           },
           "expression": "$H/10-273.15",
           "hide": false,
-          "refId": "CPU TrueNAS",
+          "refId": "TrueNAS CPU",
           "type": "math"
         }
       ],
