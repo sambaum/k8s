@@ -18,7 +18,7 @@ spec:
     name: paperless-ngx
   policy:
     semver:
-      range: 1.14.x
+      range: 1.16.x
 ---
 
 apiVersion: image.toolkit.fluxcd.io/v1beta2
