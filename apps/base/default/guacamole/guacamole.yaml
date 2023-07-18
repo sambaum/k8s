@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
         - name: guacamole
-          image: flcontainers/guacamole:1.5.0 # {"$imagepolicy": "flux-system:guacamole"}
+          image: flcontainers/guacamole:1.5.2 # {"$imagepolicy": "flux-system:guacamole"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
