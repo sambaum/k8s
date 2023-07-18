@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webnettools
+  namespace: default
+  labels:
+    app: webnettools
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webnettools
+  template:
+    metadata:
+      labels:
+        app: webnettools
+    spec:
+      containers:
+        - name: webnettools
+          image: johannesschafer/webnettools:1.2.0 # {"$imagepolicy": "flux-system:webnettools"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: webnettools-service
+  namespace: default
+spec:
+  selector:
+    app: webnettools
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webnettools-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Web Net Tools
+    flame.pawelmalak/url: https://webnettools.example.com
+    # flame.pawelmalak/icon: TODO
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'webnettools.example.com'
+      secretName: webnettools-tls
+  rules:
+    - host: webnettools.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: webnettools-service
+                port:
+                  number: 8080
