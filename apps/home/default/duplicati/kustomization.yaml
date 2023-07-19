@@ -51,6 +51,8 @@ patches:
             name: nas-other
           - mountPath: /source/backup
             name: nas-backup
+          - mountPath: /source/temp
+            name: nas-temp
           - mountPath: /source/conf
             name: config
       - op: add
