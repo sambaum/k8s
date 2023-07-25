@@ -23,7 +23,7 @@ spec:
     spec:
       initContainers:
         - name: take-data-dir-ownership
-          image: alpine:3 # {"$imagepolicy": "flux-system:alpine"}
+          image: alpine:3.18.2 # {"$imagepolicy": "flux-system:alpine"}
           command:
             - chown
             - -R
