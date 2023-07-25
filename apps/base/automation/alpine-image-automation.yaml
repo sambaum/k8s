@@ -1,0 +1,21 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: alpine
+  namespace: flux-system
+spec:
+  image: alpine
+  interval: 30m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: alpine
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: alpine
+  policy:
+    semver:
+      range: 3.x.x
