@@ -2,20 +2,20 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: bazarr
+  name: flame
   namespace: flux-system
 spec:
-  image: linuxserver/bazarr
+  image: pawelmalak/flame
   interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: bazarr
+  name: flame
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: bazarr
+    name: flame
   policy:
     semver:
       range: 2.x.x
