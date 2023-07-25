@@ -2792,11 +2792,11 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}",
+          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE1 CPU",
+          "legendFormat": "PVE1 CPU (5min)",
           "range": true,
           "refId": "A"
         },
@@ -2883,12 +2883,12 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox2.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}",
+          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox2.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE2 CPU",
+          "legendFormat": "PVE2 CPU (5min)",
           "range": true,
           "refId": "G"
         },
@@ -2929,6 +2929,12 @@
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [
+                  5
+                ],
+                "type": "moving_average"
               }
             ]
           ],
@@ -2948,7 +2954,7 @@
           },
           "expression": "$H/10-273.15",
           "hide": false,
-          "refId": "TrueNAS CPU",
+          "refId": "TrueNAS CPU (5min)",
           "type": "math"
         }
       ],
