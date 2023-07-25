@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: flame
-          image: pawelmalak/flame:2.3.0
+          image: pawelmalak/flame:2.3.0 # {"$imagepolicy": "flux-system:flame"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5005
