@@ -18,4 +18,4 @@ spec:
     name: busybox
   policy:
     semver:
-      range: 2.x.x
+      range: 1.x.x
