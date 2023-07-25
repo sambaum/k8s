@@ -33,7 +33,7 @@ spec:
               value: 'Europe/Zurich'
       initContainers:
         - name: init-keel-telegram-bot
-          image: busybox:1.34.1
+          image: busybox:1.34.1 # {"$imagepolicy": "flux-system:busybox"}
           command: ['sh', '-c', 'echo wait 60 seconds && sleep 60']
       volumes:
         - name: settings
