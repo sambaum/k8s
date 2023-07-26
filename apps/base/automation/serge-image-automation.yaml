@@ -1,0 +1,21 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: serge
+  namespace: flux-system
+spec:
+  image: ghcr.io/serge-chat/serge
+  interval: 30m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: serge
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: serge
+  policy:
+    semver:
+      range: x.x.x

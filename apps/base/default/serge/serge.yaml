@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serge
+  namespace: default
+  labels:
+    app: serge
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serge
+  template:
+    metadata:
+      labels:
+        app: serge
+    spec:
+      containers:
+        - name: serge
+          image: ghcr.io/serge-chat/serge:0.3.2 # {"$imagepolicy": "flux-system:serge"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8008
+          volumeMounts:
+            - mountPath: /usr/src/app/weights
+              name: config
+              subPath: serge
+            - mountPath: /data/db/
+              name: data
+              subPath: serge
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: serge-service
+  namespace: default
+spec:
+  selector:
+    app: serge
+  ports:
+    - protocol: TCP
+      port: 8008
+      targetPort: 8008
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: serge-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Serge
+    flame.pawelmalak/url: https://serge.example.com
+    flame.pawelmalak/icon: https://static-00.iconduck.com/assets.00/chat-icon-2048x2048-i7er18st.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'serge.example.com'
+      secretName: serge-tls
+  rules:
+    - host: serge.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: serge-service
+                port:
+                  number: 8008
