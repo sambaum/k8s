@@ -898,8 +898,8 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+          "title": "Flux Cluster",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/flux-cluster/flux-cluster-stats?orgId=1&refresh=30s"
         }
       ],
       "options": {
