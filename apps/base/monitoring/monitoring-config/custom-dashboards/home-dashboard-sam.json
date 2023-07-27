@@ -3035,7 +3035,7 @@
         {
           "targetBlank": true,
           "title": "OPNSense Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/opnsense-firewall/opnsense-firewall?orgId=1&refresh=5s"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/opnsense-firewall/opnsense-firewall?orgId=1&refresh=30s"
         }
       ],
       "options": {
@@ -3221,7 +3221,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
