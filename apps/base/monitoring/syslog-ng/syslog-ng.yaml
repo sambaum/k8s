@@ -44,7 +44,7 @@ spec:
               subPath: syslog-ng
       containers:
         - name: syslog-ng
-          image: linuxserver/syslog-ng:3.38.1 # {"$imagepolicy": "flux-system:syslog-ng"}
+          image: linuxserver/syslog-ng:4.1.1 # {"$imagepolicy": "flux-system:syslog-ng"}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /config

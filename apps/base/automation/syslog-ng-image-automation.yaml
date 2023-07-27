@@ -17,4 +17,4 @@ spec:
     name: syslog-ng
   policy:
     semver:
-      range: 3.x.x
+      range: 4.x.x
