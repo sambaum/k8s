@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: focalboard
+  namespace: default
+  labels:
+    app: focalboard
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: focalboard
+  template:
+    metadata:
+      labels:
+        app: focalboard
+    spec:
+      containers:
+        - name: focalboard
+          image: mattermost/focalboard:7.11.1 # {"$imagepolicy": "flux-system:focalboard"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /opt/focalboard
+              name: config
+              subPath: focalboard/focalboard
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+        - name: focalboard-postgres
+          image: postgres:15.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: config
+              subPath: focalboard/postgres
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+            - name: POSTGRES_DB
+              value: 'boards'
+            - name: POSTGRES_USER
+              value: 'boardsuser'
+            - name: POSTGRES_PASSWORD
+              value: 'boardsuser-password'
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: focalboard-service
+  namespace: default
+spec:
+  selector:
+    app: focalboard
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: focalboard-db
+  namespace: default
+spec:
+  selector:
+    app: focalboard-postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: focalboard-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: Focalboard
+    flame.pawelmalak/url: https://focalboard.example.com
+    flame.pawelmalak/icon: https://d4.alternativeto.net/AvCgWWu1xihldRqwqooxUnYinyQsanzUTGJsKa9eWhg/rs:fill:280:280:0/g:ce:0:0/YWJzOi8vZGlzdC9pY29ucy9mb2NhbGJvYXJkXzE4NTI2Ni5wbmc.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'focalboard.example.com'
+      secretName: focalboard-tls
+  rules:
+    - host: focalboard.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: focalboard-service
+                port:
+                  number: 8000
