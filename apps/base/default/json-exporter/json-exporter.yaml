@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: json-exporter
+  namespace: default
+  labels:
+    app: json-exporter
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: json-exporter
+  template:
+    metadata:
+      labels:
+        app: json-exporter
+    spec:
+      initContainers:
+        - name: create-config
+          image: mwendler/wget
+          command: ["/bin/sh"]
+          args:
+            [
+              '-c',
+              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/json-exporter//config.yml --no-check-certificate; fi'
+            ]
+          volumeMounts:
+            - mountPath: /dummy
+              name: settings-dir
+            - mountPath: /config.yml
+              name: settings
+      containers:
+        - name: json-exporter
+          image: quay.io/prometheuscommunity/json-exporter:v0.6.0 # {"$imagepolicy": "flux-system:json-exporter"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7979
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
+          volumeMounts:
+            - mountPath: /config.yml
+              name: settings
+      volumes:
+        - name: settings-dir
+          hostPath:
+            path: /conf/default/json-exporter
+            type: DirectoryOrCreate
+        - name: settings
+          hostPath:
+            path: /conf/default/json-exporter/config.yml
+            type: FileOrCreate
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: json-exporter-service
+  namespace: default
+spec:
+  selector:
+    app: json-exporter
+  ports:
+    - protocol: TCP
+      port: 7979
+      targetPort: 7979
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: json-exporter-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: json-exporter
+    flame.pawelmalak/url: https://json-exporter.example.com
+    flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'json-exporter.example.com'
+      secretName: json-exporter-tls
+  rules:
+    - host: json-exporter.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: json-exporter-service
+                port:
+                  number: 7979

@@ -1,0 +1,26 @@
+---
+modules:
+  default:
+    headers:
+      X-Dummy: my-test-header
+    metrics:
+    - name: mystrom_power
+      path: '{ .power }'
+      help: The current power consumed by devices attached to the switch
+      labels:
+        mystrom: power
+    - name: mystrom_relay
+      path: '{ .relay }'
+      help: The current state of the relay (wether or not the relay is currently turned on)
+      labels:
+        mystrom: relay
+    - name: mystrom_temperature
+      path: '{ .temperature }'
+      help: The currently measured temperature by the switch. (Might initially be wrong, but will automatically correct itself over the span of a few hours)
+      labels:
+        mystrom: temperature
+    - name: mystrom_Ws
+      path: '{ .Ws }'
+      help: The Ws field represents the average power value since the last call. It is the energy consumed divided by the time elapsed since the last call. Energy = Ws ∙ ∆T. For continous consumption measurements (Ws values with timestamp stored in DB) Total Energy = ∑Ws ∙ (Tcurrent - Tbegin).
+      labels:
+        mystrom: Ws

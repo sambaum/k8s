@@ -115,3 +115,13 @@ patches:
               - targets: ['uptime.int.sambaum.ch:443']
                 labels:
                   group: 'uptime-kuma'
+          - job_name: 'json-exporter-mystrom'
+            scrape_interval: 5s
+            metrics_path: '/probe'
+            params:
+              target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report'] 
+            scheme: https
+            static_configs:
+              - targets: ['json-exporter.int.sambaum.ch:443']
+                labels:
+                  group: 'json-exporter-mystrom'

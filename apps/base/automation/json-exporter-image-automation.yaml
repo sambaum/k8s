@@ -1,0 +1,21 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: json-exporter
+  namespace: flux-system
+spec:
+  image: quay.io/prometheuscommunity/json-exporter
+  interval: 30m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: json-exporter
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: json-exporter
+  policy:
+    semver:
+      range: 0.x.x
