@@ -662,10 +662,13 @@
         "type": "timeseries"
       }
     ],
-    "refresh": "5s",
+    "refresh": "30s",
     "schemaVersion": 38,
     "style": "dark",
-    "tags": [],
+    "tags": [
+        "Sam",
+        "Starred"
+      ],
     "templating": {
       "list": [
         {
@@ -684,7 +687,7 @@
     },
     "timepicker": {},
     "timezone": "",
-    "title": "MyStrom Develop",
+    "title": "MyStrom Power Monitor",
     "uid": "b9e33f25-7d62-41d9-a541-20c511bb9a0e",
     "version": 8,
     "weekStart": ""
