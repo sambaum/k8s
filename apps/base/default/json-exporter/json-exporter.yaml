@@ -28,7 +28,7 @@ spec:
           args:
             [
               '-c',
-              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/json-exporter//config.yml --no-check-certificate; fi'
+              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/json-exporter/config.yml --no-check-certificate; fi'
             ]
           volumeMounts:
             - mountPath: /dummy
