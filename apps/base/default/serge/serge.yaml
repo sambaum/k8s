@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prowlarr
+  name: serge
   namespace: default
   labels:
-    app: prowlarr
+    app: serge
   annotations:
-    keel.sh/policy: 'regexp:^(\d{1,2}\.\d{1,2}\.\d{1,2})$' # to prevent stuff like 1.8.1259
+    keel.sh/policy: major
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@daily'
@@ -15,22 +15,25 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prowlarr
+      app: serge
   template:
     metadata:
       labels:
-        app: prowlarr
+        app: serge
     spec:
       containers:
-        - name: prowlarr
-          image: linuxserver/prowlarr:1.7.4 # {"$imagepolicy": "flux-system:prowlarr"}
+        - name: serge
+          image: ghcr.io/serge-chat/serge:0.3.2 # {"$imagepolicy": "flux-system:serge"}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9696
+            - containerPort: 8008
           volumeMounts:
-            - mountPath: /config
+            - mountPath: /usr/src/app/weights
               name: config
-              subPath: prowlarr
+              subPath: serge
+            - mountPath: /data/db/
+              name: data
+              subPath: serge
           env:
             - name: TZ
               value: 'Europe/Zurich'
@@ -38,6 +41,9 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: local-conf-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
       dnsConfig:
         options:
           - name: ndots
@@ -46,41 +52,41 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: prowlarr-service
+  name: serge-service
   namespace: default
 spec:
   selector:
-    app: prowlarr
+    app: serge
   ports:
     - protocol: TCP
-      port: 9696
-      targetPort: 9696
+      port: 8008
+      targetPort: 8008
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: prowlarr-ingress
+  name: serge-ingress
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
-    flame.pawelmalak/name: Prowlarr
-    flame.pawelmalak/url: https://prowlarr.example.com
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/prowlarr-banner.png
+    flame.pawelmalak/name: Serge
+    flame.pawelmalak/url: https://serge.example.com
+    flame.pawelmalak/icon: https://static-00.iconduck.com/assets.00/chat-icon-2048x2048-i7er18st.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'prowlarr.example.com'
-      secretName: prowlarr-tls
+        - 'serge.example.com'
+      secretName: serge-tls
   rules:
-    - host: prowlarr.example.com
+    - host: serge.example.com
       http:
         paths:
           - pathType: Prefix
             path: '/'
             backend:
               service:
-                name: prowlarr-service
+                name: serge-service
                 port:
-                  number: 9696
+                  number: 8008

@@ -74,7 +74,7 @@ spec:
             - name: DB_CONNECTION
               value: 'mysql'
         - name: maria
-          image: mariadb:10.11.4 # {"$imagepolicy": "flux-system:lychee-mariadb"}
+          image: mariadb:10.11.5 # {"$imagepolicy": "flux-system:lychee-mariadb"}
           ports:
             - containerPort: 3306
           volumeMounts:

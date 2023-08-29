@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: emby
-          image: linuxserver/emby:4.7.13 # {"$imagepolicy": "flux-system:emby"}
+          image: linuxserver/emby:4.7.14 # {"$imagepolicy": "flux-system:emby"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8096
@@ -43,6 +43,8 @@ spec:
             - mountPath: /data/home-photos
               name: nas-sam
               subPath: Personal/Fotos/Publish
+              # - mountPath: /dev/dri 
+              #   name: quicksync
           env:
             - name: PUID
               value: '0'
@@ -60,6 +62,9 @@ spec:
         - name: nas-sam
           persistentVolumeClaim:
             claimName: truenas-sam-pvc
+            # - name: quicksync
+            #   hostPath: 
+            #     path: /dev/dri
       dnsConfig:
         options:
           - name: ndots

@@ -1,20 +1,21 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: syslog-ng
+  name: flame
   namespace: flux-system
 spec:
-  image: linuxserver/syslog-ng
+  image: pawelmalak/flame
   interval: 30m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: syslog-ng
+  name: flame
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: syslog-ng
+    name: flame
   policy:
     semver:
-      range: 4.x.x
+      range: 2.x.x

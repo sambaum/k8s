@@ -1,11 +1,10 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dashy
+  name: json-exporter
   namespace: default
   labels:
-    app: dashy
+    app: json-exporter
   annotations:
     keel.sh/policy: major
     keel.sh/trigger: poll
@@ -16,11 +15,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dashy
+      app: json-exporter
   template:
     metadata:
       labels:
-        app: dashy
+        app: json-exporter
     spec:
       initContainers:
         - name: create-config
@@ -29,30 +28,33 @@ spec:
           args:
             [
               '-c',
-              'if [ -s /app/public/conf.yml ]; then echo file already there; else wget -c -O /app/public/conf.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/dashy/conf.yml --no-check-certificate; fi'
+              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/json-exporter/config.yml --no-check-certificate; fi'
             ]
           volumeMounts:
-            - mountPath: /app/public
+            - mountPath: /dummy
               name: settings-dir
-            - mountPath: /app/public/conf.yml
+            - mountPath: /config.yml
               name: settings
       containers:
-        - name: dashy
-          image: lissy93/dashy:2.1.1 # {"$imagepolicy": "flux-system:dashy"}
+        - name: json-exporter
+          image: quay.io/prometheuscommunity/json-exporter:v0.6.0 # {"$imagepolicy": "flux-system:json-exporter"}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 7979
+          env:
+            - name: TZ
+              value: 'Europe/Zurich'
           volumeMounts:
-            - mountPath: /app/public/conf.yml
+            - mountPath: /config.yml
               name: settings
       volumes:
         - name: settings-dir
           hostPath:
-            path: /conf/default/dashy
+            path: /conf/default/json-exporter
             type: DirectoryOrCreate
         - name: settings
           hostPath:
-            path: /conf/default/dashy/conf.yml
+            path: /conf/default/json-exporter/config.yml
             type: FileOrCreate
       dnsConfig:
         options:
@@ -62,41 +64,41 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: dashy-service
+  name: json-exporter-service
   namespace: default
 spec:
   selector:
-    app: dashy
+    app: json-exporter
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 7979
+      targetPort: 7979
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dashy-ingress
+  name: json-exporter-ingress
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
-    flame.pawelmalak/name: Dashy
-    flame.pawelmalak/url: https://dashy.example.com
-    flame.pawelmalak/icon: https://dashy.to/img/dashy.png
+    flame.pawelmalak/name: json-exporter
+    flame.pawelmalak/url: https://json-exporter.example.com
+    flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - 'dashy.example.com'
-      secretName: dashy-tls
+        - 'json-exporter.example.com'
+      secretName: json-exporter-tls
   rules:
-    - host: dashy.example.com
+    - host: json-exporter.example.com
       http:
         paths:
           - pathType: Prefix
             path: '/'
             backend:
               service:
-                name: dashy-service
+                name: json-exporter-service
                 port:
-                  number: 80
+                  number: 7979

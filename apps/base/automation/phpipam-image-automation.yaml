@@ -64,4 +64,4 @@ spec:
     name: phpipam-mariadb
   policy:
     semver:
-      range: 10.x.x
+      range: 11.x.x

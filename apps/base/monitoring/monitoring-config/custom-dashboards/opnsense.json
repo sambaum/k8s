@@ -2557,7 +2557,7 @@
       }
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
