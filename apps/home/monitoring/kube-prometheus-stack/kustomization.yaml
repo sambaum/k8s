@@ -119,9 +119,21 @@ patches:
             scrape_interval: 10s
             metrics_path: '/probe'
             params:
-              target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report'] 
+              target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report']
+              module: ['mystrom'] 
             scheme: https
             static_configs:
               - targets: ['json-exporter.int.sambaum.ch:443']
                 labels:
                   group: 'json-exporter-mystrom'
+          - job_name: 'nut_http'
+            scrape_interval: 10s
+            metrics_path: '/probe'
+            params:
+              target: ['https://nut-http.int.sambaum.ch/devices/ups?parsed=true'] 
+              module: ['nut_http']
+            scheme: https
+            static_configs:
+              - targets: ['json-exporter.int.sambaum.ch:443']
+                labels:
+                  group: 'nut_http'

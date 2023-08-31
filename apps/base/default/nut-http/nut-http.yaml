@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nut-http
+  namespace: default
+  labels:
+    app: nut-http
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nut-http
+  template:
+    metadata:
+      labels:
+        app: nut-http
+    spec:
+      containers:
+        - name: nut-http
+          image: deetoreu/nut-http:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3001
+          # volumeMounts:
+          #   - mountPath: /config
+          #     name: config
+          #     subPath: nut-http
+          #   - mountPath: /tv
+          #     name: media
+          #     subPath: Video/Series
+          #   - mountPath: /movies
+          #     name: media
+          #     subPath: Video/Movies
+          env:
+            - name: NUT_ADDRESS
+              value: 'truenas.int.sambaum.ch'
+            # - name: NUT_PORT
+            #   value: '3493'
+      # volumes:
+      #   - name: config
+      #     persistentVolumeClaim:
+      #       claimName: local-conf-pvc
+      #   - name: media
+      #     persistentVolumeClaim:
+      #       claimName: truenas-media-pvc
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nut-http-service
+  namespace: default
+spec:
+  selector:
+    app: nut-http
+  ports:
+    - protocol: TCP
+      port: 3001
+      targetPort: 3001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nut-http-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: nut-http
+    flame.pawelmalak/url: https://nut-http.example.com/devices/ups?parsed=true
+    flame.pawelmalak/icon: https://user-images.githubusercontent.com/26902309/41456760-be00043e-7081-11e8-9646-1b724037b4ff.png
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - 'nut-http.example.com'
+      secretName: nut-http-tls
+  rules:
+    - host: nut-http.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: nut-http-service
+                port:
+                  number: 3001
