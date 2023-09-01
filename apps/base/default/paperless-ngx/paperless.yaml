@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: paperless
-          image: paperlessngx/paperless-ngx:1.17.3 # {"$imagepolicy": "flux-system:paperless-ngx"}
+          image: paperlessngx/paperless-ngx:1.17.4 # {"$imagepolicy": "flux-system:paperless-ngx"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
