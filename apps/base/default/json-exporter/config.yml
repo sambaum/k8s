@@ -1,6 +1,6 @@
 ---
 modules:
-  default:
+  mystrom:
     headers:
       X-Dummy: my-test-header
     metrics:
@@ -24,3 +24,31 @@ modules:
       help: The Ws field represents the average power value since the last call. It is the energy consumed divided by the time elapsed since the last call. Energy = Ws ∙ ∆T. For continous consumption measurements (Ws values with timestamp stored in DB) Total Energy = ∑Ws ∙ (Tcurrent - Tbegin).
       labels:
         mystrom: Ws
+  nut_http:
+    headers:
+      X-Dummy: my-test-header
+    metrics:
+    - name: nut_http_status
+      path: '{ .ups.statusnum }'
+      help: Status Number. 1=Online, 2=Online&Charging, 3=On Battery, 4=Low Battery, 5=Shutdown Load
+      labels:
+        beeper_status: '{ .ups.beeper.status }'
+        device_model: '{ .device.model }'
+    - name: nut_http_runtime
+      path: '{ .battery.runtime }'
+      help: Battery runtime
+    - name: nut_http_battery_voltage
+      path: '{ .battery.voltage }'
+      help: Battery battery_voltage
+    - name: nut_http_charge
+      path: '{ .battery.charge }'
+      help: Battery charge
+    - name: nut_http_input_voltage
+      path: '{ .input.voltage }'
+      help: Battery input_voltage
+    - name: nut_http_load
+      path: '{ .ups.load }'
+      help: Battery load
+    - name: nut_http_realpower_nominal
+      path: '{ .ups.realpower.nominal }'
+      help: Nominal Power

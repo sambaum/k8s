@@ -27,28 +27,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3001
-          # volumeMounts:
-          #   - mountPath: /config
-          #     name: config
-          #     subPath: nut-http
-          #   - mountPath: /tv
-          #     name: media
-          #     subPath: Video/Series
-          #   - mountPath: /movies
-          #     name: media
-          #     subPath: Video/Movies
           env:
             - name: NUT_ADDRESS
               value: 'truenas.int.sambaum.ch'
-            # - name: NUT_PORT
-            #   value: '3493'
-      # volumes:
-      #   - name: config
-      #     persistentVolumeClaim:
-      #       claimName: local-conf-pvc
-      #   - name: media
-      #     persistentVolumeClaim:
-      #       claimName: truenas-media-pvc
       dnsConfig:
         options:
           - name: ndots
