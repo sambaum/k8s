@@ -137,3 +137,14 @@ patches:
               - targets: ['json-exporter.int.sambaum.ch:443']
                 labels:
                   group: 'nut_http'
+          - job_name: 'truenas'
+            scrape_interval: 60s
+            metrics_path: '/probe'
+            params:
+              target: ['https://truenas.int.sambaum.ch/api/v2.0/smart/test/results'] 
+              module: ['truenas']
+            scheme: https
+            static_configs:
+              - targets: ['json-exporter.int.sambaum.ch:443']
+                labels:
+                  group: 'truenas'

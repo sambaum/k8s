@@ -58,7 +58,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 0,
         "y": 0
@@ -140,7 +140,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 5,
+        "w": 6,
         "x": 6,
         "y": 0
       },
@@ -330,8 +330,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 11,
+        "w": 5,
+        "x": 12,
         "y": 0
       },
       "hideTimeOverride": true,
@@ -470,85 +470,6 @@
       ],
       "title": "System runtime",
       "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "transparent",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 300
-              },
-              {
-                "color": "green",
-                "value": 600
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 15,
-        "y": 0
-      },
-      "id": 26,
-      "links": [
-        {
-          "title": "",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
-        }
-      ],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "nut_http_runtime",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Current",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "UPS Runtime",
-      "type": "stat"
     },
     {
       "datasource": {
@@ -1044,322 +965,6 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "transparent",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 145
-              },
-              {
-                "color": "red",
-                "value": 155
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 15,
-        "y": 3
-      },
-      "id": 25,
-      "links": [
-        {
-          "title": "",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
-        }
-      ],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "nut_http_realpower_nominal",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "Current",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "nut_http_load",
-          "hide": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "24h Average",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$A/100*$B",
-          "hide": false,
-          "refId": "C",
-          "type": "math"
-        }
-      ],
-      "title": "UPS Power Draw",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "transparent",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 145
-              },
-              {
-                "color": "red",
-                "value": 155
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 0,
-        "y": 4
-      },
-      "id": 24,
-      "links": [
-        {
-          "title": "",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
-        }
-      ],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "mystrom_Ws",
-          "instant": false,
-          "legendFormat": "Current",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg_over_time(mystrom_Ws[1d])",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "24h Average",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Power Socket",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 80
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 2,
-        "y": 4
-      },
-      "id": 14,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "text": {
-          "titleSize": 11,
-          "valueSize": 13
-        },
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Dumpster",
-          "range": true,
-          "refId": "F",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Deskcube",
-          "range": true,
-          "refId": "E",
-          "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VPS1",
-          "range": true,
-          "refId": "D",
-          "step": 20
-        }
-      ],
-      "title": "VM's Root partition usage",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
@@ -1496,7 +1101,7 @@
         ]
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 20,
         "y": 4
@@ -1506,7 +1111,7 @@
       "links": [],
       "maxDataPoints": 70,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
@@ -1914,6 +1519,284 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 145
+              },
+              {
+                "color": "red",
+                "value": 155
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 5
+      },
+      "id": 24,
+      "links": [
+        {
+          "title": "",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "mystrom_Ws",
+          "instant": false,
+          "legendFormat": "Current",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(mystrom_Ws[1d])",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "24h Average",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Power Socket",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 300
+              },
+              {
+                "color": "green",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "dtdurations"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 2,
+        "y": 5
+      },
+      "id": 26,
+      "links": [
+        {
+          "title": "",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nut_http_runtime",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Current",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "UPS Runtime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 145
+              },
+              {
+                "color": "red",
+                "value": 155
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 4,
+        "y": 5
+      },
+      "id": 25,
+      "links": [
+        {
+          "title": "",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nut_http_realpower_nominal",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "Current",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nut_http_load",
+          "hide": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "24h Average",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$A/100*$B",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "UPS Power Draw",
+      "type": "stat"
+    },
+    {
+      "datasource": {
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
@@ -1971,7 +1854,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 9,
+        "w": 7,
         "x": 6,
         "y": 6
       },
@@ -2453,8 +2336,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 13,
         "y": 6
       },
       "id": 5,
@@ -2522,14 +2405,442 @@
     },
     {
       "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 8
+      },
+      "id": 14,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {
+          "titleSize": 11,
+          "valueSize": 13
+        },
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Dumpster",
+          "range": true,
+          "refId": "F",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Deskcube",
+          "range": true,
+          "refId": "E",
+          "step": 20
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+          },
+          "editorMode": "code",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "VPS1",
+          "range": true,
+          "refId": "D",
+          "step": 20
+        }
+      ],
+      "title": "VM's Root partition usage",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "noValue": "No Running S.M.A.R.T Tests",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-purple",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 9
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_current_test",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "TrueNAS Running S.M.A.R.T Tests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 11
+      },
+      "id": 21,
+      "links": [],
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {
+          "titleSize": 11
+        },
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "PVE1 CPU (5min)",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme0\", sensor=\"temp3\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "SSD 1",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme1\", sensor=\"temp3\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "SSD 2",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp2\"}\t",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "System",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp4\"}\t",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "PCH Chipset",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp3\"}\t",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "VRM MOS",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox2.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "PVE2 CPU (5min)",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "alias": "ff",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "0",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  5
+                ],
+                "type": "moving_average"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "resource",
+              "operator": "=",
+              "value": "cputemp"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$H/10-273.15",
+          "hide": false,
+          "refId": "TrueNAS CPU (5min)",
+          "type": "math"
+        }
+      ],
+      "timeFrom": "1w",
+      "title": "System temperature",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
       },
       "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 0,
-        "y": 7
+        "h": 11,
+        "w": 4,
+        "x": 20,
+        "y": 11
       },
       "id": 8,
       "links": [],
@@ -2667,7 +2978,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
+        "w": 7,
         "x": 6,
         "y": 12
       },
@@ -2928,8 +3239,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 13,
         "y": 12
       },
       "id": 16,
@@ -2997,250 +3308,6 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "blue",
-                "value": 70
-              },
-              {
-                "color": "orange",
-                "value": 80
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 0,
-        "y": 16
-      },
-      "id": 21,
-      "links": [],
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "max"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "text": {
-          "titleSize": 11
-        },
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "PVE1 CPU (5min)",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme0\", sensor=\"temp3\"}",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "SSD 1",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme1\", sensor=\"temp3\"}",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "SSD 2",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp2\"}\t",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "System",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp4\"}\t",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "PCH Chipset",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp3\"}\t",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VRM MOS",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox2.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "PVE2 CPU (5min)",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "alias": "ff",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  5
-                ],
-                "type": "moving_average"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "cputemp"
-            }
-          ]
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$H/10-273.15",
-          "hide": false,
-          "refId": "TrueNAS CPU (5min)",
-          "type": "math"
-        }
-      ],
-      "timeFrom": "1w",
-      "title": "System temperature",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
       },
@@ -3303,7 +3370,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
+        "w": 7,
         "x": 6,
         "y": 17
       },
@@ -3430,8 +3497,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 13,
         "y": 17
       },
       "id": 15,

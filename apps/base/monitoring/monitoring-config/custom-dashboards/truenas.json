@@ -31,17 +31,13 @@
   "panels": [
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
+        "type": "prometheus",
+        "uid": "prometheus"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
           "mappings": [],
-          "max": 100,
+          "noValue": "No Running S.M.A.R.T Tests",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -50,8 +46,8 @@
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "dark-purple",
+                "value": 1
               }
             ]
           },
@@ -61,18 +57,16 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 8,
         "x": 0,
         "y": 0
       },
-      "id": 23,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 32,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -80,210 +74,25 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true,
-        "valueMode": "color"
+        "textMode": "auto"
       },
-      "pluginVersion": "9.5.5",
-      "targets": [
-        {
-          "alias": "Idle",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "cpu-average",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "gauge.idle"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Usage",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "cpu-average",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"gauge.system\")+ last(\"gauge.user\")+ last(\"gauge.interrupt\") FROM \"cpu-average\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "percent.system"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "percent.user"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "percent.interrupt"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "CPU",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": null
-              }
-            ]
-          },
-          "unit": "dtdhms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 4,
-        "y": 0
-      },
-      "id": 8,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value"
-      },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
+          "editorMode": "code",
+          "expr": "truenas_current_test",
           "hide": false,
-          "measurement": "uptime",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT last(\"value\") FROM \"uptime\" ",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=",
-              "value": "truenas_local"
-            }
-          ]
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Uptime",
+      "title": "Running S.M.A.R.T Tests",
       "type": "stat"
     },
     {
@@ -442,7 +251,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "alias": "sdd",
@@ -1595,6 +1404,263 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 3
+      },
+      "id": 23,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "alias": "Idle",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "cpu-average",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "gauge.idle"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Usage",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "cpu-average",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"gauge.system\")+ last(\"gauge.user\")+ last(\"gauge.interrupt\") FROM \"cpu-average\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "percent.system"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "percent.user"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "percent.interrupt"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "CPU",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "PrQ94dx4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdhms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 4,
+        "y": 3
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "hide": false,
+          "measurement": "uptime",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT last(\"value\") FROM \"uptime\" ",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "truenas_local"
+            }
+          ]
+        }
+      ],
+      "title": "Uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "PrQ94dx4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "mode": "palette-classic"
           },
           "custom": {
@@ -1654,7 +1720,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 3
+        "y": 6
       },
       "id": 31,
       "links": [],
@@ -2322,221 +2388,6 @@
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 90,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": 300000,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 0,
-        "y": 9
-      },
-      "id": 13,
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.2.4",
-      "targets": [
-        {
-          "alias": "Longterm",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "load",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "longterm"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Midterm",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "load",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "midterm"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Shortterm",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "load",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "shortterm"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "title": "System Load",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3080,6 +2931,221 @@
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 90,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": 300000,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.2.4",
+      "targets": [
+        {
+          "alias": "Longterm",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "load",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "longterm"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Midterm",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "load",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "midterm"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Shortterm",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "load",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT * FROM \"vmx0_if_octets_rx\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "shortterm"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "System Load",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "PrQ94dx4k"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3124,7 +3190,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "alias": "Free",
@@ -3459,10 +3525,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 9,
         "w": 8,
         "x": 0,
-        "y": 18
+        "y": 21
       },
       "id": 25,
       "options": {
@@ -4103,7 +4169,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 29
+        "y": 30
       },
       "id": 28,
       "options": {
@@ -4403,7 +4469,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {

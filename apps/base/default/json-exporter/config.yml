@@ -52,3 +52,11 @@ modules:
     - name: nut_http_realpower_nominal
       path: '{ .ups.realpower.nominal }'
       help: Nominal Power
+  truenas:
+    headers:
+      X-Dummy: my-test-header
+    metrics:
+    - name: truenas_current_test_sdg
+      path: '{ [0].current_test.progress }'
+      help: exists only if a test is running, shows progress in % 
+
