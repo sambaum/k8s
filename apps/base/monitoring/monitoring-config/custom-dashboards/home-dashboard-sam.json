@@ -3431,6 +3431,7 @@
       "id": 29,
       "links": [
         {
+          "targetBlank": true,
           "title": "Uptime Kuma Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
         }
