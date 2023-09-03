@@ -504,10 +504,7 @@
       "id": 18,
       "links": [
         {
-          "title": "TrueNAS",
-          "url": "https://truenas.int.sambaum.ch/"
-        },
-        {
+          "targetBlank": true,
           "title": "TrueNAS Dashboard",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
         }
@@ -1108,7 +1105,13 @@
       },
       "id": 23,
       "interval": "",
-      "links": [],
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+        }
+      ],
       "maxDataPoints": 70,
       "options": {
         "colorMode": "value",
@@ -1559,6 +1562,7 @@
       "id": 24,
       "links": [
         {
+          "targetBlank": true,
           "title": "",
           "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
         }
@@ -1652,8 +1656,9 @@
       "id": 26,
       "links": [
         {
+          "targetBlank": true,
           "title": "",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/es3ZHkIWz/network-ups-tools"
         }
       ],
       "options": {
@@ -1732,8 +1737,9 @@
       "id": 25,
       "links": [
         {
+          "targetBlank": true,
           "title": "",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/b9e33f25-7d62-41d9-a541-20c511bb9a0e/mystrom-power-monitor"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/es3ZHkIWz/network-ups-tools"
         }
       ],
       "options": {
@@ -2554,6 +2560,13 @@
         "y": 9
       },
       "id": 27,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/es3ZHkIWz/network-ups-tools"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -3342,6 +3355,13 @@
         "y": 17
       },
       "id": 28,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Uptime Kuma Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -3409,6 +3429,12 @@
       },
       "hideTimeOverride": true,
       "id": 29,
+      "links": [
+        {
+          "title": "Uptime Kuma Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
+        }
+      ],
       "options": {
         "colorMode": "background_solid",
         "graphMode": "none",
@@ -3471,7 +3497,15 @@
         "x": 4,
         "y": 17
       },
+      "hideTimeOverride": true,
       "id": 30,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Uptime Kuma Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
