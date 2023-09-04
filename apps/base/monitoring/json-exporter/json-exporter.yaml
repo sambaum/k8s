@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: json-exporter
-  namespace: default
+  namespace: monitoring
   labels:
     app: json-exporter
   annotations:
@@ -28,7 +28,7 @@ spec:
           args:
             [
               '-c',
-              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/json-exporter/config.yml --no-check-certificate; fi'
+              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/json-exporter/config.yml --no-check-certificate; fi'
             ]
           volumeMounts:
             - mountPath: /dummy
@@ -50,11 +50,11 @@ spec:
       volumes:
         - name: settings-dir
           hostPath:
-            path: /conf/default/json-exporter
+            path: /conf/monitoring/json-exporter
             type: DirectoryOrCreate
         - name: settings
           hostPath:
-            path: /conf/default/json-exporter/config.yml
+            path: /conf/monitoring/json-exporter/config.yml
             type: FileOrCreate
       dnsConfig:
         options:
@@ -65,7 +65,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: json-exporter-service
-  namespace: default
+  namespace: monitoring
 spec:
   selector:
     app: json-exporter
@@ -78,7 +78,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: json-exporter-ingress
-  namespace: default
+  namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
