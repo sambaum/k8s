@@ -84,7 +84,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "truenas_current_test",
+          "expr": "truenas_current_test_percent_done",
           "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
