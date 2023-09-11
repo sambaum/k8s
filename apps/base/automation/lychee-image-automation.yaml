@@ -16,15 +16,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: lychee
-  # filterTags:
-  #   pattern: '^v4\.\d{1,2}\.\d{1,2}$'
-  # policy:
-  #   alphabetical:
-  #     order: asc
   policy:
     semver:
-      range: 4.x.x
-      pattern: '^v(.*)$'
+      range: v4.x.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
