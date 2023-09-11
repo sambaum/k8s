@@ -33,7 +33,7 @@ spec:
               name: settings
       containers:
         - name: lychee
-          image: lycheeorg/lychee:v4.7.4 # {"$imagepolicy": "flux-system:lychee"}
+          image: lycheeorg/lychee:v4.8.1 # {"$imagepolicy": "flux-system:lychee"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
