@@ -17,7 +17,7 @@ spec:
   imageRepositoryRef:
     name: lychee
   filterTags:
-    pattern: '^v4\.7\.\d$'
+    pattern: '^v4\.8\.\d$'
   policy:
     alphabetical:
       order: asc
