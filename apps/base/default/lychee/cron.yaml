@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
           - name: lychee-watch
-            image: lycheeorg/lychee:v4.9.4 # {"$imagepolicy": "flux-system:lychee"}
+            image: lycheeorg/lychee:v4.11.1 # {"$imagepolicy": "flux-system:lychee"}
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
