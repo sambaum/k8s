@@ -18,7 +18,7 @@ spec:
     name: wekan
   policy:
     semver:
-      range: v6.x
+      range: v7.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
