@@ -16,11 +16,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: wekan
-  filterTags:
-    pattern: '^v6\.\d{1,2}(\.\d{1,2})?$'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: v6.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
