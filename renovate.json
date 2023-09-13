@@ -8,6 +8,8 @@
       "^apps/.+\\.yaml$",
       "^tools/.+\\.yaml$",
       "^config/.+\\.yaml$",
+      "^clusters/.+\\.yaml$",
+      "^crds/.+\\.yaml$",
       "^volumes/.+\\.yaml$"
     ]
   },
