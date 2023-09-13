@@ -9,7 +9,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["linuxserver/prowlarr"],
-      "versioning": "loose"
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d{1,3})?$"
     }
   ]
 }
