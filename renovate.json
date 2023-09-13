@@ -6,6 +6,8 @@
   "kubernetes": {
     "fileMatch": [
       "^apps/.+\\.yaml$",
+      "^tools/.+\\.yaml$",
+      "^config/.+\\.yaml$",
       "^volumes/.+\\.yaml$"
     ]
   },
