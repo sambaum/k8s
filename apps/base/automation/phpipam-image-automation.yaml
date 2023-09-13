@@ -16,11 +16,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: phpipam-www
-  filterTags:
-    pattern: '^v1\.\d{1,2}\.\d{1,2}$'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: 1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
@@ -39,11 +37,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: phpipam-cron
-  filterTags:
-    pattern: '^v1\.\d{1,2}\.\d{1,2}$'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: 1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
@@ -64,4 +60,4 @@ spec:
     name: phpipam-mariadb
   policy:
     semver:
-      range: 11.x.x
+      range: 11.x

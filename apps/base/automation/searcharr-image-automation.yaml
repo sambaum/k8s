@@ -16,8 +16,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: searcharr
-  filterTags:
-    pattern: '^v3\.\d{1,2}(\.\d{1,2})?$'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: 3.x
