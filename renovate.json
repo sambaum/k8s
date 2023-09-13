@@ -4,7 +4,8 @@
     "config:base"
   ],
   "kubernetes": {
-    "fileMatch": ["^apps/base/.+\\.yaml$"]
+    "fileMatch": ["\\.yaml$"]
+    // "fileMatch": ["^apps/base/.+\\.yaml$"]
   },
   "packageRules": [
     {
