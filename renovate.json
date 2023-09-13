@@ -5,5 +5,11 @@
   ],
   "kubernetes": {
     "fileMatch": ["apps/base/default/.+\\.yaml$"]
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["linuxserver/prowlarr"],
+      "versioning": "loose"
+    }
+  ]
 }
