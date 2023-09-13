@@ -29,7 +29,7 @@
     },
     {
       "matchPackageNames": ["mongo"],
-      "matchFileNames": ["deployment1.yml"],
+      "matchPaths": ["wekan/kustomization.yaml"],
       "allowedVersions": "^5\\..*"
     }
   ]
