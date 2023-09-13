@@ -26,6 +26,11 @@
     {
       "matchPackageNames": ["linuxserver/transmission"],
       "versioning": "regex:^(?<major>\\d{1,2})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})?$" // prevent stuff like 2021.11.18
+    },
+    {
+      "matchPackageNames": ["mongo"],
+      "matchFileNames": ["deployment1.yml"],
+      "allowedVersions": "^5\\..*"
     }
   ]
 }
