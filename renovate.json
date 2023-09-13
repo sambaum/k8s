@@ -9,15 +9,28 @@
   "packageRules": [
     {
       "matchPackageNames": ["linuxserver/prowlarr"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d{1,3})?$"  // to prevent stuff like 1.8.1259
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d{1,3})?$",
+      "_comment": "prevent stuff like 1.8.1259"
     },
     {
       "matchPackageNames": ["linuxserver/healthchecks"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d{1,3})?$"  // to prevent stuff like 2.8.20230411
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d{1,3})?$",
+      "_comment": "prevent stuff like 2.8.20230411"
     },
     {
       "matchPackageNames": ["tuetenk0pp/sharelatex-full"],
-      "allowedVersions": "/^3\\.1\\.[0-9]+(\\.[0-9]+)?$/"
+      "allowedVersions": "/^3\\.1\\.[0-9]+(\\.[0-9]+)?$/",
+      "_comment": "Stick to 3.1, because higher versions use too much idle CPU."
+    },
+    {
+      "matchPackageNames": ["linuxserver/emby"],
+      "allowedVersions": "/^((4|5)\\.\\d{1,2}\\.\\d{1,2})$/",
+      "_comment": "prevent notifications about false 7.0.19 release"
+    },
+    {
+      "matchPackageNames": ["linuxserver/transmission"],
+      "versioning": "regex:^(?<major>\\d{1,2})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})?$",
+      "_comment": "prevent stuff like 2021.11.18"
     }
   ]
 }
