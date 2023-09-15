@@ -8,6 +8,16 @@
     "fileMatch": [ ".+\\.yaml$" ],
     "ignorePaths": [ "wip/**" ]
   },
+  "minor": {
+    "automerge": true
+  },
+  "patch": {
+    "automerge": true
+  },
+  "pin": {
+    "automerge": true
+  },
+  "automergeType": "branch",
   "packageRules": [
     {
       "matchPackageNames": ["linuxserver/prowlarr"],
