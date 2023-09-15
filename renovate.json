@@ -6,7 +6,7 @@
   "schedule": [ "* * * * *" ],
   "kubernetes": {
     "fileMatch": [ ".+\\.yaml$" ],
-    "ignorePaths": [ "^wip/.*" ]
+    "ignorePaths": [ "^wip/**" ]
   },
   "packageRules": [
     {
