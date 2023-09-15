@@ -5,15 +5,8 @@
   ],
   "schedule": [ "* * * * *" ],
   "kubernetes": {
-    "fileMatch": [
-      "^apps/.+\\.yaml$",
-      "^clusters/.+\\.yaml$",
-      "^config/.+\\.yaml$",
-      "^crds/.+\\.yaml$",
-      "^infrastructure/.+\\.yaml$",
-      "^tools/.+\\.yaml$",
-      "^volumes/.+\\.yaml$"
-    ]
+    "fileMatch": [ ".+\\.yaml$" ],
+    "ignorePaths": [ "^wip/.*" ]
   },
   "packageRules": [
     {
