@@ -7,7 +7,7 @@
   "kubernetes": {
     "fileMatch": [
       "^apps/.+\\.yaml$",
-      // "^clusters/.+\\.yaml$",
+      "^clusters/.+\\.yaml$",
       "^config/.+\\.yaml$",
       "^crds/.+\\.yaml$",
       "^infrastructure/.+\\.yaml$",
