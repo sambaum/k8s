@@ -3,7 +3,7 @@
   "extends": [
     "config:base"
   ],
-  "schedule": [ "every hour every weekday" ],
+  "schedule": [ "every 1 hour, every day" ],
   "kubernetes": {
     "fileMatch": [
       "^apps/.+\\.yaml$",
