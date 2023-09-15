@@ -10,7 +10,7 @@
       // "^clusters/.+\\.yaml$",
       "^config/.+\\.yaml$",
       "^crds/.+\\.yaml$",
-      // "^infrastructure/.+\\.yaml$",
+      "^infrastructure/.+\\.yaml$",
       "^tools/.+\\.yaml$",
       "^volumes/.+\\.yaml$"
     ]
