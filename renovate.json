@@ -39,32 +39,32 @@
     {
       "matchPackageNames": ["mongo"],
       "matchFileNames": ["**/wekan.yaml"],
-      "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 5
+      "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 5
     },
     {
       "matchPackageNames": ["mongo"],
       "matchFileNames": ["**/overleaf.yaml"],
-      "versioning": "regex:^4\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 4
+      "versioning": "regex:^4\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 4
     },
     {
       "matchPackageNames": ["mariadb"],
       "matchFileNames": ["**/lychee.yaml"],
-      "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 10
+      "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 10
     },
     {
       "matchPackageNames": ["redis"],
       "matchFileNames": ["**/overleaf.yaml"],
-      "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 5
+      "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 5
     },
     {
       "matchPackageNames": ["postgres"],
       "matchFileNames": ["**/paperless.yaml"],
-      "versioning": "regex:^13\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 13
+      "versioning": "regex:^13\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 13
     },
     {
       "matchPackageNames": ["influxdb"],
       "matchFileNames": ["**/influxdbv1.yaml"],
-      "versioning": "regex:^1\\.(?<minor>\\d+)\\.(?<patch>\\d+})?$" // Stick to Version 1
+      "versioning": "regex:^1\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 1
     }
   ]
 }
