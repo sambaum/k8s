@@ -3,7 +3,7 @@
   "extends": [
     "config:base"
   ],
-  "schedule": [ "hourly" ],
+  "schedule": [ "0 * * * *" ],
   "kubernetes": {
     "fileMatch": [
       "^apps/.+\\.yaml$",
