@@ -24,6 +24,7 @@
     "automerge": true
   },
   "automergeType": "branch",
+  "ignoreTests": true,
   "packageRules": [
     {
       "matchPackageNames": [
