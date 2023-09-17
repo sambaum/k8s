@@ -19,7 +19,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - rsync -amv --delete --include='*H265*' --include='folder.jpg' --include='movie.nfo' --include='*/' --exclude='*' /done/ /home-movies/
+            - rsync -amv -A --no-perms --delete --include='*H265*' --include='folder.jpg' --include='movie.nfo' --include='*/' --exclude='*' /done/ /home-movies/
             volumeMounts:
               - mountPath: /done/
                 name: nas-sam
