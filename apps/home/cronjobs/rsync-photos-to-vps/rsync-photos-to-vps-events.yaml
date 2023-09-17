@@ -4,7 +4,7 @@ metadata:
   name: rsync-photos-to-vps-events
   namespace: default
 spec:
-  schedule: "0 * * * *"
+  schedule: "15 12 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
