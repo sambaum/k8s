@@ -4,7 +4,7 @@ metadata:
   name: rsync-photos-to-vps-categories
   namespace: default
 spec:
-  schedule: "15 13 * * *"
+  schedule: "45 * * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
@@ -27,7 +27,7 @@ spec:
                 echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
                 echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
                 chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
-                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET" --delete
+                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: /photos/
