@@ -8,7 +8,15 @@
   ],
   "kubernetes": {
     "fileMatch": [
-      ".+\\.yaml$"
+      "\\.yaml$"
+    ],
+    "ignorePaths": [
+      "wip/**"
+    ]
+  },
+  "flux": {
+    "fileMatch": [
+      "\\.yaml$"
     ],
     "ignorePaths": [
       "wip/**"
