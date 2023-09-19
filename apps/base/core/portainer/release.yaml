@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -14,7 +13,7 @@ spec:
         kind: HelmRepository
         name: portainer
         namespace: flux-system
-      version: '1.0.x'
+      version: '1.0.45'
   interval: 30m
   install:
     remediation:
@@ -42,11 +41,11 @@ spec:
         flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
       labels: {}
       hosts:
-        - paths:
-            - path: '/'
-          host: 'portainer.example.com'
+      - paths:
+        - path: '/'
+        host: 'portainer.example.com'
       pathType: Prefix
       tls:
-        - hosts:
-            - 'portainer.example.com'
-          secretName: portainer-tls
+      - hosts:
+        - 'portainer.example.com'
+        secretName: portainer-tls

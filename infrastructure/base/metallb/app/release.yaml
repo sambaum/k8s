@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -13,7 +12,7 @@ spec:
         kind: HelmRepository
         name: metallb
         namespace: flux-system
-      version: '0.13.x'
+      version: '0.13.11'
   install:
     crds: Create
   interval: 30m

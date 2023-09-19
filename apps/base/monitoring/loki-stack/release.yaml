@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
-      version: '2.x'
+      version: '2.9.11'
   interval: 30m
   install:
     remediation:
@@ -25,7 +25,7 @@ spec:
         enabled: true
         storageClassName: openebs-local-hostpath-monitoring-data
         accessModes:
-          - ReadWriteOnce
+        - ReadWriteOnce
         size: 1Gi
       config:
         compactor:
