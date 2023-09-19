@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      version: '47.x'
+      version: '47.6.1'
   interval: 30m
   install:
     remediation:
@@ -38,10 +38,10 @@ spec:
         enabled: true
         storageClassName: openebs-local-hostpath-monitoring-conf
         accessModes:
-          - ReadWriteOnce
+        - ReadWriteOnce
         size: 1Gi
         finalizers:
-          - kubernetes.io/pvc-protection
+        - kubernetes.io/pvc-protection
         subPath: 'grafana'
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc
       ingress:
@@ -57,13 +57,13 @@ spec:
           flame.pawelmalak/icon: https://user-images.githubusercontent.com/10999/43383564-afa9ea6c-93db-11e8-855b-de8be4f79756.png
         labels: {}
         hosts:
-          - 'grafana.example.com'
+        - 'grafana.example.com'
         path: /
         pathType: Prefix
         tls:
-          - hosts:
-              - 'grafana.example.com'
-            secretName: grafana-tls
+        - hosts:
+          - 'grafana.example.com'
+          secretName: grafana-tls
 
     prometheus:
       enabled: true
@@ -95,10 +95,10 @@ spec:
           flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/prometheus-282488.png
         labels: {}
         hosts:
-          - 'prometheus.example.com'
+        - 'prometheus.example.com'
         path: /
         pathType: Prefix
         tls:
-          - hosts:
-              - 'prometheus.example.com'
-            secretName: prometheus-tls
+        - hosts:
+          - 'prometheus.example.com'
+          secretName: prometheus-tls
