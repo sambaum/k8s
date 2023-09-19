@@ -117,6 +117,14 @@
         "**/paperless.yaml"
       ],
       "versioning": "regex:^13\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 13
+    },
+    {
+      "matchPackageNames": [
+        "metallb"
+      ],
+      "minor": {
+        "automerge": false
+      }
     }
   ]
 }
