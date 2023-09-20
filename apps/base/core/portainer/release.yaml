@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: portainer
         namespace: flux-system
-      version: '1.0.45'
+      version: '1.0.46'
   interval: 30m
   install:
     remediation:
