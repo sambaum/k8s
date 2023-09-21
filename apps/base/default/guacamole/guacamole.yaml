@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: guacamole
-          image: flcontainers/guacamole:1.5.2 # {"$imagepolicy": "flux-system:guacamole"}
+          image: flcontainers/guacamole:1.5.3 # {"$imagepolicy": "flux-system:guacamole"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
