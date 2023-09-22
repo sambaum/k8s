@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      version: '47.6.1'
+      version: '48.x'
   interval: 30m
   install:
     remediation:
@@ -20,6 +20,10 @@ spec:
   upgrade:
     crds: CreateReplace
     force: true
+  valuesFrom:
+  - kind: ConfigMap
+    name: flux-kube-state-metrics-config
+    valuesKey: kube-state-metrics-config.yaml
 
   values:
     defaultRules:
@@ -102,3 +106,22 @@ spec:
         - hosts:
           - 'prometheus.example.com'
           secretName: prometheus-tls
+
+    postRenderers:
+    - kustomize:
+        patches:
+        - target:
+            # Ignore these objects from Flux diff as they are mutated from chart hooks
+            kind: (ValidatingWebhookConfiguration|MutatingWebhookConfiguration)
+            name: kube-prometheus-stack-admission
+          patch: |
+            - op: add
+              path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
+              value: disabled
+        - target:
+            # Ignore these objects from Flux diff as they are mutated at apply time but not at dry-run time
+            kind: PrometheusRule
+          patch: |
+            - op: add
+              path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
+              value: disabled
