@@ -24,4 +24,5 @@ spec:
     controller:
       service:
         loadBalancerIP: '${NGINX_LOADBALANCER_IP}'
+      allowSnippetAnnotations: true
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
