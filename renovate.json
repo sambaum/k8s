@@ -120,7 +120,8 @@
     },
     {
       "matchPackageNames": [
-        "metallb"
+        "metallb",
+        "ingress-nginx"
       ],
       "minor": {
         "automerge": false
