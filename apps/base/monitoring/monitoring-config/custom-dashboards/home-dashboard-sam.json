@@ -83,7 +83,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -172,7 +172,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -363,7 +363,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -913,7 +913,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -1127,7 +1127,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "sdd",
@@ -1581,7 +1581,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -1675,7 +1675,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -1756,7 +1756,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -1825,6 +1825,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 2,
@@ -2303,6 +2304,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -2473,7 +2475,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -2581,7 +2583,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -2665,7 +2667,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -2871,7 +2873,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "tags": [],
       "targets": [
         {
@@ -2909,6 +2911,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3119,9 +3122,9 @@
             }
           ],
           "hide": false,
-          "measurement": "enp4s0",
+          "measurement": "enp6s0",
           "orderByTime": "ASC",
-          "policy": "defaul",
+          "policy": "default",
           "query": "SELECT last(\"if_octets.rx\") FROM \"default\".\"enp4s0\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "D",
@@ -3163,7 +3166,7 @@
             }
           ],
           "hide": false,
-          "measurement": "enp4s0",
+          "measurement": "enp6s0",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -3213,6 +3216,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -3376,7 +3380,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -3450,7 +3454,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -3521,7 +3525,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -3566,6 +3570,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -3693,6 +3698,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
