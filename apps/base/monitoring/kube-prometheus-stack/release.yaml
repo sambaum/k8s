@@ -20,7 +20,10 @@ spec:
   upgrade:
     crds: CreateReplace
     force: true
-
+  valuesFrom:
+  - kind: ConfigMap
+    name: flux-kube-state-metrics-config
+    valuesKey: kube-state-metrics-config.yaml
   values:
     defaultRules:
       rules:
