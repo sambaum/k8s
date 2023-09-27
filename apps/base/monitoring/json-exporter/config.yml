@@ -1,4 +1,3 @@
----
 modules:
   mystrom:
     headers:
@@ -58,5 +57,5 @@ modules:
     metrics:
     - name: truenas_current_test_sdg
       path: '{ [0].current_test.progress }'
-      help: exists only if a test is running, shows progress in % 
+      help: exists only if a test is running, shows progress in %
 

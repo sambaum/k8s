@@ -22,39 +22,39 @@ spec:
         app: sonarr
     spec:
       containers:
-        - name: sonarr
-          image: linuxserver/sonarr:3.0.10 # {"$imagepolicy": "flux-system:sonarr"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8989
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: sonarr
-            - mountPath: /downloads
-              name: media
-              subPath: Downloads
-            - mountPath: /tv
-              name: media
-              subPath: Video/Series
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: sonarr
+        image: linuxserver/sonarr:3.0.10 # {"$imagepolicy": "flux-system:sonarr"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8989
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: sonarr
+        - mountPath: /downloads
+          name: media
+          subPath: Downloads
+        - mountPath: /tv
+          name: media
+          subPath: Video/Series
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: truenas-media-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -65,9 +65,9 @@ spec:
   selector:
     app: sonarr
   ports:
-    - protocol: TCP
-      port: 8989
-      targetPort: 8989
+  - protocol: TCP
+    port: 8989
+    targetPort: 8989
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -83,17 +83,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'sonarr.example.com'
-      secretName: sonarr-tls
+  - hosts:
+    - 'sonarr.example.com'
+    secretName: sonarr-tls
   rules:
-    - host: sonarr.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: sonarr-service
-                port:
-                  number: 8989
+  - host: sonarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: sonarr-service
+            port:
+              number: 8989

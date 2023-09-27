@@ -1,39 +1,39 @@
 resources:
-  - ../../../base/default/guacamole/
+- ../../../base/default/guacamole/
 patches:
-  - target:
-      kind: Ingress
-      name: guacamole-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules
-        value:
-          - host: guacamole.sambaum.ch
-            http:
-              paths:
-              - pathType: Prefix
-                path: "/"
-                backend:
-                  service:
-                    name: guacamole-service
-                    port:
-                      number: 8080
-          - host: guacamole.int.sambaum.ch
-            http:
-              paths:
-              - pathType: Prefix
-                path: "/"
-                backend:
-                  service:
-                    name: guacamole-service
-                    port:
-                      number: 8080
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [guacamole.sambaum.ch, guacamole.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://guacamole.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: guacamole-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules
+      value:
+        - host: guacamole.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: guacamole-service
+                  port:
+                    number: 8080
+        - host: guacamole.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: guacamole-service
+                  port:
+                    number: 8080
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [guacamole.sambaum.ch, guacamole.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://guacamole.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

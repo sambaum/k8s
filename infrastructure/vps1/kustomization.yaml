@@ -1,4 +1,4 @@
 resources:
-  - ../base/namespaces
-  - ../base/cert-manager
-  - shared-secrets
+- ../base/namespaces
+- ../base/cert-manager
+- shared-secrets

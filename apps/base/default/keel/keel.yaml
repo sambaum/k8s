@@ -22,26 +22,26 @@ spec:
         app: keel
     spec:
       containers:
-        - name: keel
-          image: keelhq/keel:0.19.1 # {"$imagepolicy": "flux-system:keel"}
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9300
-          env:
-            - name: BASIC_AUTH_USER
-              value: admin
-            - name: BASIC_AUTH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: keel-basic-auth-password-secret
-                  key: BASIC_AUTH_PASSWORD
-                  optional: false
-            - name: WEBHOOK_ENDPOINT
-              value: 'http://keel-telegram-bot.example.com/'
+      - name: keel
+        image: keelhq/keel:0.19.1 # {"$imagepolicy": "flux-system:keel"}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9300
+        env:
+        - name: BASIC_AUTH_USER
+          value: admin
+        - name: BASIC_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keel-basic-auth-password-secret
+              key: BASIC_AUTH_PASSWORD
+              optional: false
+        - name: WEBHOOK_ENDPOINT
+          value: 'http://keel-telegram-bot.example.com/'
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -52,9 +52,9 @@ spec:
   selector:
     app: keel
   ports:
-    - protocol: TCP
-      port: 9300
-      targetPort: 9300
+  - protocol: TCP
+    port: 9300
+    targetPort: 9300
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -70,17 +70,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'keel.example.com'
-      secretName: keel-tls
+  - hosts:
+    - 'keel.example.com'
+    secretName: keel-tls
   rules:
-    - host: keel.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: keel-service
-                port:
-                  number: 9300
+  - host: keel.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: keel-service
+            port:
+              number: 9300

@@ -1,2 +1,2 @@
 resources:
-  - ../../../base/default/test-pod/
+- ../../../base/default/test-pod/

@@ -21,20 +21,20 @@ spec:
             - -c
             - /crontab-ui/crontabs/revolut-fix-dates.sh
             volumeMounts:
-              - mountPath: /crontab-ui/crontabs/
-                name: config
-                subPath: crontab-ui
-              - mountPath: /ynab-csv-source/
-                name: temp
-                subPath: YNAB
+            - mountPath: /crontab-ui/crontabs/
+              name: config
+              subPath: crontab-ui
+            - mountPath: /ynab-csv-source/
+              name: temp
+              subPath: YNAB
           restartPolicy: OnFailure
           volumes:
-            - name: config
-              persistentVolumeClaim:
-                claimName: local-conf-pvc
-            - name: temp
-              persistentVolumeClaim:
-                claimName: truenas-temp-pvc
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
+          - name: temp
+            persistentVolumeClaim:
+              claimName: truenas-temp-pvc
       ttlSecondsAfterFinished: 180
 
 # while true; do echo running... && sleep 60; done

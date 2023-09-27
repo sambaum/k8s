@@ -22,29 +22,29 @@ spec:
         app: flame
     spec:
       containers:
-        - name: flame
-          image: pawelmalak/flame:2.3.1 # {"$imagepolicy": "flux-system:flame"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5005
-          volumeMounts:
-            - mountPath: /app/data
-              name: config
-              subPath: flame
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: PASSWORD
-              value: 'password'
+      - name: flame
+        image: pawelmalak/flame:2.3.1 # {"$imagepolicy": "flux-system:flame"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5005
+        volumeMounts:
+        - mountPath: /app/data
+          name: config
+          subPath: flame
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: PASSWORD
+          value: 'password'
       serviceAccountName: flame
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -55,9 +55,9 @@ spec:
   selector:
     app: flame
   ports:
-    - protocol: TCP
-      port: 5005
-      targetPort: 5005
+  - protocol: TCP
+    port: 5005
+    targetPort: 5005
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -73,17 +73,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'flame.example.com'
-      secretName: flame-tls
+  - hosts:
+    - 'flame.example.com'
+    secretName: flame-tls
   rules:
-    - host: flame.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: flame-service
-                port:
-                  number: 5005
+  - host: flame.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: flame-service
+            port:
+              number: 5005

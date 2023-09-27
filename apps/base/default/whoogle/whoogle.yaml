@@ -22,22 +22,22 @@ spec:
         app: whoogle
     spec:
       containers:
-        - name: whoogle
-          image: benbusby/whoogle-search:0.8.3 # {"$imagepolicy": "flux-system:whoogle"}
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5000
-          env:
-            - name: WHOOGLE_RESULTS_PER_PAGE
-              value: '25'
-            - name: WHOOGLE_CONFIG_GET_ONLY
-              value: 'true'
-            - name: WHOOGLE_CONFIG_VIEW_IMAGE
-              value: 'true'
+      - name: whoogle
+        image: benbusby/whoogle-search:0.8.3 # {"$imagepolicy": "flux-system:whoogle"}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: WHOOGLE_RESULTS_PER_PAGE
+          value: '25'
+        - name: WHOOGLE_CONFIG_GET_ONLY
+          value: 'true'
+        - name: WHOOGLE_CONFIG_VIEW_IMAGE
+          value: 'true'
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -48,9 +48,9 @@ spec:
   selector:
     app: whoogle
   ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -66,17 +66,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'whoogle.example.com'
-      secretName: whoogle-tls
+  - hosts:
+    - 'whoogle.example.com'
+    secretName: whoogle-tls
   rules:
-    - host: whoogle.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: whoogle-service
-                port:
-                  number: 5000
+  - host: whoogle.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: whoogle-service
+            port:
+              number: 5000

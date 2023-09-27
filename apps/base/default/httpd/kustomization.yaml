@@ -1,2 +1,2 @@
 resources:
-  - httpd.yaml
+- httpd.yaml

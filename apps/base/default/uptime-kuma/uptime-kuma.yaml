@@ -22,32 +22,32 @@ spec:
         app: uptime-kuma
     spec:
       containers:
-        - name: uptime-kuma
-          image: louislam/uptime-kuma:1.23.2 # {"$imagepolicy": "flux-system:uptime-kuma"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3001
-          volumeMounts:
-            - mountPath: /app/data
-              name: config
-              subPath: uptime-kuma
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN
-              value: '1'
+      - name: uptime-kuma
+        image: louislam/uptime-kuma:1.23.2 # {"$imagepolicy": "flux-system:uptime-kuma"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - mountPath: /app/data
+          name: config
+          subPath: uptime-kuma
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN
+          value: '1'
       initContainers:
-        - name: init-uptime-kuma
-          image: busybox:1.36.1 # {"$imagepolicy": "flux-system:busybox"}
-          command: ['sh', '-c', 'echo wait 1 seconds && sleep 1']
+      - name: init-uptime-kuma
+        image: busybox:1.36.1 # {"$imagepolicy": "flux-system:busybox"}
+        command: ['sh', '-c', 'echo wait 1 seconds && sleep 1']
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -58,9 +58,9 @@ spec:
   selector:
     app: uptime-kuma
   ports:
-    - protocol: TCP
-      port: 3001
-      targetPort: 3001
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -78,20 +78,20 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'uptime.example.com'
-      secretName: uptime-tls
+  - hosts:
+    - 'uptime.example.com'
+    secretName: uptime-tls
   rules:
-    - host: uptime.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: uptime-kuma-service
-                port:
-                  number: 3001
+  - host: uptime.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: uptime-kuma-service
+            port:
+              number: 3001
 
 # Bulk-Change:
 # cd /app/data

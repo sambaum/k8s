@@ -1,11 +1,11 @@
 resources:
-  - ../base
-  - ../base/metallb
+- ../base
+- ../base/metallb
 patches:
-  - target:
-      kind: Kustomization
-      name: metallb-ippool
-    patch: |-
-      - op: replace
-        path: /spec/path
-        value: ./infrastructure/isp/metallb/ippool
+- target:
+    kind: Kustomization
+    name: metallb-ippool
+  patch: |-
+    - op: replace
+      path: /spec/path
+      value: ./infrastructure/isp/metallb/ippool

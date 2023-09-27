@@ -1,4 +1,4 @@
 resources:
-  - openebs-operator
-  - calico
-  - podmonitor
+- openebs-operator
+- calico
+- podmonitor

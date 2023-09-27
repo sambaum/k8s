@@ -22,34 +22,34 @@ spec:
         app: searcharr
     spec:
       containers:
-        - name: searcharr
-          image: toddrob/searcharr:v3.2.2 # {"$imagepolicy": "flux-system:searcharr"}
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /app/data
-              name: config
-              subPath: searcharr/data
-            - mountPath: /app/settings.py
-              name: settings
-              # subPath: searcharr/settings.py
-            - mountPath: /app/logs
-              name: data
-              subPath: searcharr
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: searcharr
+        image: toddrob/searcharr:v3.2.2 # {"$imagepolicy": "flux-system:searcharr"}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /app/data
+          name: config
+          subPath: searcharr/data
+        - mountPath: /app/settings.py
+          name: settings
+          # subPath: searcharr/settings.py
+        - mountPath: /app/logs
+          name: data
+          subPath: searcharr
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: data
-          persistentVolumeClaim:
-            claimName: local-data-pvc
-        - name: settings
-          hostPath:
-            path: /conf/searcharr/settings.py
-            type: FileOrCreate
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+      - name: settings
+        hostPath:
+          path: /conf/searcharr/settings.py
+          type: FileOrCreate
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"

@@ -22,59 +22,59 @@ spec:
         app: healthchecks
     spec:
       containers:
-        - name: healthchecks
-          image: linuxserver/healthchecks:2.9.2 # {"$imagepolicy": "flux-system:healthchecks"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8000
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: healthchecks
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: PUID
-              value: '1000'
-            - name: PGID
-              value: '1000'
-            - name: DEBUG
-              value: 'True'
-            - name: REGENERATE_SETTINGS
-              value: 'true'
-            - name: SITE_ROOT
-              valueFrom:
-                secretKeyRef:
-                  name: healthchecks-secrets
-                  key: SITE_ROOT
-            - name: SUPERUSER_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  name: healthchecks-secrets
-                  key: SUPERUSER_EMAIL
-            - name: SUPERUSER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: healthchecks-secrets
-                  key: SUPERUSER_PASSWORD
-            - name: TELEGRAM_BOT_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: healthchecks-secrets
-                  key: TELEGRAM_BOT_NAME
-            - name: TELEGRAM_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: healthchecks-secrets
-                  key: TELEGRAM_TOKEN
+      - name: healthchecks
+        image: linuxserver/healthchecks:2.9.2 # {"$imagepolicy": "flux-system:healthchecks"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: healthchecks
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: DEBUG
+          value: 'True'
+        - name: REGENERATE_SETTINGS
+          value: 'true'
+        - name: SITE_ROOT
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secrets
+              key: SITE_ROOT
+        - name: SUPERUSER_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secrets
+              key: SUPERUSER_EMAIL
+        - name: SUPERUSER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secrets
+              key: SUPERUSER_PASSWORD
+        - name: TELEGRAM_BOT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secrets
+              key: TELEGRAM_BOT_NAME
+        - name: TELEGRAM_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secrets
+              key: TELEGRAM_TOKEN
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -85,9 +85,9 @@ spec:
   selector:
     app: healthchecks
   ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -103,19 +103,19 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'healthchecks.example.com'
-      secretName: healthchecks-tls
+  - hosts:
+    - 'healthchecks.example.com'
+    secretName: healthchecks-tls
   rules:
-    - host: healthchecks.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: healthchecks-service
-                port:
-                  number: 8000
+  - host: healthchecks.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: healthchecks-service
+            port:
+              number: 8000
 
 # For "one-off" Telegram integration see https://github.com/healthchecks/healthchecks/issues/115

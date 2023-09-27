@@ -43,7 +43,7 @@ metadata:
 spec:
   storageClassName: openebs-local-hostpath-conf
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 50G

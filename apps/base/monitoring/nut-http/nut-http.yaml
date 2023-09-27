@@ -22,18 +22,18 @@ spec:
         app: nut-http
     spec:
       containers:
-        - name: nut-http
-          image: deetoreu/nut-http:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3001
-          env:
-            - name: NUT_ADDRESS
-              value: 'truenas.int.sambaum.ch'
+      - name: nut-http
+        image: deetoreu/nut-http:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+        env:
+        - name: NUT_ADDRESS
+          value: 'truenas.int.sambaum.ch'
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -44,9 +44,9 @@ spec:
   selector:
     app: nut-http
   ports:
-    - protocol: TCP
-      port: 3001
-      targetPort: 3001
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -62,17 +62,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'nut-http.example.com'
-      secretName: nut-http-tls
+  - hosts:
+    - 'nut-http.example.com'
+    secretName: nut-http-tls
   rules:
-    - host: nut-http.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: nut-http-service
-                port:
-                  number: 3001
+  - host: nut-http.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: nut-http-service
+            port:
+              number: 3001

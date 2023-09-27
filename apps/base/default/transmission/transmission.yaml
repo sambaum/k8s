@@ -25,47 +25,47 @@ spec:
         cni.projectcalico.org/ipv4pools: '["fixed-ipv4-ippool-vpn"]'}
     spec:
       containers:
-        - name: transmission
-          image: linuxserver/transmission:4.0.4 # {"$imagepolicy": "flux-system:transmission"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9091
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: transmission
-            - mountPath: /downloads
-              name: transmission-downloads
-              subPath: Downloads
-            - mountPath: /watch
-              name: transmission-downloads
-              subPath: Downloads/watched/transmission
-            - mountPath: /incomplete-downloads
-              name: transmission-incomplete
-              subPath: transmission/incomplete-downloads
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: TRANSMISSION_WEB_HOME
-              value: '/config/flood-for-transmission/'
+      - name: transmission
+        image: linuxserver/transmission:4.0.4 # {"$imagepolicy": "flux-system:transmission"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9091
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: transmission
+        - mountPath: /downloads
+          name: transmission-downloads
+          subPath: Downloads
+        - mountPath: /watch
+          name: transmission-downloads
+          subPath: Downloads/watched/transmission
+        - mountPath: /incomplete-downloads
+          name: transmission-incomplete
+          subPath: transmission/incomplete-downloads
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: TRANSMISSION_WEB_HOME
+          value: '/config/flood-for-transmission/'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: transmission-incomplete
-          persistentVolumeClaim:
-            claimName: local-temp-pvc
-        - name: transmission-downloads
-          persistentVolumeClaim:
-            claimName: truenas-media-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: transmission-incomplete
+        persistentVolumeClaim:
+          claimName: local-temp-pvc
+      - name: transmission-downloads
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -76,18 +76,18 @@ spec:
   selector:
     app: transmission
   ports:
-    - protocol: TCP
-      port: 9091
-      targetPort: 9091
-      name: webui
-    - protocol: TCP
-      port: 51413
-      targetPort: 51413
-      name: torrentporttcp
-    - protocol: UDP
-      port: 51413
-      targetPort: 51413
-      name: torrentportudp
+  - protocol: TCP
+    port: 9091
+    targetPort: 9091
+    name: webui
+  - protocol: TCP
+    port: 51413
+    targetPort: 51413
+    name: torrentporttcp
+  - protocol: UDP
+    port: 51413
+    targetPort: 51413
+    name: torrentportudp
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -103,17 +103,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'transmission.example.com'
-      secretName: transmission-tls
+  - hosts:
+    - 'transmission.example.com'
+    secretName: transmission-tls
   rules:
-    - host: transmission.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: transmission-service
-                port:
-                  number: 9091
+  - host: transmission.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: transmission-service
+            port:
+              number: 9091

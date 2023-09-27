@@ -22,46 +22,46 @@ spec:
         app: phpipam
     spec:
       containers:
-        - name: phpipam
-          image: phpipam/phpipam-www:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-www"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: IPAM_DATABASE_HOST
-              value: 'phpipam-mariadb'
-            - name: IPAM_DATABASE_PASS
-              value: 'my_secret_phpipam_pass'
-            - name: IPAM_DATABASE_WEBHOST
-              value: '%'
-        - name: phpipam-cron
-          image: phpipam/phpipam-cron:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-cron"}
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: IPAM_DATABASE_HOST
-              value: 'phpipam-mariadb'
-            - name: IPAM_DATABASE_PASS
-              value: 'my_secret_phpipam_pass'
-            - name: SCAN_INTERVAL
-              value: '10m'
-        - name: phpipam-mariadb
-          image: mariadb:11.1.2 # {"$imagepolicy": "flux-system:phpipam-mariadb"}
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: config
-              subPath: phpipam/mariadb
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: 'my_secret_mysql_root_pass'
+      - name: phpipam
+        image: phpipam/phpipam-www:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-www"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: IPAM_DATABASE_HOST
+          value: 'phpipam-mariadb'
+        - name: IPAM_DATABASE_PASS
+          value: 'my_secret_phpipam_pass'
+        - name: IPAM_DATABASE_WEBHOST
+          value: '%'
+      - name: phpipam-cron
+        image: phpipam/phpipam-cron:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-cron"}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: IPAM_DATABASE_HOST
+          value: 'phpipam-mariadb'
+        - name: IPAM_DATABASE_PASS
+          value: 'my_secret_phpipam_pass'
+        - name: SCAN_INTERVAL
+          value: '10m'
+      - name: phpipam-mariadb
+        image: mariadb:11.1.2 # {"$imagepolicy": "flux-system:phpipam-mariadb"}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: config
+          subPath: phpipam/mariadb
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'my_secret_mysql_root_pass'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
 ---
 kind: Service
 apiVersion: v1
@@ -72,9 +72,9 @@ spec:
   selector:
     app: phpipam
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -85,9 +85,9 @@ spec:
   selector:
     app: phpipam
   ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -103,17 +103,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'phpipam.example.com'
-      secretName: phpipam-tls
+  - hosts:
+    - 'phpipam.example.com'
+    secretName: phpipam-tls
   rules:
-    - host: phpipam.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: phpipam-service
-                port:
-                  number: 80
+  - host: phpipam.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: phpipam-service
+            port:
+              number: 80

@@ -22,25 +22,25 @@ spec:
         app: duplicati
     spec:
       containers:
-        - name: duplicati
-          image: linuxserver/duplicati:development-version-v2.0.7.2-2.0.7.2_canary_2023-05-25 # {"$imagepolicy": "flux-system:duplicati"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8200
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
-              # resources:
-              #   limits:
-              #     cpu: "1.5"
+      - name: duplicati
+        image: linuxserver/duplicati:development-version-v2.0.7.2-2.0.7.2_canary_2023-05-25 # {"$imagepolicy": "flux-system:duplicati"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8200
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+          # resources:
+          #   limits:
+          #     cpu: "1.5"
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -51,9 +51,9 @@ spec:
   selector:
     app: duplicati
   ports:
-    - protocol: TCP
-      port: 8200
-      targetPort: 8200
+  - protocol: TCP
+    port: 8200
+    targetPort: 8200
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -71,17 +71,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'duplicati.example.com'
-      secretName: duplicati-tls
+  - hosts:
+    - 'duplicati.example.com'
+    secretName: duplicati-tls
   rules:
-    - host: duplicati.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: duplicati-service
-                port:
-                  number: 8200
+  - host: duplicati.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: duplicati-service
+            port:
+              number: 8200

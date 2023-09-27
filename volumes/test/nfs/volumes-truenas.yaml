@@ -27,7 +27,7 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/temp"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1
 ---
 
 kind: PersistentVolumeClaim
@@ -59,7 +59,7 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/media"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1
 ---
 
 kind: PersistentVolumeClaim
@@ -91,7 +91,7 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/sam"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1
 ---
 
 kind: PersistentVolumeClaim
@@ -123,7 +123,7 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/carol"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1
 ---
 
 kind: PersistentVolumeClaim
@@ -155,7 +155,7 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/other"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1
 ---
 
 kind: PersistentVolumeClaim
@@ -187,4 +187,4 @@ spec:
     server: truenas-databus.int.sambaum.ch
     path: "/mnt/pool1/backup"
   mountOptions:
-    - nfsvers=4.1
+  - nfsvers=4.1

@@ -1,2 +1,2 @@
 resources:
-  - json-exporter.yaml
+- json-exporter.yaml

@@ -1,12 +1,12 @@
 resources:
-  - ../base
-  - ../base/metallb
-  - shared-secrets
+- ../base
+- ../base/metallb
+- shared-secrets
 patches:
-  - target:
-      kind: Kustomization
-      name: metallb-ippool
-    patch: |-
-      - op: replace
-        path: /spec/path
-        value: ./infrastructure/test/metallb/ippool
+- target:
+    kind: Kustomization
+    name: metallb-ippool
+  patch: |-
+    - op: replace
+      path: /spec/path
+      value: ./infrastructure/test/metallb/ippool

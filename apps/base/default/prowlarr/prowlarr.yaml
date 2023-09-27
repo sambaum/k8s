@@ -22,26 +22,26 @@ spec:
         app: prowlarr
     spec:
       containers:
-        - name: prowlarr
-          image: linuxserver/prowlarr:1.8.6 # {"$imagepolicy": "flux-system:prowlarr"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 9696
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: prowlarr
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: prowlarr
+        image: linuxserver/prowlarr:1.8.6 # {"$imagepolicy": "flux-system:prowlarr"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9696
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: prowlarr
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -52,9 +52,9 @@ spec:
   selector:
     app: prowlarr
   ports:
-    - protocol: TCP
-      port: 9696
-      targetPort: 9696
+  - protocol: TCP
+    port: 9696
+    targetPort: 9696
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -70,17 +70,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'prowlarr.example.com'
-      secretName: prowlarr-tls
+  - hosts:
+    - 'prowlarr.example.com'
+    secretName: prowlarr-tls
   rules:
-    - host: prowlarr.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: prowlarr-service
-                port:
-                  number: 9696
+  - host: prowlarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: prowlarr-service
+            port:
+              number: 9696

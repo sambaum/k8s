@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,18 +23,18 @@ spec:
     spec:
       hostname: duplicacy-seebach
       containers:
-        - name: duplicacy
-          image: saspus/duplicacy-web:v1.7.2 # {"$imagepolicy": "flux-system:duplicacy"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3875
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: duplicacy
+        image: saspus/duplicacy-web:v1.7.2 # {"$imagepolicy": "flux-system:duplicacy"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3875
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -46,9 +45,9 @@ spec:
   selector:
     app: duplicacy
   ports:
-    - protocol: TCP
-      port: 3875
-      targetPort: 3875
+  - protocol: TCP
+    port: 3875
+    targetPort: 3875
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -64,17 +63,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'duplicacy.example.com'
-      secretName: duplicacy-tls
+  - hosts:
+    - 'duplicacy.example.com'
+    secretName: duplicacy-tls
   rules:
-    - host: duplicacy.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: duplicacy-service
-                port:
-                  number: 3875
+  - host: duplicacy.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: duplicacy-service
+            port:
+              number: 3875

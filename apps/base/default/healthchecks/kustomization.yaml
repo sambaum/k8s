@@ -1,2 +1,2 @@
 resources:
-  - healthchecks.yaml
+- healthchecks.yaml

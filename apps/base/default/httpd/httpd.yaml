@@ -22,23 +22,23 @@ spec:
         app: httpd
     spec:
       containers:
-        - name: httpd
-          image: httpd:2.4.57 # {"$imagepolicy": "flux-system:httpd"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /usr/local/apache2/htdocs/
-              name: config
-              subPath: httpd
+      - name: httpd
+        image: httpd:2.4.57 # {"$imagepolicy": "flux-system:httpd"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/local/apache2/htdocs/
+          name: config
+          subPath: httpd
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -49,9 +49,9 @@ spec:
   selector:
     app: httpd
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -67,17 +67,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'httpd.example.com'
-      secretName: httpd-tls
+  - hosts:
+    - 'httpd.example.com'
+    secretName: httpd-tls
   rules:
-    - host: httpd.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: httpd-service
-                port:
-                  number: 80
+  - host: httpd.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: httpd-service
+            port:
+              number: 80

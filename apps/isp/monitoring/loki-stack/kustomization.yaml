@@ -1,16 +1,16 @@
 resources:
-  - ../../../base/monitoring/loki-stack/
+- ../../../base/monitoring/loki-stack/
 patches:
-  - target:
-      kind: HelmRelease
-      name: loki-stack
-    patch: |-
-      - op: replace
-        path: /spec/values/loki/config/limits_config
-        value:
-         retention_period: 14d
-         retention_stream:
-         - selector: '{host="OPNsense.int.sambaum.ch"}'
-           priority: 1
-           period: 7d
+- target:
+    kind: HelmRelease
+    name: loki-stack
+  patch: |-
+    - op: replace
+      path: /spec/values/loki/config/limits_config
+      value:
+       retention_period: 14d
+       retention_stream:
+       - selector: '{host="OPNsense.int.sambaum.ch"}'
+         priority: 1
+         period: 7d
 # TOOD

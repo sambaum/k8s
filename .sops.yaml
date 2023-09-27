@@ -1,3 +1,3 @@
 creation_rules:
-        - path_regex: \.yaml$
-          age: 'age1gte9z7ue3uk3a4088kx3hcsfcww4pdzenufcjcpaxkg225zcsfks4wfnem'
+- path_regex: \.yaml$
+  age: 'age1gte9z7ue3uk3a4088kx3hcsfcww4pdzenufcjcpaxkg225zcsfks4wfnem'

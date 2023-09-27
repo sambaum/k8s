@@ -1,2 +1,2 @@
 resources:
-  - ../../../base/monitoring/syslog-ng/
+- ../../../base/monitoring/syslog-ng/

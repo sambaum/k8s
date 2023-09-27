@@ -22,42 +22,42 @@ spec:
         app: sabnzbd
     spec:
       containers:
-        - name: sabnzbd
-          image: linuxserver/sabnzbd:4.1.0 # {"$imagepolicy": "flux-system:sabnzbd"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 6789
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: sabnzbd
-            - mountPath: /downloads
-              name: sabnzbd-downloads
-              subPath: Downloads
-            - mountPath: /incomplete-downloads
-              name: sabnzbd-incomplete
-              subPath: sabnzbd/incomplete-downloads
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: sabnzbd
+        image: linuxserver/sabnzbd:4.1.0 # {"$imagepolicy": "flux-system:sabnzbd"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6789
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: sabnzbd
+        - mountPath: /downloads
+          name: sabnzbd-downloads
+          subPath: Downloads
+        - mountPath: /incomplete-downloads
+          name: sabnzbd-incomplete
+          subPath: sabnzbd/incomplete-downloads
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: sabnzbd-incomplete
-          persistentVolumeClaim:
-            claimName: local-temp-pvc
-        - name: sabnzbd-downloads
-          persistentVolumeClaim:
-            claimName: truenas-media-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: sabnzbd-incomplete
+        persistentVolumeClaim:
+          claimName: local-temp-pvc
+      - name: sabnzbd-downloads
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -68,9 +68,9 @@ spec:
   selector:
     app: sabnzbd
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -88,17 +88,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'sabnzbd.example.com'
-      secretName: sabnzbd.int-tls
+  - hosts:
+    - 'sabnzbd.example.com'
+    secretName: sabnzbd.int-tls
   rules:
-    - host: sabnzbd.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: sabnzbd-service
-                port:
-                  number: 8080
+  - host: sabnzbd.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: sabnzbd-service
+            port:
+              number: 8080

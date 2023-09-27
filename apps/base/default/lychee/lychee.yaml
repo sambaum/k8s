@@ -22,96 +22,96 @@ spec:
         app: lychee
     spec:
       initContainers:
-        - name: create-config
-          image: mwendler/wget
-          command: ["/bin/sh"]
-          args: ['-c', 'if [ -s /etc/nginx/nginx.conf ]; then echo file already there; else wget -c -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/lychee/nginx.conf --no-check-certificate; fi']
-          volumeMounts:
-            - mountPath: /conf/default/lychee
-              name: settings-dir
-            - mountPath: /etc/nginx/nginx.conf
-              name: settings
+      - name: create-config
+        image: mwendler/wget
+        command: ["/bin/sh"]
+        args: ['-c', 'if [ -s /etc/nginx/nginx.conf ]; then echo file already there; else wget -c -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/lychee/nginx.conf --no-check-certificate; fi']
+        volumeMounts:
+        - mountPath: /conf/default/lychee
+          name: settings-dir
+        - mountPath: /etc/nginx/nginx.conf
+          name: settings
       containers:
-        - name: lychee
-          image: lycheeorg/lychee:v4.13.0 # {"$imagepolicy": "flux-system:lychee"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /conf
-              name: config
-              subPath: lychee/conf
-            - mountPath: /uploads
-              name: config
-              subPath: lychee/uploads
-            - mountPath: /sym
-              name: config
-              subPath: lychee/sym
-            - mountPath: /watch
-              name: config
-              subPath: lychee/watch
-            - mountPath: /etc/nginx/nginx.conf
-              name: settings
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: DB_HOST
-              value: 'lychee-service-mariadb'
-            - name: DB_USERNAME
-              value: 'lychee'
-            - name: DB_PASSWORD
-              value: 'dbpassword'
-            - name: DB_DATABASE
-              value: 'lychee'
-            - name: DB_PORT
-              value: '3306'
-            - name: PGID
-              value: '1000'
-            - name: PUID
-              value: '1000'
-            - name: TRUSTED_PROXIES
-              value: '*'
-            - name: DB_CONNECTION
-              value: 'mysql'
-        - name: maria
-          image: mariadb:10.11.5 # {"$imagepolicy": "flux-system:lychee-mariadb"}
-          ports:
-            - containerPort: 3306
-          volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: config
-              subPath: lychee/mariadb
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: MYSQL_ROOT_PASSWORD
-              value: 'rootpassword'
-            - name: MYSQL_DATABASE
-              value: 'lychee'
-            - name: MYSQL_USER
-              value: 'lychee'
-            - name: MYSQL_PASSWORD
-              value: 'dbpassword'
-            - name: PGID
-              value: '1000'
-            - name: PUID
-              value: '1000'
+      - name: lychee
+        image: lycheeorg/lychee:v4.13.0 # {"$imagepolicy": "flux-system:lychee"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /conf
+          name: config
+          subPath: lychee/conf
+        - mountPath: /uploads
+          name: config
+          subPath: lychee/uploads
+        - mountPath: /sym
+          name: config
+          subPath: lychee/sym
+        - mountPath: /watch
+          name: config
+          subPath: lychee/watch
+        - mountPath: /etc/nginx/nginx.conf
+          name: settings
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: DB_HOST
+          value: 'lychee-service-mariadb'
+        - name: DB_USERNAME
+          value: 'lychee'
+        - name: DB_PASSWORD
+          value: 'dbpassword'
+        - name: DB_DATABASE
+          value: 'lychee'
+        - name: DB_PORT
+          value: '3306'
+        - name: PGID
+          value: '1000'
+        - name: PUID
+          value: '1000'
+        - name: TRUSTED_PROXIES
+          value: '*'
+        - name: DB_CONNECTION
+          value: 'mysql'
+      - name: maria
+        image: mariadb:10.11.5 # {"$imagepolicy": "flux-system:lychee-mariadb"}
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: config
+          subPath: lychee/mariadb
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'rootpassword'
+        - name: MYSQL_DATABASE
+          value: 'lychee'
+        - name: MYSQL_USER
+          value: 'lychee'
+        - name: MYSQL_PASSWORD
+          value: 'dbpassword'
+        - name: PGID
+          value: '1000'
+        - name: PUID
+          value: '1000'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: settings-dir
-          hostPath:
-            path: /conf/default/lychee
-            type: DirectoryOrCreate
-        - name: settings
-          hostPath:
-            path: /conf/default/lychee/nginx.conf
-            type: FileOrCreate
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: settings-dir
+        hostPath:
+          path: /conf/default/lychee
+          type: DirectoryOrCreate
+      - name: settings
+        hostPath:
+          path: /conf/default/lychee/nginx.conf
+          type: FileOrCreate
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -122,9 +122,9 @@ spec:
   selector:
     app: lychee
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -135,9 +135,9 @@ spec:
   selector:
     app: lychee
   ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -154,17 +154,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'lychee.example.com'
-      secretName: lychee-tls
+  - hosts:
+    - 'lychee.example.com'
+    secretName: lychee-tls
   rules:
-    - host: lychee.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: lychee-service
-                port:
-                  number: 80
+  - host: lychee.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: lychee-service
+            port:
+              number: 80

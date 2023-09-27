@@ -22,46 +22,46 @@ spec:
         app: syslog-ng
     spec:
       initContainers:
-        - name: create-config
-          image: mwendler/wget
-          command: ["/bin/sh"]
-          # [
-          #   'wget',
-          #   '-O',
-          #   '/config/syslog-ng.conf',
-          #   'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
-          #   '--no-check-certificate',
-          # ]
-          args: ['-c', 'if [ -s /config/syslog-ng.conf ]; then echo file already there; else wget -c -O /config/syslog-ng.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf --no-check-certificate; fi']
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: syslog-ng
+      - name: create-config
+        image: mwendler/wget
+        command: ["/bin/sh"]
+        # [
+        #   'wget',
+        #   '-O',
+        #   '/config/syslog-ng.conf',
+        #   'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
+        #   '--no-check-certificate',
+        # ]
+        args: ['-c', 'if [ -s /config/syslog-ng.conf ]; then echo file already there; else wget -c -O /config/syslog-ng.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf --no-check-certificate; fi']
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: syslog-ng
       containers:
-        - name: syslog-ng
-          image: linuxserver/syslog-ng:4.1.1 # {"$imagepolicy": "flux-system:syslog-ng"}
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: syslog-ng
-            - mountPath: /var/log
-              name: temp
-              subPath: syslog-ng
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: syslog-ng
+        image: linuxserver/syslog-ng:4.1.1 # {"$imagepolicy": "flux-system:syslog-ng"}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: syslog-ng
+        - mountPath: /var/log
+          name: temp
+          subPath: syslog-ng
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-monitoring-pvc
-        - name: temp
-          persistentVolumeClaim:
-            claimName: local-temp-monitoring-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-monitoring-pvc
+      - name: temp
+        persistentVolumeClaim:
+          claimName: local-temp-monitoring-pvc
 ---
 kind: Service
 apiVersion: v1
@@ -76,9 +76,9 @@ spec:
   selector:
     app: syslog-ng
   ports:
-    - protocol: TCP
-      port: 601
-      targetPort: 601
+  - protocol: TCP
+    port: 601
+    targetPort: 601
 ---
 kind: Service
 apiVersion: v1
@@ -93,9 +93,9 @@ spec:
   selector:
     app: syslog-ng
   ports:
-    - protocol: UDP
-      port: 514
-      targetPort: 514
+  - protocol: UDP
+    port: 514
+    targetPort: 514
 ---
 kind: Service
 apiVersion: v1
@@ -110,6 +110,6 @@ spec:
   selector:
     app: syslog-ng
   ports:
-    - protocol: TCP
-      port: 514
-      targetPort: 514
+  - protocol: TCP
+    port: 514
+    targetPort: 514

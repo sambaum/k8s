@@ -22,32 +22,32 @@ spec:
         app: serge
     spec:
       containers:
-        - name: serge
-          image: ghcr.io/serge-chat/serge:0.4.1 # {"$imagepolicy": "flux-system:serge"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8008
-          volumeMounts:
-            - mountPath: /usr/src/app/weights
-              name: config
-              subPath: serge
-            - mountPath: /data/db/
-              name: data
-              subPath: serge
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: serge
+        image: ghcr.io/serge-chat/serge:0.4.1 # {"$imagepolicy": "flux-system:serge"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8008
+        volumeMounts:
+        - mountPath: /usr/src/app/weights
+          name: config
+          subPath: serge
+        - mountPath: /data/db/
+          name: data
+          subPath: serge
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: data
-          persistentVolumeClaim:
-            claimName: local-data-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -58,9 +58,9 @@ spec:
   selector:
     app: serge
   ports:
-    - protocol: TCP
-      port: 8008
-      targetPort: 8008
+  - protocol: TCP
+    port: 8008
+    targetPort: 8008
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -76,17 +76,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'serge.example.com'
-      secretName: serge-tls
+  - hosts:
+    - 'serge.example.com'
+    secretName: serge-tls
   rules:
-    - host: serge.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: serge-service
-                port:
-                  number: 8008
+  - host: serge.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: serge-service
+            port:
+              number: 8008

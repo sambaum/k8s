@@ -22,15 +22,15 @@ spec:
         app: podinfo
     spec:
       containers:
-        - name: podinfo
-          image: stefanprodan/podinfo:6.5.0 # {"$imagepolicy": "flux-system:podinfo"}
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9898
+      - name: podinfo
+        image: stefanprodan/podinfo:6.5.0 # {"$imagepolicy": "flux-system:podinfo"}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9898
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -41,9 +41,9 @@ spec:
   selector:
     app: podinfo
   ports:
-    - protocol: TCP
-      port: 9898
-      targetPort: 9898
+  - protocol: TCP
+    port: 9898
+    targetPort: 9898
   type: NodePort
 ---
 apiVersion: networking.k8s.io/v1
@@ -59,17 +59,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'podinfo.example.com'
-      secretName: podinfo-tls
+  - hosts:
+    - 'podinfo.example.com'
+    secretName: podinfo-tls
   rules:
-    - host: podinfo.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: podinfo-service
-                port:
-                  number: 9898
+  - host: podinfo.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: podinfo-service
+            port:
+              number: 9898

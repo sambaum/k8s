@@ -22,52 +22,52 @@ spec:
         app: overleaf
     spec:
       containers:
-        - name: overleaf
-          image: tuetenk0pp/sharelatex-full:3.1.0.3 # {"$imagepolicy": "flux-system:overleaf"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /var/lib/sharelatex
-              name: config
-              subPath: overleaf/overleaf
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-            - name: SHARELATEX_MONGO_URL
-              value: mongodb://overleaf-service-mongo/sharelatex
-            - name: SHARELATEX_REDIS_HOST
-              value: overleaf-service-redis
-            - name: REDIS_HOST
-              value: overleaf-service-redis
-            - name: EMAIL_CONFIRMATION_DISABLED
-              value: 'true'
-            - name: SHARELATEX_SITE_URL
-              value: https://overleaf.example.com
-        - name: mongo
-          image: mongo:4.4.24 # {"$imagepolicy": "flux-system:overleaf-mongo"}
-          ports:
-            - containerPort: 27017
-          volumeMounts:
-            - mountPath: /data/db
-              name: config
-              subPath: overleaf/mongodb
-        - name: redis
-          image: redis:5.0.14 # {"$imagepolicy": "flux-system:overleaf-redis"}
-          ports:
-            - containerPort: 6379
-          volumeMounts:
-            - mountPath: /data
-              name: config
-              subPath: overleaf/redis
+      - name: overleaf
+        image: tuetenk0pp/sharelatex-full:3.1.0.3 # {"$imagepolicy": "flux-system:overleaf"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /var/lib/sharelatex
+          name: config
+          subPath: overleaf/overleaf
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: SHARELATEX_MONGO_URL
+          value: mongodb://overleaf-service-mongo/sharelatex
+        - name: SHARELATEX_REDIS_HOST
+          value: overleaf-service-redis
+        - name: REDIS_HOST
+          value: overleaf-service-redis
+        - name: EMAIL_CONFIRMATION_DISABLED
+          value: 'true'
+        - name: SHARELATEX_SITE_URL
+          value: https://overleaf.example.com
+      - name: mongo
+        image: mongo:4.4.24 # {"$imagepolicy": "flux-system:overleaf-mongo"}
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: config
+          subPath: overleaf/mongodb
+      - name: redis
+        image: redis:5.0.14 # {"$imagepolicy": "flux-system:overleaf-redis"}
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: config
+          subPath: overleaf/redis
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -78,9 +78,9 @@ spec:
   selector:
     app: overleaf
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -91,9 +91,9 @@ spec:
   selector:
     app: overleaf
   ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
 ---
 kind: Service
 apiVersion: v1
@@ -104,9 +104,9 @@ spec:
   selector:
     app: overleaf
   ports:
-    - protocol: TCP
-      port: 6379
-      targetPort: 6379
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -125,17 +125,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'overleaf.example.com'
-      secretName: overleaf-tls
+  - hosts:
+    - 'overleaf.example.com'
+    secretName: overleaf-tls
   rules:
-    - host: overleaf.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: overleaf-service
-                port:
-                  number: 80
+  - host: overleaf.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: overleaf-service
+            port:
+              number: 80

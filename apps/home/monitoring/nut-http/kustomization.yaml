@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/monitoring/nut-http/
+- ../../../base/monitoring/nut-http/
 patches:
-  - target:
-      kind: Ingress
-      name: nut-http-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: nut-http.int.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [nut-http.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://nut-http.int.sambaum.ch/devices/ups?parsed=true
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: nut-http-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: nut-http.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [nut-http.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://nut-http.int.sambaum.ch/devices/ups?parsed=true
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

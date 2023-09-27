@@ -1,31 +1,31 @@
 # Default Pool
 apiVersion: crd.projectcalico.org/v1
 items:
-  - apiVersion: crd.projectcalico.org/v1
-    kind: IPPool
-    metadata:
-      name: default-ipv4-ippool
-    spec:
-      blockSize: 26
-      cidr: 10.1.0.0/16
-      ipipMode: Never
-      natOutgoing: true
-      nodeSelector: all()
-      vxlanMode: Always
+- apiVersion: crd.projectcalico.org/v1
+  kind: IPPool
+  metadata:
+    name: default-ipv4-ippool
+  spec:
+    blockSize: 26
+    cidr: 10.1.0.0/16
+    ipipMode: Never
+    natOutgoing: true
+    nodeSelector: all()
+    vxlanMode: Always
 kind: IPPoolList
 ---
 # No NAT and force through VPN
 apiVersion: crd.projectcalico.org/v1
 items:
-  - apiVersion: crd.projectcalico.org/v1
-    kind: IPPool
-    metadata:
-      name: fixed-ipv4-ippool-vpn
-    spec:
-      blockSize: 26
-      cidr: 10.1.1.0/24
-      ipipMode: Never
-      natOutgoing: false
-      nodeSelector: '!all()'
-      vxlanMode: Always
+- apiVersion: crd.projectcalico.org/v1
+  kind: IPPool
+  metadata:
+    name: fixed-ipv4-ippool-vpn
+  spec:
+    blockSize: 26
+    cidr: 10.1.1.0/24
+    ipipMode: Never
+    natOutgoing: false
+    nodeSelector: '!all()'
+    vxlanMode: Always
 kind: IPPoolList

@@ -2,84 +2,84 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 resources:
-  - podmonitor
+- podmonitor
 configMapGenerator:
-  - name: flux-grafana-dashboards
-    files:
-      - flux-dashboards/control-plane.json
-      - flux-dashboards/cluster.json
-      - flux-dashboards/logs.json
-    options:
-      labels:
-        grafana_dashboard: "1"
-        app.kubernetes.io/part-of: flux
-        app.kubernetes.io/component: monitoring
+- name: flux-grafana-dashboards
+  files:
+  - flux-dashboards/control-plane.json
+  - flux-dashboards/cluster.json
+  - flux-dashboards/logs.json
+  options:
+    labels:
+      grafana_dashboard: "1"
+      app.kubernetes.io/part-of: flux
+      app.kubernetes.io/component: monitoring
 
-  - name: grafana-dashboards-default
-    files:
-      - custom-dashboards/alerts-dashboard.json
-      - custom-dashboards/node-pods-sam.json
-      - custom-dashboards/pods.json
-      - custom-dashboards/storage.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-default
+  files:
+  - custom-dashboards/alerts-dashboard.json
+  - custom-dashboards/node-pods-sam.json
+  - custom-dashboards/pods.json
+  - custom-dashboards/storage.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-proxmox
-    files:
-      - custom-dashboards/system-proxmox.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-proxmox
+  files:
+  - custom-dashboards/system-proxmox.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-opnsense
-    files:
-      - custom-dashboards/opnsense.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-opnsense
+  files:
+  - custom-dashboards/opnsense.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-other
-    files:
-      - custom-dashboards/uptime-kuma.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-other
+  files:
+  - custom-dashboards/uptime-kuma.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-truenas
-    files:
-      - custom-dashboards/truenas.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-truenas
+  files:
+  - custom-dashboards/truenas.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-home-dashboards
-    files:
-      - custom-dashboards/home-dashboard-sam.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-home-dashboards
+  files:
+  - custom-dashboards/home-dashboard-sam.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-logs
-    files:
-      - custom-dashboards/filtered-logs.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-logs
+  files:
+  - custom-dashboards/filtered-logs.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-mystrom
-    files:
-      - custom-dashboards/mystrom-power.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-mystrom
+  files:
+  - custom-dashboards/mystrom-power.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
-  - name: grafana-dashboards-ups
-    files:
-      - custom-dashboards/ups.json
-    options:
-      labels:
-        grafana_dashboard: '1'
+- name: grafana-dashboards-ups
+  files:
+  - custom-dashboards/ups.json
+  options:
+    labels:
+      grafana_dashboard: '1'
 
 generatorOptions:
   annotations:

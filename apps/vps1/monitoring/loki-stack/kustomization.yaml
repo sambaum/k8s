@@ -1,2 +1,2 @@
 resources:
-  - ../../../base/monitoring/loki-stack/
+- ../../../base/monitoring/loki-stack/

@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/default/keel/
+- ../../../base/default/keel/
 patches:
-  - target:
-      kind: Ingress
-      name: keel-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: keel.t21.circle.ispin.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [keel.t21.circle.ispin.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://keel.t21.circle.ispin.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: keel-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: keel.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [keel.t21.circle.ispin.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://keel.t21.circle.ispin.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

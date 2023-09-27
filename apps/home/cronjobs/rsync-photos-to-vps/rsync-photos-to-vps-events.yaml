@@ -23,37 +23,37 @@ spec:
             - /bin/sh
             - -c
             - |
-                mkdir -p /root/.ssh
-                echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
-                echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
-                chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
-                rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
+              mkdir -p /root/.ssh
+              echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+              echo "$SSH_KNOWN_HOSTS" > /root/.ssh/known_hosts
+              chmod 600 /root/.ssh/ /root/.ssh/id_rsa /root/.ssh/known_hosts
+              rsync -avzm --include "*/" --include "*.jpg" --exclude "*" "$RSYNC_SOURCE" "$RSYNC_TARGET"
             imagePullPolicy: IfNotPresent
             volumeMounts:
-              - mountPath: /photos/
-                name: nas-sam
-                subPath: Personal/Fotos/Publish-Web/Events
+            - mountPath: /photos/
+              name: nas-sam
+              subPath: Personal/Fotos/Publish-Web/Events
             env:
-              - name: SSH_PRIVATE_KEY
-                value: ''
-                valueFrom:
-                   secretKeyRef:
-                     name: rsync-photos-to-vps-key
-                     key: privatekey
-                     optional: false
-              - name: SSH_KNOWN_HOSTS
-                value: 'vmi1093363.sambaum.ch,192.145.37.10 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDpdOnCpYxVNfmMgq5CmX37lPUHhFxgPcTW/oFe9FvCRyLJJ/pcH09klg7jGobRGYfXW5k6q3PqAvwI9jXrf4TQ='
-              - name: RSYNC_SOURCE
-                value: '/photos/'
-              - name: RSYNC_TARGET
-                value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
+            - name: SSH_PRIVATE_KEY
+              value: ''
+              valueFrom:
+                secretKeyRef:
+                  name: rsync-photos-to-vps-key
+                  key: privatekey
+                  optional: false
+            - name: SSH_KNOWN_HOSTS
+              value: 'vmi1093363.sambaum.ch,192.145.37.10 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDpdOnCpYxVNfmMgq5CmX37lPUHhFxgPcTW/oFe9FvCRyLJJ/pcH09klg7jGobRGYfXW5k6q3PqAvwI9jXrf4TQ='
+            - name: RSYNC_SOURCE
+              value: '/photos/'
+            - name: RSYNC_TARGET
+              value: 'root@vmi1093363.sambaum.ch:/conf/default/lychee/watch/'
           restartPolicy: OnFailure
           volumes:
-            - name: nas-sam
-              persistentVolumeClaim:
-                claimName: truenas-sam-pvc
+          - name: nas-sam
+            persistentVolumeClaim:
+              claimName: truenas-sam-pvc
           dnsConfig:
             options:
-              - name: ndots
-                value: "1"
+            - name: ndots
+              value: "1"
       ttlSecondsAfterFinished: 172800

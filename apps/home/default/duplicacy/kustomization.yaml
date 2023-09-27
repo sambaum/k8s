@@ -1,88 +1,88 @@
 resources:
-  - ../../../base/default/duplicacy/
+- ../../../base/default/duplicacy/
 patches:
-  - target:
-      kind: Ingress
-      name: duplicacy-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: duplicacy.int.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/secretName
-        value: duplicacy-prod-tls
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [duplicacy.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://duplicacy.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1name
-        value: Duplicacy
+- target:
+    kind: Ingress
+    name: duplicacy-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: duplicacy.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: duplicacy-prod-tls
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [duplicacy.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://duplicacy.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1name
+      value: Duplicacy
 
-  - target:
-      kind: Deployment
-      name: duplicacy
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/volumeMounts
-        value:
-          - mountPath: /config
-            name: config
-            subPath: duplicacy
-          - mountPath: /tmp
-            name: temp
-            subPath: duplicacy
-          - mountPath: /storage/sam
-            name: nas-sam
-          - mountPath: /storage/media
-            name: nas-media
-          - mountPath: /storage/carol
-            name: nas-carol
-          - mountPath: /storage/other
-            name: nas-other
-          - mountPath: /storage/backup
-            name: nas-backup
-          - mountPath: /storage/temp
-            name: nas-temp
-          - mountPath: /storage/home-conf-default
-            name: config
-          # - mountPath: /storage/home-conf-monitoring
-          #   name: config-monitoring
-      - op: add
-        path: /spec/template/spec/volumes
-        value:
-          - name: config
-            persistentVolumeClaim:
-              claimName: local-conf-pvc
-          # - name: config-monitoring
-          #   persistentVolumeClaim:
-          #     claimName: local-conf-monitoring-pvc
-          - name: data
-            persistentVolumeClaim:
-              claimName: local-data-pvc
-          - name: temp
-            persistentVolumeClaim:
-              claimName: local-temp-pvc
-          - name: nas-temp
-            persistentVolumeClaim:
-              claimName: truenas-temp-pvc
-          - name: nas-sam
-            persistentVolumeClaim:
-              claimName: truenas-sam-pvc
-          - name: nas-media
-            persistentVolumeClaim:
-              claimName: truenas-media-pvc
-          - name: nas-carol
-            persistentVolumeClaim:
-              claimName: truenas-carol-pvc
-          - name: nas-other
-            persistentVolumeClaim:
-              claimName: truenas-other-pvc
-          - name: nas-backup
-            persistentVolumeClaim:
-              claimName: truenas-backup-pvc
+- target:
+    kind: Deployment
+    name: duplicacy
+  patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts
+      value:
+        - mountPath: /config
+          name: config
+          subPath: duplicacy
+        - mountPath: /tmp
+          name: temp
+          subPath: duplicacy
+        - mountPath: /storage/sam
+          name: nas-sam
+        - mountPath: /storage/media
+          name: nas-media
+        - mountPath: /storage/carol
+          name: nas-carol
+        - mountPath: /storage/other
+          name: nas-other
+        - mountPath: /storage/backup
+          name: nas-backup
+        - mountPath: /storage/temp
+          name: nas-temp
+        - mountPath: /storage/home-conf-default
+          name: config
+        # - mountPath: /storage/home-conf-monitoring
+        #   name: config-monitoring
+    - op: add
+      path: /spec/template/spec/volumes
+      value:
+        - name: config
+          persistentVolumeClaim:
+            claimName: local-conf-pvc
+        # - name: config-monitoring
+        #   persistentVolumeClaim:
+        #     claimName: local-conf-monitoring-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: local-data-pvc
+        - name: temp
+          persistentVolumeClaim:
+            claimName: local-temp-pvc
+        - name: nas-temp
+          persistentVolumeClaim:
+            claimName: truenas-temp-pvc
+        - name: nas-sam
+          persistentVolumeClaim:
+            claimName: truenas-sam-pvc
+        - name: nas-media
+          persistentVolumeClaim:
+            claimName: truenas-media-pvc
+        - name: nas-carol
+          persistentVolumeClaim:
+            claimName: truenas-carol-pvc
+        - name: nas-other
+          persistentVolumeClaim:
+            claimName: truenas-other-pvc
+        - name: nas-backup
+          persistentVolumeClaim:
+            claimName: truenas-backup-pvc

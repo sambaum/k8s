@@ -2,70 +2,70 @@ commonLabels:
   app: paperless-test1
 
 resources:
-  - ../../../base/default/paperless-ngx/
+- ../../../base/default/paperless-ngx/
 
 transformers:
 - ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
-  - target:
-      kind: Deployment
-      name: paperless
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/volumeMounts/0/subPath
-        value: paperless-test1/webserver
-      - op: replace
-        path: /spec/template/spec/containers/1/volumeMounts/0/subPath
-        value: paperless-test1/redis
-      - op: replace
-        path: /spec/template/spec/containers/2/volumeMounts/0/subPath
-        value: paperless-test1/postgres
-      - op: replace
-        path: /spec/template/spec/containers/0/volumeMounts/1/subPath
-        value: paperless-test1
-      - op: replace
-        path: /spec/template/spec/containers/0/volumeMounts/2/subPath
-        value: P-Consume/test1
-      - op: replace
-        path: /spec/template/spec/containers/0/volumeMounts/3/subPath
-        value: P-test1
-      - op: remove
-        path: /spec/template/spec/containers/0/env/5/value
-        value: admin
-      - op: replace
-        path: /spec/template/spec/containers/0/env/6/value
-        # value: '{created_year}/{created}'
-        value: '{document_type}/{created_year}/{created} {title} {tag_list}'
-      - op: replace
-        path: /spec/template/spec/containers/0/env/11/value
-        value: https://paperless-test1.composter.int.sambaum.ch
-      - op: replace
-        path: /spec/template/spec/containers/0/env/13/value
-        value: redis://paperless-broker-test1:6379
-      - op: replace # op: remove, if you want to use SQLite; op: replace, if you want Postgres
-        path: /spec/template/spec/containers/0/env/15/value
-        value: paperless-db-test1
+- target:
+    kind: Deployment
+    name: paperless
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/volumeMounts/0/subPath
+      value: paperless-test1/webserver
+    - op: replace
+      path: /spec/template/spec/containers/1/volumeMounts/0/subPath
+      value: paperless-test1/redis
+    - op: replace
+      path: /spec/template/spec/containers/2/volumeMounts/0/subPath
+      value: paperless-test1/postgres
+    - op: replace
+      path: /spec/template/spec/containers/0/volumeMounts/1/subPath
+      value: paperless-test1
+    - op: replace
+      path: /spec/template/spec/containers/0/volumeMounts/2/subPath
+      value: P-Consume/test1
+    - op: replace
+      path: /spec/template/spec/containers/0/volumeMounts/3/subPath
+      value: P-test1
+    - op: remove
+      path: /spec/template/spec/containers/0/env/5/value
+      value: admin
+    - op: replace
+      path: /spec/template/spec/containers/0/env/6/value
+      # value: '{created_year}/{created}'
+      value: '{document_type}/{created_year}/{created} {title} {tag_list}'
+    - op: replace
+      path: /spec/template/spec/containers/0/env/11/value
+      value: https://paperless-test1.composter.int.sambaum.ch
+    - op: replace
+      path: /spec/template/spec/containers/0/env/13/value
+      value: redis://paperless-broker-test1:6379
+    - op: replace # op: remove, if you want to use SQLite; op: replace, if you want Postgres
+      path: /spec/template/spec/containers/0/env/15/value
+      value: paperless-db-test1
 
-  - target:
-      kind: Ingress
-      name: paperless-ingress
-    patch: |-
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [paperless-test1.composter.int.sambaum.ch]
-      - op: replace
-        path: /spec/tls/0/secretName
-        value: paperless-test1-tls
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://paperless-test1.composter.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1name
-        value: Paperless test1
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
-      - op: replace
-        path: /spec/rules/0/host
-        value: paperless-test1.composter.int.sambaum.ch
+- target:
+    kind: Ingress
+    name: paperless-ingress
+  patch: |-
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [paperless-test1.composter.int.sambaum.ch]
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: paperless-test1-tls
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://paperless-test1.composter.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1name
+      value: Paperless test1
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+    - op: replace
+      path: /spec/rules/0/host
+      value: paperless-test1.composter.int.sambaum.ch

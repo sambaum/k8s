@@ -1,29 +1,29 @@
 resources:
-  - ../../../base/default/overleaf/
+- ../../../base/default/overleaf/
 patches:
-  - target:
-      kind: Deployment
-      name: overleaf
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/env/5/value
-        value: https://overleaf.int.sambaum.ch/
-  - target:
-      kind: Ingress
-      name: overleaf-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: overleaf.int.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: overleaf.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://overleaf.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Deployment
+    name: overleaf
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/5/value
+      value: https://overleaf.int.sambaum.ch/
+- target:
+    kind: Ingress
+    name: overleaf-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: overleaf.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts/0
+      value: overleaf.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://overleaf.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
 
 
 

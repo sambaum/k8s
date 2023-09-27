@@ -22,18 +22,18 @@ spec:
         app: webnettools
     spec:
       containers:
-        - name: webnettools
-          image: johannesschafer/webnettools:1.3.0 # {"$imagepolicy": "flux-system:webnettools"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: webnettools
+        image: johannesschafer/webnettools:1.3.0 # {"$imagepolicy": "flux-system:webnettools"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -44,9 +44,9 @@ spec:
   selector:
     app: webnettools
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -62,17 +62,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'webnettools.example.com'
-      secretName: webnettools-tls
+  - hosts:
+    - 'webnettools.example.com'
+    secretName: webnettools-tls
   rules:
-    - host: webnettools.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: webnettools-service
-                port:
-                  number: 8080
+  - host: webnettools.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: webnettools-service
+            port:
+              number: 8080

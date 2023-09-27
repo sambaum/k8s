@@ -1,5 +1,5 @@
 resources:
-  - sc-default.yaml
-  - sc-monitoring.yaml
-  - pvc-default.yaml
-  - pvc-monitoring.yaml
+- sc-default.yaml
+- sc-monitoring.yaml
+- pvc-default.yaml
+- pvc-monitoring.yaml

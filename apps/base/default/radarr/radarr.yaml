@@ -22,39 +22,39 @@ spec:
         app: radarr
     spec:
       containers:
-        - name: radarr
-          image: linuxserver/radarr:4.7.5 # {"$imagepolicy": "flux-system:radarr"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 7878
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: radarr
-            - mountPath: /downloads
-              name: media
-              subPath: Downloads
-            - mountPath: /movies
-              name: media
-              subPath: Video/Movies
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: radarr
+        image: linuxserver/radarr:4.7.5 # {"$imagepolicy": "flux-system:radarr"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7878
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: radarr
+        - mountPath: /downloads
+          name: media
+          subPath: Downloads
+        - mountPath: /movies
+          name: media
+          subPath: Video/Movies
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: truenas-media-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -65,9 +65,9 @@ spec:
   selector:
     app: radarr
   ports:
-    - protocol: TCP
-      port: 7878
-      targetPort: 7878
+  - protocol: TCP
+    port: 7878
+    targetPort: 7878
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -83,17 +83,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'radarr.example.com'
-      secretName: radarr-tls
+  - hosts:
+    - 'radarr.example.com'
+    secretName: radarr-tls
   rules:
-    - host: radarr.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: radarr-service
-                port:
-                  number: 7878
+  - host: radarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: radarr-service
+            port:
+              number: 7878

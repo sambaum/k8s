@@ -1,22 +1,22 @@
 resources:
-  - ../../../base/default/headers/
+- ../../../base/default/headers/
 patches:
-  - target:
-      kind: Ingress
-      name: headers-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: headers.t21.circle.ispin.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [headers.t21.circle.ispin.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: http://headers.t21.circle.ispin.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+- target:
+    kind: Ingress
+    name: headers-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: headers.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [headers.t21.circle.ispin.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: http://headers.t21.circle.ispin.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-staging
 
-      - op: remove
-        path: /spec/tls
+    - op: remove
+      path: /spec/tls

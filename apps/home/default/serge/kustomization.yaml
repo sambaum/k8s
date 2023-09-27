@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/default/serge/
+- ../../../base/default/serge/
 patches:
-  - target:
-      kind: Ingress
-      name: serge-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: serge.int.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [serge.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://serge.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: serge-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: serge.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [serge.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://serge.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

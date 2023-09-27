@@ -1,28 +1,28 @@
 resources:
-  - ../../../base/default/flame/
+- ../../../base/default/flame/
 patches:
-  - target:
-      kind: Ingress
-      name: flame-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: flame.vps1.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [flame.vps1.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://flame.vps1.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
-      - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-type
-        value: basic
-      - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
-        value: basic-auth
-      - op: add
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
-        value: 'Authentication Required'
+- target:
+    kind: Ingress
+    name: flame-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: flame.vps1.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [flame.vps1.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://flame.vps1.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-type
+      value: basic
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
+      value: basic-auth
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
+      value: 'Authentication Required'

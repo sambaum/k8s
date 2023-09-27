@@ -1,40 +1,40 @@
 resources:
-  - ../../../base/default/uptime-kuma/
+- ../../../base/default/uptime-kuma/
 patches:
-  - target:
-      kind: Ingress
-      name: uptime-kuma-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules
-        value:
-          - host: uptime.int.sambaum.ch
-            http:
-              paths:
-              - pathType: Prefix
-                path: "/"
-                backend:
-                  service:
-                    name: uptime-kuma-service
-                    port:
-                      number: 3001
-          - host: uptime-seebach.sambaum.ch
-            http:
-              paths:
-              - pathType: Prefix
-                path: "/"
-                backend:
-                  service:
-                    name: uptime-kuma-service
-                    port:
-                      number: 3001
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [uptime-seebach.sambaum.ch, uptime.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://uptime.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: uptime-kuma-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules
+      value:
+        - host: uptime.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: uptime-kuma-service
+                  port:
+                    number: 3001
+        - host: uptime-seebach.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: uptime-kuma-service
+                  port:
+                    number: 3001
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [uptime-seebach.sambaum.ch, uptime.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://uptime.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
 

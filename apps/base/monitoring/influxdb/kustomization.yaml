@@ -1,2 +1,2 @@
 resources:
-  - influxdb.yaml
+- influxdb.yaml

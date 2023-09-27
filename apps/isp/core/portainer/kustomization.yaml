@@ -1,22 +1,22 @@
 resources:
-  - ../../../base/core/portainer/
+- ../../../base/core/portainer/
 patches:
-  - target:
-      kind: HelmRelease
-      name: portainer
-    patch: |-
-      - op: replace
-        path: /spec/values/ingress/hosts/0/host
-        value: portainer.t21.circle.ispin.ch
-      - op: replace
-        path: /spec/values/ingress/tls/0/hosts/0
-        value: portainer.t21.circle.ispin.ch
-      - op: replace
-        path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-        value: http://portainer.t21.circle.ispin.ch
-      - op: replace
-        path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
+- target:
+    kind: HelmRelease
+    name: portainer
+  patch: |-
+    - op: replace
+      path: /spec/values/ingress/hosts/0/host
+      value: portainer.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: portainer.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/flame.pawelmalak~1url
+      value: http://portainer.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-staging
 
-      - op: remove
-        path: /spec/values/ingress/tls
+    - op: remove
+      path: /spec/values/ingress/tls

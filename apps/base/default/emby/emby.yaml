@@ -22,53 +22,53 @@ spec:
         app: emby
     spec:
       containers:
-        - name: emby
-          image: linuxserver/emby:4.7.14 # {"$imagepolicy": "flux-system:emby"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8096
-          volumeMounts:
-            - mountPath: /config
-              name: config
-              subPath: emby
-            - mountPath: /data/movies
-              name: media
-              subPath: Video/Movies
-            - mountPath: /data/tvshows
-              name: media
-              subPath: Video/Series
-            - mountPath: /data/home-videos
-              name: media
-              subPath: Video/Home-Movies
-            - mountPath: /data/home-photos
-              name: nas-sam
-              subPath: Personal/Fotos/Publish
-              # - mountPath: /dev/dri 
-              #   name: quicksync
-          env:
-            - name: PUID
-              value: '0'
-            - name: PGID
-              value: '0'
-            - name: TZ
-              value: 'Europe/Zurich'
+      - name: emby
+        image: linuxserver/emby:4.7.14 # {"$imagepolicy": "flux-system:emby"}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8096
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: emby
+        - mountPath: /data/movies
+          name: media
+          subPath: Video/Movies
+        - mountPath: /data/tvshows
+          name: media
+          subPath: Video/Series
+        - mountPath: /data/home-videos
+          name: media
+          subPath: Video/Home-Movies
+        - mountPath: /data/home-photos
+          name: nas-sam
+          subPath: Personal/Fotos/Publish
+          # - mountPath: /dev/dri 
+          #   name: quicksync
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: local-conf-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: truenas-media-pvc
-        - name: nas-sam
-          persistentVolumeClaim:
-            claimName: truenas-sam-pvc
-            # - name: quicksync
-            #   hostPath: 
-            #     path: /dev/dri
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
+      - name: nas-sam
+        persistentVolumeClaim:
+          claimName: truenas-sam-pvc
+          # - name: quicksync
+          #   hostPath: 
+          #     path: /dev/dri
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -79,9 +79,9 @@ spec:
   selector:
     app: emby
   ports:
-    - protocol: TCP
-      port: 8096
-      targetPort: 8096
+  - protocol: TCP
+    port: 8096
+    targetPort: 8096
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -99,17 +99,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'emby.example.com'
-      secretName: emby-tls
+  - hosts:
+    - 'emby.example.com'
+    secretName: emby-tls
   rules:
-    - host: emby.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: emby-service
-                port:
-                  number: 8096
+  - host: emby.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: emby-service
+            port:
+              number: 8096
