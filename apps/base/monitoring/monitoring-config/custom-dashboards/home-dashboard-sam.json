@@ -867,7 +867,9 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "decimals": 0,
           "mappings": [],
+          "noValue": "FluxCD: nothing is failing",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -891,14 +893,7 @@
         "x": 20,
         "y": 0
       },
-      "id": 1,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "Flux Cluster",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/flux-cluster/flux-cluster-stats?orgId=1&refresh=30s"
-        }
-      ],
+      "id": 31,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -906,12 +901,13 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "text": {},
+        "textMode": "value_and_name"
       },
       "pluginVersion": "10.1.2",
       "targets": [
@@ -921,11 +917,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(gotk_reconcile_condition{namespace=~\"$operator_namespace\",exported_namespace=~\"$namespace\",type=\"Ready\",status=\"False\",kind=~\"Kustomization|HelmRelease\"})",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
+          "format": "time_series",
+          "instant": true,
           "interval": "",
-          "legendFormat": "Dumpster",
-          "range": true,
+          "legendFormat": "Home",
+          "range": false,
           "refId": "A"
         },
         {
@@ -934,12 +932,13 @@
             "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(gotk_reconcile_condition{namespace=~\"$operator_namespace\",exported_namespace=~\"$namespace\",type=\"Ready\",status=\"False\",kind=~\"Kustomization|HelmRelease\"})",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
           "hide": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "Deskcube",
-          "range": true,
+          "range": false,
           "refId": "B"
         },
         {
@@ -948,16 +947,62 @@
             "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(gotk_reconcile_condition{namespace=~\"$operator_namespace\",exported_namespace=~\"$namespace\",type=\"Ready\",status=\"False\",kind=~\"Kustomization|HelmRelease\"})",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
           "hide": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "VPS1",
-          "range": true,
+          "range": false,
           "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Home S",
+          "range": false,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Deskcube S",
+          "range": false,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "VPS1 S",
+          "range": false,
+          "refId": "F"
         }
       ],
-      "title": "Flux CD Failing Reconcilers",
+      "title": "FluxCD Failing Reconcilers/Sources",
       "type": "stat"
     },
     {
@@ -3861,14 +3906,14 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(gotk_reconcile_condition,exported_namespace)",
+        "definition": "label_values(gotk_resource_info,exported_namespace)",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "namespace",
         "options": [],
         "query": {
-          "query": "label_values(gotk_reconcile_condition,exported_namespace)",
+          "query": "label_values(gotk_resource_info,exported_namespace)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
