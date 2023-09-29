@@ -869,7 +869,7 @@
         "defaults": {
           "decimals": 0,
           "mappings": [],
-          "noValue": "FluxCD: nothing is failing",
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1586,11 +1586,11 @@
               },
               {
                 "color": "yellow",
-                "value": 145
+                "value": 150
               },
               {
                 "color": "red",
-                "value": 155
+                "value": 160
               }
             ]
           },
