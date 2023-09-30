@@ -35,7 +35,7 @@ spec:
           subPath: wekan/wekan-app
       containers:
       - name: wekan
-        image: quay.io/wekan/wekan:v6.99.9 # {"$imagepolicy": "flux-system:wekan"}
+        image: wekanteam/wekan:v6.99.9 # {"$imagepolicy": "flux-system:wekan"}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

@@ -93,7 +93,7 @@
     },
     {
       "matchPackageNames": [
-        "quay.io/wekan/wekan"
+        "wekanteam/wekan"
       ],
       "matchFileNames": [
         "**/wekan.yaml"
