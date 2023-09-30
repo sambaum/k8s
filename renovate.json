@@ -63,7 +63,7 @@
       "matchPackageNames": [
         "linuxserver/emby"
       ],
-      "allowedVersions": "!/^(7\\.0\\.1\\d|6\\.[67]\\.0)$/" // Blacklist
+      "allowedVersions": "!/^(7\\.0\\.1\\d|6\\.[4567]\\.0)$/" // Blacklist
     },
     {
       "matchPackageNames": [
