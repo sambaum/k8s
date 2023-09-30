@@ -39,10 +39,6 @@
         "wekanteam/wekan",
         "toddrob/searcharr"
       ],
-      "matchFileNames": [
-        "**/wekan.yaml",
-        "**/searcharr.yaml"
-      ],
       "versioning": "semver-coerced"
     },
     {
