@@ -49,7 +49,7 @@
       "matchPackageNames": [
         "linuxserver/prowlarr"
       ],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(?<patch>\\.\\d{1,3})?$" // prevent stuff like 1.8.1259
+      "allowedVersions": "!/^1\\.8\\.1259$/" // Blacklist
     },
     {
       "matchPackageNames": [
