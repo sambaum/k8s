@@ -55,7 +55,7 @@
       "matchPackageNames": [
         "linuxserver/healthchecks"
       ],
-      "allowedVersions": "!/^2\\.8\\.\\d{8}$/" // Blacklist
+      "allowedVersions": "!/^2\\.\\d{1,2}\\.\\d{8}$/" // Blacklist
     },
     {
       "matchPackageNames": [
@@ -67,13 +67,13 @@
       "matchPackageNames": [
         "linuxserver/emby"
       ],
-      "allowedVersions": "!/^7\\.0\\.19$/" // Blacklist
+      "allowedVersions": "!/^7\\.0\\.1\\d$/" // Blacklist
     },
     {
       "matchPackageNames": [
         "linuxserver/transmission"
       ],
-      "allowedVersions": "!/^2021\\.11\\.18$/" // Blacklist
+      "allowedVersions": "!/^2021\\.\\d{1,2}\\.\\d{1,2}$/" // Blacklist
     },
     {
       "matchPackageNames": [
