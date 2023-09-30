@@ -49,7 +49,7 @@
       "matchPackageNames": [
         "linuxserver/prowlarr"
       ],
-      "allowedVersions": "!/^1\\.8\\.1259$/" // Blacklist
+      "allowedVersions": "!/^1\\.8\\.\\d{4}$/" // Blacklist
     },
     {
       "matchPackageNames": [
