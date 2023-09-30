@@ -98,7 +98,7 @@
       "matchFileNames": [
         "**/wekan.yaml"
       ],
-      "versioning": "loose"
+      "versioning": "regex:^v(?<major>\\d{1,2})\\.(?<minor>\\d{1,2})(?<patch>\\.\\d{1,2})?"
     },
     {
       "matchPackageNames": [
