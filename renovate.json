@@ -93,6 +93,15 @@
     },
     {
       "matchPackageNames": [
+        "wekan"
+      ],
+      "matchFileNames": [
+        "**/wekan.yaml"
+      ],
+      "versioning": "loose"
+    },
+    {
+      "matchPackageNames": [
         "redis"
       ],
       "matchFileNames": [
