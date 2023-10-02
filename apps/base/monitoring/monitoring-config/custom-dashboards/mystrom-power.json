@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 791,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -68,7 +67,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -109,6 +108,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 1,
@@ -126,7 +126,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -234,7 +233,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": false
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -303,7 +302,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -387,7 +386,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -501,7 +500,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -587,6 +586,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -689,6 +689,6 @@
   "timezone": "",
   "title": "MyStrom Power Monitor",
   "uid": "b9e33f25-7d62-41d9-a541-20c511bb9a0e",
-  "version": 8,
+  "version": 1,
   "weekStart": ""
 }
