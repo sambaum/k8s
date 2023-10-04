@@ -37,7 +37,7 @@ spec:
               name: settings
       containers:
         - name: json-exporter
-          image: quay.io/prometheuscommunity/json-exporter:v0.6.0 # {"$imagepolicy": "flux-system:json-exporter"}
+          image: quay.io/prometheuscommunity/json-exporter:v0.6.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 7979

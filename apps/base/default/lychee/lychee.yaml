@@ -33,7 +33,7 @@ spec:
           name: settings
       containers:
       - name: lychee
-        image: lycheeorg/lychee:v4.13.0 # {"$imagepolicy": "flux-system:lychee"}
+        image: lycheeorg/lychee:v4.13.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -74,7 +74,7 @@ spec:
         - name: DB_CONNECTION
           value: 'mysql'
       - name: maria
-        image: mariadb:10.11.5 # {"$imagepolicy": "flux-system:lychee-mariadb"}
+        image: mariadb:10.11.5
         ports:
         - containerPort: 3306
         volumeMounts:

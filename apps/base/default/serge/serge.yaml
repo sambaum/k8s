@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: serge
-        image: ghcr.io/serge-chat/serge:0.4.1 # {"$imagepolicy": "flux-system:serge"}
+        image: ghcr.io/serge-chat/serge:0.4.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8008

@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: phpipam
-        image: phpipam/phpipam-www:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-www"}
+        image: phpipam/phpipam-www:v1.5.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -37,7 +37,7 @@ spec:
         - name: IPAM_DATABASE_WEBHOST
           value: '%'
       - name: phpipam-cron
-        image: phpipam/phpipam-cron:v1.5.2 # {"$imagepolicy": "flux-system:phpipam-cron"}
+        image: phpipam/phpipam-cron:v1.5.2
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
@@ -49,7 +49,7 @@ spec:
         - name: SCAN_INTERVAL
           value: '10m'
       - name: phpipam-mariadb
-        image: mariadb:11.1.2 # {"$imagepolicy": "flux-system:phpipam-mariadb"}
+        image: mariadb:11.1.2
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /var/lib/mysql

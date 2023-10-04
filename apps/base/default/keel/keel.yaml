@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: keel
-        image: keelhq/keel:0.19.1 # {"$imagepolicy": "flux-system:keel"}
+        image: keelhq/keel:0.19.1
         imagePullPolicy: Always
         ports:
         - containerPort: 9300

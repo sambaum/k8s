@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: podinfo
-        image: stefanprodan/podinfo:6.5.1 # {"$imagepolicy": "flux-system:podinfo"}
+        image: stefanprodan/podinfo:6.5.1
         imagePullPolicy: Always
         ports:
         - containerPort: 9898

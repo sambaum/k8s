@@ -23,7 +23,7 @@ spec:
     spec:
       initContainers:
       - name: take-data-dir-ownership
-        image: alpine:3.18.4 # {"$imagepolicy": "flux-system:alpine"}
+        image: alpine:3.18.4
         command:
         - chown
         - -R
@@ -35,7 +35,7 @@ spec:
           subPath: wekan/wekan-app
       containers:
       - name: wekan
-        image: wekanteam/wekan:v7.10 # {"$imagepolicy": "flux-system:wekan"}
+        image: wekanteam/wekan:v7.10
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -51,7 +51,7 @@ spec:
         - name: ROOT_URL
           value: https://wekan.example.com
       - name: wekandb
-        image: mongo:5.0.21 # {"$imagepolicy": "flux-system:wekan-mongo"}
+        image: mongo:5.0.21
         ports:
         - containerPort: 27017
         volumeMounts:

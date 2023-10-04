@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: httpd:2.4.57 # {"$imagepolicy": "flux-system:httpd"}
+        image: httpd:2.4.57
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
