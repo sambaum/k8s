@@ -76,7 +76,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -139,7 +139,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "SSD1"
+                "value": "sdc"
               }
             ]
           },
@@ -151,7 +151,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "HDD5"
+                "value": "sda"
               }
             ]
           },
@@ -163,7 +163,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "SSD2"
+                "value": "sdb"
               }
             ]
           },
@@ -175,7 +175,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "HDD1"
+                "value": "sdd"
               }
             ]
           },
@@ -187,7 +187,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "HDD3"
+                "value": "sde"
               }
             ]
           },
@@ -199,7 +199,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "HDD2"
+                "value": "sdf"
               }
             ]
           },
@@ -211,7 +211,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "SSD3"
+                "value": "sdg"
               }
             ]
           },
@@ -223,7 +223,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "HDD4"
+                "value": "sdh"
               }
             ]
           }
@@ -251,7 +251,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "sdd",
@@ -1449,7 +1449,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "Idle",
@@ -1607,7 +1607,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -1677,6 +1677,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2408,6 +2409,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2950,6 +2952,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3190,7 +3193,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "Free",
@@ -3320,6 +3323,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3491,6 +3495,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 3,
@@ -3961,6 +3966,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -4132,6 +4138,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -4306,6 +4313,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
