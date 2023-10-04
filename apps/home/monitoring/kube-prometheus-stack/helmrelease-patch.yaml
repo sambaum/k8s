@@ -139,14 +139,14 @@
     - targets: ['json-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas'
-  - job_name: 'truenas_smart_attributes_sda'
-    scrape_interval: 60s
-    metrics_path: '/probe'
-    params:
-      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
-      module: ['truenas_smart_attributes_sda']
-    scheme: https
-    static_configs:
-    - targets: ['json-exporter.int.sambaum.ch:443']
-      labels:
-        group: 'truenas'
+  # - job_name: 'truenas_smart_attributes_sda'
+  #   scrape_interval: 60s
+  #   metrics_path: '/probe'
+  #   params:
+  #     target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+  #     module: ['truenas_smart_attributes_sda']
+  #   scheme: https
+  #   static_configs:
+  #   - targets: ['json-exporter.int.sambaum.ch:443']
+  #     labels:
+  #       group: 'truenas'
