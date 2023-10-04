@@ -1,0 +1,152 @@
+- op: replace
+  path: /spec/values/grafana/ingress/hosts/0
+  value: grafana.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/grafana/ingress/tls/0/hosts/0
+  value: grafana.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/grafana/ingress/annotations/flame.pawelmalak~1url
+  value: grafana.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/grafana/ingress/annotations/cert-manager.io~1cluster-issuer
+  value: letsencrypt-production
+- op: replace
+  path: /spec/values/prometheus/ingress/hosts/0
+  value: prometheus.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/prometheus/ingress/tls/0/hosts/0
+  value: prometheus.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/prometheus/ingress/annotations/flame.pawelmalak~1url
+  value: prometheus.dumpster.int.sambaum.ch
+- op: replace
+  path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
+  value: letsencrypt-production
+- op: replace
+  path: /spec/values/prometheus/prometheusSpec/retention
+  value: 60d
+- op: add
+  path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
+  value:
+  - job_name: opnsense
+    static_configs:
+    - targets: ['opnsense.int.sambaum.ch:9100']
+      labels:
+        group: 'Firewall'
+    metric_relabel_configs:
+    - source_labels: [device]
+      action: replace
+      regex: 'igc1'
+      replacement: 'LAN'
+      target_label: 'device'
+    - source_labels: [device]
+      action: replace
+      regex: 'igc0'
+      replacement: 'WAN'
+      target_label: 'device'
+    - source_labels: [device]
+      action: replace
+      regex: 'igc2_vlan102'
+      replacement: 'Quarantine'
+      target_label: 'device'
+    - source_labels: [device]
+      action: replace
+      regex: 'ovpnc2'
+      replacement: 'ExpressVPNNL'
+      target_label: 'device'
+    - source_labels: [device]
+      action: drop
+      regex: 'igc2'
+    - source_labels: [device]
+      action: drop
+      regex: 'lo0'
+    - source_labels: [device]
+      action: drop
+      regex: 'pflog0'
+  - job_name: proxmox
+    scrape_interval: 10s
+    static_configs:
+    - targets: ['proxmox.int.sambaum.ch:9100']
+      labels:
+        group: 'proxmox'
+  - job_name: proxmox2
+    scrape_interval: 10s
+    static_configs:
+    - targets: ['proxmox2.int.sambaum.ch:9100']
+      labels:
+        group: 'proxmox'
+  # - job_name: diskstation
+  #   static_configs:
+  #     - targets: ['nas.int.sambaum.ch:9100']
+  #       labels:
+  #         group: 'DiskStation'
+  # - job_name: diskstation-snmp
+  #   static_configs:
+  #     - targets:
+  #         - nas.int.sambaum.ch
+  #       labels:
+  #         Device: '1'
+  #   metrics_path: /snmp
+  #   params:
+  #     module: [synology]
+  #   relabel_configs:
+  #     - source_labels: [__address__]
+  #       target_label: __param_target
+  #     - source_labels: [__param_target]
+  #       target_label: instance
+  #     - target_label: __address__
+  #       replacement: nas.int.sambaum.ch:9116
+  - job_name: 'uptime'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+    - targets: ['uptime.int.sambaum.ch:443']
+      labels:
+        group: 'uptime-kuma'
+  - job_name: 'json-exporter-mystrom'
+    scrape_interval: 10s
+    metrics_path: '/probe'
+    params:
+      target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report']
+      module: ['mystrom']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'json-exporter-mystrom'
+  - job_name: 'nut_http'
+    scrape_interval: 10s
+    metrics_path: '/probe'
+    params:
+      target: ['https://nut-http.int.sambaum.ch/devices/ups?parsed=true']
+      module: ['nut_http']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'nut_http'
+  - job_name: 'truenas-smart-tests'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/smart/test/results']
+      module: ['truenas-smart-tests']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sda'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sda']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
