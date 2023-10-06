@@ -13,4 +13,3 @@ patches:
        - selector: '{host="OPNsense.int.sambaum.ch"}'
          priority: 1
          period: 7d
-# TOOD
