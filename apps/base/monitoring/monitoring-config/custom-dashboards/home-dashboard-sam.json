@@ -1212,7 +1212,7 @@
         }
       ],
       "timeFrom": "1w",
-      "title": "Panel Title",
+      "title": "TrueNAS Disk Temps",
       "type": "stat"
     },
     {
