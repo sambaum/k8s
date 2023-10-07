@@ -139,14 +139,92 @@
     - targets: ['json-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas'
-  # - job_name: 'truenas_smart_attributes_sda'
-  #   scrape_interval: 60s
-  #   metrics_path: '/probe'
-  #   params:
-  #     target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
-  #     module: ['truenas_smart_attributes_sda']
-  #   scheme: https
-  #   static_configs:
-  #   - targets: ['json-exporter.int.sambaum.ch:443']
-  #     labels:
-  #       group: 'truenas'
+
+  - job_name: 'truenas_smart_attributes_sda'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sda']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdb'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdb']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdc'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdc']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdd'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdd']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sde'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sde']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdf'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdf']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdg'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdg']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
+  - job_name: 'truenas_smart_attributes_sdh'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
+      module: ['truenas_smart_attributes_sdh']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'

@@ -97,13 +97,14 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
+        "type": "prometheus",
+        "uid": "prometheus"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
-          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "max": 65,
           "min": 30,
@@ -115,11 +116,11 @@
                 "value": null
               },
               {
-                "color": "dark-yellow",
+                "color": "yellow",
                 "value": 48
               },
               {
-                "color": "dark-orange",
+                "color": "orange",
                 "value": 52
               },
               {
@@ -130,115 +131,15 @@
           },
           "unit": "celsius"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdc"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdc"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sda"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sda"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdb"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdb"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdd"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdd"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sde"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sde"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdf"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdf"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdg"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdg"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sdh"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "sdh"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 6,
         "w": 9,
         "x": 8,
         "y": 0
       },
-      "id": 6,
-      "interval": "",
-      "links": [],
-      "maxDataPoints": 70,
+      "id": 33,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -254,393 +155,98 @@
       "pluginVersion": "10.1.2",
       "targets": [
         {
-          "alias": "sdd",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdd",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
         },
         {
-          "alias": "sdf",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdf",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "B"
         },
         {
-          "alias": "sde",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sde",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdh",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdc_value{name=\"Temperature_Celsius\"}",
           "hide": false,
-          "measurement": "sdh",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "C"
         },
         {
-          "alias": "sda",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sda",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdc",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdc",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdb",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdb",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdg",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdd_value{name=\"Temperature_Celsius\"}",
           "hide": false,
-          "measurement": "sdg",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sde_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdf_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdg_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "G"
         }
       ],
-      "title": "Current Disk Temperature (°C)",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {}
-          }
-        }
-      ],
+      "title": "Panel Title",
       "type": "gauge"
     },
     {
@@ -2065,6 +1671,218 @@
     },
     {
       "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 48
+              },
+              {
+                "color": "orange",
+                "value": 52
+              },
+              {
+                "color": "dark-red",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 8,
+        "y": 6
+      },
+      "id": 34,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdc_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdd_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sde_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdf_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdg_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PrQ94dx4k"
+          },
+          "hide": true,
+          "query": "SELECT last(\"temperature\") FROM \"0\" WHERE (\"resource\" = 'cputemp') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "H",
+          "resultFormat": "time_series"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$H/10-273.15",
+          "hide": false,
+          "refId": "CPU",
+          "type": "math"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
@@ -2087,7 +1905,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 7,
         "x": 17,
         "y": 6
@@ -2389,550 +2207,6 @@
         "type": "influxdb",
         "uid": "PrQ94dx4k"
       },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": 600000,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 9,
-        "x": 8,
-        "y": 9
-      },
-      "id": 19,
-      "interval": "",
-      "links": [],
-      "maxDataPoints": 70,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.2.4",
-      "targets": [
-        {
-          "alias": "sda",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sda",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdb",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdb",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdc",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdc",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdd",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdd",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sde",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sde",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdf",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "sdf",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdg",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sdg",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "alias": "sdh",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "sdh",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT * FROM \"da1.temperature\"",
-          "rawQuery": false,
-          "refId": "I",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disktemp"
-            }
-          ]
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$G/10-273.15",
-          "hide": false,
-          "refId": "CPU",
-          "type": "math"
-        },
-        {
-          "alias": "CPU Temp",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "cputemp"
-            }
-          ]
-        }
-      ],
-      "title": "Temperatures",
-      "transformations": [],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3174,7 +2448,7 @@
         "h": 3,
         "w": 7,
         "x": 17,
-        "y": 13
+        "y": 12
       },
       "id": 14,
       "links": [],
@@ -3362,7 +2636,7 @@
         "h": 7,
         "w": 16,
         "x": 8,
-        "y": 16
+        "y": 15
       },
       "id": 2,
       "options": {
@@ -3530,7 +2804,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 8,
         "x": 0,
         "y": 21
@@ -4005,7 +3279,7 @@
         "h": 7,
         "w": 16,
         "x": 8,
-        "y": 23
+        "y": 22
       },
       "id": 26,
       "options": {
@@ -4176,7 +3450,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 30
+        "y": 29
       },
       "id": 28,
       "options": {
@@ -4352,7 +3626,7 @@
         "h": 7,
         "w": 16,
         "x": 8,
-        "y": 30
+        "y": 29
       },
       "id": 30,
       "options": {
@@ -4477,7 +3751,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
