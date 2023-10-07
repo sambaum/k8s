@@ -131,7 +131,32 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sda {__name__=\"truenas_smart_attributes_sda_value\", disk=\"sda\", group=\"truenas\", id=\"194\", instance=\"json-exporter.int.sambaum.ch:443\", job=\"truenas_smart_attributes_sda\", name=\"Temperature_Celsius\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sdb {__name__=\"truenas_smart_attributes_sdb_value\", disk=\"sdb\", group=\"truenas\", id=\"194\", instance=\"json-exporter.int.sambaum.ch:443\", job=\"truenas_smart_attributes_sdb\", name=\"Temperature_Celsius\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
@@ -165,7 +190,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "A"
+          "refId": "sda_norm"
         },
         {
           "datasource": {
@@ -178,7 +203,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "B"
+          "refId": "sdb_norm"
         },
         {
           "datasource": {
@@ -191,7 +216,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "C"
+          "refId": "sdc"
         },
         {
           "datasource": {
@@ -204,7 +229,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "D"
+          "refId": "sdd"
         },
         {
           "datasource": {
@@ -217,7 +242,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "E"
+          "refId": "sde"
         },
         {
           "datasource": {
@@ -230,7 +255,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "F"
+          "refId": "sdf"
         },
         {
           "datasource": {
@@ -243,7 +268,29 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "G"
+          "refId": "sdg"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "100-$sda_norm",
+          "hide": false,
+          "refId": "sda",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "100-$sdb_norm",
+          "hide": false,
+          "refId": "sdb",
+          "type": "math"
         }
       ],
       "title": "Panel Title",
@@ -1682,8 +1729,8 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "",
             "axisPlacement": "auto",
+            "axisWidth": -1,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -1737,7 +1784,32 @@
           },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sda"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sda"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sdb {__name__=\"truenas_smart_attributes_sdb_value\", disk=\"sdb\", group=\"truenas\", id=\"194\", instance=\"json-exporter.int.sambaum.ch:443\", job=\"truenas_smart_attributes_sdb\", name=\"Temperature_Celsius\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "sdb"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -1771,11 +1843,11 @@
           },
           "editorMode": "code",
           "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "A"
+          "refId": "sda_norm"
         },
         {
           "datasource": {
@@ -1784,11 +1856,11 @@
           },
           "editorMode": "code",
           "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "B"
+          "refId": "sdb_norm"
         },
         {
           "datasource": {
@@ -1801,7 +1873,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "C"
+          "refId": "sdc"
         },
         {
           "datasource": {
@@ -1814,7 +1886,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "D"
+          "refId": "sdd"
         },
         {
           "datasource": {
@@ -1827,7 +1899,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "E"
+          "refId": "sde"
         },
         {
           "datasource": {
@@ -1840,7 +1912,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "F"
+          "refId": "sdf"
         },
         {
           "datasource": {
@@ -1853,7 +1925,7 @@
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
-          "refId": "G"
+          "refId": "sdg"
         },
         {
           "datasource": {
@@ -1875,6 +1947,28 @@
           "expression": "$H/10-273.15",
           "hide": false,
           "refId": "CPU",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "100-$sda_norm",
+          "hide": false,
+          "refId": "sda",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "100-$sdb_norm",
+          "hide": false,
+          "refId": "sdb",
           "type": "math"
         }
       ],
