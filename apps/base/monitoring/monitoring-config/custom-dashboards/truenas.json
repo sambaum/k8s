@@ -272,6 +272,19 @@
         },
         {
           "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdh_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "sdh"
+        },
+        {
+          "datasource": {
             "name": "Expression",
             "type": "__expr__",
             "uid": "__expr__"
@@ -1729,6 +1742,7 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "axisWidth": -1,
             "barAlignment": 0,
@@ -1926,6 +1940,19 @@
           "legendFormat": "{{disk}}",
           "range": true,
           "refId": "sdg"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sdh_value{name=\"Temperature_Celsius\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
         },
         {
           "datasource": {
