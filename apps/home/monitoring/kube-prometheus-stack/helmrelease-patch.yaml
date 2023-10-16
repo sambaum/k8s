@@ -228,3 +228,14 @@
     - targets: ['json-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas'
+  - job_name: 'truenas-pool-dataset'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/pool/dataset']
+      module: ['truenas-pool-dataset']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
