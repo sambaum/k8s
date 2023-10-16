@@ -473,8 +473,8 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "PrQ94dx4k"
+        "type": "prometheus",
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -512,12 +512,13 @@
       "maxDataPoints": 100,
       "options": {
         "displayLabels": [
-          "percent"
+          "percent",
+          "name"
         ],
         "legend": {
           "displayMode": "list",
           "placement": "right",
-          "showLegend": true,
+          "showLegend": false,
           "values": [
             "value"
           ]
@@ -538,325 +539,41 @@
       "pluginVersion": "9.2.4",
       "targets": [
         {
-          "alias": "Free",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mnt-pool1",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.free"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Carol",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-carol",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Backup",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-backup",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Media",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-media",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Other",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-other",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Sam",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-sam",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Temp",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "mnt-pool1-temp",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"value\") FROM \"mnt-MediaPool_df_complex_used\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "df_complex.used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "editorMode": "code",
+          "expr": "truenas_pool_dataset_available{mountpoint=\"/mnt/pool1\"}",
+          "instant": false,
+          "legendFormat": "Available",
+          "range": true,
+          "refId": "A"
         },
         {
           "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "expression": "$B+$C+$D+$E+$F+$G",
+          "editorMode": "code",
+          "expr": "truenas_pool_dataset_used{mountpoint=\"/mnt/pool1\"}",
           "hide": false,
-          "refId": "Used",
-          "type": "math"
+          "instant": false,
+          "legendFormat": "Used",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "TrueNAS Space",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "piechart"
     },
     {
@@ -1109,125 +826,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
+          "expr": "truenas_disk_temperature",
+          "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
           "refId": "sda_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdb_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdc_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdc"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdd_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdd"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sde_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sde"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdf_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdf"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdg_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdg"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdh_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdh"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sda_norm",
-          "hide": false,
-          "refId": "sda",
-          "type": "math"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sdb_norm",
-          "hide": false,
-          "refId": "sdb",
-          "type": "math"
         }
       ],
       "timeFrom": "1w",
