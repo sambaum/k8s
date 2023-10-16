@@ -185,125 +185,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
+          "expr": "truenas_disk_temperature",
+          "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
           "refId": "sda_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdb_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdc_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdc"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdd_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdd"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sde_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sde"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdf_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdf"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdg_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdg"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdh_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdh"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sda_norm",
-          "hide": false,
-          "refId": "sda",
-          "type": "math"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sdb_norm",
-          "hide": false,
-          "refId": "sdb",
-          "type": "math"
         }
       ],
       "title": "Panel Title",
@@ -1297,7 +1184,9 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single",
@@ -1312,103 +1201,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "truenas_smart_attributes_sda_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
+          "expr": "truenas_disk_temperature",
+          "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
           "refId": "sda_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdb_value{name=\"Temperature_Celsius\"}",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdb_norm"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdc_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdc"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdd_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdd"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sde_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sde"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdf_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdf"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdg_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "sdg"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_smart_attributes_sdh_value{name=\"Temperature_Celsius\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "A"
         },
         {
           "datasource": {
@@ -1430,28 +1228,6 @@
           "expression": "$H/10-273.15",
           "hide": false,
           "refId": "CPU",
-          "type": "math"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sda_norm",
-          "hide": false,
-          "refId": "sda",
-          "type": "math"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "100-$sdb_norm",
-          "hide": false,
-          "refId": "sdb",
           "type": "math"
         }
       ],
@@ -3140,7 +2916,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {

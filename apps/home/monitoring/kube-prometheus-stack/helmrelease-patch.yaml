@@ -239,3 +239,14 @@
     - targets: ['json-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas'
+  - job_name: 'truenas-disk-temperatures'
+    scrape_interval: 60s
+    metrics_path: '/probe'
+    params:
+      target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/temperatures']
+      module: ['truenas-disk-temperatures']
+    scheme: https
+    static_configs:
+    - targets: ['json-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas'
