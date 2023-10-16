@@ -1127,7 +1127,7 @@
           "refId": "sda_norm"
         }
       ],
-      "title": "Panel Title",
+      "title": "Disk Temperatures",
       "type": "gauge"
     },
     {
