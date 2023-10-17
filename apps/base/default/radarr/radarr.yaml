@@ -103,3 +103,5 @@ spec:
             name: radarr-service
             port:
               number: 7878
+
+# https://github.com/RandomNinjaAtk/arr-scripts
