@@ -2895,6 +2895,109 @@
       ],
       "title": "NFS",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "gbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 29
+      },
+      "id": 39,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sda_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdb_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdc_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdd_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sde_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdf_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdg_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdh_raw_value{name=\"Total_LBAs_Written\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_smart_attributes_sda_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdb_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdc_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdd_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sde_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdf_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdg_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdh_raw_value{name=\"Host_Writes_GiB\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "($A*512)/(2 ** 30)",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "GiB written",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*disk=\"(sd.)\".*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "bargauge"
     }
   ],
   "refresh": "30s",
