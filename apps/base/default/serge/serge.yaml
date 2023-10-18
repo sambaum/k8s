@@ -29,11 +29,11 @@ spec:
         - containerPort: 8008
         volumeMounts:
         - mountPath: /usr/src/app/weights
-          name: config
-          subPath: serge
+          name: data
+          subPath: serge/weights
         - mountPath: /data/db/
           name: data
-          subPath: serge
+          subPath: serge/db
         env:
         - name: TZ
           value: 'Europe/Zurich'
