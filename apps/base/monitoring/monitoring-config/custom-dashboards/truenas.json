@@ -1277,8 +1277,8 @@
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
-          "sortBy": "Last",
-          "sortDesc": true
+          "sortBy": "Name",
+          "sortDesc": false
         },
         "tooltip": {
           "mode": "single",
@@ -2956,9 +2956,10 @@
           },
           "editorMode": "code",
           "expr": "truenas_smart_attributes_sda_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdb_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdc_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdd_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sde_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdf_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdg_raw_value{name=\"Total_LBAs_Written\"} OR truenas_smart_attributes_sdh_raw_value{name=\"Total_LBAs_Written\"}",
+          "format": "time_series",
           "hide": true,
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{disk}}",
           "range": true,
           "refId": "A"
         },
@@ -2969,9 +2970,10 @@
           },
           "editorMode": "code",
           "expr": "truenas_smart_attributes_sda_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdb_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdc_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdd_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sde_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdf_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdg_raw_value{name=\"Host_Writes_GiB\"} OR truenas_smart_attributes_sdh_raw_value{name=\"Host_Writes_GiB\"}",
+          "format": "time_series",
           "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{disk}}",
           "range": true,
           "refId": "B"
         },
@@ -2990,10 +2992,37 @@
       "title": "GiB written",
       "transformations": [
         {
+          "id": "joinByLabels",
+          "options": {
+            "join": [
+              "__name__"
+            ],
+            "value": "disk"
+          }
+        },
+        {
           "id": "renameByRegex",
           "options": {
             "regex": ".*disk=\"(sd.)\".*",
             "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "__name__": 0,
+              "sda": 1,
+              "sdb": 2,
+              "sdc": 3,
+              "sdd": 4,
+              "sde": 5,
+              "sdf": 6,
+              "sdg": 7,
+              "sdh": 8
+            },
+            "renameByName": {}
           }
         }
       ],
