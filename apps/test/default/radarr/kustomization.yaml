@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/radarr/
+patches:
+- target:
+    kind: Ingress
+    name: radarr-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: radarr.composter.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [radarr.composter.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://radarr.composter.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
