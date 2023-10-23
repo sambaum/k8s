@@ -1152,7 +1152,7 @@
       "id": 14,
       "links": [],
       "options": {
-        "displayMode": "gradient",
+        "displayMode": "basic",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -3127,7 +3127,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
