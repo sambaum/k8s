@@ -1007,6 +1007,9 @@
       },
       "id": 37,
       "options": {
+        "displayLabels": [
+          "percent"
+        ],
         "legend": {
           "displayMode": "table",
           "placement": "right",
@@ -1108,7 +1111,9 @@
       },
       "id": 38,
       "options": {
-        "displayLabels": [],
+        "displayLabels": [
+          "percent"
+        ],
         "legend": {
           "displayMode": "table",
           "placement": "right",
@@ -2056,7 +2061,7 @@
         "y": 13
       },
       "id": 35,
-      "interval": "1m",
+      "interval": "30s",
       "options": {
         "legend": {
           "calcs": [
@@ -2087,7 +2092,7 @@
             },
             {
               "params": [
-                "null"
+                "0"
               ],
               "type": "fill"
             }
@@ -2108,7 +2113,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -2129,7 +2134,7 @@
             },
             {
               "params": [
-                "null"
+                "0"
               ],
               "type": "fill"
             }
@@ -2150,7 +2155,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -2467,7 +2472,7 @@
         "y": 20
       },
       "id": 41,
-      "interval": "1m",
+      "interval": "30s",
       "options": {
         "legend": {
           "calcs": [],
@@ -2496,7 +2501,7 @@
             },
             {
               "params": [
-                "null"
+                "linear"
               ],
               "type": "fill"
             }
@@ -2517,7 +2522,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -2538,7 +2543,7 @@
             },
             {
               "params": [
-                "null"
+                "linear"
               ],
               "type": "fill"
             }
@@ -2559,7 +2564,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -2580,7 +2585,7 @@
             },
             {
               "params": [
-                "null"
+                "linear"
               ],
               "type": "fill"
             }
@@ -2601,7 +2606,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -2622,7 +2627,7 @@
             },
             {
               "params": [
-                "null"
+                "linear"
               ],
               "type": "fill"
             }
@@ -2643,7 +2648,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -3447,7 +3452,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -3467,6 +3472,6 @@
   "timezone": "",
   "title": "TrueNAS Dashboard",
   "uid": "truenas-dashboard",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
