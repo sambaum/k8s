@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/photoprism/
+patches:
+- target:
+    kind: Ingress
+    name: photoprism-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: photoprism.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [photoprism.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://photoprism.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
