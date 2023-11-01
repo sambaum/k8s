@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: default
+  labels:
+    app: jellyfin
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      securityContext:
+        runAsUser: 0 # Similar to "user: 1000:1000" on Docker
+        runAsGroup: 0
+        supplementalGroups:
+        - 103
+      containers:
+      - name: jellyfin
+        image: linuxserver/jellyfin:10.8.11
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8096
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: jellyfin
+        - mountPath: /data/movies
+          name: media
+          subPath: Video/Movies
+        - mountPath: /data/tvshows
+          name: media
+          subPath: Video/Series
+        - mountPath: /data/home-videos
+          name: media
+          subPath: Video/Home-Movies
+        - mountPath: /data/home-photos
+          name: nas-sam
+          subPath: Personal/Fotos/Publish
+        # - mountPath: /dev/dri
+        #   name: quicksync
+        - name: "render-device"
+          mountPath: "/dev/dri/renderD128"
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+        securityContext:
+          privileged: true # Container must run as privileged inside of the pod
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
+      - name: nas-sam
+        persistentVolumeClaim:
+          claimName: truenas-sam-pvc
+      # - name: quicksync
+      #   hostPath:
+      #     path: /dev/dri
+      - name: "render-device"
+        hostPath:
+          path: "/dev/dri/renderD128"
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: jellyfin-service
+  namespace: default
+spec:
+  selector:
+    app: jellyfin
+  ports:
+  - protocol: TCP
+    port: 8096
+    targetPort: 8096
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jellyfin-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: jellyfin
+    flame.pawelmalak/url: https://jellyfin.example.com
+    flame.pawelmalak/icon: https://image.pngaaa.com/403/5615403-middle.png
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'jellyfin.example.com'
+    secretName: jellyfin-tls
+  rules:
+  - host: jellyfin.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: jellyfin-service
+            port:
+              number: 8096
