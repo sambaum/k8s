@@ -6,7 +6,7 @@ metadata:
   labels:
     app: jellyfin
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: 'regexp:^(\d{1,2}\.\d{1,2}\.\d{1,2})$' # to prevent stuff like 2021.11.18
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@daily'
