@@ -70,7 +70,8 @@
     },
     {
       "matchPackageNames": [
-        "linuxserver/transmission"
+        "linuxserver/transmission",
+        "linuxserver/jellyfin"
       ],
       "allowedVersions": "!/^2021\\.\\d{1,2}\\.\\d{1,2}$/" // Blacklist
     },
