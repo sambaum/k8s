@@ -31,6 +31,12 @@ spec:
         - mountPath: /config
           name: config
           subPath: sonarr
+        - mountPath: /custom-services.d
+          name: config
+          subPath: sonarr/custom-services.d
+        - mountPath: /custom-cont-init.d
+          name: config
+          subPath: sonarr/custom-cont-init.d
         - mountPath: /downloads
           name: media
           subPath: Downloads
@@ -97,3 +103,5 @@ spec:
             name: sonarr-service
             port:
               number: 8989
+
+# https://github.com/RandomNinjaAtk/arr-scripts
