@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: serge
-        image: ghcr.io/serge-chat/serge:0.5.1
+        image: ghcr.io/serge-chat/serge:0.5.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8008
