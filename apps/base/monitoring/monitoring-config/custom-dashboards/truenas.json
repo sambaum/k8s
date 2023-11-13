@@ -2432,7 +2432,7 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "short"
         },
         "overrides": [
           {
@@ -2687,7 +2687,7 @@
           "tags": []
         }
       ],
-      "title": "Cache Result",
+      "title": "Cache Result (Requests)",
       "type": "timeseries"
     },
     {
@@ -3398,7 +3398,7 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "short"
         },
         "overrides": [
           {
@@ -3653,7 +3653,7 @@
           "tags": []
         }
       ],
-      "title": "Prefetch Result",
+      "title": "Prefetch Result (Requests)",
       "type": "timeseries"
     },
     {
