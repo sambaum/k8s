@@ -23,7 +23,7 @@ spec:
     spec:
       initContainers:
       - name: take-data-dir-ownership
-        image: alpine:3.18.5
+        image: alpine:3.19.0
         command:
         - chown
         - -R
