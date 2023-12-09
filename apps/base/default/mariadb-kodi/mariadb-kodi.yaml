@@ -45,6 +45,18 @@ spec:
           value: '1000'
         - name: PUID
           value: '1000'
+      - name: mariadb-kodi
+        image: phpmyadmin
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: PMA_HOST
+          value: mariadb-kodi-service
+        - name: PMA_PORT
+          value: "3306"
+        - name: MYSQL_ROOT_PASSWORD
+          value: kodi
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -61,6 +73,7 @@ metadata:
   namespace: default
 spec:
   type: LoadBalancer
+  # loadBalancerIP: '192.168.1.39'
   loadBalancerIP: '${MARIADB_KODI_LOADBALANCER_IP}'
   selector:
     app: mariadb-kodi
@@ -68,39 +81,45 @@ spec:
   - protocol: TCP
     port: 3306
     targetPort: 3306
-
-
-
-
-
-
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: mariadb-kodi-ingress
-#   namespace: default
-#   annotations:
-#     nginx.ingress.kubernetes.io/proxy-body-size: 1000m
-#     cert-manager.io/cluster-issuer: letsencrypt-staging
-#     flame.pawelmalak/type: application
-#     flame.pawelmalak/name: mariadb-kodi
-#     flame.pawelmalak/url: https://mariadb-kodi.example.com
-#     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mariadb-kodi-icon.png
-# spec:
-#   ingressClassName: nginx
-#   tls:
-#   - hosts:
-#     - 'mariadb-kodi.example.com'
-#     secretName: mariadb-kodi-tls
-#   rules:
-#   - host: mariadb-kodi.example.com
-#     http:
-#       paths:
-#       - pathType: Prefix
-#         path: '/'
-#         backend:
-#           service:
-#             name: mariadb-kodi-service
-#             port:
-#               number: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb-phpmyadmin-kodi-service
+  namespace: default
+spec:
+  selector:
+    app: mariadb-kodi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mariadb-kodi-ingress
+  namespace: default
+  annotations:
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: mariadb-kodi
+    flame.pawelmalak/url: http://mariadb-kodi.example.com
+    flame.pawelmalak/icon: https://www.silicon.de/wp-content/uploads/2014/08/mariadb-seal.png
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'mariadb-kodi.example.com'
+    secretName: mariadb-kodi-tls
+  rules:
+  - host: mariadb-kodi.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: mariadb-phpmyadmin-kodi-service
+            port:
+              number: 80
