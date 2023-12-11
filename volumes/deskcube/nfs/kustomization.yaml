@@ -1,2 +1,2 @@
-resources:
-- volumes-truenas.yaml
+# resources:
+# - volumes-truenas.yaml
