@@ -24,7 +24,7 @@ spec:
   accessModes:
   - ReadWriteMany
   nfs:
-    server: truenas-databus.int.sambaum.ch
+    server: truenas-databus2.int.sambaum.ch
     path: "/mnt/pool1/backup"
   mountOptions:
   - nfsvers=4.1
