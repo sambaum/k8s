@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: nut-http
-        image: deetoreu/nut-http:latest
+        image: deetoreu/nut-http@sha256:c8948a3e2bb3f69068b74a6a6bf07bfc70a5ded28f6dc91cf09d6fa718868672
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3001

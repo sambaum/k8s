@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: organizr
-        image: organizr/organizr:latest
+        image: organizr/organizr@sha256:980796e4b9fa5c19f3161accb867f8cf4f2198d148f7f8005bff95bdeba8798c
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
