@@ -19,7 +19,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - mariadb-backup --backup -u kodi -p kodi -P 3306
+            - mariadb-backup --backup --host=mariadb-kodi-service -u kodi -p kodi -P 3306
             # - /bin/sh
             # - -c
             # - while true; do echo gugus; sleep 10; done
@@ -27,7 +27,7 @@ spec:
             - mountPath: /var/lib/mysql
               name: config
               subPath: mariadb-kodi
-            - mountPath: /mariadb
+            - mountPath: /mariadb_backup_files
               name: nas-backup
               subPath: Backups-Automated/kodi
             env:
