@@ -24,9 +24,6 @@ spec:
             # - -c
             # - while true; do echo gugus; sleep 10; done
             volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: config
-              subPath: mariadb-kodi
             - mountPath: /mariadb_backup_files
               name: nas-backup
               subPath: Backups-Automated/kodi/mariadb
@@ -47,9 +44,6 @@ spec:
               value: '1000'
           restartPolicy: OnFailure
           volumes:
-          - name: config
-            persistentVolumeClaim:
-              claimName: local-conf-pvc
           - name: nas-backup
             persistentVolumeClaim:
               claimName: truenas-backup-pvc
