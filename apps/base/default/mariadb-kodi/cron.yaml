@@ -4,7 +4,7 @@ metadata:
   name: mariadb-kodi-backup
   namespace: default
 spec:
-  schedule: "5 0 * * *"
+  schedule: "0 5 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
@@ -27,9 +27,9 @@ spec:
             - mountPath: /var/lib/mysql
               name: config
               subPath: mariadb-kodi
-            - mountPath: Backups-Automated/kodi
+            - mountPath: /mariadb
               name: nas-backup
-              subPath: mariadb
+              subPath: Backups-Automated/kodi
             env:
             - name: TZ
               value: 'Europe/Zurich'
