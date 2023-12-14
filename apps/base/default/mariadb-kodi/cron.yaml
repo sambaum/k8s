@@ -29,7 +29,7 @@ spec:
               subPath: mariadb-kodi
             - mountPath: /mariadb_backup_files
               name: nas-backup
-              subPath: Backups-Automated/kodi
+              subPath: Backups-Automated/kodi/mariadb
             env:
             - name: TZ
               value: 'Europe/Zurich'
