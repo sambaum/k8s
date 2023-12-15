@@ -36,6 +36,8 @@ spec:
           value: 'my_secret_phpipam_pass'
         - name: IPAM_DATABASE_WEBHOST
           value: '%'
+        - name: IPAM_BASE
+          value: '/'
         - name: IPAM_TRUST_X_FORWARDED
           value: "true"
       - name: phpipam-cron
