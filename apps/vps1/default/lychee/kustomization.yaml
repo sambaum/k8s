@@ -23,5 +23,5 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/env/10/value
-      value: https://https://foto.sambaum.ch
+      value: https://foto.sambaum.ch
 
