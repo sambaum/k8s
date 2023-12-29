@@ -17,3 +17,10 @@ patches:
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+- target:
+    kind: Deployment
+    name: lychee
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/10/value
+      value: https://lychee.int.sambaum.ch

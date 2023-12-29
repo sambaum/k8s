@@ -53,7 +53,7 @@ spec:
         - mountPath: /etc/nginx/nginx.conf
           name: settings
         env:
-        - name: TZ
+        - name: TIMEZONE
           value: 'Europe/Zurich'
         - name: DB_HOST
           value: 'lychee-service-mariadb'
@@ -73,6 +73,8 @@ spec:
           value: '*'
         - name: DB_CONNECTION
           value: 'mysql'
+        - name: APP_URL
+          value: 'https://example.com'
       - name: maria
         image: mariadb:10.11.6
         ports:
