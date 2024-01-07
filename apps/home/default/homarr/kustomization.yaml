@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/homarr/
+patches:
+- target:
+    kind: Ingress
+    name: homarr-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: homarr.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [homarr.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://homarr.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

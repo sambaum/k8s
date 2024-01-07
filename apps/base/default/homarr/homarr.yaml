@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homarr
+  namespace: default
+  labels:
+    app: homarr
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homarr
+  template:
+    metadata:
+      labels:
+        app: homarr
+    spec:
+      containers:
+      - name: homarr
+        image: ghcr.io/ajnart/homarr:0.14.3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7575
+        volumeMounts:
+        - mountPath: /app/data/configs
+          name: config
+          subPath: homarr/config
+        - mountPath: /app/public/icons
+          name: config
+          subPath: homarr/icons
+        - mountPath: /data
+          name: config
+          subPath: homarr/data
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: homarr-service
+  namespace: default
+spec:
+  selector:
+    app: homarr
+  ports:
+  - protocol: TCP
+    port: 7575
+    targetPort: 7575
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homarr-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: homarr
+    flame.pawelmalak/url: https://homarr.example.com
+    flame.pawelmalak/icon: https://static-00.iconduck.com/assets.00/homarr-icon-2048x1386-zch7ypca.png
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'homarr.example.com'
+    secretName: homarr-tls
+  rules:
+  - host: homarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: homarr-service
+            port:
+              number: 7575
