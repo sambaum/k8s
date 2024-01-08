@@ -29,6 +29,7 @@
   path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
   value:
   - job_name: opnsense
+    scrape_interval: 15s
     static_configs:
     - targets: ['opnsense.int.sambaum.ch:9100']
       labels:
@@ -64,13 +65,13 @@
       action: drop
       regex: 'pflog0'
   - job_name: proxmox
-    scrape_interval: 10s
+    scrape_interval: 15s
     static_configs:
     - targets: ['proxmox.int.sambaum.ch:9100']
       labels:
         group: 'proxmox'
   - job_name: proxmox2
-    scrape_interval: 10s
+    scrape_interval: 15s
     static_configs:
     - targets: ['proxmox2.int.sambaum.ch:9100']
       labels:
@@ -107,7 +108,7 @@
       labels:
         group: 'uptime-kuma'
   - job_name: 'json-exporter-mystrom'
-    scrape_interval: 10s
+    scrape_interval: 15s
     metrics_path: '/probe'
     params:
       target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report']
@@ -118,7 +119,7 @@
       labels:
         group: 'json-exporter-mystrom'
   - job_name: 'nut_http'
-    scrape_interval: 10s
+    scrape_interval: 15s
     metrics_path: '/probe'
     params:
       target: ['https://nut-http.int.sambaum.ch/devices/ups?parsed=true']
