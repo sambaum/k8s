@@ -1,0 +1,1262 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1423,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "noValue": "All Sites UP",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 0,
+          "y": 0
+        },
+        "hideTimeOverride": true,
+        "id": 7,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": true,
+            "expr": "count (monitor_status==0)",
+            "interval": "",
+            "legendFormat": "{{ monitor_name }}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "1m",
+        "title": "Sites Down",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 0,
+            "mappings": [],
+            "noValue": "0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 2,
+          "y": 0
+        },
+        "id": 6,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name",
+          "wideLayout": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Home",
+            "range": false,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Deskcube",
+            "range": false,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "VPS1",
+            "range": false,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Home S",
+            "range": false,
+            "refId": "D"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Deskcube S",
+            "range": false,
+            "refId": "E"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "VPS1 S",
+            "range": false,
+            "refId": "F"
+          }
+        ],
+        "title": "FluxCD",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "bY0ll83nk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "decimals": 0,
+            "displayName": "${__field.labels.host}",
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 0,
+          "y": 3
+        },
+        "id": 5,
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "valueMode": "color"
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "bY0ll83nk"
+            },
+            "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\n  |> filter(fn: (r) => r[\"_field\"] == \"cpu\")\n  |> filter(fn: (r) => r[\"object\"] == \"qemu\")\n  |> filter(fn: (r) => r[\"_value\"] > 0)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n//  |> yield(name: \"mean\")\n",
+            "refId": "A"
+          }
+        ],
+        "title": "VM CPU usage",
+        "transformations": [],
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 250,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 150
+                },
+                {
+                  "color": "red",
+                  "value": 160
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 7
+        },
+        "id": 4,
+        "links": [],
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "valueMode": "color"
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "mystrom_Ws",
+            "instant": false,
+            "legendFormat": "Current",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "avg_over_time(mystrom_Ws[1d])",
+            "hide": false,
+            "instant": false,
+            "interval": "",
+            "legendFormat": "24h Average",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "nut_http_realpower_nominal",
+            "hide": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "nut_http_load",
+            "hide": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "D"
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "$C/100*$D",
+            "hide": false,
+            "refId": "UPS",
+            "type": "math"
+          }
+        ],
+        "title": "Power",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 10
+        },
+        "id": 3,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {
+            "titleSize": 11,
+            "valueSize": 13
+          },
+          "valueMode": "color"
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Proxmox",
+            "range": true,
+            "refId": "A",
+            "step": 20
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Proxmox 2",
+            "range": true,
+            "refId": "B",
+            "step": 20
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"opnsense.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "OPNSense",
+            "range": true,
+            "refId": "C",
+            "step": 20
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Dumpster",
+            "range": true,
+            "refId": "F",
+            "step": 20
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Deskcube",
+            "range": true,
+            "refId": "E",
+            "step": 20
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.145.37.10:9100\",mode=\"idle\"}[30s])) * 100)",
+            "format": "time_series",
+            "hide": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "VPS1",
+            "range": true,
+            "refId": "D",
+            "step": 20
+          }
+        ],
+        "title": "CPU usage",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 1000000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "Kbits"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 0,
+          "y": 13
+        },
+        "id": 2,
+        "interval": "15s",
+        "links": [],
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "valueMode": "color"
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "irate(node_network_receive_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$__rate_interval]) * 8 / 1014 > 0",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{device}} recv",
+            "range": false,
+            "refId": "A",
+            "step": 60
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "irate(node_network_transmit_bytes_total{instance=\"opnsense.int.sambaum.ch:9100\"}[$__rate_interval]) * 8 / 1024 > 0",
+            "format": "time_series",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{device}} trans",
+            "range": false,
+            "refId": "B",
+            "step": 60
+          }
+        ],
+        "title": "OPNSense Traffic",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Time",
+                  "LAN recv",
+                  "WAN recv",
+                  "LAN trans",
+                  "WAN trans"
+                ]
+              }
+            }
+          }
+        ],
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 1000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 800
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Usage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Usage"
+              },
+              "properties": [
+                {
+                  "id": "max",
+                  "value": 48000000000000
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 17
+        },
+        "id": 1,
+        "links": [],
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "valueMode": "color"
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "alias": "sda",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sda",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdb",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdb",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdc",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdc",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdd",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdd",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sde",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sde",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdf",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdf",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdg",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdg",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "alias": "sdh",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "PrQ94dx4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "sdh",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "disk_io_time.io_time"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "resource",
+                "operator": "=",
+                "value": "disk"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "($A+$B+$C+$D+$E+$E+$F+$G+$H)/9",
+            "hide": false,
+            "refId": "Disk Buys",
+            "type": "math"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "truenas_pool_dataset_used{mountpoint=\"/mnt/pool1\"}",
+            "hide": false,
+            "legendFormat": "Usage",
+            "range": true,
+            "refId": "J"
+          }
+        ],
+        "title": "TrueNAS",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": ""
+              }
+            }
+          }
+        ],
+        "type": "bargauge"
+      }
+    ],
+    "refresh": "15s",
+    "schemaVersion": 38,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "proxmox",
+            "value": "proxmox"
+          },
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
+          },
+          "definition": "buckets()",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "Bucket",
+          "options": [],
+          "query": "buckets()",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Homarr Graphs",
+    "uid": "acae9d2c-a84f-4fce-8da5-9fabd4ff4444",
+    "version": 22,
+    "weekStart": ""
+  }

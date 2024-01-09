@@ -81,6 +81,13 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
+- name: grafana-dashboards-homarr-visualizations
+  files:
+  - custom-dashboards/homarr-visualizations.json
+  options:
+    labels:
+      grafana_dashboard: '1'
+
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
