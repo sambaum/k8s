@@ -483,7 +483,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\"}[1m])) / count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)) * 100",
+          "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\"}[1m])) / count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)) * 100",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "CPU",
@@ -712,7 +712,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
+          "expr": "irate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -726,7 +726,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
+          "expr": "irate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -824,7 +824,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_receive_packets_total{instance=\"$instance\"}[$interval]) > 0",
+          "expr": "irate(node_network_receive_packets_total{instance=\"$instance\"}[$interval]) > 0",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -838,7 +838,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_transmit_packets_total{instance=\"$instance\"}[$interval]) > 0",
+          "expr": "irate(node_network_transmit_packets_total{instance=\"$instance\"}[$interval]) > 0",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -938,7 +938,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
+          "expr": "irate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -953,7 +953,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
+          "expr": "irate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1050,7 +1050,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_network_receive_multicast_total{instance=\"$instance\"}[$interval]) > 0",
+          "expr": "irate(node_network_receive_multicast_total{instance=\"$instance\"}[$interval]) > 0",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1063,7 +1063,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "rate(node_network_transmit_multicast_total{instance=\"$instance\"}[$interval]) > 0",
+          "expr": "irate(node_network_transmit_multicast_total{instance=\"$instance\"}[$interval]) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "trans {{device}} ",
@@ -1182,7 +1182,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"0\"}[$interval])) * 100",
+          "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"0\"}[$interval])) * 100",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1196,7 +1196,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"1\"}[$interval])) * 100",
+          "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"1\"}[$interval])) * 100",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1692,7 +1692,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_memory_size_bytes{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_memory_size_bytes{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1707,7 +1707,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_memory_active_bytes{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_memory_active_bytes{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1900,7 +1900,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_context_switches_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_context_switches_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2023,7 +2023,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_device_interrupts_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_device_interrupts_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2146,7 +2146,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_software_interrupts_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_software_interrupts_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2269,7 +2269,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_forks_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_forks_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2392,7 +2392,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_traps_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_traps_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2515,7 +2515,7 @@
             "uid": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(node_exec_system_calls_total{instance=\"$instance\"}[$interval])",
+          "expr": "irate(node_exec_system_calls_total{instance=\"$instance\"}[$interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
