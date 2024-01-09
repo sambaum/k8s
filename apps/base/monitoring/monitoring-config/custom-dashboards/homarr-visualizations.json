@@ -18,7 +18,6 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 1423,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -725,7 +724,7 @@
             "color": {
               "mode": "palette-classic"
             },
-            "decimals": 0,
+            "decimals": 1,
             "mappings": [],
             "max": 1000,
             "min": 0,
@@ -1257,6 +1256,6 @@
     "timezone": "",
     "title": "Homarr Graphs",
     "uid": "acae9d2c-a84f-4fce-8da5-9fabd4ff4444",
-    "version": 22,
+    "version": 23,
     "weekStart": ""
   }
