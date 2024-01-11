@@ -110,7 +110,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu))",
@@ -185,7 +185,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -267,7 +267,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "node_memory_active_bytes{instance=\"$instance\"}",
@@ -349,7 +349,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "node_filesystem_size_bytes{instance=\"$instance\", mountpoint=\"/\"}",
@@ -408,7 +408,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -465,6 +465,7 @@
       "id": 332,
       "options": {
         "displayMode": "basic",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
         "namePlacement": "auto",
@@ -477,10 +478,11 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "manual",
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -560,6 +562,7 @@
       "id": 334,
       "options": {
         "displayMode": "basic",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
         "namePlacement": "auto",
@@ -572,9 +575,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -1569,7 +1573,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1695,7 +1699,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.2.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1922,7 +1926,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2045,7 +2049,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2168,7 +2172,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2291,7 +2295,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2414,7 +2418,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2537,7 +2541,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2595,7 +2599,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [
     "System",
     "Sam",

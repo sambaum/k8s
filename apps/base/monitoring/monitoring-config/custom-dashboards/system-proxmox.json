@@ -73,7 +73,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "repeat": "node",
       "repeatDirection": "h",
       "style": {},
@@ -124,7 +124,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 2
+        "y": 4
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -142,9 +142,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "time() - node_boot_time_seconds{instance=~\"$node\"}",
@@ -202,7 +203,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 2
+        "y": 4
       },
       "id": 14,
       "links": [],
@@ -219,9 +220,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$node\", mode='system'}) by (cpu))",
@@ -286,12 +288,14 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 2
+        "y": 4
       },
       "id": 167,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -301,9 +305,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[5m])) * 100)",
@@ -369,12 +374,14 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 2
+        "y": 4
       },
       "id": 20,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -384,9 +391,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[5m])) * 100",
@@ -442,13 +450,15 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 2
+        "y": 4
       },
       "hideTimeOverride": false,
       "id": 172,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -458,9 +468,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
@@ -514,13 +525,15 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 2
+        "y": 4
       },
       "hideTimeOverride": false,
       "id": 16,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -530,9 +543,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "node_filefd_allocated{instance=~\"$node\"}",
@@ -595,12 +609,14 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 2
+        "y": 4
       },
       "id": 166,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -610,9 +626,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "repeatDirection": "h",
       "targets": [
         {
@@ -676,12 +693,14 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 2
+        "y": 4
       },
       "id": 154,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 10,
+        "minVizWidth": 200,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -691,9 +710,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "manual"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "repeatDirection": "h",
       "targets": [
         {
@@ -751,7 +771,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 4
+        "y": 6
       },
       "id": 75,
       "links": [],
@@ -768,9 +788,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
@@ -807,7 +828,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "height": "300",
       "hiddenSeries": false,
@@ -832,7 +853,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -930,7 +951,7 @@
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 7
+        "y": 9
       },
       "hideTimeOverride": false,
       "id": 171,
@@ -989,7 +1010,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 9
       },
       "id": 164,
       "links": [],
@@ -1209,7 +1230,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 13
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1235,7 +1256,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1341,7 +1362,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 13
+        "y": 15
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1365,7 +1386,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1487,7 +1508,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 20
+        "y": 22
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1512,7 +1533,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1604,7 +1625,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 20
+        "y": 22
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1629,7 +1650,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1711,7 +1732,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 20
+        "y": 22
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1736,7 +1757,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1832,7 +1853,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1857,7 +1878,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1937,7 +1958,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 30
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1961,7 +1982,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2060,6 +2081,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2153,7 +2175,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 38
       },
       "id": 169,
       "links": [],
@@ -2274,6 +2296,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2367,7 +2390,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 48
       },
       "id": 177,
       "links": [],
@@ -2418,6 +2441,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2473,7 +2497,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 58
       },
       "id": 179,
       "options": {
@@ -2565,6 +2589,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2616,7 +2641,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 66
       },
       "id": 175,
       "links": [],
@@ -2667,6 +2692,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2754,7 +2780,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 71
       },
       "id": 176,
       "links": [],
@@ -2820,6 +2846,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2831,6 +2860,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2852,7 +2882,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2868,7 +2899,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 79
+        "y": 81
       },
       "id": 173,
       "links": [],
@@ -2917,6 +2948,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2928,6 +2962,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2949,7 +2984,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2965,7 +3001,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 79
+        "y": 81
       },
       "id": 180,
       "links": [],
@@ -3014,6 +3050,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -3025,6 +3064,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3046,7 +3086,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3111,7 +3152,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 88
       },
       "id": 174,
       "links": [],
@@ -3151,8 +3192,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "StarsL",
     "Prometheus",
@@ -3315,7 +3355,7 @@
       {
         "allFormat": "glob",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "proxmox.int.sambaum.ch:9100",
           "value": "proxmox.int.sambaum.ch:9100"
         },

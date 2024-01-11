@@ -65,9 +65,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -95,6 +96,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -222,6 +224,8 @@
       },
       "id": 2,
       "options": {
+        "minVizHeight": 200,
+        "minVizWidth": 200,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -231,9 +235,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": false,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -289,8 +294,10 @@
       "id": 8,
       "options": {
         "displayMode": "basic",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -300,9 +307,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -373,8 +381,10 @@
       "id": 9,
       "options": {
         "displayMode": "basic",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -384,9 +394,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -487,8 +498,10 @@
       "id": 10,
       "options": {
         "displayMode": "basic",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -498,9 +511,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -606,9 +620,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -637,6 +652,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -729,8 +745,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "Sam",
     "Starred"
