@@ -1,0 +1,7 @@
+resources:
+- ../../../base/default/homepage-helm/
+patches:
+- target:
+    kind: HelmRelease
+    name: homepage
+  path: homepage-patch.yaml

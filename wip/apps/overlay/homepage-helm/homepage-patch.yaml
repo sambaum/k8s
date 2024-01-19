@@ -1,0 +1,35 @@
+- op: replace
+  path: /spec/values/ingress/main/hosts/0/host
+  value: homepage.int.sambaum.ch
+- op: replace
+  path: /spec/values/ingress/main/tls/0/hosts/0
+  value: homepage.int.sambaum.ch
+# - op: replace
+#   path: /spec/values/ingress/main/annotations/flame.pawelmalak~1url
+#   value: https://homepage.int.sambaum.ch
+- op: replace
+  path: /spec/values/ingress/main/annotations/cert-manager.io~1cluster-issuer
+  value: letsencrypt-production
+- op: replace
+  path: /spec/values/config/services
+  value:
+  - Media:
+    - Sonarr:
+        icon: sonarr.svg
+        href: https://sonarr.int.sambaum.ch
+        siteMonitor: https://sonarr.int.sambaum.ch
+        widget:
+          type: sonarr
+          fields: ["wanted", "queued"]
+          url: http://sonarr-service:8989
+          key: b610abcb451d4649a0ee845396fe5df9
+  - Infrastructure:
+    - OPNsense:
+        icon: opnsense.svg
+        href: https://opnsense.int.sambaum.ch
+        siteMonitor: https://opnsense.int.sambaum.ch
+        widget:
+          type: opnsense
+          url: https://opnsense.int.sambaum.ch
+          username: KaB8vW83VTDAUotwOg2a6im7MMOQ4hD1cKY3qsCS0vsmgFR/AT/iwDUnJrugqHRRB84ZIhgSvrWstxnf
+          password: h9vO0e36MjGlIDHpIye0VuDuxuS7r5wVMmcqg09efV3mgkTQ7dhXIfVfpeiwBdQ/f25ACAzzE+i9aWpE
