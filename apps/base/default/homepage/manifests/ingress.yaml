@@ -11,11 +11,6 @@ metadata:
     flame.pawelmalak/name: 'Homepage'
     flame.pawelmalak/url: https://homepage.example.com
     # flame.pawelmalak/icon: https://www.axonius.com/hs-fs/hubfs/Adapter%20Logos/php_ipam_adapter.png?length=600&name=php_ipam_adapter.png
-    gethomepage.dev/description: Dynamically Detected Homepage
-    gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Cluster Management
-    gethomepage.dev/icon: homepage.png
-    gethomepage.dev/name: Homepage
 spec:
   ingressClassName: nginx
   tls:
