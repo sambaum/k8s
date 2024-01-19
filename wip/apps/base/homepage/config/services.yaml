@@ -1,0 +1,14 @@
+- Search Engines:
+  - Google:
+      icon: google.svg
+      href: https://google.ch
+      siteMonitor: https://google.ch
+
+- AI Chats:
+  - Open AI:
+      icon: openai.svg
+      href: https://chat.openai.com/
+      siteMonitor: https://chat.openai.com/
+  - Bing Copilot:
+      icon: bing.svg
+      href: https://www.bing.com/

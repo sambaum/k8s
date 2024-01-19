@@ -1,0 +1,23 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/bookmarks
+
+- Developer:
+  - Github:
+    - abbr: GH
+      href: https://github.com/
+  - OVH:
+    - abbr: BB
+      href: https://bitbucket.org/
+
+- External Services:
+  - UptimeRobot:
+    - abbr: UR
+      href: https://uptimerobot.com/
+
+- Weather:
+  - SRF Meteo:
+    - abbr: SRF
+      href: https://www.srf.ch/meteo
+  - Meteo Schweiz:
+    - abbr: MCH
+      href: https://www.meteoschweiz.admin.ch/
