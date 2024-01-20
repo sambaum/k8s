@@ -101,7 +101,7 @@ metadata:
     flame.pawelmalak/url: https://healthchecks.example.com
     flame.pawelmalak/icon: https://img.stackshare.io/service/5357/13053880.png
     gethomepage.dev/description: Healthchecks Dashbaord
-    gethomepage.dev/enabled: "true"
+    gethomepage.dev/enabled: "false"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: healthchecks.svg
     gethomepage.dev/name: Healthchecks

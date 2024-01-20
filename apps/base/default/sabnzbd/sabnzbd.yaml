@@ -86,7 +86,7 @@ metadata:
     flame.pawelmalak/url: https://sabnzbd.example.com
     flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1578567856_SABnzbd_256.png
     gethomepage.dev/description: SABnzbd
-    gethomepage.dev/enabled: "true"
+    gethomepage.dev/enabled: "false"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: sabnzbd.svg
     gethomepage.dev/name: sabnzbd

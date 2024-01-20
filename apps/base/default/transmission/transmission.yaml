@@ -101,7 +101,7 @@ metadata:
     flame.pawelmalak/url: https://transmission.example.com
     flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
     gethomepage.dev/description: Transmission Torrent Download
-    gethomepage.dev/enabled: "true"
+    gethomepage.dev/enabled: "false"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: transmission.svg
     gethomepage.dev/name: Transmission
