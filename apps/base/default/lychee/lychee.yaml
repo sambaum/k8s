@@ -156,7 +156,7 @@ metadata:
     gethomepage.dev/description: Lychee Foto
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: lychee.png
+    gethomepage.dev/icon: lychee.svg
     gethomepage.dev/name: Lychee
 spec:
   ingressClassName: nginx

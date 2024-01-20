@@ -99,7 +99,7 @@ metadata:
     gethomepage.dev/description: Emby Mediacenter
     gethomepage.dev/enabled: "false"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: emby.png
+    gethomepage.dev/icon: emby.svg
     gethomepage.dev/name: Emby
 spec:
   ingressClassName: nginx

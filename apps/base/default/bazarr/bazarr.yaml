@@ -83,7 +83,7 @@ metadata:
     gethomepage.dev/description: Bazarr Subtitle Management
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: bazarr.png
+    gethomepage.dev/icon: bazarr.svg
     gethomepage.dev/name: Bazarr
 spec:
   ingressClassName: nginx

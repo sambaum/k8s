@@ -103,7 +103,7 @@ metadata:
     gethomepage.dev/description: Healthchecks Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: healthchecks.png
+    gethomepage.dev/icon: healthchecks.svg
     gethomepage.dev/name: Healthchecks
 spec:
   ingressClassName: nginx

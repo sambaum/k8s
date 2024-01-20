@@ -71,7 +71,7 @@ metadata:
     gethomepage.dev/description: Duplicati Backup
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: duplicati.png
+    gethomepage.dev/icon: duplicati.svg
     gethomepage.dev/name: Duplicati
 spec:
   ingressClassName: nginx

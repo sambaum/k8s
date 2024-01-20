@@ -89,7 +89,7 @@ metadata:
     gethomepage.dev/description: Series
     gethomepage.dev/enabled: 'false'
     gethomepage.dev/group: Media
-    gethomepage.dev/icon: sonarr.png
+    gethomepage.dev/icon: sonarr.svg
     gethomepage.dev/name: Sonarr
 spec:
   ingressClassName: nginx

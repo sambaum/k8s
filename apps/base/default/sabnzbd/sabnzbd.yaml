@@ -88,7 +88,7 @@ metadata:
     gethomepage.dev/description: SABnzbd
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: sabnzbd.png
+    gethomepage.dev/icon: sabnzbd.svg
     gethomepage.dev/name: sabnzbd
 spec:
   ingressClassName: nginx

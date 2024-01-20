@@ -89,7 +89,7 @@ metadata:
     gethomepage.dev/description: Movies
     gethomepage.dev/enabled: 'false'
     gethomepage.dev/group: Media
-    gethomepage.dev/icon: radarr.png
+    gethomepage.dev/icon: radarr.svg
     gethomepage.dev/name: Radarr
 spec:
   ingressClassName: nginx

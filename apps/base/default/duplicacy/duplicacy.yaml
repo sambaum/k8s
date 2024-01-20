@@ -63,7 +63,7 @@ metadata:
     gethomepage.dev/description: Duplicacy Backup
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: duplicacy.png
+    gethomepage.dev/icon: duplicacy.svg
     gethomepage.dev/name: Duplicacy
 spec:
   ingressClassName: nginx

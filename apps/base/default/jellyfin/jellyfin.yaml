@@ -111,7 +111,7 @@ metadata:
     gethomepage.dev/description: Jellyfin Media Center
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: jellyfin.png
+    gethomepage.dev/icon: jellyfin.svg
     gethomepage.dev/name: Jellyfin
 spec:
   ingressClassName: nginx

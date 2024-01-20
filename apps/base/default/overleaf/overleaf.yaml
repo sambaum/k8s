@@ -125,7 +125,7 @@ metadata:
     gethomepage.dev/description: Overleaf Latex Editor
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: overleaf.png
+    gethomepage.dev/icon: overleaf.svg
     gethomepage.dev/name: Overleaf
 spec:
   ingressClassName: nginx

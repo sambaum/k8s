@@ -78,7 +78,7 @@ metadata:
     gethomepage.dev/description: Uptime-Kuma
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: uptime-kuma.png
+    gethomepage.dev/icon: uptime-kuma.svg
     gethomepage.dev/name: Uptime-Kuma
 spec:
   ingressClassName: nginx

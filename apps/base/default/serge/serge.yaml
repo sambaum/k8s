@@ -76,7 +76,7 @@ metadata:
     gethomepage.dev/description: Serge LLM
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: serge.png
+    gethomepage.dev/icon: serge.svg
     gethomepage.dev/name: serge
 spec:
   ingressClassName: nginx

@@ -59,7 +59,7 @@ metadata:
     gethomepage.dev/description: Headers Test App
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: headers.png
+    gethomepage.dev/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/HTTP_logo_-_2014.svg/290px-HTTP_logo_-_2014.svg.png
     gethomepage.dev/name: Headers
 spec:
   ingressClassName: nginx

@@ -103,7 +103,7 @@ metadata:
     gethomepage.dev/description: Transmission Torrent Download
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: transmission.png
+    gethomepage.dev/icon: transmission.svg
     gethomepage.dev/name: Transmission
 spec:
   ingressClassName: nginx

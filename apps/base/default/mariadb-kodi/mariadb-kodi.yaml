@@ -108,7 +108,7 @@ metadata:
     gethomepage.dev/description: MariaDB Kodi
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: mariadb.png
+    gethomepage.dev/icon: mariadb.svg
     gethomepage.dev/name: MariaDB
 spec:
   ingressClassName: nginx

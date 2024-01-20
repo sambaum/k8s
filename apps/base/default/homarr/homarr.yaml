@@ -73,7 +73,7 @@ metadata:
     gethomepage.dev/description: Homarr Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: homarr.png
+    gethomepage.dev/icon: homarr.svg
     gethomepage.dev/name: Homarr
 spec:
   ingressClassName: nginx

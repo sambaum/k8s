@@ -73,7 +73,7 @@ metadata:
     gethomepage.dev/description: Guacamole Remote Access
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: guacamole.png
+    gethomepage.dev/icon: guacamole.svg
     gethomepage.dev/name: Guacamole
 spec:
   ingressClassName: nginx
