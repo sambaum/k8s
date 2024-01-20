@@ -63,7 +63,7 @@ metadata:
     gethomepage.dev/description: Organizr Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: organizr.svg
+    gethomepage.dev/icon: organizr.png
     gethomepage.dev/name: Organizr
 spec:
   ingressClassName: nginx
