@@ -96,6 +96,11 @@ metadata:
     flame.pawelmalak/name: Emby
     flame.pawelmalak/url: https://emby.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/thewhobox/ioBroker.emby/HEAD/admin/emby.png
+    gethomepage.dev/description: Emby Mediacenter
+    gethomepage.dev/enabled: "false"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: emby.png
+    gethomepage.dev/name: Emby
 spec:
   ingressClassName: nginx
   tls:

@@ -60,6 +60,11 @@ metadata:
     flame.pawelmalak/name: CloudBerry Backup
     flame.pawelmalak/url: https://duplicacy.example.com
     flame.pawelmalak/icon: https://forum.duplicacy.com/uploads/default/original/1X/4089f78ba8ab9f28af6720d200388356775cb8fa.png
+    gethomepage.dev/description: Duplicacy Backup
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: duplicacy.png
+    gethomepage.dev/name: Duplicacy
 spec:
   ingressClassName: nginx
   tls:

@@ -105,6 +105,11 @@ metadata:
     flame.pawelmalak/name: mariadb-kodi
     flame.pawelmalak/url: http://mariadb-kodi.example.com
     flame.pawelmalak/icon: https://www.silicon.de/wp-content/uploads/2014/08/mariadb-seal.png
+    gethomepage.dev/description: MariaDB Kodi
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: mariadb.png
+    gethomepage.dev/name: MariaDB
 spec:
   ingressClassName: nginx
   tls:

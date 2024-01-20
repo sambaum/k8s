@@ -70,6 +70,11 @@ metadata:
     flame.pawelmalak/name: Guacamole
     flame.pawelmalak/url: https://guacamole.example.com
     flame.pawelmalak/icon: https://icons.iconarchive.com/icons/sonya/swarm/256/Guacamole-icon.png
+    gethomepage.dev/description: Guacamole Remote Access
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: guacamole.png
+    gethomepage.dev/name: Guacamole
 spec:
   ingressClassName: nginx
   tls:

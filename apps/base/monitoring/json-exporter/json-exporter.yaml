@@ -22,44 +22,40 @@ spec:
         app: json-exporter
     spec:
       initContainers:
-        - name: create-config
-          image: mwendler/wget
-          command: ["/bin/sh"]
-          args:
-            [
-              '-c',
-              'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/json-exporter/config.yml --no-check-certificate; fi'
-            ]
-          volumeMounts:
-            - mountPath: /dummy
-              name: settings-dir
-            - mountPath: /config.yml
-              name: settings
+      - name: create-config
+        image: mwendler/wget
+        command: ["/bin/sh"]
+        args: ['-c', 'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/json-exporter/config.yml --no-check-certificate; fi']
+        volumeMounts:
+        - mountPath: /dummy
+          name: settings-dir
+        - mountPath: /config.yml
+          name: settings
       containers:
-        - name: json-exporter
-          image: quay.io/prometheuscommunity/json-exporter:v0.6.0
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 7979
-          env:
-            - name: TZ
-              value: 'Europe/Zurich'
-          volumeMounts:
-            - mountPath: /config.yml
-              name: settings
+      - name: json-exporter
+        image: quay.io/prometheuscommunity/json-exporter:v0.6.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7979
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        volumeMounts:
+        - mountPath: /config.yml
+          name: settings
       volumes:
-        - name: settings-dir
-          hostPath:
-            path: /conf/monitoring/json-exporter
-            type: DirectoryOrCreate
-        - name: settings
-          hostPath:
-            path: /conf/monitoring/json-exporter/config.yml
-            type: FileOrCreate
+      - name: settings-dir
+        hostPath:
+          path: /conf/monitoring/json-exporter
+          type: DirectoryOrCreate
+      - name: settings
+        hostPath:
+          path: /conf/monitoring/json-exporter/config.yml
+          type: FileOrCreate
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -70,9 +66,9 @@ spec:
   selector:
     app: json-exporter
   ports:
-    - protocol: TCP
-      port: 7979
-      targetPort: 7979
+  - protocol: TCP
+    port: 7979
+    targetPort: 7979
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -85,20 +81,25 @@ metadata:
     flame.pawelmalak/name: json-exporter
     flame.pawelmalak/url: https://json-exporter.example.com
     flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
+    gethomepage.dev/description: Conver JSON to Prometheus
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: jsonexporter.svg
+    gethomepage.dev/name: JSON Exporter
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'json-exporter.example.com'
-      secretName: json-exporter-tls
+  - hosts:
+    - 'json-exporter.example.com'
+    secretName: json-exporter-tls
   rules:
-    - host: json-exporter.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: json-exporter-service
-                port:
-                  number: 7979
+  - host: json-exporter.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: json-exporter-service
+            port:
+              number: 7979

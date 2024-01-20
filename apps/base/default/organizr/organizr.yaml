@@ -60,6 +60,11 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Organizr Dashbaord
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: organizr.png
+    gethomepage.dev/name: Organizr
 spec:
   ingressClassName: nginx
   tls:

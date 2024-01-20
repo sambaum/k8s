@@ -100,6 +100,11 @@ metadata:
     flame.pawelmalak/name: Transmission Flood
     flame.pawelmalak/url: https://transmission.example.com
     flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
+    gethomepage.dev/description: Transmission Torrent Download
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: transmission.png
+    gethomepage.dev/name: Transmission
 spec:
   ingressClassName: nginx
   tls:

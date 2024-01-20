@@ -70,6 +70,11 @@ metadata:
     flame.pawelmalak/name: Flame
     flame.pawelmalak/url: https://flame.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/pawelmalak/unraid-templates/master/templates/icons/flame.png
+    gethomepage.dev/description: Flame Dashbaord
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: flame.png
+    gethomepage.dev/name: Flame
 spec:
   ingressClassName: nginx
   tls:

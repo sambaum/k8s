@@ -86,6 +86,11 @@ metadata:
     flame.pawelmalak/name: Radarr
     flame.pawelmalak/url: https://radarr.example.com
     flame.pawelmalak/icon: https://fleet.linuxserver.io/images/linuxserver_radarr.png
+    gethomepage.dev/description: Movies
+    gethomepage.dev/enabled: 'false'
+    gethomepage.dev/group: Media
+    gethomepage.dev/icon: radarr.png
+    gethomepage.dev/name: Radarr
 spec:
   ingressClassName: nginx
   tls:

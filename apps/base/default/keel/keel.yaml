@@ -67,6 +67,11 @@ metadata:
     flame.pawelmalak/name: Keel.sh
     flame.pawelmalak/url: https://keel.example.com
     flame.pawelmalak/icon: https://keel.sh/img/logo_small.png
+    gethomepage.dev/description: Keel Kubernetes update automation
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: https://keel.sh/img/logo_small.png
+    gethomepage.dev/name: Keel
 spec:
   ingressClassName: nginx
   tls:

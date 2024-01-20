@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,41 +22,37 @@ spec:
         app: dashy
     spec:
       initContainers:
-        - name: create-config
-          image: mwendler/wget
-          command: ["/bin/sh"]
-          args:
-            [
-              '-c',
-              'if [ -s /app/public/conf.yml ]; then echo file already there; else wget -c -O /app/public/conf.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/dashy/conf.yml --no-check-certificate; fi'
-            ]
-          volumeMounts:
-            - mountPath: /app/public
-              name: settings-dir
-            - mountPath: /app/public/conf.yml
-              name: settings
+      - name: create-config
+        image: mwendler/wget
+        command: ["/bin/sh"]
+        args: ['-c', 'if [ -s /app/public/conf.yml ]; then echo file already there; else wget -c -O /app/public/conf.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/default/dashy/conf.yml --no-check-certificate; fi']
+        volumeMounts:
+        - mountPath: /app/public
+          name: settings-dir
+        - mountPath: /app/public/conf.yml
+          name: settings
       containers:
-        - name: dashy
-          image: lissy93/dashy:2.1.1
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /app/public/conf.yml
-              name: settings
+      - name: dashy
+        image: lissy93/dashy:2.1.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /app/public/conf.yml
+          name: settings
       volumes:
-        - name: settings-dir
-          hostPath:
-            path: /conf/default/dashy
-            type: DirectoryOrCreate
-        - name: settings
-          hostPath:
-            path: /conf/default/dashy/conf.yml
-            type: FileOrCreate
+      - name: settings-dir
+        hostPath:
+          path: /conf/default/dashy
+          type: DirectoryOrCreate
+      - name: settings
+        hostPath:
+          path: /conf/default/dashy/conf.yml
+          type: FileOrCreate
       dnsConfig:
         options:
-          - name: ndots
-            value: "1"
+        - name: ndots
+          value: "1"
 ---
 kind: Service
 apiVersion: v1
@@ -68,9 +63,9 @@ spec:
   selector:
     app: dashy
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -83,20 +78,25 @@ metadata:
     flame.pawelmalak/name: Dashy
     flame.pawelmalak/url: https://dashy.example.com
     flame.pawelmalak/icon: https://dashy.to/img/dashy.png
+    gethomepage.dev/description: Dashy Dashbaord
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: dashy.png
+    gethomepage.dev/name: Dashy
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - 'dashy.example.com'
-      secretName: dashy-tls
+  - hosts:
+    - 'dashy.example.com'
+    secretName: dashy-tls
   rules:
-    - host: dashy.example.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: '/'
-            backend:
-              service:
-                name: dashy-service
-                port:
-                  number: 80
+  - host: dashy.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: dashy-service
+            port:
+              number: 80

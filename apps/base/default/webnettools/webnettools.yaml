@@ -59,6 +59,11 @@ metadata:
     flame.pawelmalak/name: Web Net Tools
     flame.pawelmalak/url: https://webnettools.example.com
     # flame.pawelmalak/icon: TODO
+    gethomepage.dev/description: Web Net Tools
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: webnettools.svg
+    gethomepage.dev/name: webnettools
 spec:
   ingressClassName: nginx
   tls:

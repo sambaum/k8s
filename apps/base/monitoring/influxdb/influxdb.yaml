@@ -66,6 +66,11 @@ metadata:
     flame.pawelmalak/name: Influxdb
     flame.pawelmalak/url: https://influxdb.example.com
     flame.pawelmalak/icon: https://assets.zabbix.com/img/brands/influxdb.svg
+    gethomepage.dev/description: InfluxDB V2
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: influxdb.svg
+    gethomepage.dev/name: InfluxDB
 spec:
   ingressClassName: nginx
   tls:

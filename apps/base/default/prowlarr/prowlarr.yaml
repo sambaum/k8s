@@ -67,6 +67,11 @@ metadata:
     flame.pawelmalak/name: Prowlarr
     flame.pawelmalak/url: https://prowlarr.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/prowlarr-banner.png
+    gethomepage.dev/description: Prowlarr
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other Apps
+    gethomepage.dev/icon: prowlarr.svg
+    gethomepage.dev/name: prowlarr
 spec:
   ingressClassName: nginx
   tls:

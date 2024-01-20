@@ -86,6 +86,11 @@ metadata:
     flame.pawelmalak/name: Sonarr
     flame.pawelmalak/url: https://sonarr.example.com
     flame.pawelmalak/icon: https://forums-sonarr-tv.s3.dualstack.us-east-1.amazonaws.com/original/2X/e/ef4553fe96f04a298ec502279731579698e96a9b.png
+    gethomepage.dev/description: Series
+    gethomepage.dev/enabled: 'false'
+    gethomepage.dev/group: Media
+    gethomepage.dev/icon: sonarr.png
+    gethomepage.dev/name: Sonarr
 spec:
   ingressClassName: nginx
   tls:
