@@ -73,7 +73,7 @@ metadata:
     gethomepage.dev/description: Flame Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: flame.svg
+    gethomepage.dev/icon: flame.png
     gethomepage.dev/name: Flame
 spec:
   ingressClassName: nginx

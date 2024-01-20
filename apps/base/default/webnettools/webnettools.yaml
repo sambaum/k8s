@@ -62,7 +62,7 @@ metadata:
     gethomepage.dev/description: Web Net Tools
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: webnettools.svg
+    gethomepage.dev/icon: webtools.png
     gethomepage.dev/name: webnettools
 spec:
   ingressClassName: nginx

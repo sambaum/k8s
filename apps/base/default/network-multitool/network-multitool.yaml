@@ -59,7 +59,7 @@ metadata:
     gethomepage.dev/description: Network Multitool
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: multitool.svg
+    gethomepage.dev/icon: it-tools.png
     gethomepage.dev/name: Multitool
 spec:
   ingressClassName: nginx

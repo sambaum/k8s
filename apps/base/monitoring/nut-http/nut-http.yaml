@@ -62,7 +62,7 @@ metadata:
     gethomepage.dev/description: NTP-HTTP UPS
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: nut-http.svg
+    gethomepage.dev/icon: ups.png
     gethomepage.dev/name: nut-http
 spec:
   ingressClassName: nginx

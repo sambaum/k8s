@@ -66,7 +66,7 @@ metadata:
     gethomepage.dev/description: Whoogle Search Engine
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: whoogle.svg
+    gethomepage.dev/icon: whooglesearch.png
     gethomepage.dev/name: whoogle
 spec:
   ingressClassName: nginx

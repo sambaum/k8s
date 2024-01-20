@@ -107,7 +107,7 @@ metadata:
     gethomepage.dev/description: phpIPAM IP address management
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: phpipam.svg
+    gethomepage.dev/icon: phpipam.png
     gethomepage.dev/name: phpIPAM
 spec:
   ingressClassName: nginx
