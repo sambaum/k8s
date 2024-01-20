@@ -89,6 +89,7 @@
       ],
       "timeFrom": "1m",
       "title": "Sites Down",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -237,6 +238,7 @@
         }
       ],
       "title": "FluxCD",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -309,6 +311,7 @@
       ],
       "title": "VM CPU usage",
       "transformations": [],
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -439,6 +442,7 @@
         }
       ],
       "title": "Power",
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -604,6 +608,7 @@
         }
       ],
       "title": "CPU usage",
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -720,6 +725,7 @@
           }
         }
       ],
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -1225,6 +1231,7 @@
           }
         }
       ],
+      "transparent": true,
       "type": "bargauge"
     }
   ],
