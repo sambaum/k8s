@@ -40,10 +40,11 @@ spec:
         flame.pawelmalak/url: https://portainer.example.com
         flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
         gethomepage.dev/description: Portainer
-        gethomepage.dev/enabled: "false"
+        gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Other Apps
         gethomepage.dev/icon: portainer.svg
         gethomepage.dev/name: Portainer
+        gethomepage.dev/weight: -20
       labels: {}
       hosts:
       - paths:

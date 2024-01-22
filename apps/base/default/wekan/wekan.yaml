@@ -113,6 +113,7 @@ metadata:
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: wekan.svg
     gethomepage.dev/name: WeKan
+    gethomepage.dev/weight: -10
 spec:
   ingressClassName: nginx
   tls:
