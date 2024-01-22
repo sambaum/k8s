@@ -44,7 +44,7 @@ spec:
         gethomepage.dev/group: Other Apps
         gethomepage.dev/icon: portainer.svg
         gethomepage.dev/name: Portainer
-        gethomepage.dev/weight: -20
+        gethomepage.dev/weight: '-20'
       labels: {}
       hosts:
       - paths:
