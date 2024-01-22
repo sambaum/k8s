@@ -108,7 +108,7 @@ metadata:
     flame.pawelmalak/name: jellyfin
     flame.pawelmalak/url: https://jellyfin.example.com
     flame.pawelmalak/icon: https://image.pngaaa.com/403/5615403-middle.png
-    gethomepage.dev/description: Jellyfin Media Center
+    gethomepage.dev/description: The Free Software Media System
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: jellyfin.svg

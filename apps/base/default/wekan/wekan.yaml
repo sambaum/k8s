@@ -108,11 +108,11 @@ metadata:
     flame.pawelmalak/name: Wekan
     flame.pawelmalak/url: https://wekan.example.com
     flame.pawelmalak/icon: https://cdn.icon-icons.com/icons2/2108/PNG/512/wekan_icon_130787.png
-    gethomepage.dev/description: Wekan
+    gethomepage.dev/description: Open-Source Kanban
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: wekan.svg
-    gethomepage.dev/name: Wekan
+    gethomepage.dev/name: WeKan
 spec:
   ingressClassName: nginx
   tls:

@@ -153,7 +153,7 @@ metadata:
     flame.pawelmalak/name: Lychee
     flame.pawelmalak/url: https://lychee.example.com
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lychee-icon.png
-    gethomepage.dev/description: Lychee Foto
+    gethomepage.dev/description: Photo-Management
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: lychee.png

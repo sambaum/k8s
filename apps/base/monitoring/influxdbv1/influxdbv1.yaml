@@ -97,7 +97,7 @@ metadata:
     flame.pawelmalak/name: Influxdbv1
     flame.pawelmalak/url: https://influxdbv1.example.com
     flame.pawelmalak/icon: https://assets.zabbix.com/img/brands/influxdb.svg
-    gethomepage.dev/description: InfluxDB V1
+    gethomepage.dev/description: V1
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: influxdb.svg

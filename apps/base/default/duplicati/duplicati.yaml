@@ -68,7 +68,7 @@ metadata:
     flame.pawelmalak/name: Duplicati
     flame.pawelmalak/url: https://duplicati.example.com
     flame.pawelmalak/icon: https://www.duplicati.com/images/duplicati-fb-share-v1.png
-    gethomepage.dev/description: Duplicati Backup
+    gethomepage.dev/description: Backup
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: duplicati.svg

@@ -73,11 +73,11 @@ metadata:
     flame.pawelmalak/name: Serge
     flame.pawelmalak/url: https://serge.example.com
     flame.pawelmalak/icon: https://static-00.iconduck.com/assets.00/chat-icon-2048x2048-i7er18st.png
-    gethomepage.dev/description: Serge LLM
+    gethomepage.dev/description: LLaMA made easy
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
     gethomepage.dev/icon: https://static-00.iconduck.com/assets.00/chat-icon-2048x2048-i7er18st.png
-    gethomepage.dev/name: serge
+    gethomepage.dev/name: Serge Chat
 spec:
   ingressClassName: nginx
   tls:
