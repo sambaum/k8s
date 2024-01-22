@@ -104,10 +104,10 @@ metadata:
     flame.pawelmalak/name: '{php} IPAM'
     flame.pawelmalak/url: https://phpipam.example.com
     flame.pawelmalak/icon: https://www.axonius.com/hs-fs/hubfs/Adapter%20Logos/php_ipam_adapter.png?length=600&name=php_ipam_adapter.png
-    gethomepage.dev/description: phpIPAM IP address management
+    gethomepage.dev/description: phpIPAM IP Address Management
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other Apps
-    gethomepage.dev/icon: kubernetes.png
+    gethomepage.dev/icon: phpipam.png
     gethomepage.dev/name: phpIPAM
 spec:
   ingressClassName: nginx
