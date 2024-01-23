@@ -61,7 +61,7 @@ metadata:
     # flame.pawelmalak/icon: TODO
     gethomepage.dev/description: Test SSL, MTR, Dig, Nmap
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: More Apps
+    gethomepage.dev/group: Other
     gethomepage.dev/icon: webtools.png
     gethomepage.dev/name: Web Net Tools
 spec:
