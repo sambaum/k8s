@@ -105,6 +105,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: healthchecks.svg
     gethomepage.dev/name: Healthchecks
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

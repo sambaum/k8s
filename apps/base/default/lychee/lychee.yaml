@@ -158,6 +158,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: lychee.png
     gethomepage.dev/name: Lychee
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

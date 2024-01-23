@@ -113,6 +113,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: jellyfin.svg
     gethomepage.dev/name: Jellyfin
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

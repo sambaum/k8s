@@ -65,6 +65,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: duplicacy.png
     gethomepage.dev/name: Duplicacy
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

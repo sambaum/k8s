@@ -73,6 +73,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: duplicati.svg
     gethomepage.dev/name: Duplicati
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

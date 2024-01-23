@@ -80,6 +80,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: uptime-kuma.svg
     gethomepage.dev/name: Uptime-Kuma
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

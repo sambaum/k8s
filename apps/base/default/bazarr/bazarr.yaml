@@ -85,6 +85,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: bazarr.svg
     gethomepage.dev/name: Bazarr
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:

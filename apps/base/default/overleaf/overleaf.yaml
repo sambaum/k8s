@@ -127,6 +127,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://images.ctfassets.net/nrgyaltdicpt/h9dpHuVys19B1sOAWvbP6/5f8d4c6d051f63e4ba450befd56f9189/ologo_square_colour_light_bg.svg
     gethomepage.dev/name: Overleaf
+    gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:
