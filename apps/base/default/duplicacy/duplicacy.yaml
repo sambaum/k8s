@@ -62,7 +62,7 @@ metadata:
     flame.pawelmalak/icon: https://forum.duplicacy.com/uploads/default/original/1X/4089f78ba8ab9f28af6720d200388356775cb8fa.png
     gethomepage.dev/description: Cloud Backup Tool
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: duplicacy.png
     gethomepage.dev/name: Duplicacy
 spec:

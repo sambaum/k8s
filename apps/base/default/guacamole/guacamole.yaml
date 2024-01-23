@@ -72,7 +72,7 @@ metadata:
     flame.pawelmalak/icon: https://icons.iconarchive.com/icons/sonya/swarm/256/Guacamole-icon.png
     gethomepage.dev/description: Guacamole Remote Access
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: guacamole.svg
     gethomepage.dev/name: Guacamole
 spec:

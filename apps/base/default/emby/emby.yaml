@@ -98,7 +98,7 @@ metadata:
     flame.pawelmalak/icon: https://raw.githubusercontent.com/thewhobox/ioBroker.emby/HEAD/admin/emby.png
     gethomepage.dev/description: Emby Mediacenter
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: emby.svg
     gethomepage.dev/name: Emby
 spec:

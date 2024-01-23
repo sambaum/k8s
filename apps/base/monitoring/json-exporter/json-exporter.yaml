@@ -83,7 +83,7 @@ metadata:
     flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
     gethomepage.dev/description: Conver JSON to Prometheus
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
     gethomepage.dev/name: JSON Exporter
 spec:

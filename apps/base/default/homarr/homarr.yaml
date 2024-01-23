@@ -72,7 +72,7 @@ metadata:
     flame.pawelmalak/icon: https://static-00.iconduck.com/assets.00/homarr-icon-2048x1386-zch7ypca.png
     gethomepage.dev/description: Dashbaord
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: homarr.svg
     gethomepage.dev/name: Homarr
 spec:

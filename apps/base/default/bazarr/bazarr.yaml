@@ -82,7 +82,7 @@ metadata:
     flame.pawelmalak/icon: https://user-images.githubusercontent.com/26902309/41456760-be00043e-7081-11e8-9646-1b724037b4ff.png
     gethomepage.dev/description: Bazarr Subtitle Management
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: bazarr.svg
     gethomepage.dev/name: Bazarr
 spec:

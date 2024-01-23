@@ -77,7 +77,7 @@ metadata:
     flame.pawelmalak/icon: https://opencollective-production.s3.us-west-1.amazonaws.com/af670e80-082d-11ec-9ccd-77fe5bcff8a2.png
     gethomepage.dev/description: Uptime-Kuma
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: uptime-kuma.svg
     gethomepage.dev/name: Uptime-Kuma
 spec:

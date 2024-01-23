@@ -171,7 +171,7 @@ metadata:
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/paperless-ngx-logo.png
     gethomepage.dev/description: Paperless-NGX
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: paperless.svg
     gethomepage.dev/name: Paperless
 spec:

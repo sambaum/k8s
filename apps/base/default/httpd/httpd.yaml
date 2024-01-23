@@ -66,7 +66,7 @@ metadata:
     flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/apache-8-1174973.png
     gethomepage.dev/description: Apache
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: httpd.png
     gethomepage.dev/name: httpd
 spec:

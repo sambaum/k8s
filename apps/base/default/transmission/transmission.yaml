@@ -102,7 +102,7 @@ metadata:
     flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
     gethomepage.dev/description: Transmission Torrent Download
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: transmission.svg
     gethomepage.dev/name: Transmission
 spec:

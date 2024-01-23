@@ -65,7 +65,7 @@ metadata:
     # whoogle.pawelmalak/icon: https://preview.redd.it/wg339t74xqi81.png?width=1266&format=png&auto=webp&s=c1e89307b1000fe7436a239f70d3a346ec629812
     gethomepage.dev/description: Search Engine
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: whooglesearch.png
     gethomepage.dev/name: Whoogle
 spec:

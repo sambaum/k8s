@@ -107,7 +107,7 @@ metadata:
     flame.pawelmalak/icon: https://www.silicon.de/wp-content/uploads/2014/08/mariadb-seal.png
     gethomepage.dev/description: MariaDB Kodi
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: mariadb.svg
     gethomepage.dev/name: MariaDB
 spec:

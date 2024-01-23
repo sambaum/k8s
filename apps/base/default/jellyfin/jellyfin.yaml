@@ -110,7 +110,7 @@ metadata:
     flame.pawelmalak/icon: https://image.pngaaa.com/403/5615403-middle.png
     gethomepage.dev/description: The Free Software Media System
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: jellyfin.svg
     gethomepage.dev/name: Jellyfin
 spec:

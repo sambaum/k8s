@@ -32,7 +32,7 @@ spec:
         flame.pawelmalak/icon: https://cdn2.iconfinder.com/data/icons/mixd/512/20_kubernetes-512.png
         gethomepage.dev/description: Kubernetes Dashboard
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Other Apps
+        gethomepage.dev/group: More Apps
         gethomepage.dev/icon: kubernetes-dashboard.svg
         gethomepage.dev/name: Kubernetes-Dashboard
       labels: {}

@@ -69,7 +69,7 @@ metadata:
     flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/prowlarr-banner.png
     gethomepage.dev/description: Prowlarr
     gethomepage.dev/enabled: "false"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: prowlarr.svg
     gethomepage.dev/name: prowlarr
 spec:

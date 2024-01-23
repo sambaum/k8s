@@ -58,7 +58,7 @@ metadata:
     # flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
     gethomepage.dev/description: Network Multitool
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: it-tools.png
     gethomepage.dev/name: Multitool
 spec:

@@ -69,7 +69,7 @@ metadata:
     flame.pawelmalak/icon: https://keel.sh/img/logo_small.png
     gethomepage.dev/description: Keel Kubernetes update automation
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://keel.sh/img/logo_small.png
     gethomepage.dev/name: Keel
 spec:

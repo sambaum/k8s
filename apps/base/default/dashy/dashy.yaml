@@ -80,7 +80,7 @@ metadata:
     flame.pawelmalak/icon: https://dashy.to/img/dashy.png
     gethomepage.dev/description: Dashbaord
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other Apps
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: dashy.png
     gethomepage.dev/name: Dashy
 spec:
