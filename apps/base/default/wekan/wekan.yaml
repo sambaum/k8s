@@ -114,8 +114,6 @@ metadata:
     gethomepage.dev/icon: wekan.svg
     gethomepage.dev/name: WeKan
     gethomepage.dev/weight: '-10'
-    # gethomepage.dev/pod-selector: ""
-    gethomepage.dev/app: wekan
 spec:
   ingressClassName: nginx
   tls:
