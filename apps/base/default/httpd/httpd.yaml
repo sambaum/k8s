@@ -67,7 +67,7 @@ metadata:
     gethomepage.dev/description: Apache
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: httpd.png
+    gethomepage.dev/icon: apache.svg
     gethomepage.dev/name: httpd
     gethomepage.dev/pod-selector: app
 spec:
