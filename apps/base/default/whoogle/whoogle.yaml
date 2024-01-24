@@ -30,8 +30,8 @@ spec:
         env:
         - name: WHOOGLE_RESULTS_PER_PAGE
           value: '25'
-        - name: WHOOGLE_CONFIG_GET_ONLY
-          value: 'true'
+        # - name: WHOOGLE_CONFIG_GET_ONLY
+        #   value: 'true'
         - name: WHOOGLE_CONFIG_VIEW_IMAGE
           value: 'true'
       dnsConfig:
