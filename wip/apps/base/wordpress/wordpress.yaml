@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  namespace: default
+  labels:
+    app: wordpress
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: WORDPRESS_DB_HOST
+          value: db
+        - name: WORDPRESS_DB_USER
+          value: exampleuser
+        - name: WORDPRESS_DB_PASSWORD
+          value: examplepass
+        - name: WORDPRESS_DB_NAME
+          value: exampledb
+      - name: wordpress-mysql
+        image: mysql:8.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: config
+          subPath: wordpress/mysql
+        env:
+        - name: MYSQL_DATABASE
+          value: exampledb
+        - name: MYSQL_USER
+          value: exampleuser
+        - name: MYSQL_PASSWORD
+          value: examplepass
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: '1'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-service
+  namespace: default
+spec:
+  selector:
+    app: wordpress
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-mysql
+  namespace: default
+spec:
+  selector:
+    app: wordpress
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: '{php} IPAM'
+    flame.pawelmalak/url: https://wordpress.example.com
+    # flame.pawelmalak/icon: 
+    gethomepage.dev/description: Wordpress
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: wordpress.svg
+    gethomepage.dev/name: wordpress
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'wordpress.example.com'
+    secretName: wordpress-tls
+  rules:
+  - host: wordpress.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: wordpress-service
+            port:
+              number: 8080
