@@ -1,0 +1,28 @@
+resources:
+- ../../../base/default/homepage/
+patches:
+- target:
+    kind: Ingress
+    name: homepage-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: homepage.vps1.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [homepage.vps1.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://homepage.vps1.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-type
+      value: basic
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-secret
+      value: basic-auth
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1auth-realm
+      value: 'Authentication Required'
