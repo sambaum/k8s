@@ -59,7 +59,7 @@ spec:
           flame.pawelmalak/url: https://grafana.example.com
           flame.pawelmalak/icon: https://user-images.githubusercontent.com/10999/43383564-afa9ea6c-93db-11e8-855b-de8be4f79756.png
           gethomepage.dev/description: Grafana Dashboards
-          gethomepage.dev/enabled: "false"
+          gethomepage.dev/enabled: "true"
           gethomepage.dev/group: More Apps
           gethomepage.dev/icon: grafana.svg
           gethomepage.dev/name: Grafana
@@ -102,7 +102,7 @@ spec:
           flame.pawelmalak/url: https://prometheus.example.com
           flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/prometheus-282488.png
           gethomepage.dev/description: Prometheus Database
-          gethomepage.dev/enabled: "false"
+          gethomepage.dev/enabled: "true"
           gethomepage.dev/group: More Apps
           gethomepage.dev/icon: prometheus.svg
           gethomepage.dev/name: Prometheus
