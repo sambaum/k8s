@@ -26,18 +26,22 @@ spec:
         image: wordpress
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         env:
         - name: TZ
           value: 'Europe/Zurich'
         - name: WORDPRESS_DB_HOST
-          value: db
+          value: 'wordpress-mysql'
         - name: WORDPRESS_DB_USER
           value: exampleuser
         - name: WORDPRESS_DB_PASSWORD
           value: examplepass
         - name: WORDPRESS_DB_NAME
           value: exampledb
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: config
+          subPath: wordpress/www
       - name: wordpress-mysql
         image: mysql:8.0
         imagePullPolicy: IfNotPresent
@@ -69,8 +73,8 @@ spec:
     app: wordpress
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 80
+    targetPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -118,4 +122,4 @@ spec:
           service:
             name: wordpress-service
             port:
-              number: 8080
+              number: 80
