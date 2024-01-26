@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: default
+spec:
+  releaseName: wordpress
+  targetNamespace: default
+  chart:
+    spec:
+      chart: wordpress
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      version: '19.2.1'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    service:
+      type: ClusterIP
+    persistence:
+      enabled: true
+      storageClass: openebs-local-hostpath-conf
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      subPath: 'wordpress' # not supported
+      existingClaim: openebs-local-hostpath-conf-pvc
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
+        # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        gethomepage.dev/description: Wordpress
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: wordpress.svg
+        gethomepage.dev/name: wordpress
+      labels: {}
+      hostsname: wordpress.example.com
+      tls: true
