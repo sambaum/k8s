@@ -7,10 +7,10 @@ patches:
   patch: |-
     - op: replace
       path: /spec/values/ingress/hostname
-      value: woocommerce.int.sambaum.ch
+      value: cbee.ch
     - op: replace
       path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-      value: https://woocommerce.int.sambaum.ch
+      value: https://cbee.ch
     - op: replace
       path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
