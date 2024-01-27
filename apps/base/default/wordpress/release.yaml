@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      version: '19.2.1'
+      version: '19.2.2'
   interval: 30m
   install:
     remediation:
