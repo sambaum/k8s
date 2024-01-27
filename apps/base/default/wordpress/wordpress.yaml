@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: wordpress
+        image: wordpress:6.4.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -35,7 +35,11 @@ spec:
         - name: WORDPRESS_DB_USER
           value: exampleuser
         - name: WORDPRESS_DB_PASSWORD
-          value: examplepass
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: WORDPRESS_DB_PASSWORD
+              optional: false
         - name: WORDPRESS_DB_NAME
           value: exampledb
         volumeMounts:
@@ -55,9 +59,17 @@ spec:
         - name: MYSQL_USER
           value: exampleuser
         - name: MYSQL_PASSWORD
-          value: examplepass
-        - name: MYSQL_RANDOM_ROOT_PASSWORD
-          value: '1'
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: WORDPRESS_DB_PASSWORD
+              optional: false
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: MYSQL_ROOT_PASSWORD
+              optional: false
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -97,7 +109,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
-    flame.pawelmalak/name: '{php} IPAM'
+    flame.pawelmalak/name: 'Wordpress'
     flame.pawelmalak/url: https://wordpress.example.com
     # flame.pawelmalak/icon: 
     gethomepage.dev/description: Wordpress
