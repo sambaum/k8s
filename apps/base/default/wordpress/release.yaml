@@ -42,4 +42,16 @@ spec:
         gethomepage.dev/name: wordpress
       labels: {}
       hostsname: wordpress.example.com
+      pathType: Prefix
+      path: "/"
       tls: true
+    mariadb:
+      auth:
+        # username: root
+        password: "changeme"
+        rootPassword: "changeme"
+
+    # hosts:
+    # - paths:
+    #   - path: '/'
+    #   host: 'portainer.example.com'
