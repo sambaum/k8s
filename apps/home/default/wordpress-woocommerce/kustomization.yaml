@@ -9,8 +9,5 @@ patches:
       path: /spec/values/ingress/hostname
       value: woocommerce.int.sambaum.ch
     - op: replace
-      path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-      value: https://woocommerce.int.sambaum.ch
-    - op: replace
       path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
