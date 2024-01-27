@@ -43,7 +43,7 @@ spec:
           name: config
           subPath: wordpress/www
       - name: wordpress-mysql
-        image: mysql:8.0
+        image: mysql:8.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /var/lib/mysql
