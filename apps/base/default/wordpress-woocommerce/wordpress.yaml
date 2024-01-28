@@ -136,6 +136,7 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 80m
     flame.pawelmalak/type: application
     flame.pawelmalak/name: 'Wordpress'
     flame.pawelmalak/url: https://wordpress.example.com
