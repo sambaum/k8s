@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: keel
-        image: keelhq/keel:0.19.1
+        image: keelhq/keel:0.19.2
         imagePullPolicy: Always
         ports:
         - containerPort: 9300
