@@ -46,6 +46,22 @@ spec:
               optional: false
         - name: WORDPRESS_DATABASE_NAME
           value: bitnami_wordpress
+        - name: WORDPRESS_SMTP_HOST
+          value: smtppro.zoho.eu
+        - name: WORDPRESS_SMTP_PORT
+          value: '587'
+        - name: WORDPRESS_SMTP_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: WORDPRESS_SMTP_USER
+              optional: false
+        - name: WORDPRESS_SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: WORDPRESS_SMTP_PASSWORD
+              optional: false
         volumeMounts:
         - mountPath: /bitnami/wordpress
           name: config
