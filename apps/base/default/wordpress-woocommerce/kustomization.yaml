@@ -1,3 +1,3 @@
 resources:
 - wordpress.yaml
-- mysql-password-secret.yaml
+- wordpress-secrets.yaml
