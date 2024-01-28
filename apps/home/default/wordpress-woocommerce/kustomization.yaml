@@ -1,5 +1,5 @@
 resources:
-- ../../../base/default/wordpress/
+- ../../../base/default/wordpress-woocommerce/
 patches:
 - target:
     kind: Ingress
