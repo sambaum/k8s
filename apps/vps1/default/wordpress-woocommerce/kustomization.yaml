@@ -5,12 +5,32 @@ patches:
     kind: Ingress
     name: wordpress-ingress
   patch: |-
-    - op: replace
-      path: /spec/rules/0/host
-      value: cbee.ch
+        - host: cbee.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: '/'
+              backend:
+                service:
+                  name: wordpress-service
+                  port:
+                    number: 80
+        - host: www.cbee.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: '/'
+              backend:
+                service:
+                  name: wordpress-service
+                  port:
+                    number: 80
+    # - op: replace
+    #   path: /spec/rules/0/host
+    #   value: cbee.ch
     - op: replace
       path: /spec/tls/0/hosts
-      value: [cbee.ch]
+      value: [cbee.ch, www.cbee.ch]
     - op: replace
       path: /metadata/annotations/flame.pawelmalak~1url
       value: https://cbee.ch
