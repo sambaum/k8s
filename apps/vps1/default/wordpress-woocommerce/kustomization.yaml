@@ -5,6 +5,9 @@ patches:
     kind: Ingress
     name: wordpress-ingress
   patch: |-
+    - op: replace
+      path: /spec/rules
+      value:
         - host: cbee.ch
           http:
             paths:
