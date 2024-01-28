@@ -46,6 +46,14 @@ spec:
               optional: false
         - name: WORDPRESS_DATABASE_NAME
           value: bitnami_wordpress
+        - name: WORDPRESS_USERNAME
+          value: admin
+        - name: WORDPRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-secret
+              key: WORDPRESS_PASSWORD
+              optional: false
         - name: WORDPRESS_SMTP_HOST
           value: smtppro.zoho.eu
         - name: WORDPRESS_SMTP_PORT
