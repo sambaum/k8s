@@ -17,7 +17,7 @@ patches:
                 service:
                   name: wordpress-service
                   port:
-                    number: 80
+                    number: 8080
         - host: www.cbee.ch
           http:
             paths:
@@ -27,7 +27,7 @@ patches:
                 service:
                   name: wordpress-service
                   port:
-                    number: 80
+                    number: 8080
     # - op: replace
     #   path: /spec/rules/0/host
     #   value: cbee.ch
