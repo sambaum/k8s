@@ -21,50 +21,54 @@ spec:
       labels:
         app: wordpress
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
       - name: wordpress
-        image: wordpress:6.4.2
+        image: bitnami/wordpress:6.4.2
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: TZ
           value: 'Europe/Zurich'
-        - name: WORDPRESS_DB_HOST
+        - name: WORDPRESS_DATABASE_HOST
           value: 'wordpress-mysql'
-        - name: WORDPRESS_DB_USER
-          value: exampleuser
-        - name: WORDPRESS_DB_PASSWORD
+        - name: WORDPRESS_DATABASE_USER
+          value: bn_wordpress
+        - name: WORDPRESS_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-password-secret
               key: WORDPRESS_DB_PASSWORD
               optional: false
-        - name: WORDPRESS_DB_NAME
-          value: exampledb
+        - name: WORDPRESS_DATABASE_NAME
+          value: bitnami_wordpress
         volumeMounts:
-        - mountPath: /var/www/html
+        - mountPath: /bitnami/wordpress
           name: config
           subPath: wordpress/www
       - name: wordpress-mysql
-        image: mysql:8.3
+        image: bitnami/mariadb:11.2.2
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /var/lib/mysql
+        - mountPath: /bitnami/mariadb
           name: config
-          subPath: wordpress/mysql
+          subPath: wordpress/mariadb
         env:
-        - name: MYSQL_DATABASE
-          value: exampledb
-        - name: MYSQL_USER
-          value: exampleuser
-        - name: MYSQL_PASSWORD
+        - name: MARIADB_DATABASE
+          value: bitnami_wordpress
+        - name: MARIADB_USER
+          value: bn_wordpress
+        - name: MARIADB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-password-secret
               key: WORDPRESS_DB_PASSWORD
               optional: false
-        - name: MYSQL_ROOT_PASSWORD
+        - name: MARIADB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-password-secret
@@ -85,8 +89,8 @@ spec:
     app: wordpress
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
 ---
 kind: Service
 apiVersion: v1
@@ -134,4 +138,4 @@ spec:
           service:
             name: wordpress-service
             port:
-              number: 80
+              number: 8080
