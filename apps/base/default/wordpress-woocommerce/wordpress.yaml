@@ -74,30 +74,6 @@ spec:
         - mountPath: /bitnami/wordpress
           name: config
           subPath: wordpress/www
-      - name: wordpress-mysql
-        image: bitnami/mariadb:11.2.2
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /bitnami/mariadb
-          name: config
-          subPath: wordpress/mariadb
-        env:
-        - name: MARIADB_DATABASE
-          value: bitnami_wordpress
-        - name: MARIADB_USER
-          value: bn_wordpress
-        - name: MARIADB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: wordpress-secrets
-              key: WORDPRESS_DB_PASSWORD
-              optional: false
-        - name: MARIADB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: wordpress-secrets
-              key: MYSQL_ROOT_PASSWORD
-              optional: false
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -115,19 +91,6 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 8080
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: wordpress-mysql
-  namespace: default
-spec:
-  selector:
-    app: wordpress
-  ports:
-  - protocol: TCP
-    port: 3306
-    targetPort: 3306
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -164,3 +127,77 @@ spec:
             name: wordpress-service
             port:
               number: 8080
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-mysql
+  namespace: default
+  labels:
+    app: wordpress-mysql
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress-mysql
+  template:
+    metadata:
+      labels:
+        app: wordpress-mysql
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      containers:
+      - name: wordpress-mysql
+        image: bitnami/mariadb:11.2.2
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /bitnami/mariadb
+          name: config
+          subPath: wordpress/mariadb
+        env:
+        - name: MARIADB_DATABASE
+          value: bitnami_wordpress
+        - name: MARIADB_USER
+          value: bn_wordpress
+        - name: MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_DB_PASSWORD
+              optional: false
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: MYSQL_ROOT_PASSWORD
+              optional: false
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-mysql
+  namespace: default
+spec:
+  selector:
+    app: wordpress-mysql
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
