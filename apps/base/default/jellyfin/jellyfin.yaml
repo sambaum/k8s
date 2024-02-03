@@ -24,11 +24,22 @@ spec:
       securityContext:
         runAsUser: 0 # Similar to "user: 1000:1000" on Docker
         runAsGroup: 0
-        supplementalGroups:
-        - 103
+        # supplementalGroups:
+        # - 103
       containers:
       - name: jellyfin
         image: linuxserver/jellyfin:10.8.13
+        # lifecycle:
+        #   postStart:
+        #     exec:
+        #       command:
+        #       - /sbin/ldconfig
+        resources:
+          limits:
+            nvidia.com/gpu: '1'
+        #   requests:
+        #     nvidia.com/gpu: '1'
+
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8096
@@ -50,8 +61,8 @@ spec:
           subPath: Personal/Fotos/Publish
         # - mountPath: /dev/dri
         #   name: quicksync
-        - name: "render-device"
-          mountPath: "/dev/dri/renderD128"
+        # - name: "render-device"
+        #   mountPath: "/dev/dri/renderD128"
         env:
         - name: PUID
           value: '0'
@@ -59,6 +70,10 @@ spec:
           value: '0'
         - name: TZ
           value: 'Europe/Zurich'
+          # - name: NVIDIA_VISIBLE_DEVICES
+          #   value: all
+        # - name: NVIDIA_DRIVER_CAPABILITIES
+        #   value: "compute,video,utility"
         securityContext:
           privileged: true # Container must run as privileged inside of the pod
       volumes:
@@ -74,9 +89,9 @@ spec:
       # - name: quicksync
       #   hostPath:
       #     path: /dev/dri
-      - name: "render-device"
-        hostPath:
-          path: "/dev/dri/renderD128"
+      # - name: "render-device"
+      #   hostPath:
+      #     path: "/dev/dri/renderD128"
       dnsConfig:
         options:
         - name: ndots
