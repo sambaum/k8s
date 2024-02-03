@@ -36,10 +36,6 @@ spec:
           value: 'Europe/Zurich'
         - name: UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN
           value: '1'
-      initContainers:
-      - name: init-uptime-kuma
-        image: busybox:1.36.1
-        command: ['sh', '-c', 'echo wait 1 seconds && sleep 1']
       volumes:
       - name: config
         persistentVolumeClaim:
