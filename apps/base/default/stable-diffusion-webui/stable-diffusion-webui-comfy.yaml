@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stable-diffusion-webui-automatic1111
+  name: stable-diffusion-webui-comfy
   namespace: default
   labels:
-    app: stable-diffusion-webui-automatic1111
+    app: stable-diffusion-webui-comfy
   annotations:
     keel.sh/policy: major
     keel.sh/trigger: poll
@@ -15,15 +15,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stable-diffusion-webui-automatic1111
+      app: stable-diffusion-webui-comfy
   template:
     metadata:
       labels:
-        app: stable-diffusion-webui-automatic1111
+        app: stable-diffusion-webui-comfy
     spec:
       containers:
-      - name: automatic1111
-        image: goolashe/automatic1111-sd-webui:20240203
+      - name: comfy
+        image: goolashe/comfy-sd-webui:20240101
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -33,18 +33,16 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: config
-          subPath: stable-diffusion-webui/automatic1111
+          subPath: stable-diffusion-webui/comfy
         - mountPath: /output
           name: nas-other
-          subPath: Stable-Diffusion/output/automatic1111
+          subPath: Stable-Diffusion/output/comfy
         - mountPath: /data/models
           name: data
           subPath: stable-diffusion-webui/models
         env:
         - name: TZ
           value: 'Europe/Zurich'
-        - name: CLI_ARGS
-          value: '--no-half --precision full --allow-code --enable-insecure-extension-access --api'
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -63,11 +61,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: stable-diffusion-webui-automatic1111-service
+  name: stable-diffusion-webui-comfy-service
   namespace: default
 spec:
   selector:
-    app: stable-diffusion-webui-automatic1111
+    app: stable-diffusion-webui-comfy
   ports:
   - protocol: TCP
     port: 7860
@@ -76,34 +74,34 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: stable-diffusion-webui-automatic1111-ingress
+  name: stable-diffusion-webui-comfy-ingress
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     flame.pawelmalak/type: application
-    flame.pawelmalak/name: stable-diffusion-webui-automatic1111
-    flame.pawelmalak/url: https://stable-diffusion-webui-automatic1111.example.com
+    flame.pawelmalak/name: stable-diffusion-webui-comfy
+    flame.pawelmalak/url: https://stable-diffusion-webui-comfy.example.com
     flame.pawelmalak/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
-    gethomepage.dev/description: Browser interface for Stable Diffusion.
+    gethomepage.dev/description: Powerful and modular stable diffusion GUI
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
-    gethomepage.dev/name: "SD:AUTOMATIC1111"
+    gethomepage.dev/name: "SD:ComfyUI"
     gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - 'stable-diffusion-webui-automatic1111.example.com'
-    secretName: stable-diffusion-webui-automatic1111.int-tls
+    - 'stable-diffusion-webui-comfy.example.com'
+    secretName: stable-diffusion-webui-comfy.int-tls
   rules:
-  - host: stable-diffusion-webui-automatic1111.example.com
+  - host: stable-diffusion-webui-comfy.example.com
     http:
       paths:
       - pathType: Prefix
         path: '/'
         backend:
           service:
-            name: stable-diffusion-webui-automatic1111-service
+            name: stable-diffusion-webui-comfy-service
             port:
               number: 7860

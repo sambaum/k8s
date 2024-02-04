@@ -17,3 +17,35 @@ patches:
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: stable-diffusion-webui-comfy-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: stable-diffusion-webui-comfy.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [stable-diffusion-webui-comfy.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://stable-diffusion-webui-comfy.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: stable-diffusion-webui-invoke-ai-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: stable-diffusion-webui-invoke-ai.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [stable-diffusion-webui-invoke-ai.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://stable-diffusion-webui-invoke-ai.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
