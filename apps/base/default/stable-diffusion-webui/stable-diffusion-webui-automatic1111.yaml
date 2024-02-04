@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stable-diffusion-webui-automatic1111
+  namespace: default
+  labels:
+    app: stable-diffusion-webui-automatic1111
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stable-diffusion-webui-automatic1111
+  template:
+    metadata:
+      labels:
+        app: stable-diffusion-webui-automatic1111
+    spec:
+      containers:
+      - name: automatic1111
+        image: goolashe/automatic1111-sd-webui:20240203
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            nvidia.com/gpu: '1'
+        ports:
+        - containerPort: 7860
+        volumeMounts:
+        - mountPath: /data
+          name: config
+          subPath: stable-diffusion-webui/automatic1111
+        - mountPath: /output
+          name: nas-other
+          subPath: Stable-Diffusion/output/automatic1111
+        - mountPath: /data/models
+          name: data
+          subPath: stable-diffusion-webui/models
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: CLI_ARGS
+          value: '--no-half --precision full --allow-code --enable-insecure-extension-access --api'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+      - name: nas-other
+        persistentVolumeClaim:
+          claimName: truenas-other-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: stable-diffusion-webui-automatic1111-service
+  namespace: default
+spec:
+  selector:
+    app: stable-diffusion-webui-automatic1111
+  ports:
+  - protocol: TCP
+    port: 7860
+    targetPort: 7860
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stable-diffusion-webui-automatic1111-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: stable-diffusion-webui-automatic1111
+    flame.pawelmalak/url: https://stable-diffusion-webui-automatic1111.example.com
+    flame.pawelmalak/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
+    gethomepage.dev/description: Browser interface for Stable Diffusion.
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
+    gethomepage.dev/name: AUTOMATIC1111
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'stable-diffusion-webui-automatic1111.example.com'
+    secretName: stable-diffusion-webui-automatic1111.int-tls
+  rules:
+  - host: stable-diffusion-webui-automatic1111.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: stable-diffusion-webui-automatic1111-service
+            port:
+              number: 7860

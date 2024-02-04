@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/stable-diffusion-webui/
+patches:
+- target:
+    kind: Ingress
+    name: stable-diffusion-webui-automatic1111-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: stable-diffusion-webui-automatic1111.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [stable-diffusion-webui-automatic1111.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://stable-diffusion-webui-automatic1111.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
