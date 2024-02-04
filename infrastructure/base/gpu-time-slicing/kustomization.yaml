@@ -1,2 +1,3 @@
 resources:
 - time-slicing-config.yaml
+- patch.yaml
