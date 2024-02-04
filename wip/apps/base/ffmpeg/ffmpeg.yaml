@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ffmpeg
+  namespace: default
+  labels:
+    app: ffmpeg
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ffmpeg
+  template:
+    metadata:
+      labels:
+        app: ffmpeg
+    spec:
+      containers:
+      - name: ffmpeg
+        image: linuxserver/ffmpeg:version-6.1-cli
+        # image: us.gcr.io/cloudkite-public/ffmpeg-cuda:latest
+        command:
+        - /bin/sh
+        - -c
+        - while true; do echo loop; sleep 10; done
+        resources:
+          limits:
+            nvidia.com/gpu: '1'
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6789
+        volumeMounts:
+        # - mountPath: /config
+        #   name: config
+        #   subPath: ffmpeg
+        - mountPath: /data
+          name: ffmpeg-data
+          subPath: ffmpeg-data
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      volumes:
+      # - name: config
+      #   persistentVolumeClaim:
+      #     claimName: local-conf-pvc
+      - name: ffmpeg-data
+        persistentVolumeClaim:
+          claimName: truenas-temp-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: ffmpeg-service
+#   namespace: default
+# spec:
+#   selector:
+#     app: ffmpeg
+#   ports:
+#   - protocol: TCP
+#     port: 8080
+#     targetPort: 8080
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ffmpeg-ingress
+#   namespace: default
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
+#     flame.pawelmalak/type: application
+#     flame.pawelmalak/name: ffmpeg
+#     flame.pawelmalak/url: https://ffmpeg.example.com
+#     # flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1578567856_ffmpeg_256.png
+#     gethomepage.dev/description: ffmpeg
+#     gethomepage.dev/enabled: "false"
+#     gethomepage.dev/group: More Apps
+#     gethomepage.dev/icon: ffmpeg.svg
+#     gethomepage.dev/name: ffmpeg
+#     gethomepage.dev/pod-selector: app
+# spec:
+#   ingressClassName: nginx
+#   tls:
+#   - hosts:
+#     - 'ffmpeg.example.com'
+#     secretName: ffmpeg.int-tls
+#   rules:
+#   - host: ffmpeg.example.com
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: '/'
+#         backend:
+#           service:
+#             name: ffmpeg-service
+#             port:
+#               number: 8080

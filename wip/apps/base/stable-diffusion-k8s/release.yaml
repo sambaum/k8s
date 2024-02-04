@@ -1,0 +1,55 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: stable-diffusion-k8s
+  namespace: default
+spec:
+  releaseName: stable-diffusion-k8s
+  targetNamespace: default
+  chart:
+    spec:
+      chart: stable-diffusion
+      sourceRef:
+        kind: HelmRepository
+        name: amithkk-sd
+        namespace: flux-system
+      version: '1.0.6'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    service:
+      type: ClusterIP
+    persistence:
+      enabled: true
+      storageClass: openebs-local-hostpath-conf
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      subPath: 'stable-diffusion-k8s' # not supported
+      existingClaim: openebs-local-hostpath-conf-pvc
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        flame.pawelmalak/type: application
+        flame.pawelmalak/name: stable-diffusion-k8s
+        flame.pawelmalak/url: https://stable-diffusion-k8s.example.com
+        # flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
+        gethomepage.dev/description: stable-diffusion-k8s
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Other Apps
+        gethomepage.dev/icon: stable-diffusion.svg
+        gethomepage.dev/name: Stable Diffusion
+      labels: {}
+      hosts:
+      - paths:
+        - path: '/'
+          pathType: Prefix
+        host: 'stable-diffusion-k8s.example.com'
+
+      tls:
+      - hosts:
+        - 'stable-diffusion-k8s.example.com'
+        secretName: stable-diffusion-k8s-tls

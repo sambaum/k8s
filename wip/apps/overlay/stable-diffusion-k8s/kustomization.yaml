@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/stable-diffusion-k8s/
+patches:
+- target:
+    kind: HelmRelease
+    name: stable-diffusion-k8s
+  patch: |-
+    - op: replace
+      path: /spec/values/ingress/hosts/0/host
+      value: stable-diffusion-k8s.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: stable-diffusion-k8s.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/flame.pawelmalak~1url
+      value: https://stable-diffusion-k8s.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
