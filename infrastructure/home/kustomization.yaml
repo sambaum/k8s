@@ -1,6 +1,7 @@
 resources:
 - ../base
 - ../base/metallb
+- ../base/gpu-time-slicing
 patches:
 - target:
     kind: Kustomization
