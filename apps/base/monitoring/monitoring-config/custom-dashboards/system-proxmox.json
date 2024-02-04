@@ -124,7 +124,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 4
+        "y": 6
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -203,7 +203,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 4
+        "y": 6
       },
       "id": 14,
       "links": [],
@@ -288,7 +288,7 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 4
+        "y": 6
       },
       "id": 167,
       "links": [],
@@ -374,7 +374,7 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 4
+        "y": 6
       },
       "id": 20,
       "links": [],
@@ -450,7 +450,7 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 4
+        "y": 6
       },
       "hideTimeOverride": false,
       "id": 172,
@@ -525,7 +525,7 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 4
+        "y": 6
       },
       "hideTimeOverride": false,
       "id": 16,
@@ -609,7 +609,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 4
+        "y": 6
       },
       "id": 166,
       "links": [],
@@ -693,7 +693,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 4
+        "y": 6
       },
       "id": 154,
       "links": [],
@@ -771,7 +771,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 6
+        "y": 8
       },
       "id": 75,
       "links": [],
@@ -828,7 +828,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "height": "300",
       "hiddenSeries": false,
@@ -951,7 +951,7 @@
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 9
+        "y": 11
       },
       "hideTimeOverride": false,
       "id": 171,
@@ -1010,7 +1010,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 9
+        "y": 11
       },
       "id": 164,
       "links": [],
@@ -1230,7 +1230,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 15
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1362,7 +1362,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 15
+        "y": 17
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1508,7 +1508,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 22
+        "y": 24
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1625,7 +1625,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 22
+        "y": 24
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1732,7 +1732,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 22
+        "y": 24
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1853,7 +1853,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 32
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1958,7 +1958,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 32
       },
       "height": "300",
       "hiddenSeries": false,
@@ -2175,7 +2175,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 40
       },
       "id": 169,
       "links": [],
@@ -2390,7 +2390,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 50
       },
       "id": 177,
       "links": [],
@@ -2497,7 +2497,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 59
       },
       "id": 179,
       "options": {
@@ -2541,7 +2541,7 @@
           "exemplar": true,
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan3\"}",
           "interval": "",
-          "legendFormat": "System 1: Rear FAN ({{sensor}})",
+          "legendFormat": "System 1: Rear FAN (CPU) ({{sensor}})",
           "range": true,
           "refId": "A"
         },
@@ -2555,7 +2555,7 @@
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan4\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "System 2: Upper FAN Back ({{sensor}})",
+          "legendFormat": "System 2: Upper FAN Back (SYS) ({{sensor}})",
           "range": true,
           "refId": "C"
         },
@@ -2569,7 +2569,7 @@
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan5\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "System 3: Upper FAN Front ({{sensor}})",
+          "legendFormat": "System 3: Upper FAN Front (SYS) ({{sensor}})",
           "range": true,
           "refId": "D"
         }
@@ -2641,7 +2641,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 68
       },
       "id": 175,
       "links": [],
@@ -2780,7 +2780,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 73
       },
       "id": 176,
       "links": [],
@@ -2882,8 +2882,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2899,7 +2898,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 83
       },
       "id": 173,
       "links": [],
@@ -2984,8 +2983,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3001,7 +2999,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 83
       },
       "id": 180,
       "links": [],
@@ -3086,8 +3084,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3152,7 +3149,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 88
+        "y": 90
       },
       "id": 174,
       "links": [],
@@ -3355,7 +3352,7 @@
       {
         "allFormat": "glob",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "proxmox.int.sambaum.ch:9100",
           "value": "proxmox.int.sambaum.ch:9100"
         },
@@ -3418,7 +3415,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
