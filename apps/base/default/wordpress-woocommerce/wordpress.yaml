@@ -103,11 +103,11 @@ metadata:
     flame.pawelmalak/type: application
     flame.pawelmalak/name: 'Wordpress'
     flame.pawelmalak/url: https://wordpress.example.com
-    flame.pawelmalak/icon: https://e7.pngegg.com/pngimages/490/140/png-clipart-computer-icons-e-commerce-woocommerce-wordpress-social-media-icon-bar-link-purple-violet.png
+    flame.pawelmalak/icon: https://www.irelandwebsitedesign.com/wp-content/uploads/2022/01/woocomrce.png
     gethomepage.dev/description: E-Commerce with WordPress.
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: https://e7.pngegg.com/pngimages/490/140/png-clipart-computer-icons-e-commerce-woocommerce-wordpress-social-media-icon-bar-link-purple-violet.png
+    gethomepage.dev/icon: https://www.irelandwebsitedesign.com/wp-content/uploads/2022/01/woocomrce.png
     gethomepage.dev/name: Wordpress Woocommerce
     gethomepage.dev/pod-selector: app
 spec:
