@@ -43,6 +43,9 @@ spec:
         - mountPath: /data/models
           name: data
           subPath: stable-diffusion-webui/models
+        - mountPath: /data/.cache
+          name: temp
+          subPath: stable-diffusion-webui/invoke-ai/.cache
         env:
         - name: TZ
           value: 'Europe/Zurich'
@@ -57,6 +60,9 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-pvc
+      - name: temp
+        persistentVolumeClaim:
+          claimName: local-temp-pvc
       - name: nas-other
         persistentVolumeClaim:
           claimName: truenas-other-pvc
