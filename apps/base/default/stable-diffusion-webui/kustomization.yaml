@@ -1,4 +1,4 @@
-resources:
-- stable-diffusion-webui-automatic1111.yaml
+resources: []
+# - stable-diffusion-webui-automatic1111.yaml
 # - stable-diffusion-webui-comfy.yaml
 # - stable-diffusion-webui-invoke-ai.yaml
