@@ -161,7 +161,7 @@ spec:
         fsGroup: 0
       containers:
       - name: wordpress-mysql
-        image: bitnami/mariadb:11.2.2
+        image: bitnami/mariadb:11.2.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /bitnami/mariadb
