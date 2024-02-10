@@ -141,6 +141,15 @@
       labels:
         group: 'truenas'
 
+  - job_name: 'nvidia-gpu-exporter'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: http
+    static_configs:
+    - targets: ['nvidia-gpu-exporter:9835']
+      labels:
+        group: 'nvidia-gpu-exporter'
+
   - job_name: 'truenas_smart_attributes_sda'
     scrape_interval: 60s
     metrics_path: '/probe'

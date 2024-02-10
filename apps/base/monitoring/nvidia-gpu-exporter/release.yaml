@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: nvidia-gpu-exporter
+  namespace: monitoring
+spec:
+  releaseName: nvidia-gpu-exporter
+  chart:
+    spec:
+      chart: nvidia-gpu-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: utkuozdemir
+        namespace: flux-system
+      version: '0.3.1'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    force: true
+  # values:
+  #   loki:
+  #     enabled: true
+  #     isDefault: false
+  #     persistence:
+  #       enabled: true
+  #       storageClassName: openebs-local-hostpath-monitoring-data
+  #       accessModes:
+  #       - ReadWriteOnce
+  #       size: 1Gi
+  #     config:
+  #       compactor:
+  #         compaction_interval: 30m
+  #         retention_enabled: true
+  #         retention_delete_delay: 2h
+  #         retention_delete_worker_count: 150
+  #       limits_config:
+  #         retention_period: 14d
+  #   promtail:
+  #     enabled: true
+  #     extraPorts:
+  #       syslog:
+  #         name: tcp-syslog
+  #         containerPort: 1514
+  #         service:
+  #           port: 1514
+  #     config:
+  #       snippets:
+  #         extraScrapeConfigs: |
+  #           # Add an additional scrape config for syslog
+  #           - job_name: syslog
+  #             syslog:
+  #               listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
+  #               labels:
+  #                 job: syslog
+  #             relabel_configs:
+  #               - source_labels:
+  #                   - __syslog_message_hostname
+  #                 target_label: host
+  #   grafana:
+  #     enabled: false
+  #     sidecar:
+  #       datasources:
+  #         enabled: true
