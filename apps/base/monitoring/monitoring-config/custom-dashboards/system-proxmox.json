@@ -2476,7 +2476,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2542,7 +2541,7 @@
           "exemplar": true,
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"fan3\"}",
           "interval": "",
-          "legendFormat": "System 1: Rear FAN (CPU) ({{sensor}})",
+          "legendFormat": "System 1: Rear FAN (SYS) ({{sensor}})",
           "range": true,
           "refId": "A"
         },
