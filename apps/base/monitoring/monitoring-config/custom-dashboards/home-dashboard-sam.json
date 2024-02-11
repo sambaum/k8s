@@ -1077,6 +1077,19 @@
           "legendFormat": "Current",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(nut_http_realpower_nominal[1d]) / 100 * avg_over_time(nut_http_load[1d])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "24h Average",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "UPS Power Draw",
