@@ -1071,38 +1071,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "nut_http_realpower_nominal",
-          "hide": true,
+          "expr": "nut_http_realpower_nominal / 100 * nut_http_load",
+          "hide": false,
           "instant": false,
           "legendFormat": "Current",
           "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "nut_http_load",
-          "hide": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "24h Average",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$A/100*$B",
-          "hide": false,
-          "refId": "C",
-          "type": "math"
         }
       ],
       "title": "UPS Power Draw",

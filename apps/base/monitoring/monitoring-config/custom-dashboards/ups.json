@@ -1630,34 +1630,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "nut_http_realpower_nominal",
-          "hide": true,
-          "instant": false,
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "nut_http_load",
-          "hide": true,
-          "instant": false,
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$A/100*$B",
+          "expr": "nut_http_realpower_nominal / 100 * nut_http_load",
           "hide": false,
-          "refId": "Calculates Wattage",
-          "type": "math"
+          "instant": false,
+          "legendFormat": "Calculates Wattage",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Calculated Power Draw",
@@ -1751,34 +1729,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "nut_http_realpower_nominal",
-          "hide": true,
-          "instant": false,
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "nut_http_load",
-          "hide": true,
-          "instant": false,
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$A/100*$B",
+          "expr": "nut_http_realpower_nominal / 100 * nut_http_load",
           "hide": false,
-          "refId": "Calculated Wattage",
-          "type": "math"
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Calculated Power Draw",
