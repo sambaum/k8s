@@ -247,8 +247,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "mystrom_power",
+          "editorMode": "code",
+          "expr": "mystrom_Ws",
           "instant": false,
           "range": true,
           "refId": "A"
