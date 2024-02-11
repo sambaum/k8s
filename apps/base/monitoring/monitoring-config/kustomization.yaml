@@ -88,6 +88,13 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
+- name: grafana-dashboards-nvidia-gpu
+  files:
+  - custom-dashboards/nvidia-gpu-exporter.json
+  options:
+    labels:
+      grafana_dashboard: '1'
+
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
