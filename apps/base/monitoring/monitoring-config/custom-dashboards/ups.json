@@ -1601,12 +1601,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 0,
         "y": 23
       },
-      "id": 22,
+      "id": 23,
       "options": {
         "minVizHeight": 200,
         "minVizWidth": 200,
@@ -1633,9 +1633,22 @@
           "expr": "nut_http_realpower_nominal / 100 * nut_http_load",
           "hide": false,
           "instant": false,
-          "legendFormat": "Calculates Wattage",
+          "legendFormat": "Current",
           "range": true,
           "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(nut_http_realpower_nominal[$__range]) / 100 * avg_over_time(nut_http_load[$__range])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Average Range",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Calculated Power Draw",
@@ -1704,7 +1717,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 11,
         "x": 3,
         "y": 23
@@ -1752,7 +1765,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
