@@ -124,7 +124,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 1
+        "y": 2
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -203,7 +203,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 1
+        "y": 2
       },
       "id": 14,
       "links": [],
@@ -288,7 +288,7 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 1
+        "y": 2
       },
       "id": 167,
       "links": [],
@@ -374,7 +374,7 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 1
+        "y": 2
       },
       "id": 20,
       "links": [],
@@ -450,7 +450,7 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 1
+        "y": 2
       },
       "hideTimeOverride": false,
       "id": 172,
@@ -525,7 +525,7 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 1
+        "y": 2
       },
       "hideTimeOverride": false,
       "id": 16,
@@ -609,7 +609,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 1
+        "y": 2
       },
       "id": 166,
       "links": [],
@@ -693,7 +693,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 1
+        "y": 2
       },
       "id": 154,
       "links": [],
@@ -771,7 +771,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 3
+        "y": 4
       },
       "id": 75,
       "links": [],
@@ -828,7 +828,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 6
+        "y": 7
       },
       "height": "300",
       "hiddenSeries": false,
@@ -951,7 +951,7 @@
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 6
+        "y": 7
       },
       "hideTimeOverride": false,
       "id": 171,
@@ -1010,7 +1010,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 6
+        "y": 7
       },
       "id": 164,
       "links": [],
@@ -1230,7 +1230,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 12
+        "y": 13
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1362,7 +1362,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 12
+        "y": 13
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1508,7 +1508,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1625,7 +1625,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 19
+        "y": 20
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1732,7 +1732,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 19
+        "y": 20
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1853,7 +1853,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1958,7 +1958,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 28
       },
       "height": "300",
       "hiddenSeries": false,
@@ -2175,7 +2175,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "id": 169,
       "links": [],
@@ -2280,6 +2280,19 @@
           "intervalFactor": 1,
           "legendFormat": "VRM MOS",
           "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nvidia_smi_temperature_gpu{uuid=\"$gpu\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "GPU",
+          "range": true,
+          "refId": "G"
         }
       ],
       "title": "System temperature",
@@ -2390,7 +2403,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 46
       },
       "id": 177,
       "links": [],
@@ -2497,7 +2510,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 56
       },
       "id": 179,
       "options": {
@@ -2572,6 +2585,19 @@
           "legendFormat": "System 3: Upper FAN Front (SYS) ({{sensor}})",
           "range": true,
           "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nvidia_smi_fan_speed_ratio{uuid=\"$gpu\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "GPU",
+          "range": true,
+          "refId": "E"
         }
       ],
       "title": "FAN speeds",
@@ -2641,7 +2667,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 64
       },
       "id": 175,
       "links": [],
@@ -2780,7 +2806,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 69
       },
       "id": 176,
       "links": [],
@@ -2882,7 +2908,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2898,7 +2925,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 78
+        "y": 79
       },
       "id": 173,
       "links": [],
@@ -2983,7 +3010,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2999,7 +3027,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 78
+        "y": 79
       },
       "id": 180,
       "links": [],
@@ -3084,7 +3112,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3149,7 +3178,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 85
+        "y": 86
       },
       "id": 174,
       "links": [],
@@ -3185,6 +3214,150 @@
         }
       ],
       "title": "Volts",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "rothz"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 85
+      },
+      "id": 181,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "nvidia_smi_clocks_current_graphics_clock_hz{uuid=\"$gpu\"}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Graphics Clock Speed",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nvidia_smi_clocks_current_video_clock_hz{uuid=\"$gpu\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Video Clock Speed",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nvidia_smi_clocks_current_sm_clock_hz{uuid=\"$gpu\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "SM Clock Speed",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "nvidia_smi_clocks_current_memory_clock_hz{uuid=\"$gpu\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Memory Clock Speed",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "GPU Frequency",
       "type": "timeseries"
     }
   ],
@@ -3411,6 +3584,30 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "ccce7712-cc0a-5475-cd5c-6bba7bb11306",
+          "value": "ccce7712-cc0a-5475-cd5c-6bba7bb11306"
+        },
+        "definition": "label_values(nvidia_smi_index,uuid)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "GPU",
+        "multi": false,
+        "name": "gpu",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(nvidia_smi_index,uuid)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
