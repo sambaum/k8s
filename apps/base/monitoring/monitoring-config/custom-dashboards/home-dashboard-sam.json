@@ -3153,7 +3153,7 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": 3600000,
+            "insertNulls": 600000,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
