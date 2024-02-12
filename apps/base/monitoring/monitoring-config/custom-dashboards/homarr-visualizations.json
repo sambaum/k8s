@@ -336,11 +336,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 150
+                "value": 170
               },
               {
                 "color": "red",
-                "value": 160
+                "value": 180
               }
             ]
           },
@@ -409,36 +409,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "nut_http_realpower_nominal",
-          "hide": true,
+          "expr": "nut_http_realpower_nominal/100*nut_http_load",
+          "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "UPS",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "nut_http_load",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$C/100*$D",
-          "hide": false,
-          "refId": "UPS",
-          "type": "math"
         }
       ],
       "title": "Power",
