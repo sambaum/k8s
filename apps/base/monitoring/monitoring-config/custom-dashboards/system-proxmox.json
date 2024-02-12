@@ -124,7 +124,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 2
+        "y": 1
       },
       "hideTimeOverride": true,
       "id": 15,
@@ -203,7 +203,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 2
+        "y": 1
       },
       "id": 14,
       "links": [],
@@ -288,7 +288,7 @@
         "h": 5,
         "w": 3,
         "x": 4,
-        "y": 2
+        "y": 1
       },
       "id": 167,
       "links": [],
@@ -374,7 +374,7 @@
         "h": 5,
         "w": 3,
         "x": 7,
-        "y": 2
+        "y": 1
       },
       "id": 20,
       "links": [],
@@ -450,7 +450,7 @@
         "h": 5,
         "w": 3,
         "x": 10,
-        "y": 2
+        "y": 1
       },
       "hideTimeOverride": false,
       "id": 172,
@@ -525,7 +525,7 @@
         "h": 5,
         "w": 3,
         "x": 13,
-        "y": 2
+        "y": 1
       },
       "hideTimeOverride": false,
       "id": 16,
@@ -609,7 +609,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 2
+        "y": 1
       },
       "id": 166,
       "links": [],
@@ -693,7 +693,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 2
+        "y": 1
       },
       "id": 154,
       "links": [],
@@ -771,7 +771,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 4
+        "y": 3
       },
       "id": 75,
       "links": [],
@@ -828,7 +828,7 @@
         "h": 6,
         "w": 11,
         "x": 0,
-        "y": 7
+        "y": 6
       },
       "height": "300",
       "hiddenSeries": false,
@@ -951,7 +951,7 @@
         "h": 6,
         "w": 5,
         "x": 11,
-        "y": 7
+        "y": 6
       },
       "hideTimeOverride": false,
       "id": 171,
@@ -1010,7 +1010,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 6
       },
       "id": 164,
       "links": [],
@@ -1230,7 +1230,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 13
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1362,7 +1362,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 13
+        "y": 12
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1508,7 +1508,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 20
+        "y": 19
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1625,7 +1625,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 20
+        "y": 19
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1732,7 +1732,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 20
+        "y": 19
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1853,7 +1853,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 27
       },
       "height": "300",
       "hiddenSeries": false,
@@ -1958,7 +1958,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 27
       },
       "height": "300",
       "hiddenSeries": false,
@@ -2175,7 +2175,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 35
       },
       "id": 169,
       "links": [],
@@ -2403,7 +2403,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 45
       },
       "id": 177,
       "links": [],
@@ -2504,13 +2504,26 @@
           },
           "unit": "rotrpm"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "GPU FAN (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 55
       },
       "id": 179,
       "options": {
@@ -2595,7 +2608,7 @@
           "expr": "nvidia_smi_fan_speed_ratio{uuid=\"$gpu\"}",
           "hide": false,
           "instant": false,
-          "legendFormat": "GPU",
+          "legendFormat": "GPU FAN (%)",
           "range": true,
           "refId": "E"
         }
@@ -2667,7 +2680,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 63
       },
       "id": 175,
       "links": [],
@@ -2806,7 +2819,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 68
       },
       "id": 176,
       "links": [],
@@ -2908,8 +2921,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2925,7 +2937,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 79
+        "y": 78
       },
       "id": 173,
       "links": [],
@@ -3010,8 +3022,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3027,7 +3038,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 79
+        "y": 78
       },
       "id": 180,
       "links": [],
@@ -3112,8 +3123,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3178,7 +3188,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 85
       },
       "id": 174,
       "links": [],
@@ -3264,8 +3274,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3376,7 +3385,7 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
@@ -3459,7 +3468,6 @@
       {
         "allFormat": "glob",
         "current": {
-          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -3492,7 +3500,6 @@
       {
         "allFormat": "glob",
         "current": {
-          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -3556,7 +3563,6 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -3590,6 +3596,10 @@
           "selected": false,
           "text": "ccce7712-cc0a-5475-cd5c-6bba7bb11306",
           "value": "ccce7712-cc0a-5475-cd5c-6bba7bb11306"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
         },
         "definition": "label_values(nvidia_smi_index,uuid)",
         "hide": 0,
