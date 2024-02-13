@@ -13,7 +13,7 @@ patches:
       value: [homepage.t21.circle.ispin.ch]
     - op: replace
       path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://homepage.t21.circle.ispin.ch
+      value: http://homepage.t21.circle.ispin.ch
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

@@ -13,7 +13,9 @@ patches:
       value: [keel.t21.circle.ispin.ch]
     - op: replace
       path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://keel.t21.circle.ispin.ch
+      value: http://keel.t21.circle.ispin.ch
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+    - op: remove
+      path: /spec/tls
