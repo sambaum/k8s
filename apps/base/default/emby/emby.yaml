@@ -24,6 +24,9 @@ spec:
       containers:
       - name: emby
         image: linuxserver/emby:4.8.1
+        resources:
+          limits:
+            nvidia.com/gpu: '1'
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8096
@@ -43,8 +46,6 @@ spec:
         - mountPath: /data/home-photos
           name: nas-sam
           subPath: Personal/Fotos/Publish
-          # - mountPath: /dev/dri 
-          #   name: quicksync
         env:
         - name: PUID
           value: '0'
@@ -52,6 +53,8 @@ spec:
           value: '0'
         - name: TZ
           value: 'Europe/Zurich'
+        securityContext:
+          privileged: true
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -62,9 +65,6 @@ spec:
       - name: nas-sam
         persistentVolumeClaim:
           claimName: truenas-sam-pvc
-          # - name: quicksync
-          #   hostPath: 
-          #     path: /dev/dri
       dnsConfig:
         options:
         - name: ndots
