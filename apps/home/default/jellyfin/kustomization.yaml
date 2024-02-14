@@ -8,7 +8,7 @@ patches:
     - op: replace
       path: /spec/rules
       value:
-        - host: jellyfin.sambaum.ch
+        - host: jellyfin.int.sambaum.ch
           http:
             paths:
             - pathType: Prefix
@@ -18,7 +18,7 @@ patches:
                   name: jellyfin-service
                   port:
                     number: 8096
-        - host: jellyfin.int.sambaum.ch
+        - host: jellyfin.sambaum.ch
           http:
             paths:
             - pathType: Prefix
