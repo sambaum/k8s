@@ -62,16 +62,10 @@ spec:
           value: 'true'
         - name: ffmpegVersion
           value: '6'
-        # - name: UMASK_SET
-        #   value: '002'
         - name: UMASK_SET
           value: '002'
         - name: nodeName
           value: 'MyInternalNode'
-          # - name: NVIDIA_DRIVER_CAPABILITIES
-          #   value: 'all'
-          # - name: NVIDIA_VISIBLE_DEVICES
-          #   value: 'all'
       volumes:
       - name: config
         persistentVolumeClaim:
