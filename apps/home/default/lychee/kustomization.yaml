@@ -1,5 +1,5 @@
 resources:
-- ../../../base/default/lychee/
+- ../../../base/default/lychee-local/
 patches:
 - target:
     kind: Ingress
