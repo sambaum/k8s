@@ -1,0 +1,8 @@
+resources:
+- lychee.yaml
+- cron.yaml
+
+configMapGenerator:
+- name: lychee
+  files:
+  - nginx.conf
