@@ -28,7 +28,7 @@ spec:
               name: config
               subPath: lychee/conf
             - mountPath: /var/www/html/Lychee/public/uploads # for unknown reasons this path is different when running with CronJob
-              name: config
+              name: data
               subPath: lychee/uploads
             # - mountPath: /watch
             #   name: config
@@ -62,9 +62,12 @@ spec:
               value: 'mysql'
           restartPolicy: OnFailure
           volumes:
-          # - name: config
-          #   persistentVolumeClaim:
-          #     claimName: local-conf-pvc
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc
           - name: nas-sam
             persistentVolumeClaim:
               claimName: truenas-sam-pvc
+          - name: data
+            persistentVolumeClaim:
+              claimName: local-data-pvc
