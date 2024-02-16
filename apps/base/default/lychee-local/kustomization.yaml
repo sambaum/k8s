@@ -1,6 +1,6 @@
 resources:
 - lychee.yaml
-- cron.yaml
+# - cron.yaml
 
 configMapGenerator:
 - name: lychee

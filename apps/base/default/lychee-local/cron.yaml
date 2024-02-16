@@ -30,9 +30,6 @@ spec:
             - mountPath: /var/www/html/Lychee/public/uploads # for unknown reasons this path is different when running with CronJob
               name: data
               subPath: lychee/uploads
-            # - mountPath: /watch
-            #   name: config
-            #   subPath: lychee/watch
             - mountPath: /watch
               name: nas-sam
               subPath: Personal/Fotos/Publish-Web
