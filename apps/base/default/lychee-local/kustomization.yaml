@@ -6,3 +6,7 @@ configMapGenerator:
 - name: lychee
   files:
   - nginx.conf
+
+generatorOptions:
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
