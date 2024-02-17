@@ -40,9 +40,9 @@ spec:
         - mountPath: /watch
           name: nas-sam
           subPath: Personal/Fotos/Publish-Web
-        # - name: nginx-config
-        #   mountPath: /etc/nginx/nginx.conf
-        #   subPath: nginx.conf
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
         env:
         - name: TIMEZONE
           value: 'Europe/Zurich'
@@ -99,9 +99,9 @@ spec:
       - name: nas-sam
         persistentVolumeClaim:
           claimName: truenas-sam-pvc
-      # - name: nginx-config
-      #   configMap:
-      #     name: lychee
+      - name: nginx-config
+        configMap:
+          name: lychee
       dnsConfig:
         options:
         - name: ndots
