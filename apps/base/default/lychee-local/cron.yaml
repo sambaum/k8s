@@ -4,7 +4,7 @@ metadata:
   name: lychee-watch
   namespace: default
 spec:
-  schedule: "0 13 * * *"
+  schedule: "0 0 29 2 1"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
@@ -19,7 +19,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - php artisan lychee:sync /watch  --skip_duplicates=1 --import_via_symlink=1
+            - php artisan lychee:sync /watch --skip_duplicates=1 --import_via_symlink=1
             # - /bin/sh
             # - -c
             # - while true; do echo gugus; sleep 10; done
