@@ -4,6 +4,7 @@ resources:
 
 configMapGenerator:
 - name: lychee
+  namespace: default
   files:
   - nginx.conf
 
