@@ -1,3 +1,4 @@
 resources:
-- wordpress.yaml
+# - wordpress.yaml
+- wordpress-single-deployment.yaml
 - wordpress-secrets.yaml

@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  namespace: default
+  labels:
+    app: wordpress
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      containers:
+      - name: wordpress
+        image: bitnami/wordpress:6.4.3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: WORDPRESS_DATABASE_HOST
+          value: 'wordpress-mysql'
+        - name: WORDPRESS_DATABASE_USER
+          value: bn_wordpress
+        - name: WORDPRESS_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_DB_PASSWORD
+              optional: false
+        - name: WORDPRESS_DATABASE_NAME
+          value: bitnami_wordpress
+        - name: WORDPRESS_USERNAME
+          value: admin
+        - name: WORDPRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_PASSWORD
+              optional: false
+        - name: WORDPRESS_SMTP_HOST
+          value: smtppro.zoho.eu
+        - name: WORDPRESS_SMTP_PORT
+          value: '587'
+        - name: WORDPRESS_SMTP_USER
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_SMTP_USER
+              optional: false
+        - name: WORDPRESS_SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_SMTP_PASSWORD
+              optional: false
+        volumeMounts:
+        - mountPath: /bitnami/wordpress
+          name: config
+          subPath: wordpress/www
+      - name: wordpress-mysql
+        image: bitnami/mariadb:11.2.3
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /bitnami/mariadb
+          name: config
+          subPath: wordpress/mariadb
+        env:
+        - name: MARIADB_DATABASE
+          value: bitnami_wordpress
+        - name: MARIADB_USER
+          value: bn_wordpress
+        - name: MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_DB_PASSWORD
+              optional: false
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: MYSQL_ROOT_PASSWORD
+              optional: false
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-service
+  namespace: default
+spec:
+  selector:
+    app: wordpress
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-mysql
+  namespace: default
+spec:
+  selector:
+    app: wordpress
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 80m
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: 'Wordpress'
+    flame.pawelmalak/url: https://wordpress.example.com
+    # flame.pawelmalak/icon: 
+    gethomepage.dev/description: Wordpress
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: wordpress.svg
+    gethomepage.dev/name: wordpress
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'wordpress.example.com'
+    secretName: wordpress-tls
+  rules:
+  - host: wordpress.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: wordpress-service
+            port:
+              number: 8080
