@@ -21,3 +21,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  template:
+    annotations:
+      kustomize.toolkit.fluxcd.io/substitute: disabled
