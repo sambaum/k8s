@@ -2011,7 +2011,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "truenas_disk_temperature",
+          "expr": "avg_over_time(truenas_disk_temperature[30m])",
           "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
