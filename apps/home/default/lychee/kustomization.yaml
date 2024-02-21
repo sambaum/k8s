@@ -2,25 +2,45 @@ resources:
 - ../../../base/default/lychee-local/
 patches:
 - target:
-    kind: Ingress
-    name: lychee-ingress
-  patch: |-
-    - op: replace
-      path: /spec/rules/0/host
-      value: lychee.int.sambaum.ch
-    - op: replace
-      path: /spec/tls/0/hosts
-      value: [lychee.int.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://lychee.int.sambaum.ch
-    - op: replace
-      path: /metadata/annotations/cert-manager.io~1cluster-issuer
-      value: letsencrypt-production
-- target:
     kind: Deployment
     name: lychee
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/env/10/value
       value: https://lychee.int.sambaum.ch
+- target:
+    kind: Ingress
+    name: lychee-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules
+      value:
+        - host: lychee.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: lychee-service
+                  port:
+                    number: 80
+        - host: foto.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: lychee-service
+                  port:
+                    number: 80
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [lychee.int.sambaum.ch, foto.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://lychee.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
