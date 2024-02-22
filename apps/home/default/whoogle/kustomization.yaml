@@ -6,11 +6,31 @@ patches:
     name: whoogle-ingress
   patch: |-
     - op: replace
-      path: /spec/rules/0/host
-      value: whoogle.int.sambaum.ch
+      path: /spec/rules
+      value:
+        - host: whoogle.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: whoogle-service
+                  port:
+                    number: 5000
+        - host: whoogle.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: whoogle-service
+                  port:
+                    number: 5000
     - op: replace
       path: /spec/tls/0/hosts
-      value: [whoogle.int.sambaum.ch]
+      value: [whoogle.int.sambaum.ch, whoogle.sambaum.ch]
     - op: replace
       path: /metadata/annotations/flame.pawelmalak~1url
       value: https://whoogle.int.sambaum.ch
