@@ -262,22 +262,6 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.145.37.10:9100\",mode=\"idle\"}[5m])) * 100)",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VPS1",
-          "range": true,
-          "refId": "D",
-          "step": 20
-        },
-        {
-          "datasource": {
             "type": "influxdb",
             "uid": "PrQ94dx4k"
           },
@@ -447,21 +431,6 @@
           "intervalFactor": 2,
           "legendFormat": "Dumpster",
           "refId": "E",
-          "step": 40
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "time() - node_boot_time_seconds{instance=~\"192.145.37.10:9100\"}",
-          "format": "time_series",
-          "hide": false,
-          "instant": true,
-          "intervalFactor": 2,
-          "legendFormat": "VPS1",
-          "refId": "F",
           "step": 40
         },
         {
@@ -677,21 +646,6 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "VPS1",
-          "range": false,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
             "uid": "prometheus"
           },
           "editorMode": "code",
@@ -718,21 +672,6 @@
           "legendFormat": "Deskcube S",
           "range": false,
           "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "VPS1 S",
-          "range": false,
-          "refId": "F"
         }
       ],
       "title": "FluxCD Failing Reconcilers/Sources",
@@ -1808,22 +1747,6 @@
           "range": true,
           "refId": "E",
           "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.145.37.10:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VPS1",
-          "range": true,
-          "refId": "D",
-          "step": 20
         }
       ],
       "title": "VM's Root partition usage",
@@ -2756,139 +2679,6 @@
         }
       ],
       "title": "OPNSense Network Traffic / sec Receive",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMin": 0,
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 99,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 0,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 7,
-        "x": 13,
-        "y": 14
-      },
-      "id": 15,
-      "interval": "15s",
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "Compute Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/compute-pods-sam/kubernetes-compute-resources-node-pods-sam?orgId=1&var-datasource=Prometheus-VPS1&var-cluster=&var-node=vmi1093363"
-        }
-      ],
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": false,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "sum(kube_node_status_capacity{cluster=\"$cluster\", node=~\"vmi1093363\", resource=\"cpu\"})",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 2,
-          "legendFormat": "max capacity",
-          "range": true,
-          "refId": "A",
-          "step": 10
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\", node=~\"vmi1093363\"}) by (pod)",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{pod}}",
-          "range": true,
-          "refId": "B",
-          "step": 10
-        }
-      ],
-      "title": "CPU Usage VPS1",
       "type": "timeseries"
     },
     {
