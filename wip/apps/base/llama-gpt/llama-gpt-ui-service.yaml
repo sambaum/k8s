@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: llama-gpt-ui
+  name: llama-gpt-ui
+  namespace: default
+spec:
+  ports:
+  - name: ui
+    port: 3000
+    targetPort: 3000
+  selector:
+    service: llama-gpt-ui
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: llama-gpt-ui-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: llama-gpt-ui
+    flame.pawelmalak/url: https://llama-gpt-ui.example.com
+    flame.pawelmalak/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
+    gethomepage.dev/description: A self-hosted, offline, ChatGPT-like chatbot
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
+    gethomepage.dev/name: "LlamaGPT"
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'llama-gpt-ui.example.com'
+    secretName: llama-gpt-ui.int-tls
+  rules:
+  - host: llama-gpt-ui.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: llama-gpt-ui
+            port:
+              number: 3000
