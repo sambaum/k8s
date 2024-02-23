@@ -43,6 +43,9 @@ spec:
         - mountPath: /movies
           name: media
           subPath: Video/Movies
+        - mountPath: /movies-kids
+          name: media
+          subPath: Video/Movies-Kids
         env:
         - name: PUID
           value: '0'
