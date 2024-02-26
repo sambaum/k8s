@@ -1,0 +1,129 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo
+  namespace: default
+  labels:
+    app: odoo
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odoo
+  template:
+    metadata:
+      labels:
+        app: odoo
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      containers:
+      - name: odoo # 6scg-sqxf-pb6u
+        image: odoo:17.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8069
+        # env:
+        # - name: HOST
+        #   value: 'db'
+        # - name: USER
+        #   value: 'odoo'
+        # - name: PASSWORD
+        #   value: 'odoo'
+        volumeMounts:
+        - mountPath: /var/lib/odoo
+          name: config
+          subPath: odoo/web-data
+          # - mountPath: /etc/odoo
+          #   name: config
+          #   subPath: odoo/config
+      - name: db
+        image: postgres:15
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/pgdata
+          name: config
+          subPath: odoo/postgres
+        env:
+        - name: POSTGRES_DB
+          value: 'postgres'
+        - name: POSTGRES_PASSWORD
+          value: 'odoo'
+        - name: POSTGRES_USER
+          value: 'odoo'
+        - name: PGDATA
+          value: '/var/lib/postgresql/data/pgdata'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: odoo-service
+  namespace: default
+spec:
+  selector:
+    app: odoo
+  ports:
+  - protocol: TCP
+    port: 8069
+    targetPort: 8069
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: db
+  namespace: default
+spec:
+  selector:
+    app: odoo
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: odoo-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 8069m
+    flame.pawelmalak/type: application
+    flame.pawelmalak/name: 'odoo'
+    flame.pawelmalak/url: https://odoo.example.com
+    # flame.pawelmalak/icon: 
+    gethomepage.dev/description: odoo
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: odoo.svg
+    gethomepage.dev/name: odoo
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'odoo.example.com'
+    secretName: odoo-tls
+  rules:
+  - host: odoo.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: odoo-service
+            port:
+              number: 8069
