@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-importer
+  namespace: default
+  labels:
+    app: firefly-importer
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-importer
+  template:
+    metadata:
+      labels:
+        app: firefly-importer
+    spec:
+      containers:
+      - name: firefly-importer
+        image: fireflyiii/data-importer:version-1.4.4
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FIREFLY_III_URL
+          value: "http://firefly-service:8080"
+        - name: FIREFLY_III_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: firefly-importer-secrets
+              key: FIREFLY_III_ACCESS_TOKEN
+              optional: true
+        - name: TRUSTED_PROXIES
+          value: "**"
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: firefly-importer-service
+  namespace: default
+spec:
+  selector:
+    app: firefly-importer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: firefly-importer-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.org/client-max-body-size: "0"
+    nginx.org/proxy-buffer-size: "8k"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Finance Manager
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: firefly.png
+    gethomepage.dev/name: Firefly III Importer
+    gethomepage.dev/pod-selector: app
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'firefly-importer.example.com'
+    secretName: firefly-importer-tls
+  rules:
+  - host: firefly-importer.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: firefly-importer-service
+            port:
+              number: 8080

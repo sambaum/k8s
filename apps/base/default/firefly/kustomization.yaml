@@ -1,0 +1,4 @@
+resources:
+- firefly.yaml
+- firefly-secrets.yaml
+- firefly-importer.yaml
