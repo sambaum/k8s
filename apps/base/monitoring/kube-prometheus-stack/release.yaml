@@ -52,7 +52,7 @@ spec:
         ingressClassName: nginx
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
-            more_set_headers "X-Frame-Options: sameorigin";
+            more_clear_headers "X-Frame-Options";
           cert-manager.io/cluster-issuer: letsencrypt-staging
           flame.pawelmalak/type: application
           flame.pawelmalak/name: Grafana
@@ -96,7 +96,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-staging
           nginx.ingress.kubernetes.io/configuration-snippet: |
-            more_set_headers "X-Frame-Options: sameorigin";
+            more_clear_headers "X-Frame-Options";
           flame.pawelmalak/type: application
           flame.pawelmalak/name: Prometheus
           flame.pawelmalak/url: https://prometheus.example.com
