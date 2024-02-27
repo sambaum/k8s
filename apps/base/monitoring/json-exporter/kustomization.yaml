@@ -1,2 +1,12 @@
 resources:
 - json-exporter.yaml
+
+configMapGenerator:
+- name: json-exporter-config
+  namespace: monitoring
+  files:
+  - config.yml
+
+generatorOptions:
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

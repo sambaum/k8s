@@ -21,16 +21,6 @@ spec:
       labels:
         app: json-exporter
     spec:
-      initContainers:
-      - name: create-config
-        image: mwendler/wget
-        command: ["/bin/sh"]
-        args: ['-c', 'if [ -s /config.yml ]; then echo file already there; else wget -c -O /config.yml https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/json-exporter/config.yml --no-check-certificate; fi']
-        volumeMounts:
-        - mountPath: /dummy
-          name: settings-dir
-        - mountPath: /config.yml
-          name: settings
       containers:
       - name: json-exporter
         image: quay.io/prometheuscommunity/json-exporter:v0.6.0
@@ -41,17 +31,13 @@ spec:
         - name: TZ
           value: 'Europe/Zurich'
         volumeMounts:
-        - mountPath: /config.yml
-          name: settings
+        - name: json-exporter-config-vol
+          mountPath: /config.yml
+          subPath: config.yml
       volumes:
-      - name: settings-dir
-        hostPath:
-          path: /conf/monitoring/json-exporter
-          type: DirectoryOrCreate
-      - name: settings
-        hostPath:
-          path: /conf/monitoring/json-exporter/config.yml
-          type: FileOrCreate
+      - name: json-exporter-config-vol
+        configMap:
+          name: json-exporter-config
       dnsConfig:
         options:
         - name: ndots
