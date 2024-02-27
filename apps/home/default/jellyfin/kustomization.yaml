@@ -1,39 +1,40 @@
-resources:
-- ../../../base/default/jellyfin/
-patches:
-- target:
-    kind: Ingress
-    name: jellyfin-ingress
-  patch: |-
-    - op: replace
-      path: /spec/rules
-      value:
-        - host: jellyfin.int.sambaum.ch
-          http:
-            paths:
-            - pathType: Prefix
-              path: "/"
-              backend:
-                service:
-                  name: jellyfin-service
-                  port:
-                    number: 8096
-        - host: jellyfin.sambaum.ch
-          http:
-            paths:
-            - pathType: Prefix
-              path: "/"
-              backend:
-                service:
-                  name: jellyfin-service
-                  port:
-                    number: 8096
-    - op: replace
-      path: /spec/tls/0/hosts
-      value: [jellyfin.int.sambaum.ch, jellyfin.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://jellyfin.int.sambaum.ch
-    - op: replace
-      path: /metadata/annotations/cert-manager.io~1cluster-issuer
-      value: letsencrypt-production
+[]
+# resources:
+# - ../../../base/default/jellyfin/
+# patches:
+# - target:
+#     kind: Ingress
+#     name: jellyfin-ingress
+#   patch: |-
+#     - op: replace
+#       path: /spec/rules
+#       value:
+#         - host: jellyfin.int.sambaum.ch
+#           http:
+#             paths:
+#             - pathType: Prefix
+#               path: "/"
+#               backend:
+#                 service:
+#                   name: jellyfin-service
+#                   port:
+#                     number: 8096
+#         - host: jellyfin.sambaum.ch
+#           http:
+#             paths:
+#             - pathType: Prefix
+#               path: "/"
+#               backend:
+#                 service:
+#                   name: jellyfin-service
+#                   port:
+#                     number: 8096
+#     - op: replace
+#       path: /spec/tls/0/hosts
+#       value: [jellyfin.int.sambaum.ch, jellyfin.sambaum.ch]
+#     - op: replace
+#       path: /metadata/annotations/flame.pawelmalak~1url
+#       value: https://jellyfin.int.sambaum.ch
+#     - op: replace
+#       path: /metadata/annotations/cert-manager.io~1cluster-issuer
+#       value: letsencrypt-production
