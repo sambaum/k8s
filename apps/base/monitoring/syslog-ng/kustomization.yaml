@@ -1,2 +1,12 @@
 resources:
 - syslog-ng.yaml
+
+configMapGenerator:
+- name: syslog-ng-config
+  namespace: monitoring
+  files:
+  - syslog-ng.conf
+
+generatorOptions:
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

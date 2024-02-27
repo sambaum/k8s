@@ -22,32 +22,14 @@ spec:
         app: syslog-ng
     spec:
       initContainers:
-      - name: create-config
-        image: mwendler/wget
-        command: ["/bin/sh"]
-        # [
-        #   'wget',
-        #   '-O',
-        #   '/config/syslog-ng.conf',
-        #   'https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf',
-        #   '--no-check-certificate',
-        # ]
-        args: ['-c', 'if [ -s /config/syslog-ng.conf ]; then echo file already there; else wget -c -O /config/syslog-ng.conf https://raw.githubusercontent.com/sambaum/k8s/master/apps/base/monitoring/syslog-ng/syslog-ng.conf --no-check-certificate; fi']
-        volumeMounts:
-        - mountPath: /config
-          name: config
-          subPath: syslog-ng
       containers:
       - name: syslog-ng
         image: linuxserver/syslog-ng:4.5.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /config
-          name: config
-          subPath: syslog-ng
-        - mountPath: /var/log
-          name: temp
-          subPath: syslog-ng
+        - name: syslog-ng-config-vol
+          mountPath: /config/syslog-ng.conf
+          subPath: syslog-ng.conf
         env:
         - name: PUID
           value: '0'
@@ -56,12 +38,9 @@ spec:
         - name: TZ
           value: 'Europe/Zurich'
       volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: local-conf-monitoring-pvc
-      - name: temp
-        persistentVolumeClaim:
-          claimName: local-temp-monitoring-pvc
+      - name: syslog-ng-config-vol
+        configMap:
+          name: syslog-ng-config
 ---
 kind: Service
 apiVersion: v1
