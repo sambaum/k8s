@@ -123,6 +123,7 @@
       ],
       "matchFileNames": [
         "**/lychee.yaml"
+        "**/firefly.yaml"
       ],
       "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 10
     },
