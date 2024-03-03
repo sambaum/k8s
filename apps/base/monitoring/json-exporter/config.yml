@@ -1,4 +1,7 @@
 modules:
+
+  ### MyStrom Power Usage
+
   mystrom:
     headers:
       X-Dummy: my-test-header
@@ -23,6 +26,9 @@ modules:
       help: The Ws field represents the average power value since the last call. It is the energy consumed divided by the time elapsed since the last call. Energy = Ws ∙ ∆T. For continous consumption measurements (Ws values with timestamp stored in DB) Total Energy = ∑Ws ∙ (Tcurrent - Tbegin).
       labels:
         mystrom: Ws
+
+  ### UPS NUT
+
   nut_http:
     headers:
       X-Dummy: my-test-header
@@ -51,11 +57,226 @@ modules:
     - name: nut_http_realpower_nominal
       path: '{ .ups.realpower.nominal }'
       help: Nominal Power
-  truenas:
+
+  ### TrueNAS Running SMART Tests
+
+  truenas-smart-tests:
     headers:
-      X-Dummy: my-test-header
+      Authorization: Bearer 6-2YDCfvH465ekFePRMsYG0S6eEWbXe0MCGRa3k3Hu8jFbaFzkO3GYckryYRfz8Wyi
     metrics:
-    - name: truenas_current_test_sdg
-      path: '{ [0].current_test.progress }'
-      help: exists only if a test is running, shows progress in %
+    - name: truenas_current_test
+      type: object
+      path: '{ [?(@.current_test != "null")] }' # path: '{ .values[?(@.state == "INACTIVE")] }'
+      # path: '{ [*] }'
+      labels:
+        disk: '{ .disk }'
+        serial: '{ .serial }'
+        description: '{ .description }'
+      values:
+        percent_done: '{ .current_test.progress }'
+
+  ### TrueNAS SMART per Disk
+
+  truenas_smart_attributes_sda:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sda
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sda'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sda"
+  truenas_smart_attributes_sdb:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdb
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdb'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdb"
+  truenas_smart_attributes_sdc:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdc
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdc'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdc"
+  truenas_smart_attributes_sdd:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdd
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdd'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdd"
+  truenas_smart_attributes_sde:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sde
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sde'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sde"
+  truenas_smart_attributes_sdf:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdf
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdf'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdf"
+  truenas_smart_attributes_sdg:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdg
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdg'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdg"
+  truenas_smart_attributes_sdh:
+    headers:
+      Authorization: Bearer 8-GWyoQ1wUFIa2Hgcg8ZZZneCF9CO777i0IcIBLbGisjkpRy8F2Yp3TKfNgQcqxKaC
+    metrics:
+    - name: truenas_smart_attributes_sdh
+      type: object
+      path: '{ [*] }'
+      help: todo
+      labels:
+        disk: 'sdh'
+        id: '{ .id }'
+        name: '{ .name }'
+      values:
+        value: '{ .value }'
+        raw_value: '{ .raw.value }'
+    body:
+      content: |
+        "sdh"
+
+  ### TrueNAS Datasets
+
+  truenas-pool-dataset:
+    headers:
+      Authorization: Bearer 6-2YDCfvH465ekFePRMsYG0S6eEWbXe0MCGRa3k3Hu8jFbaFzkO3GYckryYRfz8Wyi
+    metrics:
+    - name: truenas_pool_dataset
+      type: object
+      path: '{ [*] }'
+      labels:
+        mountpoint: '{ .mountpoint }'
+      values:
+        used: '{ .used.parsed }'
+        usedbysnapshots: '{ .usedbysnapshots.parsed }'
+        available: '{ .available.parsed }'
+
+  ### TrueNAS Disk Temperatures
+
+  truenas-disk-temperatures:
+    headers:
+      Authorization: Bearer 9-RO5Kohb9BpkYujuoGOwL1xhux0NoW4bU81ijgH9Tw9xkE77dmv9jMu2Bqxa90Ps6
+    metrics:
+    - name: truenas_disk_temperature
+      path: '{ .sda }'
+      labels:
+        disk: sda
+    - name: truenas_disk_temperature
+      path: '{ .sdb }'
+      labels:
+        disk: sdb
+    - name: truenas_disk_temperature
+      path: '{ .sdc }'
+      labels:
+        disk: sdc
+    - name: truenas_disk_temperature
+      path: '{ .sdd }'
+      labels:
+        disk: sdd
+    - name: truenas_disk_temperature
+      path: '{ .sde }'
+      labels:
+        disk: sde
+    - name: truenas_disk_temperature
+      path: '{ .sdf }'
+      labels:
+        disk: sdf
+    - name: truenas_disk_temperature
+      path: '{ .sdg }'
+      labels:
+        disk: sdg
+    - name: truenas_disk_temperature
+      path: '{ .sdh }'
+      labels:
+        disk: sdh
+    body:
+      content: |
+        {"names":["sda","sdb","sdc","sdd","sde","sdf","sdg","sdh"],"options":{}}
 
