@@ -18,10 +18,10 @@ commonLabels:
 #     newName: ghcr.io/gethomepage/homepage
 #     newTag: 0.7.3
 
-# configMapGenerator:
-# - name: homepage
-#   files:
-#   - config/kubernetes.yaml
+configMapGenerator:
+- name: homepage
+  files:
+  - config/kubernetes.yaml
 #   - config/bookmarks.yaml
 #   - config/services.yaml
 #   - config/widgets.yaml
