@@ -33,7 +33,7 @@ spec:
         volumeMounts:
         - name: json-exporter-config-vol
           mountPath: /config.yml
-          subPath: config.yml
+          subPath: config.yaml
       volumes:
       - name: json-exporter-config-vol
         configMap:
