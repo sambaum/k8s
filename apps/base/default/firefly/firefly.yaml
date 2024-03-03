@@ -69,13 +69,13 @@ spec:
         env:
         - name: TZ
           value: 'Europe/Zurich'
-        - name: MYSQL_ROOT_PASSWORD
+        - name: MARIADB_ROOT_PASSWORD
           value: 'rootpassword'
-        - name: MYSQL_DATABASE
+        - name: MARIADB_DATABASE
           value: 'firefly'
-        - name: MYSQL_USER
+        - name: MARIADB_USER
           value: 'firefly'
-        - name: MYSQL_PASSWORD
+        - name: MARIADB_PASSWORD
           value: 'firefly'
         - name: PGID
           value: '1000'
