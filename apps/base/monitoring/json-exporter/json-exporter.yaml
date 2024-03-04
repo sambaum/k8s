@@ -24,6 +24,8 @@ spec:
       containers:
       - name: json-exporter
         image: quay.io/prometheuscommunity/json-exporter:v0.6.0
+        args:
+        - "--config.file=/etc/json-exporter/config.yml"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7979
@@ -31,13 +33,13 @@ spec:
         - name: TZ
           value: 'Europe/Zurich'
         volumeMounts:
-        - name: json-exporter-config-vol
-          mountPath: /config.yml
-          subPath: config.yaml
+        - mountPath: /etc/json-exporter
+          subPath: json-exporter
+          name: config
       volumes:
-      - name: json-exporter-config-vol
-        configMap:
-          name: json-exporter-config
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-monitoring-pvc
       dnsConfig:
         options:
         - name: ndots
@@ -63,10 +65,6 @@ metadata:
   namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: json-exporter
-    flame.pawelmalak/url: https://json-exporter.example.com
-    flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/640px-JSON_vector_logo.svg.png
     gethomepage.dev/description: Conver JSON to Prometheus
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
