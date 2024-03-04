@@ -86,7 +86,8 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -269,7 +270,8 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percent",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -292,10 +294,11 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -341,7 +344,8 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percent",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -372,7 +376,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "alias": "Idle",
@@ -513,7 +517,8 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "bytes",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -542,7 +547,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -605,7 +610,8 @@
             }
           },
           "mappings": [],
-          "unit": "bytes"
+          "unit": "bytes",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -972,7 +978,8 @@
           },
           "mappings": [],
           "min": 0,
-          "unit": "bytes"
+          "unit": "bytes",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -1107,7 +1114,8 @@
           },
           "mappings": [],
           "min": 0,
-          "unit": "bytes"
+          "unit": "bytes",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1202,7 +1210,8 @@
               }
             ]
           },
-          "unit": "bits"
+          "unit": "bits",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1232,7 +1241,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "alias": "Free",
@@ -1376,7 +1385,8 @@
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "celsius",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1402,7 +1412,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -1478,7 +1488,8 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "bytes",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -1626,7 +1637,8 @@
               }
             ]
           },
-          "unit": "dtdhms"
+          "unit": "dtdhms",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1649,10 +1661,11 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -1753,7 +1766,8 @@
               }
             ]
           },
-          "unit": "Bps"
+          "unit": "Bps",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1906,7 +1920,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1942,7 +1956,8 @@
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "celsius",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -2098,7 +2113,8 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percentunit",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -2270,7 +2286,8 @@
               }
             ]
           },
-          "unit": "Bps"
+          "unit": "Bps",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -2450,7 +2467,8 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "short",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -2763,7 +2781,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -3235,7 +3254,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -3419,7 +3439,8 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "short",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -3702,7 +3723,8 @@
               }
             ]
           },
-          "unit": "gbytes"
+          "unit": "gbytes",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -3731,7 +3753,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -3827,7 +3849,7 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
