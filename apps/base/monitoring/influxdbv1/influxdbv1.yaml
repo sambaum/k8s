@@ -74,8 +74,8 @@ apiVersion: v1
 metadata:
   namespace: monitoring
   name: influxdbv1-graphite-2003-tcp
-  # annotations:
-  #   metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-graphite'
 spec:
   type: LoadBalancer
   loadBalancerIP: '${GRAPHITE_LOADBALANCER_IP}'
