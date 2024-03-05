@@ -43,7 +43,8 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "short",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -68,10 +69,11 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -116,7 +118,8 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "short",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -140,11 +143,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -179,21 +183,6 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", ready=\"False\"})",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "VPS1",
-          "range": false,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
             "uid": "prometheus"
           },
           "editorMode": "code",
@@ -220,21 +209,6 @@
           "legendFormat": "Deskcube S",
           "range": false,
           "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", suspended=\"true\"})",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "VPS1 S",
-          "range": false,
-          "refId": "F"
         }
       ],
       "title": "FluxCD",
@@ -269,7 +243,8 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percentunit",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -298,7 +273,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -344,7 +319,8 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "watt",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -374,7 +350,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -449,7 +425,8 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percent",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -484,7 +461,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -565,22 +542,6 @@
           "range": true,
           "refId": "E",
           "step": 20
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bcb19742-f405-471c-80ca-5bcfc7b1595c"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.145.37.10:9100\",mode=\"idle\"}[30s])) * 100)",
-          "format": "time_series",
-          "hide": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "VPS1",
-          "range": true,
-          "refId": "D",
-          "step": 20
         }
       ],
       "title": "CPU usage",
@@ -615,7 +576,8 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "Kbits",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -646,7 +608,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "datasource": {
@@ -731,7 +693,8 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "ms",
+          "unitScale": true
         },
         "overrides": [
           {
@@ -786,7 +749,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.3",
       "targets": [
         {
           "alias": "sda",
