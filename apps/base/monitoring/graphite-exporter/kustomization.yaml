@@ -1,0 +1,2 @@
+resources:
+- graphite-exporter.yaml
