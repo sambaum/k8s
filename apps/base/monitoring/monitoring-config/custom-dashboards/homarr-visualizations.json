@@ -469,7 +469,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -485,7 +485,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -501,7 +501,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"opnsense.int.sambaum.ch:9100\",mode=\"idle\"}[30s])) * 100)",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"opnsense.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -517,7 +517,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[30s])) * 100)",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[1m])) * 100)",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -533,7 +533,7 @@
             "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
           },
           "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[30s])) * 100)",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[1m])) * 100)",
           "format": "time_series",
           "hide": true,
           "interval": "",
