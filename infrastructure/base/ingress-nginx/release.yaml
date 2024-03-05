@@ -25,4 +25,31 @@ spec:
       service:
         loadBalancerIP: '${NGINX_LOADBALANCER_IP}'
       allowSnippetAnnotations: true
+
+
+
+#       extraArgs:
+#         tcp-services-configmap: "ingress-nginx/tcp-services"
+#       servicePorts:
+#       - name: http
+#         port: 80
+#         targetPort: 80
+#         protocol: TCP
+#       - name: https
+#         port: 443
+#         targetPort: 443
+#         protocol: TCP
+#       - name: proxied-tcp-9109
+#         port: 9109
+#         targetPort: 9109
+#         protocol: TCP
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: tcp-services
+#   namespace: ingress-nginx
+# data:
+#   "9109": "monitoring/graphite-exporter-target-service:9109"
+
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
