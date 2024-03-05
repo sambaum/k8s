@@ -24,12 +24,12 @@
   value: letsencrypt-production
 - op: replace
   path: /spec/values/prometheus/prometheusSpec/retention
-  value: 60d
+  value: 90d
 - op: add
   path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
   value:
   - job_name: opnsense
-    scrape_interval: 15s
+    scrape_interval: 30s
     static_configs:
     - targets: ['opnsense.int.sambaum.ch:9100']
       labels:
@@ -65,13 +65,13 @@
       action: drop
       regex: 'pflog0'
   - job_name: proxmox
-    scrape_interval: 15s
+    scrape_interval: 30s
     static_configs:
     - targets: ['proxmox.int.sambaum.ch:9100']
       labels:
         group: 'proxmox'
   - job_name: proxmox2
-    scrape_interval: 15s
+    scrape_interval: 30s
     static_configs:
     - targets: ['proxmox2.int.sambaum.ch:9100']
       labels:
@@ -108,7 +108,7 @@
       labels:
         group: 'uptime-kuma'
   - job_name: 'json-exporter-mystrom'
-    scrape_interval: 15s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['http://myStrom-Switch-B53AAC.int.sambaum.ch/report']
@@ -119,7 +119,7 @@
       labels:
         group: 'json-exporter-mystrom'
   - job_name: 'nut_http'
-    scrape_interval: 15s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://nut-http.int.sambaum.ch/devices/ups?parsed=true']
@@ -130,7 +130,7 @@
       labels:
         group: 'nut_http'
   - job_name: 'truenas-smart-tests'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/smart/test/results']
@@ -151,7 +151,7 @@
         group: 'nvidia-gpu-exporter'
 
   - job_name: 'truenas_smart_attributes_sda'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -162,7 +162,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdb'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -173,7 +173,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdc'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -184,7 +184,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdd'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -195,7 +195,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sde'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -206,7 +206,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdf'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -217,7 +217,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdg'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -228,7 +228,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas_smart_attributes_sdh'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/smart_attributes']
@@ -239,7 +239,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas-pool-dataset'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/pool/dataset']
@@ -250,7 +250,7 @@
       labels:
         group: 'truenas'
   - job_name: 'truenas-disk-temperatures'
-    scrape_interval: 60s
+    scrape_interval: 30s
     metrics_path: '/probe'
     params:
       target: ['https://truenas.int.sambaum.ch/api/v2.0/disk/temperatures']
