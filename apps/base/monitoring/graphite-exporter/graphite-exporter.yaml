@@ -81,11 +81,11 @@ metadata:
   namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    gethomepage.dev/description: V2
+    gethomepage.dev/description: Exporter for Graphite protocol
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: graphite-exporter.svg
-    gethomepage.dev/name: graphite-exporter
+    gethomepage.dev/icon: https://d33wubrfki0l68.cloudfront.net/0b2c34f9d7bf05fc4857ad58d101449a5c973769/1557e/images/graphitelogo.png
+    gethomepage.dev/name: Graphite Exporter
     gethomepage.dev/pod-selector: app
 spec:
   ingressClassName: nginx
@@ -104,3 +104,5 @@ spec:
             name: graphite-exporter-service
             port:
               number: 9108
+
+# https://github.com/Supporterino/truenas-graphite-to-prometheus
