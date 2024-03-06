@@ -260,3 +260,12 @@
     - targets: ['json-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas'
+
+  - job_name: 'truenas-graphite-exporter'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: https
+    static_configs:
+    - targets: ['graphite-exporter.int.sambaum.ch:443']
+      labels:
+        group: 'truenas-graphite-exporter'
