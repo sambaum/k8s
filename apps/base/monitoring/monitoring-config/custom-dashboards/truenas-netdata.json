@@ -18,7 +18,6 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 1,
-    "id": 1551,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -674,7 +673,7 @@
             "refId": "A"
           }
         ],
-        "title": "CPU temperature",
+        "title": "Disk temperatures",
         "type": "timeseries"
       },
       {
@@ -4689,8 +4688,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -4787,8 +4785,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -4885,8 +4882,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -4996,8 +4992,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -5094,8 +5089,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -5192,8 +5186,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -5290,8 +5283,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -5388,8 +5380,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "green",
-                      "value": null
+                      "color": "green"
                     },
                     {
                       "color": "red",
@@ -5483,7 +5474,7 @@
         {
           "allValue": ".*",
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
               "All"
             ],
@@ -5515,7 +5506,7 @@
         {
           "allValue": ".*",
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
               "All"
             ],
@@ -5547,7 +5538,7 @@
         {
           "allValue": ".*",
           "current": {
-            "selected": false,
+            "selected": true,
             "text": [
               "All"
             ],
@@ -5579,13 +5570,13 @@
       ]
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-1h",
       "to": "now"
     },
     "timepicker": {},
     "timezone": "",
     "title": "TrueNAS Scale",
-    "uid": "truenas-scale-netdata",
-    "version": 3,
+    "uid": "d4a0827b-de7f-4b46-a43f-328f4bc8372a",
+    "version": 4,
     "weekStart": ""
   }

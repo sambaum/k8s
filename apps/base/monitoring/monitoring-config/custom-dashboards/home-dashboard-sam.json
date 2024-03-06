@@ -932,7 +932,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 7,
         "x": 6,
         "y": 5
@@ -1033,7 +1033,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 7,
         "x": 13,
         "y": 5
@@ -1524,7 +1524,7 @@
         "h": 5,
         "w": 7,
         "x": 6,
-        "y": 10
+        "y": 11
       },
       "id": 9,
       "links": [
@@ -1654,7 +1654,7 @@
         "h": 5,
         "w": 7,
         "x": 13,
-        "y": 10
+        "y": 11
       },
       "id": 16,
       "interval": "15s",
@@ -2181,7 +2181,7 @@
         "h": 6,
         "w": 14,
         "x": 6,
-        "y": 15
+        "y": 16
       },
       "id": 33,
       "options": {
@@ -2520,7 +2520,6 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
           "text": "None",
           "value": ""
@@ -2652,8 +2651,8 @@
       {
         "current": {
           "selected": false,
-          "text": "sda",
-          "value": "sda"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -2661,7 +2660,7 @@
         },
         "definition": "label_values(disk_io{instance=\"$instance\"},disk)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "multi": false,
         "name": "disk",
         "options": [],
@@ -2678,9 +2677,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "enp4s0",
-          "value": "enp4s0"
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -2688,7 +2687,7 @@
         },
         "definition": "label_values(interface_io{instance=\"$instance\"},interface)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "multi": false,
         "name": "interface",
         "options": [],
