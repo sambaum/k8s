@@ -678,7 +678,6 @@
           },
           "decimals": 1,
           "mappings": [],
-          "max": 1000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -693,7 +692,7 @@
               }
             ]
           },
-          "unit": "ms",
+          "unit": "bytes",
           "unitScale": true
         },
         "overrides": [
@@ -752,399 +751,16 @@
       "pluginVersion": "10.3.3",
       "targets": [
         {
-          "alias": "sda",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sda",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdb",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdb",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdc",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdc",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdd",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdd",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sde",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sde",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdf",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdf",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdg",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdg",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "alias": "sdh",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "sdh",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "disk_io_time.io_time"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "disk"
-            }
-          ]
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "($A+$B+$C+$D+$E+$E+$F+$G+$H)/9",
+          "editorMode": "code",
+          "expr": "sum(truenas_pool_dataset_usedbysnapshots)",
           "hide": false,
-          "refId": "Disk Busy",
-          "type": "math"
+          "legendFormat": "Snapshots",
+          "range": true,
+          "refId": "J"
         },
         {
           "datasource": {
@@ -1154,9 +770,21 @@
           "editorMode": "code",
           "expr": "truenas_pool_dataset_used{mountpoint=\"/mnt/pool1\"}",
           "hide": false,
-          "legendFormat": "Usage",
+          "legendFormat": "Data",
           "range": true,
-          "refId": "J"
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_pool_dataset_available{mountpoint=\"/mnt/pool1\"}",
+          "hide": false,
+          "legendFormat": "Free",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "TrueNAS",
