@@ -78,10 +78,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: stable-diffusion-webui-comfy
-    flame.pawelmalak/url: https://stable-diffusion-webui-comfy.example.com
-    flame.pawelmalak/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
     gethomepage.dev/description: Powerful and modular stable diffusion GUI
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

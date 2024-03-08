@@ -103,9 +103,6 @@ metadata:
     nginx.ingress.kubernetes.io/client-max-body-size: 100m
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: tdarr
-    flame.pawelmalak/url: https://tdarr.example.com
     gethomepage.dev/description: Distributed Transcoding System
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

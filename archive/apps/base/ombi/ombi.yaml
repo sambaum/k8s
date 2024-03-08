@@ -76,10 +76,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: ombi
-    flame.pawelmalak/url: https://ombi.example.com
-    flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1576215839_ombi_256.png
 spec:
   ingressClassName: nginx
   tls:

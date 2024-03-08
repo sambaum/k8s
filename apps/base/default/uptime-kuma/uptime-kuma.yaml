@@ -67,10 +67,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Uptime-Kuma
-    flame.pawelmalak/url: https://uptime.example.com
-    flame.pawelmalak/icon: https://opencollective-production.s3.us-west-1.amazonaws.com/af670e80-082d-11ec-9ccd-77fe5bcff8a2.png
     gethomepage.dev/description: Uptime-Kuma
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

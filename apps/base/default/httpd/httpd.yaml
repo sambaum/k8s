@@ -60,10 +60,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: httpd
-    flame.pawelmalak/url: https://httpd.example.com
-    flame.pawelmalak/icon: https://cdn.iconscout.com/icon/free/png-256/apache-8-1174973.png
     gethomepage.dev/description: Apache
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

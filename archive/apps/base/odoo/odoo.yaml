@@ -100,10 +100,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/proxy-body-size: 8069m
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: 'odoo'
-    flame.pawelmalak/url: https://odoo.example.com
-    # flame.pawelmalak/icon: 
     gethomepage.dev/description: odoo
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

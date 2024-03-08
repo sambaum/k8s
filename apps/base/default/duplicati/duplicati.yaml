@@ -64,10 +64,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Some requests thake a long time
     nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Some requests thake a long time
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Duplicati
-    flame.pawelmalak/url: https://duplicati.example.com
-    flame.pawelmalak/icon: https://www.duplicati.com/images/duplicati-fb-share-v1.png
     gethomepage.dev/description: Backup
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

@@ -74,10 +74,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Dashy
-    flame.pawelmalak/url: https://dashy.example.com
-    flame.pawelmalak/icon: https://dashy.to/img/dashy.png
     gethomepage.dev/description: Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

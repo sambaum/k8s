@@ -59,9 +59,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: whoogle
-    flame.pawelmalak/url: https://whoogle.example.com
     # whoogle.pawelmalak/icon: https://preview.redd.it/wg339t74xqi81.png?width=1266&format=png&auto=webp&s=c1e89307b1000fe7436a239f70d3a346ec629812
     gethomepage.dev/description: Search Engine
     gethomepage.dev/enabled: "true"

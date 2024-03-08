@@ -165,10 +165,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "X-Frame-Options: allow";
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Paperless
-    flame.pawelmalak/url: https://paperless.example.com
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/paperless-ngx-logo.png
     gethomepage.dev/description: Paperless-NGX
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

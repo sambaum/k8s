@@ -52,10 +52,6 @@ metadata:
   name: network-multitool-ingress
   namespace: default
   annotations:
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: network-multitool
-    flame.pawelmalak/url: http://network-multitool.example.com
-    # flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
     gethomepage.dev/description: Network Multitool
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

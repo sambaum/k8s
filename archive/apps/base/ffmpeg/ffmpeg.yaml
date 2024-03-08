@@ -84,10 +84,6 @@ spec:
 #   namespace: default
 #   annotations:
 #     cert-manager.io/cluster-issuer: letsencrypt-staging
-#     flame.pawelmalak/type: application
-#     flame.pawelmalak/name: ffmpeg
-#     flame.pawelmalak/url: https://ffmpeg.example.com
-#     # flame.pawelmalak/icon: https://developer.asustor.com/uploadIcons/0020_999_1578567856_ffmpeg_256.png
 #     gethomepage.dev/description: ffmpeg
 #     gethomepage.dev/enabled: "false"
 #     gethomepage.dev/group: More Apps

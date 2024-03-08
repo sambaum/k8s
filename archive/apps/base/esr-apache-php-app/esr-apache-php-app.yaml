@@ -64,10 +64,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: ESR
-    flame.pawelmalak/url: https://esr.example.com
-    flame.pawelmalak/icon: https://www.phoenixdruck.ch/wp-content/uploads/2017/03/Einzahlungsscheine.png
 spec:
   ingressClassName: nginx
   tls:

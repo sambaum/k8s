@@ -35,10 +35,6 @@ spec:
         nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
         nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
         cert-manager.io/cluster-issuer: letsencrypt-staging
-        flame.pawelmalak/type: application
-        flame.pawelmalak/name: Portainer
-        flame.pawelmalak/url: https://portainer.example.com
-        flame.pawelmalak/icon: https://api.charmhub.io/api/v1/media/download/charm_Owpj9CsDEMZwVtup3ZTxxs0FtyvDqb2o_icon_5cef79c2d18f67464f39c8f2cf2d7ebb815b0071f04d3ffbb94f49fddd3ab666.png
         gethomepage.dev/description: Portainer
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Other

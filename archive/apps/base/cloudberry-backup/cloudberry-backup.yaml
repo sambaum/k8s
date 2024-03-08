@@ -56,10 +56,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: CloudBerry Backup
-    flame.pawelmalak/url: https://cloudberry-backup.example.com
-    flame.pawelmalak/icon: https://www.msp360.com/images-new/free-products/backup.png
 spec:
   ingressClassName: nginx
   tls:

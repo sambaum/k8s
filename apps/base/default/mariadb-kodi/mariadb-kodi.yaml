@@ -101,10 +101,6 @@ metadata:
   name: mariadb-kodi-ingress
   namespace: default
   annotations:
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: mariadb-kodi
-    flame.pawelmalak/url: http://mariadb-kodi.example.com
-    flame.pawelmalak/icon: https://www.silicon.de/wp-content/uploads/2014/08/mariadb-seal.png
     gethomepage.dev/description: MariaDB Kodi
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

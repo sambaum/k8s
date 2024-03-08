@@ -110,10 +110,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "X-Frame-Options: allow";
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Paperless
-    flame.pawelmalak/url: https://paperless.example.com
-    flame.pawelmalak/icon: leaf
 spec:
   ingressClassName: nginx
   tls:

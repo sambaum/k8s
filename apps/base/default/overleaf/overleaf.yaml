@@ -118,10 +118,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: overleaf
-    flame.pawelmalak/url: https://overleaf.example.com
-    flame.pawelmalak/icon: https://images.ctfassets.net/nrgyaltdicpt/h9dpHuVys19B1sOAWvbP6/5f8d4c6d051f63e4ba450befd56f9189/ologo_square_colour_light_bg.svg
     gethomepage.dev/description: Online-LaTeX-Editor
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

@@ -96,10 +96,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Transmission Flood
-    flame.pawelmalak/url: https://transmission.example.com
-    flame.pawelmalak/icon: https://hotio.dev/webhook-avatars/flood.png
     gethomepage.dev/description: Transmission Torrent Download
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

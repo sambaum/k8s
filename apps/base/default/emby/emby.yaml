@@ -99,10 +99,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Emby
-    flame.pawelmalak/url: https://emby.example.com
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/thewhobox/ioBroker.emby/HEAD/admin/emby.png
     gethomepage.dev/description: Emby Mediacenter
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

@@ -96,10 +96,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: healthchecks
-    flame.pawelmalak/url: https://healthchecks.example.com
-    flame.pawelmalak/icon: https://img.stackshare.io/service/5357/13053880.png
     gethomepage.dev/description: Healthchecks Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

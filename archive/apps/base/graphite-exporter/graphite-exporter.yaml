@@ -66,10 +66,6 @@ metadata:
   namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: graphite-exporter
-    flame.pawelmalak/url: https://graphite-exporter.example.com
-    flame.pawelmalak/icon: https://d33wubrfki0l68.cloudfront.net/0b2c34f9d7bf05fc4857ad58d101449a5c973769/1557e/images/graphitelogo.png
 spec:
   ingressClassName: nginx
   rules:

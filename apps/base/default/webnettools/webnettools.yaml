@@ -55,10 +55,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Web Net Tools
-    flame.pawelmalak/url: https://webnettools.example.com
-    # flame.pawelmalak/icon: TODO
     gethomepage.dev/description: Test SSL, MTR, Dig, Nmap
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other

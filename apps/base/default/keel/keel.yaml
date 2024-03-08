@@ -63,10 +63,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Keel.sh
-    flame.pawelmalak/url: https://keel.example.com
-    flame.pawelmalak/icon: https://keel.sh/img/logo_small.png
     gethomepage.dev/description: Keel Kubernetes update automation
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

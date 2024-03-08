@@ -95,10 +95,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for Websockets
     nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: jellyfin
-    flame.pawelmalak/url: https://jellyfin.example.com
-    flame.pawelmalak/icon: https://image.pngaaa.com/403/5615403-middle.png
     gethomepage.dev/description: The Free Software Media System
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

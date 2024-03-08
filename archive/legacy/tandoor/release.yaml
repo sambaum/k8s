@@ -58,10 +58,6 @@ spec:
           # nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for Websockets
           # nginx.ingress.kubernetes.io/proxy-body-size: 100m
           cert-manager.io/cluster-issuer: letsencrypt-staging
-          flame.pawelmalak/type: application
-          flame.pawelmalak/name: tandoor
-          flame.pawelmalak/url: https://tandoor.int.sambaum.ch # change later
-          flame.pawelmalak/icon: https://external-preview.redd.it/NDcQYuXgW9VjbOf6vea7Pco8HGQIfqY_5fTRvVAuq7M.jpg?width=640&crop=smart&auto=webp&s=2c7a295fca4eba6ae6675cca2507cf68ac3e767e
         hosts:
           - host: 'tandoor.int.sambaum.ch' # change later
             paths:

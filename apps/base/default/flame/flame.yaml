@@ -66,10 +66,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Flame
-    flame.pawelmalak/url: https://flame.example.com
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/pawelmalak/unraid-templates/master/templates/icons/flame.png
     gethomepage.dev/description: Dashbaord
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

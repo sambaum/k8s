@@ -104,10 +104,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Wekan
-    flame.pawelmalak/url: https://wekan.example.com
-    flame.pawelmalak/icon: https://cdn.icon-icons.com/icons2/2108/PNG/512/wekan_icon_130787.png
     gethomepage.dev/description: Open-Source Kanban
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other

@@ -94,10 +94,6 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Focalboard
-    flame.pawelmalak/url: https://focalboard.example.com
-    flame.pawelmalak/icon: https://d4.alternativeto.net/AvCgWWu1xihldRqwqooxUnYinyQsanzUTGJsKa9eWhg/rs:fill:280:280:0/g:ce:0:0/YWJzOi8vZGlzdC9pY29ucy9mb2NhbGJvYXJkXzE4NTI2Ni5wbmc.png
 spec:
   ingressClassName: nginx
   tls:

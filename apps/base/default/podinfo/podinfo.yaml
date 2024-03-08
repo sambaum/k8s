@@ -52,10 +52,6 @@ metadata:
   name: podinfo-ingress
   namespace: default
   annotations:
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: podinfo
-    flame.pawelmalak/url: http://podinfo.example.com
-    flame.pawelmalak/icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
     gethomepage.dev/description: Podinfo is a tiny web application
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

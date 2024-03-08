@@ -100,10 +100,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/proxy-body-size: 80m
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: 'Wordpress'
-    flame.pawelmalak/url: https://wordpress.example.com
-    flame.pawelmalak/icon: https://www.irelandwebsitedesign.com/wp-content/uploads/2022/01/woocomrce.png
     gethomepage.dev/description: E-Commerce with WordPress.
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps

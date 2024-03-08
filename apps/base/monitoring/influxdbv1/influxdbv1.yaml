@@ -93,10 +93,6 @@ metadata:
   namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    flame.pawelmalak/type: application
-    flame.pawelmalak/name: Influxdbv1
-    flame.pawelmalak/url: https://influxdbv1.example.com
-    flame.pawelmalak/icon: https://assets.zabbix.com/img/brands/influxdb.svg
     gethomepage.dev/description: V1
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
