@@ -59,6 +59,7 @@ spec:
           gethomepage.dev/group: More Apps
           gethomepage.dev/icon: grafana.svg
           gethomepage.dev/name: Grafana
+          gethomepage.dev/pod-selector: app=grafana
         labels: {}
         hosts:
         - 'grafana.example.com'
@@ -98,6 +99,7 @@ spec:
           gethomepage.dev/group: More Apps
           gethomepage.dev/icon: prometheus.svg
           gethomepage.dev/name: Prometheus
+          gethomepage.dev/pod-selector: app=prometheus
         labels: {}
         hosts:
         - 'prometheus.example.com'
