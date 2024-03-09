@@ -105,7 +105,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://www.irelandwebsitedesign.com/wp-content/uploads/2022/01/woocomrce.png
     gethomepage.dev/name: Wordpress Woocommerce
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=wordpress
 spec:
   ingressClassName: nginx
   tls:

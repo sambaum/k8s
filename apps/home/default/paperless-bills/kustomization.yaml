@@ -61,5 +61,8 @@ patches:
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
     - op: replace
+      path: /metadata/annotations/gethomepage.dev~1pod-selector
+      value: app=paperless-bills
+    - op: replace
       path: /spec/rules/0/host
       value: paperless-bills.int.sambaum.ch

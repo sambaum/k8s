@@ -21,6 +21,9 @@ patches:
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+    - op: replace
+      path: /metadata/annotations/gethomepage.dev~1pod-selector
+      value: app=duplicati-prod
 
 - target:
     kind: Deployment
