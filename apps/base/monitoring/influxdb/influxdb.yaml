@@ -67,7 +67,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: influxdb.svg
     gethomepage.dev/name: InfluxDB
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=influxdb
 spec:
   ingressClassName: nginx
   tls:

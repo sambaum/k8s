@@ -86,7 +86,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://d33wubrfki0l68.cloudfront.net/0b2c34f9d7bf05fc4857ad58d101449a5c973769/1557e/images/graphitelogo.png
     gethomepage.dev/name: Graphite Exporter
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=graphite-exporter
 spec:
   ingressClassName: nginx
   tls:
