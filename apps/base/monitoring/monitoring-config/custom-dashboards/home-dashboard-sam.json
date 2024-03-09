@@ -35,7 +35,7 @@
           "decimals": 0,
           "mappings": [],
           "max": 100,
-          "min": 0,
+          "min": -1,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -55,7 +55,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 0,
         "y": 0
@@ -175,26 +175,19 @@
         },
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "hide": true,
-          "query": "SELECT last(\"gauge.idle\") FROM \"default\".\"cpu-average\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "G",
-          "resultFormat": "time_series"
-        },
-        {
-          "alias": "TrueNAS",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
-          },
+          "editorMode": "code",
+          "expr": "avg(irate(cpu_total{instance=~\"$instance\"}[5m]))",
+          "format": "time_series",
           "hide": false,
-          "query": "SELECT last(\"gauge.system\")+ last(\"gauge.user\")+ last(\"gauge.interrupt\") FROM \"cpu-average\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "H",
-          "resultFormat": "time_series"
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "TrueNAS",
+          "range": true,
+          "refId": "D",
+          "step": 20
         }
       ],
       "title": "CPU usage（5m）",
@@ -446,16 +439,16 @@
           "step": 40
         },
         {
-          "alias": "TrueNAS",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
+          "editorMode": "code",
+          "expr": "uptime{instance=~\"$instance\"}",
           "hide": false,
-          "query": "SELECT last(\"value\") FROM \"uptime\" ",
-          "rawQuery": true,
-          "refId": "G",
-          "resultFormat": "time_series"
+          "legendFormat": "TrueNAS",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "System runtime",
@@ -694,95 +687,6 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "bY0ll83nk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "displayName": "${__field.labels.host} (${__field.labels.type}) :${__field.labels.nodename}",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 70
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent",
-          "unitScale": true
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 0,
-        "y": 4
-      },
-      "id": 22,
-      "options": {
-        "displayMode": "basic",
-        "maxVizHeight": 300,
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "sizing": "manual",
-        "text": {
-          "titleSize": 11,
-          "valueSize": 13
-        },
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.3.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bY0ll83nk"
-          },
-          "query": "from(bucket: \"proxmox\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\n  |> filter(fn: (r) => r[\"nodename\"] == \"proxmox\")\n  |> last()\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({ r with \n    _time: r._time,\n    _measurement: r.measurement,\n    _field: \"used_perc\",\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\n     }))\n  |> drop(columns: [\"avail\",\"used\"])\n",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bY0ll83nk"
-          },
-          "hide": false,
-          "query": "from(bucket: \"proxmox\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"system\")\r\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\r\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve2\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with \r\n    _time: r._time,\r\n    _measurement: r.measurement,\r\n    _field: \"used_perc\",\r\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\r\n     }))\r\n  |> drop(columns: [\"avail\",\"used\"])\r\n",
-          "refId": "B"
-        }
-      ],
-      "title": "Proxmox Storage Pools",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
       },
@@ -868,6 +772,95 @@
       "timeFrom": "1w",
       "title": "TrueNAS Disk Temps",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bY0ll83nk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "${__field.labels.host} (${__field.labels.type}) :${__field.labels.nodename}",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 5
+      },
+      "id": 22,
+      "options": {
+        "displayMode": "basic",
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "text": {
+          "titleSize": 11,
+          "valueSize": 13
+        },
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
+          },
+          "query": "from(bucket: \"proxmox\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\n  |> filter(fn: (r) => r[\"nodename\"] == \"proxmox\")\n  |> last()\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({ r with \n    _time: r._time,\n    _measurement: r.measurement,\n    _field: \"used_perc\",\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\n     }))\n  |> drop(columns: [\"avail\",\"used\"])\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
+          },
+          "hide": false,
+          "query": "from(bucket: \"proxmox\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"system\")\r\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\r\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve2\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with \r\n    _time: r._time,\r\n    _measurement: r.measurement,\r\n    _field: \"used_perc\",\r\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\r\n     }))\r\n  |> drop(columns: [\"avail\",\"used\"])\r\n",
+          "refId": "B"
+        }
+      ],
+      "title": "Proxmox Storage Pools",
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -1108,6 +1101,82 @@
       },
       "fieldConfig": {
         "defaults": {
+          "mappings": [],
+          "noValue": "No Running S.M.A.R.T Tests",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-purple",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 9
+      },
+      "id": 27,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_current_test_percent_done",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{disk}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "TrueNAS Running S.M.A.R.T Tests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
           "color": {
             "fixedColor": "transparent",
             "mode": "thresholds"
@@ -1140,7 +1209,7 @@
         "h": 3,
         "w": 2,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 24,
       "links": [
@@ -1237,7 +1306,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 9
+        "y": 10
       },
       "id": 26,
       "links": [
@@ -1321,7 +1390,7 @@
         "h": 3,
         "w": 2,
         "x": 4,
-        "y": 9
+        "y": 10
       },
       "id": 25,
       "links": [
@@ -1377,82 +1446,6 @@
         }
       ],
       "title": "UPS Power Draw",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "noValue": "No Running S.M.A.R.T Tests",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "dark-purple",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "percent",
-          "unitScale": true
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 20,
-        "y": 9
-      },
-      "id": 27,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
-        }
-      ],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.3.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "truenas_current_test_percent_done",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "TrueNAS Running S.M.A.R.T Tests",
       "type": "stat"
     },
     {
@@ -1801,7 +1794,7 @@
         "h": 3,
         "w": 6,
         "x": 0,
-        "y": 12
+        "y": 13
       },
       "id": 14,
       "links": [],
@@ -1910,7 +1903,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 21,
       "links": [],
@@ -2045,69 +2038,16 @@
           "refId": "G"
         },
         {
-          "alias": "ff",
           "datasource": {
-            "type": "influxdb",
-            "uid": "PrQ94dx4k"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": true,
-          "measurement": "0",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  5
-                ],
-                "type": "moving_average"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "resource",
-              "operator": "=",
-              "value": "cputemp"
-            }
-          ]
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$H/10-273.15",
+          "editorMode": "code",
+          "expr": "max(cpu_temperature{instance=~\"$instance\"})",
           "hide": false,
-          "refId": "TrueNAS CPU (5min)",
-          "type": "math"
+          "legendFormat": "TrueNAS",
+          "range": true,
+          "refId": "H"
         }
       ],
       "timeFrom": "1w",
@@ -2246,7 +2186,7 @@
         "h": 3,
         "w": 2,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 28,
       "links": [
@@ -2322,7 +2262,7 @@
         "h": 3,
         "w": 2,
         "x": 2,
-        "y": 21
+        "y": 22
       },
       "hideTimeOverride": true,
       "id": 29,
@@ -2396,7 +2336,7 @@
         "h": 3,
         "w": 2,
         "x": 4,
-        "y": 21
+        "y": 22
       },
       "hideTimeOverride": true,
       "id": 30,
@@ -2702,11 +2642,34 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(cpu_usage{instance=\"$instance\"},cpu)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "cpu",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(cpu_usage{instance=\"$instance\"},cpu)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
