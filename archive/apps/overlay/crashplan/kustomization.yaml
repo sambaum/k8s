@@ -12,8 +12,5 @@
 #         path: /spec/tls/0/hosts
 #         value: [crashplan.int.sambaum.ch]
 #       - op: replace
-#         path: /metadata/annotations/flame.pawelmalak~1url
-#         value: https://crashplan.int.sambaum.ch
-#       - op: replace
 #         path: /metadata/annotations/cert-manager.io~1cluster-issuer
 #         value: letsencrypt-production

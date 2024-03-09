@@ -19,9 +19,6 @@ patches:
       path: /spec/tls/0/hosts/0
       value: overleaf.int.sambaum.ch
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://overleaf.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
 

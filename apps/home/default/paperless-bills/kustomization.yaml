@@ -58,12 +58,6 @@ patches:
       path: /spec/tls/0/secretName
       value: paperless-bills-tls
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://paperless-bills.int.sambaum.ch
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1name
-      value: Paperless Bills
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
     - op: replace

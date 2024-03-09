@@ -12,9 +12,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [stable-diffusion-webui-automatic1111.int.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://stable-diffusion-webui-automatic1111.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
 - target:
@@ -28,9 +25,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [stable-diffusion-webui-comfy.int.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://stable-diffusion-webui-comfy.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
 - target:
@@ -43,9 +37,6 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [stable-diffusion-webui-invoke-ai.int.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://stable-diffusion-webui-invoke-ai.int.sambaum.ch
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

@@ -13,9 +13,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [firefly.int.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://firefly.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
 - target:
@@ -28,9 +25,6 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [firefly-importer.int.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://firefly-importer.int.sambaum.ch
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

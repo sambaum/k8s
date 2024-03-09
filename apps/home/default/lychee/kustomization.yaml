@@ -39,8 +39,5 @@ patches:
       path: /spec/tls/0/hosts
       value: [lychee.int.sambaum.ch, foto.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://lychee.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

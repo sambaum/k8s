@@ -12,8 +12,5 @@ patches:
       path: /spec/values/ingress/tls/0/hosts/0
       value: portainer.deskcube.int.sambaum.ch
     - op: replace
-      path: /spec/values/ingress/annotations/flame.pawelmalak~1url
-      value: https://portainer.deskcube.int.sambaum.ch
-    - op: replace
       path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

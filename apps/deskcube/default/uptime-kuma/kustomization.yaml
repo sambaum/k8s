@@ -32,9 +32,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [uptime-seebach.sambaum.ch, uptime.int.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://uptime.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
 

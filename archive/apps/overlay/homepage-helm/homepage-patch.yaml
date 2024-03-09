@@ -4,9 +4,6 @@
 - op: replace
   path: /spec/values/ingress/main/tls/0/hosts/0
   value: homepage.int.sambaum.ch
-# - op: replace
-#   path: /spec/values/ingress/main/annotations/flame.pawelmalak~1url
-#   value: https://homepage.int.sambaum.ch
 - op: replace
   path: /spec/values/ingress/main/annotations/cert-manager.io~1cluster-issuer
   value: letsencrypt-production

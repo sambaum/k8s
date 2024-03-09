@@ -5,9 +5,6 @@
   path: /spec/values/grafana/ingress/tls/0/hosts/0
   value: grafana.composter.int.sambaum.ch
 - op: replace
-  path: /spec/values/grafana/ingress/annotations/flame.pawelmalak~1url
-  value: grafana.composter.int.sambaum.ch
-- op: replace
   path: /spec/values/grafana/ingress/annotations/cert-manager.io~1cluster-issuer
   value: letsencrypt-staging
 - op: replace
@@ -15,9 +12,6 @@
   value: prometheus.composter.int.sambaum.ch
 - op: replace
   path: /spec/values/prometheus/ingress/tls/0/hosts/0
-  value: prometheus.composter.int.sambaum.ch
-- op: replace
-  path: /spec/values/prometheus/ingress/annotations/flame.pawelmalak~1url
   value: prometheus.composter.int.sambaum.ch
 - op: replace
   path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer

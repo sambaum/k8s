@@ -58,12 +58,6 @@ patches:
       path: /spec/tls/0/secretName
       value: paperless-test1-tls
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://paperless-test1.composter.int.sambaum.ch
-    - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1name
-      value: Paperless test1
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
     - op: replace

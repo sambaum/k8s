@@ -33,8 +33,5 @@ patches:
       path: /spec/tls/0/hosts
       value: [healthchecks-seebach.sambaum.ch, healthchecks.int.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://healthchecks.int.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production

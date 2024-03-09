@@ -12,9 +12,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [homepage.t21.circle.ispin.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: http://homepage.t21.circle.ispin.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
     - op: remove

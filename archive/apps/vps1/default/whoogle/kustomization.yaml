@@ -12,9 +12,6 @@ patches:
       path: /spec/tls/0/hosts
       value: [whoogle.sambaum.ch]
     - op: replace
-      path: /metadata/annotations/flame.pawelmalak~1url
-      value: https://whoogle.sambaum.ch
-    - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
     - op: add

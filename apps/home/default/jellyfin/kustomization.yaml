@@ -33,8 +33,5 @@ resources: []
 #       path: /spec/tls/0/hosts
 #       value: [jellyfin.int.sambaum.ch, jellyfin.sambaum.ch]
 #     - op: replace
-#       path: /metadata/annotations/flame.pawelmalak~1url
-#       value: https://jellyfin.int.sambaum.ch
-#     - op: replace
 #       path: /metadata/annotations/cert-manager.io~1cluster-issuer
 #       value: letsencrypt-production
