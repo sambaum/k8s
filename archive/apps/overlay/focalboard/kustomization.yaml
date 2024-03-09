@@ -1,19 +1,19 @@
 resources:
-  - ../../../base/default/focalboard/
+- ../../../base/default/focalboard/
 patches:
-  - target:
-      kind: Ingress
-      name: focalboard-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: focalboard.int.sambaum.ch
-      - op: replace
-        path: /spec/tls/0/hosts
-        value: [focalboard.int.sambaum.ch]
-      - op: replace
-        path: /metadata/annotations/flame.pawelmalak~1url
-        value: https://focalboard.int.sambaum.ch
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: focalboard-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: focalboard.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [focalboard.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/flame.pawelmalak~1url
+      value: https://focalboard.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
