@@ -90,7 +90,7 @@ metadata:
     gethomepage.dev/group: Media
     gethomepage.dev/icon: radarr.svg
     gethomepage.dev/name: Radarr
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=radarr
 spec:
   ingressClassName: nginx
   tls:

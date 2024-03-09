@@ -105,7 +105,7 @@ metadata:
     gethomepage.dev/group: Other
     gethomepage.dev/icon: https://www.axonius.com/hubfs/Adapter%20Logos/php_ipam_adapter.png
     gethomepage.dev/name: phpIPAM
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=phpipam
 spec:
   ingressClassName: nginx
   tls:

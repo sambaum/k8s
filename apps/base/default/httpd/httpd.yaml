@@ -65,7 +65,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: apache.svg
     gethomepage.dev/name: httpd
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=httpd
 spec:
   ingressClassName: nginx
   tls:

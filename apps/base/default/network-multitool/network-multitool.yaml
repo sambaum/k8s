@@ -57,7 +57,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: it-tools.png
     gethomepage.dev/name: Multitool
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=network-multitool
 spec:
   ingressClassName: nginx
   tls:

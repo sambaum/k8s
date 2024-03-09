@@ -60,7 +60,7 @@ metadata:
     gethomepage.dev/group: Other
     gethomepage.dev/icon: webtools.png
     gethomepage.dev/name: Web Net Tools
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=webnettools
 spec:
   ingressClassName: nginx
   tls:

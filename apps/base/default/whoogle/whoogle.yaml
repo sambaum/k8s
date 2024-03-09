@@ -65,7 +65,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://preview.redd.it/wg339t74xqi81.png?width=1266&format=png&auto=webp&s=c1e89307b1000fe7436a239f70d3a346ec629812
     gethomepage.dev/name: Whoogle
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=whoogle
 spec:
   ingressClassName: nginx
   tls:

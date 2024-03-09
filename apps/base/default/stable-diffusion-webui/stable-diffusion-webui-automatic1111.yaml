@@ -85,7 +85,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: https://cdn2.steamgriddb.com/icon/0a8e9d1cf3ee0af0e6526059e1ac59d1.ico
     gethomepage.dev/name: "SD:AUTOMATIC1111"
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=stable-diffusion-webui-automatic1111
 spec:
   ingressClassName: nginx
   tls:

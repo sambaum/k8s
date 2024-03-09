@@ -104,7 +104,7 @@ metadata:
     gethomepage.dev/group: More Apps
     gethomepage.dev/icon: emby.svg
     gethomepage.dev/name: Emby
-    gethomepage.dev/pod-selector: app
+    gethomepage.dev/pod-selector: app=emby
 spec:
   ingressClassName: nginx
   tls:
