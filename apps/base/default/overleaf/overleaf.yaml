@@ -24,6 +24,7 @@ spec:
       containers:
       - name: overleaf
         image: tuetenk0pp/sharelatex-full:3.1.0.3
+        # image: tuetenk0pp/sharelatex-full:4.2.3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -46,6 +47,9 @@ spec:
           value: https://overleaf.example.com
       - name: mongo
         image: mongo:4.4.29
+        # perform onece: mongo --eval "rs.initiate({ _id: \"overleaf\", members: [ { _id: 0, host: \"127.0.0.1:27017\" } ] })"
+        # image: mongo:5.0.25
+        # args: ["--replSet", "overleaf"]
         ports:
         - containerPort: 27017
         volumeMounts:
@@ -54,6 +58,7 @@ spec:
           subPath: overleaf/mongodb
       - name: redis
         image: redis:5.0.14
+        # image: redis:6.2.14
         ports:
         - containerPort: 6379
         volumeMounts:
@@ -141,3 +146,5 @@ spec:
             name: overleaf-service
             port:
               number: 80
+
+# Call /launchpad to create first user.
