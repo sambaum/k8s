@@ -311,11 +311,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 175
+                "value": 180
               },
               {
                 "color": "red",
-                "value": 185
+                "value": 190
               }
             ]
           },
@@ -325,7 +325,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 3,
         "x": 0,
         "y": 7
@@ -385,6 +385,21 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(mystrom_Ws[15m])",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "15m Average",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "expr": "nut_http_realpower_nominal/100*nut_http_load",
           "hide": false,
           "instant": false,
@@ -434,7 +449,7 @@
         "h": 3,
         "w": 3,
         "x": 0,
-        "y": 10
+        "y": 11
       },
       "id": 3,
       "links": [],
@@ -585,7 +600,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "id": 2,
       "interval": "15s",
@@ -726,7 +741,7 @@
         "h": 3,
         "w": 3,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 1,
       "links": [],
