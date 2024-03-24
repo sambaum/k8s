@@ -219,9 +219,9 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -490,7 +490,7 @@
         {
           "targetBlank": true,
           "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-dashboard/truenas-dashboard"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/d4a0827b-de7f-4b46-a43f-328f4bc8372a/truenas-scale"
         }
       ],
       "maxDataPoints": 100,
@@ -888,9 +888,9 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
