@@ -262,6 +262,12 @@
         "y": 0
       },
       "id": 34,
+      "links": [
+        {
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-scale/truenas-scale"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [],
@@ -490,7 +496,7 @@
         {
           "targetBlank": true,
           "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/d4a0827b-de7f-4b46-a43f-328f4bc8372a/truenas-scale"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-scale/truenas-scale"
         }
       ],
       "maxDataPoints": 100,
@@ -734,7 +740,7 @@
       "links": [
         {
           "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/d4a0827b-de7f-4b46-a43f-328f4bc8372a/truenas-scale"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-scale/truenas-scale"
         }
       ],
       "options": {
@@ -931,6 +937,12 @@
         "y": 5
       },
       "id": 35,
+      "links": [
+        {
+          "title": "TrueNAS Dashboard",
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-scale/truenas-scale"
+        }
+      ],
       "options": {
         "legend": {
           "calcs": [],
