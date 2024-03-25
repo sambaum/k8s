@@ -6305,7 +6305,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "TrueNAS Scale",
-  "uid": "d4a0827b-de7f-4b46-a43f-328f4bc8372a",
+  "uid": "truenas-scale",
   "version": 1,
   "weekStart": ""
 }
