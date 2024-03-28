@@ -263,3 +263,12 @@
     - targets: ['graphite-exporter.int.sambaum.ch:443']
       labels:
         group: 'truenas-graphite-exporter'
+
+  - job_name: 'mktxp'
+    scrape_interval: 30s
+    metrics_path: '/'
+    scheme: https
+    static_configs:
+    - targets: ['mktxp.int.sambaum.ch:443']
+      labels:
+        group: 'mktxp'

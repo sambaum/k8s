@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mktxp
+  namespace: monitoring
+  labels:
+    app: mktxp
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@daily'
+    keel.sh/approvalDeadline: 672
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mktxp
+  template:
+    metadata:
+      labels:
+        app: mktxp
+    spec:
+      containers:
+      - name: mktxp
+        image: ghcr.io/akpw/mktxp:gha-8422026946
+        # args:
+        # - "--config.file=/etc/mktxp/config.yml"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 49090
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        volumeMounts:
+        - mountPath: /home/mktxp/mktxp
+          subPath: mktxp
+          name: config
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-monitoring-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mktxp-service
+  namespace: monitoring
+spec:
+  selector:
+    app: mktxp
+  ports:
+  - protocol: TCP
+    port: 49090
+    targetPort: 49090
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mktxp-ingress
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Prometheus Exporter for Mikrotik RouterOS
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: mikrotik.svg
+    gethomepage.dev/name: MKTXP
+    gethomepage.dev/pod-selector: app=mktxp
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'mktxp.example.com'
+    secretName: mktxp-tls
+  rules:
+  - host: mktxp.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: mktxp-service
+            port:
+              number: 49090
