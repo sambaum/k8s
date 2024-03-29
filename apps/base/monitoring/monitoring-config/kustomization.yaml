@@ -96,6 +96,13 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
+- name: grafana-dashboards-mikrotik
+  files:
+  - custom-dashboards/mikrotik.json
+  options:
+    labels:
+      grafana_dashboard: '1'
+
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
