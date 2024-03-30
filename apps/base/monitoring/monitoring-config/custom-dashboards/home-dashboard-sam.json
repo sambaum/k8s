@@ -866,6 +866,16 @@
         }
       ],
       "title": "Proxmox Storage Pools",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^(?!.*cifs).*$"
+            }
+          }
+        }
+      ],
       "type": "bargauge"
     },
     {
@@ -1964,11 +1974,11 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
+          "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[1d])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE1 CPU (5min)",
+          "legendFormat": "PVE1 CPU (1d)",
           "range": true,
           "refId": "A"
         },
@@ -2060,7 +2070,7 @@
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "PVE2 CPU (5min)",
+          "legendFormat": "PVE2 CPU (5m)",
           "range": true,
           "refId": "G"
         },
