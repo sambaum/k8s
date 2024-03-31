@@ -42,7 +42,7 @@ spec:
           subPath: Video/Movies-Kids
         - mountPath: /data/tvshows
           name: media
-          subPath: Video/Series
+          subPath: Video/TV-Shows
         - mountPath: /data/tvshows-kids
           name: media
           subPath: Video/TV-Shows-Kids
