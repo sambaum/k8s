@@ -33,7 +33,7 @@ spec:
           subPath: bazarr
         - mountPath: /tv
           name: media
-          subPath: Video/Series
+          subPath: Video/TV-Shows
         - mountPath: /movies
           name: media
           subPath: Video/Movies
