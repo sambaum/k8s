@@ -27,7 +27,7 @@ spec:
         fsGroup: 0
       containers:
       - name: wordpress
-        image: bitnami/wordpress:6.5.0
+        image: bitnami/wordpress:6.5.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
