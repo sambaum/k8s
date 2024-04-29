@@ -2,3 +2,4 @@ resources:
 - namespaces
 - ingress-nginx
 - cert-manager
+- openebs
