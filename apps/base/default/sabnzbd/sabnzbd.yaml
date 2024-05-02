@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: sabnzbd
-        image: linuxserver/sabnzbd:4.2.3
+        image: linuxserver/sabnzbd:4.3.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 6789
