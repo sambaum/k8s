@@ -24,7 +24,7 @@ spec:
       hostname: duplicacy-seebach
       containers:
       - name: duplicacy
-        image: saspus/duplicacy-web:v1.8.0
+        image: saspus/duplicacy-web:v1.8.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3875
