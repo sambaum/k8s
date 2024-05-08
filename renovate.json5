@@ -22,6 +22,14 @@
   //     "archive/**"
   //   ]
   // },
+
+
+    "flux": {
+      "automerge": false
+    },
+
+  
+
   "minor": {
     "automerge": true
   },
