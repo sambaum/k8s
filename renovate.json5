@@ -14,14 +14,17 @@
       "archive/**"
     ]
   },
-  // "flux": {
-  //   "fileMatch": [
-  //     "\\.yaml$"
-  //   ],
-  //   "ignorePaths": [
-  //     "archive/**"
-  //   ]
-  // },
+  "flux": {
+    // "fileMatch": [
+    //   "\\.yaml$"
+    // ],
+    // "ignorePaths": [
+    //   "archive/**"
+    // ]
+    "minor": {
+      "automerge": false
+    }
+  },
   "minor": {
     "automerge": true
   },
@@ -37,8 +40,8 @@
     {
       "matchPackageNames": [
         "metallb",
-        "ingress-nginx",
-        "ghcr.io/fluxcd/kustomize-controller"
+        "ingress-nginx"
+        // "ghcr.io/fluxcd/kustomize-controller"
       ],
       "minor": {
         "automerge": false
