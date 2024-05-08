@@ -14,14 +14,14 @@
       "archive/**"
     ]
   },
-  "flux": {
-    "fileMatch": [
-      "\\.yaml$"
-    ],
-    "ignorePaths": [
-      "archive/**"
-    ]
-  },
+  // "flux": {
+  //   "fileMatch": [
+  //     "\\.yaml$"
+  //   ],
+  //   "ignorePaths": [
+  //     "archive/**"
+  //   ]
+  // },
   "minor": {
     "automerge": true
   },
