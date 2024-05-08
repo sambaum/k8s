@@ -22,16 +22,11 @@
   //     "archive/**"
   //   ]
   // },
-
-
-    "flux": {
-      "ignorePaths": [
-        "(?:^|/)gotk-components\\.ya?ml$"
-      ]
-    },
-
-  
-
+  "flux": {
+    "ignorePaths": [
+      "clusters/**"
+    ]
+  },
   "minor": {
     "automerge": true
   },
