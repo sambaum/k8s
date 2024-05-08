@@ -37,7 +37,8 @@
     {
       "matchPackageNames": [
         "metallb",
-        "ingress-nginx"
+        "ingress-nginx",
+        "ghcr.io/fluxcd/kustomize-controller"
       ],
       "minor": {
         "automerge": false
@@ -135,16 +136,15 @@
         "**/paperless.yaml"
       ],
       "versioning": "regex:^13\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 13
-    }
     },
-    {
-      "matchPackageNames": [
-        "ghcr.io/fluxcd/kustomize-controller"
-      ],
-      "matchFileNames": [
-        "**/gotk-components.y(a)ml"
-      ],
-      "versioning": "regex:^v1\\.2\\.(?<patch>\\d+)?$" // Stick to v1.2.x
-    }
+    // {
+    //   "matchPackageNames": [
+    //     "ghcr.io/fluxcd/kustomize-controller"
+    //   ],
+    //   "matchFileNames": [
+    //     "**/gotk-components.y(a)ml"
+    //   ],
+    //   "versioning": "regex:^v1\\.2\\.(?<patch>\\d+)?$" // Stick to v1.2.x
+    // }
   ]
 }
