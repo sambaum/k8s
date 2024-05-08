@@ -136,7 +136,8 @@
         "**/paperless.yaml"
       ],
       "versioning": "regex:^13\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 13
-    },
+    }
+    // ,
     // {
     //   "matchPackageNames": [
     //     "ghcr.io/fluxcd/kustomize-controller"
