@@ -25,7 +25,9 @@
 
 
     "flux": {
-      "automerge": false
+      "ignorePaths": [
+        "(?:^|/)gotk-components\\.ya?ml$"
+      ]
     },
 
   
