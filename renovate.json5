@@ -11,22 +11,26 @@
       "\\.yaml$"
     ],
     "ignorePaths": [
-      "archive/**"
-    ]
-  },
-  // "flux": {
-  //   "fileMatch": [
-  //     "\\.yaml$"
-  //   ],
-  //   "ignorePaths": [
-  //     "archive/**"
-  //   ]
-  // },
-  "flux": {
-    "ignorePaths": [
+      "archive/**",
       "clusters/**"
     ]
   },
+  "flux": {
+    "fileMatch": [
+      "(?:^|/)gotk-components\\.ya?ml$"
+    ],
+    "ignorePaths": [
+      "archive/**"
+    ],
+    "patch": {
+      "automerge": false
+    }
+  },
+  // "flux": {
+  //   "ignorePaths": [
+  //     "clusters/**"
+  //   ]
+  // },
   "minor": {
     "automerge": true
   },
