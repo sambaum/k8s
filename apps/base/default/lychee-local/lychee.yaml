@@ -67,7 +67,7 @@ spec:
         - name: APP_URL
           value: 'https://example.com'
       - name: maria
-        image: mariadb:10.11.7
+        image: mariadb:10.11.8
         ports:
         - containerPort: 3306
         volumeMounts:
