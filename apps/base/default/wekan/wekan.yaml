@@ -35,7 +35,7 @@ spec:
           subPath: wekan/wekan-app
       containers:
       - name: wekan
-        image: wekanteam/wekan:v7.46
+        image: wekanteam/wekan:v7.47
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
