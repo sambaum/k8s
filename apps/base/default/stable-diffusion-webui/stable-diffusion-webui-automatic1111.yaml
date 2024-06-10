@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: automatic1111
-        image: goolashe/automatic1111-sd-webui:20240203
+        image: goolashe/automatic1111-sd-webui:20240607
         imagePullPolicy: IfNotPresent
         resources:
           limits:
