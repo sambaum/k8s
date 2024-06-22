@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: cyberchef
-        image: mpepping/cyberchef:v10.18.8
+        image: mpepping/cyberchef:v10.18.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
