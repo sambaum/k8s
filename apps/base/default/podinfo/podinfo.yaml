@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: podinfo
-        image: stefanprodan/podinfo:6.6.3
+        image: stefanprodan/podinfo:6.7.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9898
