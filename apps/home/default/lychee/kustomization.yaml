@@ -7,7 +7,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/env/10/value
-      value: https://lychee.int.sambaum.ch
+      value: https://foto.sambaum.ch
 - target:
     kind: Ingress
     name: lychee-ingress
@@ -15,7 +15,7 @@ patches:
     - op: replace
       path: /spec/rules
       value:
-        - host: lychee.int.sambaum.ch
+        - host: foto.sambaum.ch
           http:
             paths:
             - pathType: Prefix
@@ -25,7 +25,7 @@ patches:
                   name: lychee-service
                   port:
                     number: 80
-        - host: foto.sambaum.ch
+        - host: lychee.int.sambaum.ch
           http:
             paths:
             - pathType: Prefix
