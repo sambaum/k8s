@@ -78,7 +78,7 @@ spec:
         - name: PAPERLESS_ADMIN_PASSWORD
           value: admin
         - name: PAPERLESS_CONSUMER_IGNORE_PATTERNS
-          value: [".DS_Store", ".DS_STORE", "._*", ".stfolder/*", ".stversions/*", ".localized/*", "desktop.ini", "@eaDir/*", "Thumbs.db", "4tmp_*"]
+          value: "[".DS_Store", ".DS_STORE", "._*", ".stfolder/*", ".stversions/*", ".localized/*", "desktop.ini", "@eaDir/*", "Thumbs.db", "4tmp_*"]"
       - name: paperless-broker
         image: redis:7.2.5
         ports:
