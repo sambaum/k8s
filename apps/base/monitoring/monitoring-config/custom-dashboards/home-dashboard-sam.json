@@ -600,7 +600,7 @@
       "links": [
         {
           "title": "Flux Cluster Stats",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/flux-cluster/flux-cluster-stats"
+          "url": "https://grafana.dumpster.int.sambaum.ch/d/flux2"
         }
       ],
       "options": {
