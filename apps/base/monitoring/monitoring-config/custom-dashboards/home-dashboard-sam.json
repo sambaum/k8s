@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 1598,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -55,7 +54,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 6,
         "x": 0,
         "y": 0
@@ -255,7 +254,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 7,
         "x": 6,
         "y": 0
@@ -328,7 +327,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 4,
         "x": 13,
         "y": 0
@@ -483,7 +482,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 3,
         "x": 17,
         "y": 0
@@ -591,7 +590,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 4,
         "x": 20,
         "y": 0
@@ -726,10 +725,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 4,
         "x": 20,
-        "y": 4
+        "y": 5
       },
       "id": 32,
       "links": [
@@ -811,10 +810,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 6,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 22,
       "options": {
@@ -934,10 +933,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 7,
         "x": 6,
-        "y": 5
+        "y": 6
       },
       "id": 35,
       "links": [
@@ -1040,10 +1039,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 7,
         "x": 13,
-        "y": 5
+        "y": 6
       },
       "id": 5,
       "interval": "15s",
@@ -1138,7 +1137,7 @@
         "h": 2,
         "w": 4,
         "x": 20,
-        "y": 9
+        "y": 11
       },
       "id": 27,
       "links": [
@@ -1218,10 +1217,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 3,
         "x": 0,
-        "y": 10
+        "y": 12
       },
       "id": 24,
       "links": [
@@ -1329,10 +1328,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 1,
         "x": 3,
-        "y": 10
+        "y": 12
       },
       "id": 26,
       "links": [
@@ -1412,10 +1411,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 4,
-        "y": 10
+        "y": 12
       },
       "id": 25,
       "links": [
@@ -1538,10 +1537,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 7,
         "x": 6,
-        "y": 11
+        "y": 13
       },
       "id": 9,
       "links": [
@@ -1667,10 +1666,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 7,
         "x": 13,
-        "y": 11
+        "y": 13
       },
       "id": 16,
       "interval": "15s",
@@ -1741,10 +1740,10 @@
         "uid": "prometheus"
       },
       "gridPos": {
-        "h": 13,
+        "h": 16,
         "w": 4,
         "x": 20,
-        "y": 11
+        "y": 13
       },
       "id": 8,
       "options": {
@@ -1812,10 +1811,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 6,
         "x": 0,
-        "y": 13
+        "y": 16
       },
       "id": 14,
       "maxDataPoints": 100,
@@ -1881,6 +1880,102 @@
     },
     {
       "datasource": {
+        "type": "influxdb",
+        "uid": "bY0ll83nk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 21,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": 600000,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "linearThreshold": 1,
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${__field.labels.host}",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 14,
+        "x": 6,
+        "y": 19
+      },
+      "id": 33,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bY0ll83nk"
+          },
+          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\n  |> filter(fn: (r) => r[\"_field\"] == \"cpu\")\n  |> filter(fn: (r) => r[\"object\"] == \"qemu\")\n  |> filter(fn: (r) => r[\"_value\"] > 0)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n//  |> yield(name: \"mean\")\n",
+          "refId": "A"
+        }
+      ],
+      "title": "VM CPU usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
@@ -1919,10 +2014,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 6,
         "x": 0,
-        "y": 16
+        "y": 20
       },
       "id": 21,
       "options": {
@@ -2074,102 +2169,6 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "bY0ll83nk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 21,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": 600000,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "linearThreshold": 1,
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "displayName": "${__field.labels.host}",
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 14,
-        "x": 6,
-        "y": 16
-      },
-      "id": 33,
-      "options": {
-        "legend": {
-          "calcs": [
-            "last"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bY0ll83nk"
-          },
-          "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\n  |> filter(fn: (r) => r[\"_field\"] == \"cpu\")\n  |> filter(fn: (r) => r[\"object\"] == \"qemu\")\n  |> filter(fn: (r) => r[\"_value\"] > 0)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n//  |> yield(name: \"mean\")\n",
-          "refId": "A"
-        }
-      ],
-      "title": "VM CPU usage",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
       },
@@ -2193,15 +2192,15 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "days"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 0,
-        "y": 22
+        "y": 27
       },
       "id": 28,
       "links": [
@@ -2273,10 +2272,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 2,
-        "y": 22
+        "y": 27
       },
       "hideTimeOverride": true,
       "id": 29,
@@ -2346,10 +2345,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 4,
-        "y": 22
+        "y": 27
       },
       "hideTimeOverride": true,
       "id": 30,
