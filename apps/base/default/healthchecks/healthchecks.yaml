@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: healthchecks
-        image: linuxserver/healthchecks:3.4.20240819
+        image: linuxserver/healthchecks:3.5.20240820
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
