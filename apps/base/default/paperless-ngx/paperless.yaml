@@ -79,6 +79,8 @@ spec:
           value: admin
         - name: PAPERLESS_CONSUMER_IGNORE_PATTERNS
           value: '[".DS_Store", ".DS_STORE", "._*", ".stfolder/*", ".stversions/*", ".localized/*", "desktop.ini", "@eaDir/*", "Thumbs.db", "4tmp_*"]'
+        - name: PAPERLESS_OCR_USER_ARGS
+          value: '{"invalidate_digital_signatures": true}'
       - name: paperless-broker
         image: redis:7.4.0
         ports:
