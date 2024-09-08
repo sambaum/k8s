@@ -6,7 +6,7 @@ metadata:
   labels:
     app: phpipam
   annotations:
-    keel.sh/policy: major
+    keel.sh/policy: 'regexp:^(v|10).*$' # stick to version 10 of mariadb
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@daily'
