@@ -11,7 +11,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
     keel.sh/pollSchedule: '@daily'
-    keel.sh/approvalDeadline: 672
+    keel.sh/approvalDeadline: 24
 spec:
   replicas: 1
   selector:
