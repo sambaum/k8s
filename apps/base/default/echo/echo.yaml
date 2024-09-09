@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: echo
-        image: mendhak/http-https-echo:33
+        image: mendhak/http-https-echo:34
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
