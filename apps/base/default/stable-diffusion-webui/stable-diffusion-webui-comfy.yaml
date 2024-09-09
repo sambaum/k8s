@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: comfy
-        image: goolashe/comfy-sd-webui:20240101
+        image: goolashe/comfy-sd-webui:20240607
         imagePullPolicy: IfNotPresent
         resources:
           limits:
