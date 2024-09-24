@@ -17,14 +17,11 @@
   },
   "flux": {
     "fileMatch": [
-      "(?:^|/)gotk-components\\.ya?ml$"
+      "\\.ya?ml$"
     ],
     "ignorePaths": [
       "archive/**"
     ]
-    // "patch": {
-    //   "automerge": false
-    // }
   },
   "minor": {
     "automerge": true
