@@ -1,17 +1,11 @@
-export GITHUB_TOKEN=****
+#!/bin/bash
 
-microk8s config >~/.kube/config
+. ../../tools/bootstrap-common.sh
 
 GITHUB_USER=sambaum
 REPOSITORY=k8s
 BRANCH=master
 ENVIRONMENT=home
-
-kubectl create namespace flux-system
-cat ~/.sops/age.agekey |
-  kubectl create secret generic sops-age \
-    --namespace=flux-system \
-    --from-file=age.agekey=/dev/stdin
 
 flux bootstrap github \
   --components-extra=image-reflector-controller,image-automation-controller \
