@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: utkuozdemir
         namespace: flux-system
-      version: '0.3.1'
+      version: '1.0.0'
   interval: 30m
   install:
     remediation:
