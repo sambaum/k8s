@@ -7,7 +7,7 @@ configMapGenerator:
 - name: flux-grafana-dashboards
   files:
   - flux-dashboards/control-plane.json
-  - flux-dashboards/cluster.json
+  # - flux-dashboards/cluster.json
   - flux-dashboards/logs.json
   - flux-dashboards/flux2.json
   options:
