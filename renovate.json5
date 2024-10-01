@@ -39,7 +39,8 @@
       "matchPackageNames": [
         "metallb",
         "ingress-nginx",
-        "ghcr.io/fluxcd/kustomize-controller"
+        "ghcr.io/fluxcd/kustomize-controller",
+        "openebs"
       ],
       "minor": {
         "automerge": false
