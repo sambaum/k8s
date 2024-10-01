@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: emby
-        image: linuxserver/emby:4.8.9
+        image: linuxserver/emby:4.8.10
         resources:
           limits:
             nvidia.com/gpu: '1'
