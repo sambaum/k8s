@@ -82,7 +82,7 @@ spec:
         - name: PAPERLESS_OCR_USER_ARGS
           value: '{"invalidate_digital_signatures": true}'
       - name: paperless-broker
-        image: redis:7.4.0
+        image: redis:7.4.1
         ports:
         - containerPort: 6379
         volumeMounts:
