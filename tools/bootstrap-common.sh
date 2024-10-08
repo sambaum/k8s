@@ -1,5 +1,9 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+NOCOLOR='\033[0m'
+
 # Check if the script is run as root
 if [ "$EUID" -eq 0 ]
 then
@@ -13,7 +17,8 @@ then
     echo "Homebrew is not installed. Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo
-    echo "Homebrew should now be installed. Open a new shell and run the script again"
+    echo -e "${RED}Homebrew should now be installed. Open a new shell and run the script againred${NOCOLOR}"
+    exit 1
 else
     echo "Homebrew is already installed."
 fi
@@ -23,7 +28,7 @@ brew install gcc derailed/k9s/k9s fluxcd/tap/flux sops age
 # Check if GITHUB_TOKEN is set
 if [ -z "${GITHUB_TOKEN}" ]; then
   echo
-  echo 'Please set GITHUB_TOKEN variable (flux token) first using "export GITHUB_TOKEN=***'
+  echo "${ORANGE}Please set GITHUB_TOKEN variable (flux token) first using: export GITHUB_TOKEN=***${NOCOLOR}"
   exit 1
 else
   echo "GITHUB_TOKEN is set, continuing..."
