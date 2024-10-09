@@ -1,4 +1,5 @@
-resources:
-- helmrepository.yaml
-- release.yaml
-- dashboard-admin.yaml
+# disabled, not used
+resources: []
+# - helmrepository.yaml
+# - release.yaml
+# - dashboard-admin.yaml
