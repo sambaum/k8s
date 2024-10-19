@@ -22,7 +22,14 @@ else
     echo "Homebrew is already installed."
 fi
 
-brew install gcc derailed/k9s/k9s fluxcd/tap/flux sops age
+if ! dpkg -s build-essential >/dev/null 2>&1; then
+  echo build-essential not yet installed. Installing...
+  sudo apt-get update
+  sudo apt-get install -y build-essential
+fi
+
+brew install gcc 
+brew install derailed/k9s/k9s fluxcd/tap/flux sops age
 
 # Check if GITHUB_TOKEN is set
 if [ -z "${GITHUB_TOKEN}" ]; then
