@@ -1,0 +1,30 @@
+resources:
+- ../../../base/default/firefly/
+- firefly-importer-secrets.yaml
+patches:
+- target:
+    kind: Ingress
+    name: firefly-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: firefly.composter.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [firefly.composter.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: firefly-importer-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: firefly-importer.composter.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [firefly-importer.composter.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
