@@ -26,8 +26,7 @@ spec:
       storageClass: openebs-local-hostpath-conf
       accessMode: ReadWriteOnce
       size: 1Gi
-      subPath: 'portainer' # not supported
-      existingClaim: openebs-local-hostpath-conf-pvc
+      existingClaim: openebs-local-hostpath-conf-pvc-portainer
     ingress:
       enabled: true
       annotations:
