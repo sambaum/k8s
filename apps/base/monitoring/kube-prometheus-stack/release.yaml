@@ -81,14 +81,14 @@ spec:
             app.kubernetes.io/component: monitoring
         retention: 30d
         storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: openebs-local-hostpath-monitoring-data
-              accessModes: ['ReadWriteOnce']
-              resources:
-                requests:
-                  storage: 1Gi
-            volumeName: prometheus-pv
+          # volumeClaimTemplate:
+          #   spec:
+          #     storageClassName: openebs-local-hostpath-monitoring-data
+          #     accessModes: ['ReadWriteOnce']
+          #     resources:
+          #       requests:
+          #         storage: 1Gi
+          existingClaim: prometheus-pvc
       ingress:
         enabled: true
         ingressClassName: nginx

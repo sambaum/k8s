@@ -25,6 +25,7 @@ spec:
     requests:
       storage: 50Gi
   volumeName: grafana-pv
+
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -39,3 +40,17 @@ spec:
   hostPath:
     path: "/conf/monitoring/prometheus-pv"
   persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openebs-local-hostpath-monitoring-conf-pvc-prometheus
+  namespace: monitoring
+spec:
+  storageClassName: openebs-local-hostpath-monitoring-conf
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  volumeName: prometheus-pv
