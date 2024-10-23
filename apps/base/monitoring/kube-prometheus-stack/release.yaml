@@ -46,8 +46,8 @@ spec:
         size: 1Gi
         finalizers:
         - kubernetes.io/pvc-protection
-        subPath: 'grafana'
-        existingClaim: openebs-local-hostpath-monitoring-conf-pvc
+        # subPath: 'grafana'
+        existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
       ingress:
         enabled: true
         ingressClassName: nginx
@@ -88,6 +88,7 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+              volumeName: prometheus-pv
       ingress:
         enabled: true
         ingressClassName: nginx
