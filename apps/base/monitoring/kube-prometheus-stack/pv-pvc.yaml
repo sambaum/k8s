@@ -31,8 +31,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: prometheus-pv
+  labels:
+    app.kubernetes.io/name: prometheus-pv
 spec:
-  storageClassName: openebs-local-hostpath-monitoring-conf
+  storageClassName: openebs-local-hostpath-monitoring-data
   capacity:
     storage: 50Gi
   accessModes:
@@ -40,17 +42,17 @@ spec:
   hostPath:
     path: "/conf/monitoring/prometheus-pv"
   persistentVolumeReclaimPolicy: Retain
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: openebs-local-hostpath-monitoring-conf-pvc-prometheus
-  namespace: monitoring
-spec:
-  storageClassName: openebs-local-hostpath-monitoring-conf
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 50Gi
-  volumeName: prometheus-pv
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: openebs-local-hostpath-monitoring-data-pvc-prometheus
+#   namespace: monitoring
+# spec:
+#   storageClassName: openebs-local-hostpath-monitoring-data
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 50Gi
+#   volumeName: prometheus-pv
