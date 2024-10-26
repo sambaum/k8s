@@ -24,9 +24,9 @@ spec:
       type: ClusterIP
     persistence:
       enabled: true
-      storageClass: openebs-local-hostpath-conf
-      accessMode: ReadWriteOnce
-      size: 1Gi
+      # storageClass: openebs-local-hostpath-conf
+      # accessMode: ReadWriteOnce
+      # size: 1Gi
       existingClaim: openebs-local-hostpath-default-conf-pvc-portainer
     ingress:
       enabled: true
