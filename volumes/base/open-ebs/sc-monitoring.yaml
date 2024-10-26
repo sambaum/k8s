@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: openebs-local-hostpath-monitoring-conf
+  name: openebs-local-hostpath-monitoring-conf-sc
   namespace: monitoring
   annotations:
     openebs.io/cas-type: local
@@ -19,7 +19,7 @@ volumeBindingMode: WaitForFirstConsumer
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: openebs-local-hostpath-monitoring-data
+  name: openebs-local-hostpath-monitoring-data-sc
   namespace: monitoring
   annotations:
     openebs.io/cas-type: local
