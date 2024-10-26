@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: portainer-pv
+  labels:
+    app: portainer
 spec:
   storageClassName: openebs-local-hostpath-default-conf-sc
   capacity:
@@ -17,6 +19,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: openebs-local-hostpath-default-conf-pvc-portainer
   namespace: default
+  labels:
+    app: portainer
 spec:
   storageClassName: openebs-local-hostpath-default-conf-sc
   accessModes:
@@ -25,3 +29,6 @@ spec:
     requests:
       storage: 50Gi
   volumeName: portainer-pv
+  selector:
+    matchLabels:
+      app: portainer
