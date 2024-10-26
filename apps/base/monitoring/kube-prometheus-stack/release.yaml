@@ -40,13 +40,8 @@ spec:
       persistence:
         type: pvc
         enabled: true
-        # storageClassName: openebs-local-hostpath-monitoring-conf-sc
-        # accessModes:
-        # - ReadWriteOnce
-        # size: 1Gi
         finalizers:
         - kubernetes.io/pvc-protection
-        # subPath: 'grafana'
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
       ingress:
         enabled: true
