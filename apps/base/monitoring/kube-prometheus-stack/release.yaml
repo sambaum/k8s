@@ -83,11 +83,12 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: openebs-local-hostpath-monitoring-data
+              storageClassName: openebs-local-hostpath-monitoring-data-sc
               accessModes: ['ReadWriteOnce']
               resources:
                 requests:
                   storage: 1Gi
+              volumeName: prometheus-pv
       ingress:
         enabled: true
         ingressClassName: nginx
