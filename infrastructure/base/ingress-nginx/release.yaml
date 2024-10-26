@@ -25,6 +25,9 @@ spec:
       service:
         loadBalancerIP: '${NGINX_LOADBALANCER_IP}'
       allowSnippetAnnotations: true
+      admissionWebhooks:
+        enabled: false
+
 
 
 
