@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: create-loki-dir
+  name: change-loki-folder-permissions
   namespace: monitoring
 spec:
   template:

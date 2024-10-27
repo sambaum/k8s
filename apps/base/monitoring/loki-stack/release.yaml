@@ -27,6 +27,9 @@ spec:
       persistence:
         enabled: true
         existingClaim: openebs-local-hostpath-monitoring-data-pvc-loki
+      selector:
+        matchLabels:
+          app: loki
       config:
         compactor:
           compaction_interval: 30m
