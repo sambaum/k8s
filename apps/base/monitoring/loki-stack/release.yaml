@@ -30,6 +30,10 @@ spec:
         accessModes:
         - ReadWriteOnce
         size: 1Gi
+        selector:
+          matchLabels:
+            app: loki-pv
+
       # config:
       #   compactor:
       #     delete_request_store: s3
