@@ -4,6 +4,7 @@ resources:
 - helmrepository.yaml
 - release.yaml
 - pv-pvc.yaml
+- create-prometheus-dir-job.yaml
 configMapGenerator:
 - name: flux-kube-state-metrics-config
   namespace: monitoring

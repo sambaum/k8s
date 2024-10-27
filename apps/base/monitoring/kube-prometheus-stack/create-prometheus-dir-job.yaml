@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-prometheus-dir
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+      - name: create-dir
+        image: busybox
+        command: ["sh", "-c", "mkdir -p /data/monitoring/prometheus-pv && chmod 3777 /data/monitoring/prometheus-pv && chown 1000:2000 /data/monitoring/prometheus-pv"]
+        volumeMounts:
+        - mountPath: /data/monitoring
+          name: base-path
+      restartPolicy: OnFailure
+      volumes:
+      - name: base-path
+        hostPath:
+          path: /data/monitoring
+          type: DirectoryOrCreate

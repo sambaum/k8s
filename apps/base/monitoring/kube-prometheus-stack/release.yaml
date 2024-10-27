@@ -76,15 +76,6 @@ spec:
             app.kubernetes.io/component: monitoring
         retention: 30d
         storageSpec:
-          # volumeClaimTemplate:
-          #   spec:
-          #     storageClassName: openebs-local-hostpath-monitoring-data-sc
-          #     accessModes: ['ReadWriteOnce']
-          #     resources:
-          #       requests:
-          #         storage: 1Gi
-          #     volumeName: prometheus-pv
-
           volumeClaimTemplate:
             metadata:
               name: openebs-local-hostpath-monitoring-data-pvc-prometheus
