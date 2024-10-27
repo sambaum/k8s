@@ -27,10 +27,11 @@ spec:
       isDefault: false
       persistence:
         enabled: true
-        storageClassName: openebs-local-hostpath-monitoring-data
-        accessModes:
-        - ReadWriteOnce
-        size: 1Gi
+        existingClaim: openebs-local-hostpath-monitoring-data-pvc-loki
+        # storageClassName: openebs-local-hostpath-monitoring-data
+        # accessModes:
+        # - ReadWriteOnce
+        # size: 1Gi
       config:
         compactor:
           compaction_interval: 30m
