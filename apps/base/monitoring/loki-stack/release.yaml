@@ -26,26 +26,17 @@ spec:
       isDefault: false
       persistence:
         enabled: true
-        storageClassName: openebs-local-hostpath-monitoring-data-sc
-        accessModes:
-        - ReadWriteOnce
-        size: 1Gi
-        selector:
-          matchLabels:
-            app: loki-pv
-
-      # config:
-      #   compactor:
-      #     delete_request_store: s3
-      #     compaction_interval: 30m
-      #     retention_enabled: true
-      #     retention_delete_delay: 2h
-      #     retention_delete_worker_count: 150
-      #   limits_config:
-      #     retention_period: 14d
-      #     max_query_lookback: 336h
-      image:
-        tag: latest
+        existingClaim: openebs-local-hostpath-monitoring-data-pvc-loki
+      config:
+        compactor:
+          compaction_interval: 30m
+          retention_enabled: true
+          retention_delete_delay: 2h
+          retention_delete_worker_count: 150
+        limits_config:
+          retention_period: 14d
+          # image:
+          #   tag: latest
     promtail:
       enabled: true
       extraPorts:
