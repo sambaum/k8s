@@ -1,26 +1,26 @@
-resources:
-- ../../../base/default/jellyfin/
-patches:
-- target:
-    kind: Ingress
-    name: jellyfin-ingress
-  patch: |-
-    - op: replace
-      path: /spec/rules
-      value:
-        - host: jellyfin.composter.int.sambaum.ch
-          http:
-            paths:
-            - pathType: Prefix
-              path: "/"
-              backend:
-                service:
-                  name: jellyfin-service
-                  port:
-                    number: 8096
-    - op: replace
-      path: /spec/tls/0/hosts
-      value: [jellyfin.composter.int.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/cert-manager.io~1cluster-issuer
-      value: letsencrypt-production
+resources: []
+# - ../../../base/default/jellyfin/
+# patches:
+# - target:
+#     kind: Ingress
+#     name: jellyfin-ingress
+#   patch: |-
+#     - op: replace
+#       path: /spec/rules
+#       value:
+#         - host: jellyfin.composter.int.sambaum.ch
+#           http:
+#             paths:
+#             - pathType: Prefix
+#               path: "/"
+#               backend:
+#                 service:
+#                   name: jellyfin-service
+#                   port:
+#                     number: 8096
+#     - op: replace
+#       path: /spec/tls/0/hosts
+#       value: [jellyfin.composter.int.sambaum.ch]
+#     - op: replace
+#       path: /metadata/annotations/cert-manager.io~1cluster-issuer
+#       value: letsencrypt-production
