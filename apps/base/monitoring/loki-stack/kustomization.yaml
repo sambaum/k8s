@@ -1,3 +1,4 @@
 resources:
+- pv-pvc.yaml
 - helmrepository.yaml
 - release.yaml
