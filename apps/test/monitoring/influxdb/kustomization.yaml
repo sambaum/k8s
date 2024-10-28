@@ -1,0 +1,16 @@
+resources:
+- ../../../base/monitoring/influxdb/
+patches:
+- target:
+    kind: Ingress
+    name: influxdb-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: influxdb.composter.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [influxdb.composter.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
