@@ -33,10 +33,7 @@ spec:
     matchLabels:
       app: grafana
 
-
-
 ---
-
 
 apiVersion: v1
 kind: PersistentVolume
@@ -53,22 +50,3 @@ spec:
   hostPath:
     path: "/data/monitoring/prometheus-pv"
   persistentVolumeReclaimPolicy: Delete
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: openebs-local-hostpath-monitoring-data-pvc-prometheus
-#   namespace: monitoring
-#   labels:
-#     app: prometheus
-# spec:
-#   storageClassName: openebs-local-hostpath-monitoring-data-sc
-#   accessModes:
-#   - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 50Gi
-#   volumeName: prometheus-pv
-#   selector:
-#     matchLabels:
-#       app: prometheus
