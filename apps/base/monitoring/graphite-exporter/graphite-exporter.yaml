@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: graphite-exporter
-        image: prom/graphite-exporter:v0.15.2
+        image: prom/graphite-exporter:v0.16.0
         args:
         - "--graphite.mapping-config=/tmp/graphite-exporter/graphite_mapping.conf"
         imagePullPolicy: IfNotPresent
