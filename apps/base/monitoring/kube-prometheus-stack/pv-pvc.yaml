@@ -12,7 +12,7 @@ spec:
   - ReadWriteOnce
   hostPath:
     path: "/conf/monitoring/grafana-pv"
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -32,9 +32,7 @@ spec:
   selector:
     matchLabels:
       app: grafana
-
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -49,4 +47,4 @@ spec:
   - ReadWriteOnce
   hostPath:
     path: "/data/monitoring/prometheus-pv"
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain

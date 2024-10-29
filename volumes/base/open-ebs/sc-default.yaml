@@ -13,7 +13,7 @@ metadata:
       - name: NodeAffinityLabel
         value: "openebs.io/my-single-node"
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ---
 apiVersion: storage.k8s.io/v1
@@ -31,5 +31,5 @@ metadata:
       - name: NodeAffinityLabel
         value: "openebs.io/my-single-node"
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
