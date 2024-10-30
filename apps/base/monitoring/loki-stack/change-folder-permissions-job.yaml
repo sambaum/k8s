@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: change-loki-folder-permissions
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+      - name: create-dir
+        image: busybox
+        command: ["sh", "-c", "mkdir -p /data/monitoring/loki-pv && chmod 3777 /data/monitoring/loki-pv && chown -R 10001:10001 /data/monitoring/loki-pv"]
+        volumeMounts:
+        - mountPath: /data/monitoring
+          name: base-path
+      restartPolicy: OnFailure
+      volumes:
+      - name: base-path
+        hostPath:
+          path: /data/monitoring
+          type: DirectoryOrCreate

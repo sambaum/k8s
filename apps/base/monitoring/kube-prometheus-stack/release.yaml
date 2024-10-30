@@ -40,14 +40,9 @@ spec:
       persistence:
         type: pvc
         enabled: true
-        storageClassName: openebs-local-hostpath-monitoring-conf
-        accessModes:
-        - ReadWriteOnce
-        size: 1Gi
         finalizers:
         - kubernetes.io/pvc-protection
-        subPath: 'grafana'
-        existingClaim: openebs-local-hostpath-monitoring-conf-pvc
+        existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
       ingress:
         enabled: true
         ingressClassName: nginx
@@ -82,12 +77,23 @@ spec:
         retention: 30d
         storageSpec:
           volumeClaimTemplate:
+            metadata:
+              name: openebs-local-hostpath-monitoring-data-pvc-prometheus
+              labels:
+                app: prometheus
             spec:
-              storageClassName: openebs-local-hostpath-monitoring-data
-              accessModes: ['ReadWriteOnce']
+              storageClassName: openebs-local-hostpath-monitoring-data-sc
+              accessModes:
+              - ReadWriteOnce
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 50Gi
+              volumeName: prometheus-pv
+              selector:
+                matchLabels:
+                  app: prometheus
+
+
       ingress:
         enabled: true
         ingressClassName: nginx

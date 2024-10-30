@@ -4,7 +4,7 @@
 
 GITHUB_USER=sambaum
 REPOSITORY=k8s
-BRANCH=test
+BRANCH=test2
 ENVIRONMENT=test
 
 flux bootstrap github \

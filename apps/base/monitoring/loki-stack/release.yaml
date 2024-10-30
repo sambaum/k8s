@@ -17,7 +17,6 @@ spec:
   install:
     remediation:
       retries: 3
-      # timeout: 5m
   upgrade:
     crds: CreateReplace
     force: true
@@ -27,10 +26,10 @@ spec:
       isDefault: false
       persistence:
         enabled: true
-        storageClassName: openebs-local-hostpath-monitoring-data
-        accessModes:
-        - ReadWriteOnce
-        size: 1Gi
+        existingClaim: openebs-local-hostpath-monitoring-data-pvc-loki
+      selector:
+        matchLabels:
+          app: loki
       config:
         compactor:
           compaction_interval: 30m
@@ -39,9 +38,8 @@ spec:
           retention_delete_worker_count: 150
         limits_config:
           retention_period: 14d
-      image:
-        tag: latest
-
+          # image:
+          #   tag: latest
     promtail:
       enabled: true
       extraPorts:

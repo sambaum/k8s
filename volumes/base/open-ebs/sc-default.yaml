@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: openebs-local-hostpath-conf
+  name: openebs-local-hostpath-default-conf-sc
   namespace: default
   annotations:
     openebs.io/cas-type: local
@@ -13,13 +13,13 @@ metadata:
       - name: NodeAffinityLabel
         value: "openebs.io/my-single-node"
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: openebs-local-hostpath-data
+  name: openebs-local-hostpath-default-data-sc
   namespace: default
   annotations:
     openebs.io/cas-type: local
@@ -31,5 +31,5 @@ metadata:
       - name: NodeAffinityLabel
         value: "openebs.io/my-single-node"
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer

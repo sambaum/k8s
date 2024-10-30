@@ -34,6 +34,10 @@ spec:
         - mountPath: /var/lib/influxdb2
           name: data
           subPath: influxdb
+        - mountPath: /var/lib/influxdb2/influxd.bolt
+          name: bolt
+        - mountPath: /var/lib/influxdb2/influxd.sqlite
+          name: sqlite
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -41,6 +45,14 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-monitoring-pvc
+      - name: bolt
+        hostPath:
+          path: /conf/monitoring/influxdb/influxd.bolt
+          type: FileOrCreate
+      - name: sqlite
+        hostPath:
+          path: /conf/monitoring/influxdb/influxd.sqlite
+          type: FileOrCreate
 ---
 kind: Service
 apiVersion: v1

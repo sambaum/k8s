@@ -18,16 +18,12 @@ spec:
   install:
     remediation:
       retries: 3
-      # timeout: 5m
   values:
     service:
       type: ClusterIP
     persistence:
       enabled: true
-      storageClass: openebs-local-hostpath-conf
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      existingClaim: openebs-local-hostpath-conf-pvc-portainer
+      existingClaim: openebs-local-hostpath-default-conf-pvc-portainer
     ingress:
       enabled: true
       annotations:

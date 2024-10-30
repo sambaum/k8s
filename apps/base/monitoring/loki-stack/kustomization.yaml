@@ -1,3 +1,5 @@
 resources:
+- change-folder-permissions-job.yaml
+- pv-pvc.yaml
 - helmrepository.yaml
 - release.yaml
