@@ -8,7 +8,6 @@ BRANCH=test2
 ENVIRONMENT=test
 
 flux bootstrap github \
-  --components-extra=image-reflector-controller,image-automation-controller \
   --owner=$GITHUB_USER \
   --repository=$REPOSITORY \
   --branch=$BRANCH \
