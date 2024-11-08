@@ -40,8 +40,8 @@ spec:
       persistence:
         type: pvc
         enabled: true
-        finalizers:
-        - kubernetes.io/pvc-protection
+        # finalizers:
+        # - kubernetes.io/pvc-protection
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
       ingress:
         enabled: true
