@@ -13,6 +13,6 @@ patches:
       value: [echo.int.sambaum.ch]
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
-      value: letsencrypt-staging
+      value: letsencrypt-production
     - op: remove
       path: /spec/tls
