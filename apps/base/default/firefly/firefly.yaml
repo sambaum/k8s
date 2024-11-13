@@ -9,8 +9,8 @@ metadata:
     keel.sh/policy: 'regexp:^(v|10).*$' # stick to version 10 of mariadb
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@daily'
-    keel.sh/approvalDeadline: 24
+    keel.sh/pollSchedule: '@weekly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:

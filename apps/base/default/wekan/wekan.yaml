@@ -9,8 +9,8 @@ metadata:
     keel.sh/policy: minor # prevent notifications about mongo major updates
     keel.sh/trigger: poll
     keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@daily'
-    keel.sh/approvalDeadline: 24
+    keel.sh/pollSchedule: '@weekly'
+    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
