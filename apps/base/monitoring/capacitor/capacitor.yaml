@@ -1,0 +1,71 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: capacitor
+  namespace: flux-system
+spec:
+  interval: 12h
+  url: oci://ghcr.io/gimlet-io/capacitor-manifests
+  ref:
+    semver: ">=0.1.0"
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: capacitor
+  namespace: flux-system
+spec:
+  targetNamespace: default
+  interval: 1h
+  retryInterval: 2m
+  timeout: 5m
+  wait: true
+  prune: true
+  path: "./"
+  sourceRef:
+    kind: OCIRepository
+    name: capacitor
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: capacitor-service
+#   namespace: monitoring
+# spec:
+#   selector:
+#     app: capacitor
+#   ports:
+#   - protocol: TCP
+#     port: 9000
+#     targetPort: 9000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: capacitor-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: V2
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://avatars.githubusercontent.com/u/52158677
+    gethomepage.dev/name: capacitor
+    gethomepage.dev/pod-selector: ""
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'capacitor.example.com'
+    secretName: capacitor-tls
+  rules:
+  - host: capacitor.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: capacitor
+            port:
+              number: 9000
