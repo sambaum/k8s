@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: lychee
-        image: lycheeorg/lychee:v6.1.1
+        image: lycheeorg/lychee:v6.1.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
