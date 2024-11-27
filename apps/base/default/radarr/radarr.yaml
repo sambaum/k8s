@@ -31,12 +31,12 @@ spec:
         - mountPath: /config
           name: config
           subPath: radarr
-        - mountPath: /custom-services.d
-          name: config
-          subPath: radarr/custom-services.d
-        - mountPath: /custom-cont-init.d
-          name: config
-          subPath: radarr/custom-cont-init.d
+        # - mountPath: /custom-services.d
+        #   name: config
+        #   subPath: radarr/custom-services.d
+        # - mountPath: /custom-cont-init.d
+        #   name: config
+        #   subPath: radarr/custom-cont-init.d
         - mountPath: /downloads
           name: media
           subPath: Downloads
