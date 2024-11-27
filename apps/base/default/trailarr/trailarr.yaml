@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trailarr
+  namespace: default
+  labels:
+    app: trailarr
+  annotations:
+    keel.sh/policy: major
+    keel.sh/trigger: poll
+    keel.sh/approvals: '1'
+    keel.sh/pollSchedule: '@weekly'
+    keel.sh/approvalDeadline: 168
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trailarr
+  template:
+    metadata:
+      labels:
+        app: trailarr
+    spec:
+      containers:
+      - name: trailarr
+        image: nandyalu/trailarr:0.2.2-beta
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7889
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: trailarr
+
+        - mountPath: /media/tv/default
+          name: media
+          subPath: Video/TV-Shows
+        - mountPath: /media/tv/kids
+          name: media
+          subPath: Video/TV-Shows-Kids
+        env:
+        - name: PUID
+          value: '0'
+        - name: PGID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: trailarr-service
+  namespace: default
+spec:
+  selector:
+    app: trailarr
+  ports:
+  - protocol: TCP
+    port: 7889
+    targetPort: 7889
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trailarr-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Trailers
+    gethomepage.dev/enabled: 'true'
+    gethomepage.dev/group: Other
+    gethomepage.dev/icon: https://raw.githubusercontent.com/nandyalu/trailarr/main/assets/images/trailarr-256.png
+    gethomepage.dev/name: trailarr
+    gethomepage.dev/pod-selector: app=trailarr
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'trailarr.example.com'
+    secretName: trailarr-tls
+  rules:
+  - host: trailarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: trailarr-service
+            port:
+              number: 7889
