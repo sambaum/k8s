@@ -7,7 +7,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/env/10/value
-      value: https://foto.sambaum.ch
+      value: https://lychee.composter.int.sambaum.ch
 - target:
     kind: Ingress
     name: lychee-ingress
@@ -15,16 +15,6 @@ patches:
     - op: replace
       path: /spec/rules
       value:
-        - host: foto.sambaum.ch
-          http:
-            paths:
-            - pathType: Prefix
-              path: "/"
-              backend:
-                service:
-                  name: lychee-service
-                  port:
-                    number: 80
         - host: lychee.composter.int.sambaum.ch
           http:
             paths:
@@ -37,7 +27,7 @@ patches:
                     number: 80
     - op: replace
       path: /spec/tls/0/hosts
-      value: [lychee.composter.int.sambaum.ch, foto.sambaum.ch]
+      value: [lychee.composter.int.sambaum.ch]
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
