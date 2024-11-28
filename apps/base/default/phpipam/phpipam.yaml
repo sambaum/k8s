@@ -41,7 +41,7 @@ spec:
         - name: IPAM_TRUST_X_FORWARDED
           value: "true"
       - name: phpipam-cron
-        image: phpipam/phpipam-cron:v1.7.1
+        image: phpipam/phpipam-cron:v1.7.3
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
