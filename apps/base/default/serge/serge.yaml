@@ -72,7 +72,7 @@ metadata:
     gethomepage.dev/description: LLaMA made easy
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: https://static-00.iconduck.com/assets.00/chat-icon-2048x2048-i7er18st.png
+    gethomepage.dev/icon: chatgpt.svg
     gethomepage.dev/name: Serge Chat
     gethomepage.dev/pod-selector: app=serge
 spec:
