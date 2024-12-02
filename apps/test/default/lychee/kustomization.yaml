@@ -26,6 +26,19 @@ patches:
                   port:
                     number: 80
     - op: replace
+      path: /spec/rules
+      value:
+        - host: lychee.composter.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: lychee-service
+                  port:
+                    number: 80
+    - op: replace
       path: /spec/tls/0/hosts
       value: [lychee.composter.int.sambaum.ch]
     - op: replace
