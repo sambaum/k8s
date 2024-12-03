@@ -1,2 +1,3 @@
-resources:
-- ../../../base/default/test-pod/
+resources: []
+
+# - ../../../base/default/test-pod/

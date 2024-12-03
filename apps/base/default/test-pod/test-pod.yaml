@@ -25,13 +25,13 @@ spec:
       containers:
       - name: test-pod
         image: curlimages/curl
-        command: ['/bin/sh', '-c', '--']
-        args: ['while true; do ls /media; sleep 5; done;']
+        command: [ '/bin/sh', '-c', '--' ]
+        args: [ 'while true; do echo sleep; sleep 5; done;' ]
         imagePullPolicy: Always
-        volumeMounts:
-        - mountPath: /media
-          name: media
-          subPath: nfs-test
+        # volumeMounts:
+        # - mountPath: /media
+        #   name: media
+        #   subPath: nfs-test
       dnsConfig:
         options:
         - name: ndots
