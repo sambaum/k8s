@@ -42,7 +42,8 @@
         "metallb",
         "ingress-nginx",
         "ghcr.io/fluxcd/kustomize-controller",
-        "openebs"
+        "openebs",
+        "linuxserver/duplicati"
       ],
       "minor": {
         "automerge": false
