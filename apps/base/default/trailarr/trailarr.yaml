@@ -31,13 +31,18 @@ spec:
         - mountPath: /config
           name: config
           subPath: trailarr
-
         - mountPath: /media/tv/default
           name: media
           subPath: Video/TV-Shows
         - mountPath: /media/tv/kids
           name: media
           subPath: Video/TV-Shows-Kids
+        - mountPath: /media/movies/default
+          name: media
+          subPath: Video/Movies
+        - mountPath: /media/movies/kids
+          name: media
+          subPath: Video/Movies-Kids
         env:
         - name: PUID
           value: '0'
