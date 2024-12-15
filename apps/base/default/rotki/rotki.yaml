@@ -28,14 +28,10 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - mountPath: /config
+        - mountPath: /data
           name: config
           subPath: rotki
         env:
-        - name: PUID
-          value: '0'
-        - name: PGID
-          value: '0'
         - name: TZ
           value: 'Europe/Zurich'
         - name: ROTKI_ACCEPT_DOCKER_RISK
