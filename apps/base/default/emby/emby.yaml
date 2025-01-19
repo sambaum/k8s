@@ -5,12 +5,6 @@ metadata:
   namespace: default
   labels:
     app: emby
-  annotations:
-    keel.sh/policy: 'regexp:^((4|5)\.\d{1,2}\.\d{1,2})$' # prevent notifications about false 7.0.19 release
-    keel.sh/trigger: poll
-    keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@weekly'
-    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:

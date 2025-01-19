@@ -5,12 +5,6 @@ metadata:
   namespace: default
   labels:
     app: overleaf
-  annotations:
-    keel.sh/policy: minor # prevent notifications about major mongo/redis updates. Stick to 3.1, because higher versions use too much idle CPU.
-    keel.sh/trigger: poll
-    keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@weekly'
-    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:

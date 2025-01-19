@@ -5,12 +5,6 @@ metadata:
   namespace: default
   labels:
     app: searcharr
-  annotations:
-    keel.sh/policy: 'glob:v*'
-    keel.sh/trigger: poll
-    keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@weekly'
-    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:

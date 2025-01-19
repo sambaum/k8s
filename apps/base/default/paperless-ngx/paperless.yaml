@@ -5,12 +5,6 @@ metadata:
   namespace: default
   labels:
     app: paperless
-  annotations:
-    keel.sh/policy: 'regexp:^((1|2|3|4)\.\d{1,2}\.\d{1,2})$' # prevent redis/postgres notifications
-    keel.sh/trigger: poll
-    keel.sh/approvals: '1'
-    keel.sh/pollSchedule: '@weekly'
-    keel.sh/approvalDeadline: 168
 spec:
   replicas: 1
   selector:
