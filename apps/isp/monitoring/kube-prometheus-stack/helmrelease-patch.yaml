@@ -20,3 +20,12 @@
   value: letsencrypt-staging
 - op: remove
   path: /spec/values/prometheus/ingress/tls
+
+  - job_name: 'version-checker'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: http
+    static_configs:
+    - targets: ['version-checker:8080']
+      labels:
+        group: 'version-checker'
