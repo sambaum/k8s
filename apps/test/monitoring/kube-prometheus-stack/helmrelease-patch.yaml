@@ -269,3 +269,12 @@
     - targets: ['mktxp.int.sambaum.ch:443']
       labels:
         group: 'mktxp'
+
+  - job_name: 'version-checker'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: http
+    static_configs:
+    - targets: ['version-checker:8080']
+      labels:
+        group: 'version-checker'
