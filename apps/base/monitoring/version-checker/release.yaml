@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: version-checker
+  namespace: monitoring
+spec:
+  releaseName: version-checker
+  chart:
+    spec:
+      chart: version-checker
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+        namespace: flux-system
+      version: '0.8.5'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    force: true
+  values:
