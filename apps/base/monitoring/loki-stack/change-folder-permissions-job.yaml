@@ -8,8 +8,8 @@ spec:
     spec:
       containers:
       - name: create-dir
-        image: busybox:1.37.0
-        command: [ "sh", "-c", "mkdir -p /data/monitoring/loki-pv && chmod 3777 /data/monitoring/loki-pv && chown -R 10001:10001 /data/monitoring/loki-pv" ]
+        image: busybox
+        command: ["sh", "-c", "mkdir -p /data/monitoring/loki-pv && chmod 3777 /data/monitoring/loki-pv && chown -R 10001:10001 /data/monitoring/loki-pv"]
         volumeMounts:
         - mountPath: /data/monitoring
           name: base-path
