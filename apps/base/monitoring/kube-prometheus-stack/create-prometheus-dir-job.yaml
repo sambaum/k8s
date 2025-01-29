@@ -8,8 +8,8 @@ spec:
     spec:
       containers:
       - name: create-dir
-        image: busybox
-        command: ["sh", "-c", "mkdir -p /data/monitoring/prometheus-pv && chmod 3777 /data/monitoring/prometheus-pv && chown 1000:2000 /data/monitoring/prometheus-pv"]
+        image: busybox:1.37.0
+        command: [ "sh", "-c", "mkdir -p /data/monitoring/prometheus-pv && chmod 3777 /data/monitoring/prometheus-pv && chown 1000:2000 /data/monitoring/prometheus-pv" ]
         volumeMounts:
         - mountPath: /data/monitoring
           name: base-path
