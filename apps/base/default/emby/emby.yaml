@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: emby
+      annotations:
+        match-regex.version-checker.io/emby: '[456]{1,3}\.(\d){1,3}\.(\d){1,3}'
     spec:
       containers:
       - name: emby
