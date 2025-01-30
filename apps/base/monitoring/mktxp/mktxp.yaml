@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mktxp
-        image: ghcr.io/akpw/mktxp:gha-8422026946
+        image: ghcr.io/akpw/mktxp:1.2.9
         # args:
         # - "--config.file=/etc/mktxp/config.yml"
         imagePullPolicy: IfNotPresent
