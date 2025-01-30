@@ -10,12 +10,14 @@
 - op: replace
   path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
   value: letsencrypt-production
-
+- op: add
+  path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
+  value:
   - job_name: 'version-checker'
     scrape_interval: 30s
     metrics_path: '/metrics'
     scheme: http
     static_configs:
-    - targets: ['version-checker:8080']
+    - targets: [ 'version-checker:8080' ]
       labels:
         group: 'version-checker'
