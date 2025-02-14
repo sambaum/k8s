@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
           - name: lychee-watch
-            image: lycheeorg/lychee:v6.2.0
+            image: lycheeorg/lychee:v6.3.0
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
