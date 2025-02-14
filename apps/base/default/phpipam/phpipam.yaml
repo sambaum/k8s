@@ -47,7 +47,7 @@ spec:
         - name: SCAN_INTERVAL
           value: '10m'
       - name: phpipam-mariadb
-        image: mariadb:11.6.2
+        image: mariadb:11.7.2
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /var/lib/mysql
