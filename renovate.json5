@@ -43,7 +43,8 @@
         "ingress-nginx",
         "ghcr.io/fluxcd/kustomize-controller",
         "openebs",
-        "linuxserver/duplicati"
+        "linuxserver/duplicati",
+        "lycheeorg/lychee"
       ],
       "minor": {
         "automerge": false
