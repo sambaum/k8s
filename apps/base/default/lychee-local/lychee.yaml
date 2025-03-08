@@ -60,6 +60,19 @@ spec:
           value: 'mysql'
         - name: APP_URL
           value: 'https://example.com'
+        - name: PHP_TZ
+          value: 'Europe/Zurich'
+      - name: lychee-cache
+        image: redis:7.4.2-alpine
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: data
+          subPath: lychee/redis
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
       - name: maria
         image: mariadb:10.11.11
         ports:
@@ -83,6 +96,16 @@ spec:
           value: '1000'
         - name: PUID
           value: '1000'
+        - name: CACHE_DRIVER
+          value: redis
+        - name: REDIS_URL
+          value: redis://default@lychee-service-redis:6379
+        - name: REDIS_HOST
+          value: lychee-service-redis
+        - name: REDIS_PORT
+          value: '6379'
+        - name: REDIS_PASSWORD
+          value: ''
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -126,6 +149,19 @@ spec:
   - protocol: TCP
     port: 3306
     targetPort: 3306
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lychee-service-redis
+  namespace: default
+spec:
+  selector:
+    app: lychee
+  ports:
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
