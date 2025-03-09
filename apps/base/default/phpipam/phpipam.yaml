@@ -97,7 +97,7 @@ metadata:
     gethomepage.dev/description: phpIPAM IP Address Management
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other
-    gethomepage.dev/icon: https://www.axonius.com/hubfs/Adapter%20Logos/php_ipam_adapter.png
+    gethomepage.dev/icon: https://www.bujarra.com/wp-content/uploads/2019/01/phpipam-logo-300x173.png
     gethomepage.dev/name: phpIPAM
     gethomepage.dev/pod-selector: app=phpipam
 spec:
