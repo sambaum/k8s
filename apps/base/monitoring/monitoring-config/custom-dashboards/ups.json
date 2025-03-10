@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2039,
+  "id": 2068,
   "links": [],
   "panels": [
     {
@@ -671,10 +671,14 @@
       "id": 6,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -692,6 +696,7 @@
           "editorMode": "code",
           "expr": "nut_http_charge",
           "instant": false,
+          "legendFormat": "Charge",
           "range": true,
           "refId": "A"
         }
@@ -904,10 +909,14 @@
       "id": 17,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -925,6 +934,7 @@
           "editorMode": "code",
           "expr": "nut_http_load",
           "instant": false,
+          "legendFormat": "Load",
           "range": true,
           "refId": "A"
         }
@@ -1136,10 +1146,14 @@
       "id": 18,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1157,6 +1171,7 @@
           "editorMode": "code",
           "expr": "nut_http_runtime",
           "instant": false,
+          "legendFormat": "Runtime",
           "range": true,
           "refId": "A"
         }
@@ -1194,7 +1209,7 @@
             }
           ],
           "max": 15,
-          "min": 0,
+          "min": 12,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1211,8 +1226,12 @@
                 "value": 13
               },
               {
-                "color": "dark-red",
+                "color": "#EAB839",
                 "value": 14.2
+              },
+              {
+                "color": "dark-red",
+                "value": 14.3
               }
             ]
           },
@@ -1340,10 +1359,14 @@
       "id": 2,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1361,6 +1384,7 @@
           "editorMode": "code",
           "expr": "nut_http_battery_voltage",
           "instant": false,
+          "legendFormat": "Voltage",
           "range": true,
           "refId": "A"
         }
@@ -1573,10 +1597,14 @@
       "id": 5,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1594,6 +1622,7 @@
           "editorMode": "code",
           "expr": "nut_http_input_voltage",
           "instant": false,
+          "legendFormat": "Voltage",
           "range": true,
           "refId": "A"
         }
@@ -1759,10 +1788,14 @@
       "id": 21,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1781,7 +1814,7 @@
           "expr": "600 / 100 * nut_http_load",
           "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "Draw",
           "range": true,
           "refId": "C"
         }
