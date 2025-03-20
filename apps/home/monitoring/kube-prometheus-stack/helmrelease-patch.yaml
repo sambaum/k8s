@@ -281,3 +281,12 @@
     - targets: [ 'version-checker:8080' ]
       labels:
         group: 'version-checker'
+
+  - job_name: 'desktop-sam'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: http
+    static_configs:
+    - targets: [ 'desktop-sam.int.sambaum.ch:9182' ]
+      labels:
+        group: 'desktop-sam'

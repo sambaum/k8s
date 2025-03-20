@@ -111,6 +111,13 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
+- name: windows-desktop
+  files:
+  - custom-dashboards/windows-desktop.json
+  options:
+    labels:
+      grafana_dashboard: '1'
+
 generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
