@@ -19,6 +19,5 @@ spec:
   # upgrade:
   #   crds: CreateReplace
   values:
-    installCRDs: true #deprecated   
     crds:
       enabled: true
