@@ -31,3 +31,46 @@
     - targets: [ 'version-checker:8080' ]
       labels:
         group: 'version-checker'
+  - job_name: 'waf-metrics'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+    - targets: [ 'srv041.t21.circle.ispin.ch' ]
+      labels:
+        group: 'waf'
+  - job_name: 'waf-mappings'
+    scrape_interval: 30s
+    metrics_path: '/probe'
+    params:
+      target: [ 'http://localhost/airlock/rest/configuration/mappings' ]
+      module: [ 'mappings' ]
+    scheme: http
+    static_configs:
+    - targets: [ 'headers-vhost.t21.circle.ispin.ch:80' ]
+      labels:
+        group: 'waf'
+  - job_name: 'waf-virtual-hosts'
+    scrape_interval: 30s
+    metrics_path: '/probe'
+    params:
+      target: [ 'http://localhost/airlock/rest/configuration/virtual-hosts' ]
+      module: [ 'virtual-hosts' ]
+    scheme: http
+    static_configs:
+    - targets: [ 'headers-vhost.t21.circle.ispin.ch:80' ]
+      labels:
+        group: 'waf'
+  - job_name: 'waf-license'
+    scrape_interval: 30s
+    metrics_path: '/probe'
+    params:
+      target: [ 'http://localhost/airlock/rest/configuration/license' ]
+      module: [ 'license' ]
+    scheme: http
+    static_configs:
+    - targets: [ 'headers-vhost.t21.circle.ispin.ch:80' ]
+      labels:
+        group: 'waf'
