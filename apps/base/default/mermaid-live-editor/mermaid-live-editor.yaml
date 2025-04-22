@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mermaid-live-editor
+  namespace: default
+  labels:
+    app: mermaid-live-editor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mermaid-live-editor
+  template:
+    metadata:
+      labels:
+        app: mermaid-live-editor
+    spec:
+      containers:
+      - name: mermaid-live-editor
+        image: ghcr.io/mermaid-js/mermaid-live-editor@sha256:15cfc6602671ebcfafc78535474a033c75db005b254a58890da990517262f03c
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mermaid-live-editor-service
+  namespace: default
+spec:
+  selector:
+    app: mermaid-live-editor
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mermaid-live-editor-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Edit, preview and share mermaid charts/diagrams.
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://raw.githubusercontent.com/mermaid-js/mermaid/develop/docs/public/favicon.svg
+    gethomepage.dev/name: Mermaid Live Editor
+    gethomepage.dev/pod-selector: app=mermaid-live-editor
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'mermaid-live-editor.example.com'
+    secretName: mermaid-live-editor-tls
+  rules:
+  - host: mermaid-live-editor.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: mermaid-live-editor-service
+            port:
+              number: 8080

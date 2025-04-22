@@ -1,0 +1,16 @@
+resources:
+- ../../../base/default/mermaid-live-editor/
+patches:
+- target:
+    kind: Ingress
+    name: mermaid-live-editor-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: mermaid-live-editor.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [mermaid-live-editor.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
