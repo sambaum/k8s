@@ -16,3 +16,10 @@ patches:
       value: letsencrypt-production
     - op: remove
       path: /spec/tls
+- target:
+    kind: Deployment
+    name: homepage
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: homepage.t21.circle.ispin.ch

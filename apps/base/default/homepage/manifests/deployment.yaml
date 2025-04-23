@@ -24,7 +24,7 @@ spec:
       enableServiceLinks: true
       containers:
       - name: homepage
-        image: "ghcr.io/gethomepage/homepage:v0.10.9"
+        image: "ghcr.io/gethomepage/homepage:v1.1.1"
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -62,6 +62,9 @@ spec:
         #   subPath: widgets.yaml
         - mountPath: /app/config/logs
           name: logs
+        env:
+        - name: HOMEPAGE_ALLOWED_HOSTS
+          value: www.example.com
       dnsConfig:
         options:
         - name: ndots
