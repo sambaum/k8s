@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bunkerweb-ingress
+  namespace: default
+  annotations:
+    gethomepage.dev/description: Open-source and next generation web application firewall (WAF)
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    # gethomepage.dev/icon: bunkerweb.svg
+    # gethomepage.dev/name: bunkerweb
+    # gethomepage.dev/pod-selector: app=bunkerweb
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'bunkerweb.example.com'
+    secretName: bunkerweb-tls
+  rules:
+  - host: bunkerweb.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: ui-bunkerweb
+            port:
+              number: 7000

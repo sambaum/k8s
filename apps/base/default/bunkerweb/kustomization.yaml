@@ -1,0 +1,5 @@
+resources:
+- helmrepository.yaml
+- release.yaml
+- ui-ingress.yaml
+- pv-pvc.yaml
