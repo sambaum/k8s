@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: network-multitool
-        image: wbitt/network-multitool@sha256:6bbaffc56bcf3e3a6f2ac8b9e88b1bfa485d07871402a8970d0219a83bd9efde
+        image: wbitt/network-multitool@sha256:d1137e87af76ee15cd0b3d4c7e2fcd111ffbd510ccd0af076fc98dddfc50a735
         imagePullPolicy: Always
         ports:
         - containerPort: 80
