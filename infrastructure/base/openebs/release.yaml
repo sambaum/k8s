@@ -25,10 +25,10 @@ spec:
       replicated:
         mayastor:
           enabled: false
-    lvmLocalPv:
+    lvm-LocalPv:
       controller:
         affinity: {}
-    zfsLocalPv:
+    zfs-LocalPv:
       controller:
         affinity: {}
     # apiserver:
