@@ -25,21 +25,11 @@ spec:
       replicated:
         mayastor:
           enabled: false
-
-
-    # apiserver:
-    #   enabled: false
-    # defaultStorageConfig:
-    #   enabled: false
-    # provisioner:
-    #   enabled: false
-    # snapshotOperator:
-    #   enabled: false
-    # ndm:
-    #   enabled: false
-    # ndmOperator:
-    #   enabled: false
-    # ndmExporter:
-    #   enabled: false
-    # webhook:
-    #   enabled: false
+    lvm-localpv:
+      lvmController:
+        updateStrategy:
+          type: Recreate # allow upgrades on single-node clusters
+    zfs-localpv:
+      lvmController:
+        updateStrategy:
+          type: Recreate # allow upgrades on single-node clusters
