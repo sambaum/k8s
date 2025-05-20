@@ -1,5 +1,9 @@
-commonLabels:
-  app: paperless-test1
+labels:
+- includeSelectors: true
+  pairs:
+    app: paperless-test1
+
+nameSuffix: -test1
 
 resources:
 - ../../../base/default/paperless-ngx/
@@ -63,3 +67,6 @@ patches:
     - op: replace
       path: /spec/rules/0/host
       value: paperless-test1.composter.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/gethomepage.dev~1pod-selector
+      value: app=paperless-test1
