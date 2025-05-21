@@ -1,11 +1,12 @@
-commonLabels:
-  app: paperless-bills
+labels:
+- includeSelectors: true
+  pairs:
+    app: paperless-bills
+
+nameSuffix: -bills
 
 resources:
 - ../../../base/default/paperless-ngx/
-
-transformers:
-- ./kustomizeconfig/deploy-prefix-transformer.yaml
 
 patches:
 - target:
