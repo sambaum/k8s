@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
           - name: bank2ynab
-            image: faucet/python3:12.0.2
+            image: faucet/python3:12.0.3
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
