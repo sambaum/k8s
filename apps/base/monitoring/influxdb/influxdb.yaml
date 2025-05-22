@@ -18,7 +18,7 @@ spec:
       #TODO: create an init container with config-volume that creates /conf/monitoring/influxdb/
       containers:
       - name: influxdb
-        image: influxdb:2.7.11
+        image: influxdb:2.7.12
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8086
