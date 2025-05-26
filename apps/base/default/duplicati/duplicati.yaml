@@ -32,9 +32,10 @@ spec:
           value: 'Europe/Zurich'
         - name: DUPLICATI__WEBSERVICE_PASSWORD
           value: 'changeme'
-          # resources:
-          #   limits:
-          #     cpu: "1.5"
+        - name: DISABLE_DB_ENCRYPTION
+          value: 'true'
+        - name: SETTINGS_ENCRYPTION_KEY
+          value: 'changeme'
       dnsConfig:
         options:
         - name: ndots
