@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: rotki
-        image: rotki/rotki:v1.38.4
+        image: rotki/rotki:v1.39.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
