@@ -1,16 +1,18 @@
-resources:
-- ../../../base/default/tdarr/
-patches:
-- target:
-    kind: Ingress
-    name: tdarr-ingress
-  patch: |-
-    - op: replace
-      path: /spec/rules/0/host
-      value: tdarr.int.sambaum.ch
-    - op: replace
-      path: /spec/tls/0/hosts
-      value: [tdarr.int.sambaum.ch]
-    - op: replace
-      path: /metadata/annotations/cert-manager.io~1cluster-issuer
-      value: letsencrypt-production
+resources: []
+
+# resources:
+# - ../../../base/default/tdarr/
+# patches:
+# - target:
+#     kind: Ingress
+#     name: tdarr-ingress
+#   patch: |-
+#     - op: replace
+#       path: /spec/rules/0/host
+#       value: tdarr.int.sambaum.ch
+#     - op: replace
+#       path: /spec/tls/0/hosts
+#       value: [tdarr.int.sambaum.ch]
+#     - op: replace
+#       path: /metadata/annotations/cert-manager.io~1cluster-issuer
+#       value: letsencrypt-production
