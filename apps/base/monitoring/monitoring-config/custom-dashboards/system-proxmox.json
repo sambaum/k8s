@@ -24,8 +24,8 @@
   "description": "Use Node Exporter v0.16 0.17 to streamline and optimize important metrics. Contains: CPU memory Disk IO network temperature and other monitoring indicators. https://github.com/starsliao/Prometheus",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 9893,
   "graphTooltip": 0,
+  "id": 2037,
   "links": [
     {
       "icon": "external link",
@@ -46,15 +46,12 @@
       "url": "https://grafana.com/dashboards/8919"
     }
   ],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
       },
-      "editable": true,
-      "error": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -75,7 +72,6 @@
       "pluginVersion": "10.4.1",
       "repeat": "node",
       "repeatDirection": "h",
-      "style": {},
       "title": "$node",
       "type": "text"
     },
@@ -125,7 +121,6 @@
         "x": 0,
         "y": 1
       },
-      "hideTimeOverride": true,
       "id": 15,
       "maxDataPoints": 100,
       "options": {
@@ -133,6 +128,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -144,7 +140,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "time() - node_boot_time_seconds{instance=~\"$node\"}",
@@ -211,6 +207,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -222,7 +219,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$node\", mode='system'}) by (cpu))",
@@ -306,7 +303,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[5m])) * 100)",
@@ -391,7 +388,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"iowait\"}[5m])) * 100",
@@ -449,7 +446,6 @@
         "x": 10,
         "y": 1
       },
-      "hideTimeOverride": false,
       "id": 172,
       "maxDataPoints": 100,
       "options": {
@@ -467,7 +463,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$node\"} / (node_memory_MemTotal_bytes{instance=~\"$node\"})))* 100",
@@ -523,7 +519,6 @@
         "x": 13,
         "y": 1
       },
-      "hideTimeOverride": false,
       "id": 16,
       "maxDataPoints": 100,
       "options": {
@@ -541,7 +536,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "node_filefd_allocated{instance=~\"$node\"}",
@@ -623,8 +618,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
-      "repeatDirection": "h",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"$node\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
@@ -706,8 +700,7 @@
         "showThresholdMarkers": true,
         "sizing": "manual"
       },
-      "pluginVersion": "10.4.1",
-      "repeatDirection": "h",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node\",mountpoint=\"$maxmount\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"$node\",mountpoint=\"$maxmount\",fstype=~\"ext4|xfs\"})",
@@ -773,6 +766,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -784,7 +778,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
@@ -816,6 +810,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 8,
             "gradientMode": "none",
@@ -874,11 +869,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "node_load1{instance=~\"$node\"}",
@@ -943,7 +939,6 @@
         "x": 11,
         "y": 6
       },
-      "hideTimeOverride": false,
       "id": 171,
       "maxDataPoints": 3,
       "options": {
@@ -965,10 +960,12 @@
           "values": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -999,6 +996,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "align": "auto",
             "cellOptions": {
               "type": "auto"
             },
@@ -1069,8 +1067,7 @@
                       "value": null
                     },
                     {
-                      "color": "rgba(237, 129, 40, 0.89)",
-                      "value": null
+                      "color": "rgba(237, 129, 40, 0.89)"
                     }
                   ]
                 }
@@ -1242,7 +1239,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1344,6 +1341,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 7,
             "gradientMode": "none",
@@ -1402,11 +1400,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"system\"}[1m]))",
@@ -1470,6 +1469,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 12,
             "gradientMode": "none",
@@ -1528,11 +1528,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes{instance=~\"$node\"}",
@@ -1669,13 +1670,14 @@
         "showValue": "auto",
         "stacking": "normal",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         },
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "irate(node_disk_reads_completed_total{instance=~\"$node\"}[1m])",
@@ -1781,13 +1783,14 @@
         "showValue": "auto",
         "stacking": "normal",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         },
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "irate(node_disk_read_bytes_total{instance=~\"$node\"}[1m])",
@@ -1829,6 +1832,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 30,
             "gradientMode": "none",
@@ -1887,11 +1891,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "irate(node_disk_io_time_seconds_total{instance=~\"$node\"}[1m])",
@@ -1949,6 +1954,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 11,
             "gradientMode": "none",
@@ -2007,11 +2013,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "irate(node_network_receive_bytes_total{instance=~'$node',device!~'tap.*'}[5m])*8",
@@ -2051,6 +2058,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2110,11 +2118,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "expr": "node_netstat_Tcp_CurrEstab{instance=~'$node'}",
@@ -2183,6 +2192,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2287,11 +2297,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2329,7 +2340,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"nvme_nvme1\", sensor=\"temp3\"}",
+          "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"nvme_nvme1\", sensor=\"temp1\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -2410,6 +2421,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2514,11 +2526,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2554,6 +2567,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2633,10 +2647,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2728,6 +2744,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "bars",
             "fillOpacity": 20,
             "gradientMode": "hue",
@@ -2790,11 +2807,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2830,6 +2848,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2929,11 +2948,12 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.4.2",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -3013,8 +3033,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3114,8 +3133,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3215,8 +3233,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3366,8 +3383,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3462,8 +3478,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "30s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "StarsL",
     "Prometheus",
@@ -3477,11 +3494,9 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
-        "hide": 0,
         "label": "interval",
         "name": "interval",
         "options": [
@@ -3552,16 +3567,12 @@
           }
         ],
         "query": "10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
-        "queryValue": "",
         "refresh": 2,
-        "skipUrlSync": false,
         "type": "interval"
       },
       {
-        "allFormat": "glob",
         "current": {
           "isNone": true,
-          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -3570,11 +3581,8 @@
           "uid": "prometheus"
         },
         "definition": "",
-        "hide": 0,
         "includeAll": false,
         "label": "surroundings",
-        "multi": false,
-        "multiFormat": "regex values",
         "name": "env",
         "options": [],
         "query": {
@@ -3583,18 +3591,12 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
-        "allFormat": "glob",
         "current": {
           "isNone": true,
-          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -3603,11 +3605,8 @@
           "uid": "prometheus"
         },
         "definition": "label_values(node_exporter_build_info{env='$env'},name)",
-        "hide": 0,
         "includeAll": false,
         "label": "CPU name",
-        "multi": false,
-        "multiFormat": "regex values",
         "name": "name",
         "options": [],
         "query": {
@@ -3616,17 +3615,11 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
-        "allFormat": "glob",
         "current": {
-          "selected": false,
           "text": "proxmox.int.sambaum.ch:9100",
           "value": "proxmox.int.sambaum.ch:9100"
         },
@@ -3635,11 +3628,8 @@
           "uid": "prometheus"
         },
         "definition": "label_values(node_exporter_build_info{name='$name'},instance)",
-        "hide": 0,
         "includeAll": false,
         "label": "node",
-        "multi": false,
-        "multiFormat": "regex values",
         "name": "node",
         "options": [],
         "query": {
@@ -3648,17 +3638,12 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
           "isNone": true,
-          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -3669,8 +3654,6 @@
         "definition": "",
         "hide": 2,
         "includeAll": false,
-        "label": "",
-        "multi": false,
         "name": "maxmount",
         "options": [],
         "query": {
@@ -3679,16 +3662,10 @@
         },
         "refresh": 1,
         "regex": "/.*\\\"(.*)\\\".*/",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "ccce7712-cc0a-5475-cd5c-6bba7bb11306",
           "value": "ccce7712-cc0a-5475-cd5c-6bba7bb11306"
         },
@@ -3697,10 +3674,8 @@
           "uid": "prometheus"
         },
         "definition": "label_values(nvidia_smi_index,uuid)",
-        "hide": 0,
         "includeAll": false,
         "label": "GPU",
-        "multi": false,
         "name": "gpu",
         "options": [],
         "query": {
@@ -3710,8 +3685,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -3720,32 +3693,7 @@
     "from": "now-1h",
     "to": "now"
   },
-  "timepicker": {
-    "now": true,
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "browser",
   "title": "System (Proxmox)",
   "uid": "system-proxmox",
