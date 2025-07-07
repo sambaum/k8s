@@ -63,7 +63,7 @@ spec:
         - name: PHP_TZ
           value: 'Europe/Zurich'
       - name: lychee-cache
-        image: redis:7.4.4-alpine
+        image: redis:7.4.5-alpine
         ports:
         - containerPort: 6379
         volumeMounts:
