@@ -55,7 +55,8 @@
         "wekanteam/wekan",
         "toddrob/searcharr"
       ],
-      "versioning": "semver-coerced"
+      "versioning": "semver-coerced",
+      "ignoreVersions": ["v7.93"] // broken wekan version
     },
     {
       "matchPackageNames": [
