@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  namespace: default
+  labels:
+    app: lidarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lidarr
+  template:
+    metadata:
+      labels:
+        app: lidarr
+    spec:
+      containers:
+      - name: lidarr
+        image: linuxserver/lidarr:2.13.1-develop
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8686
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: lidarr
+        - mountPath: /downloads
+          name: media
+          subPath: Downloads
+        env:
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: TZ
+          value: 'Europe/Zurich'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lidarr-service
+  namespace: default
+spec:
+  selector:
+    app: lidarr
+  ports:
+  - protocol: TCP
+    port: 8686
+    targetPort: 8686
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lidarr-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Songs
+    gethomepage.dev/enabled: 'true'
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: lidarr.svg
+    gethomepage.dev/name: lidarr
+    gethomepage.dev/pod-selector: app=lidarr
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'lidarr.example.com'
+    secretName: lidarr-tls
+  rules:
+  - host: lidarr.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: lidarr-service
+            port:
+              number: 8686
