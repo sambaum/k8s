@@ -127,6 +127,15 @@
     },
     {
       "matchPackageNames": [
+        "redis"
+      ],
+      "matchFileNames": [
+        "**/paperless.yaml"
+      ],
+      "versioning": "regex:^7\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 7
+    },
+    {
+      "matchPackageNames": [
         "mariadb"
       ],
       "matchFileNames": [
