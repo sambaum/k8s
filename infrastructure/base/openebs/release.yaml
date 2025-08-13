@@ -33,3 +33,7 @@ spec:
       lvmController:
         updateStrategy:
           type: Recreate # allow upgrades on single-node clusters
+    loki:
+      enabled: false # promtail/loki deployed separately
+    alloy:
+      enabled: false # promtail/loki deployed separately
