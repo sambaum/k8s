@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      version: '69.8.2'
+      version: '76.3.0'
   interval: 30m
   install:
     remediation:
@@ -40,9 +40,9 @@ spec:
       persistence:
         type: pvc
         enabled: true
-        # finalizers:
-        # - kubernetes.io/pvc-protection
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
+      initChownData:
+        enabled: false # initChownData stopped working
       ingress:
         enabled: true
         ingressClassName: nginx
