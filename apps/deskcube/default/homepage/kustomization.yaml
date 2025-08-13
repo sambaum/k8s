@@ -14,3 +14,10 @@ patches:
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+- target:
+    kind: Deployment
+    name: homepage
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: homepage.deskcube.int.sambaum.ch
