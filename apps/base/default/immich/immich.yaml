@@ -52,7 +52,7 @@ spec:
           value: "2283"
 
       - name: immich-folder-album-creator
-        image: salvoxia/immich-folder-album-creator:0.19.0
+        image: salvoxia/immich-folder-album-creator:0.20.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /run/secrets/api_key
