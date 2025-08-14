@@ -1,0 +1,16 @@
+resources:
+- ../../../base/default/immich/
+patches:
+- target:
+    kind: Ingress
+    name: immich-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: immich.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [immich.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

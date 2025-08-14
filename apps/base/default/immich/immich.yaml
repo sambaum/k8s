@@ -1,0 +1,199 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich
+  namespace: default
+  labels:
+    app: immich
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immich
+  template:
+    metadata:
+      labels:
+        app: immich
+    spec:
+      containers:
+      - name: immich
+        image: ghcr.io/immich-app/immich-server:v1.137.3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 2283
+        volumeMounts:
+        - mountPath: /data
+          name: data
+          subPath: immich/upload
+        - mountPath: /mnt/photos
+          name: nas-sam
+          subPath: Personal/Fotos/Publish-Web/Events
+          readOnly: true
+        - mountPath: /mnt/videos
+          name: nas-sam
+          subPath: Personal/Videos/Done/
+          readOnly: true
+        env:
+        - name: TZ
+          value: "Europe/Zurich"
+        - name: DB_DATABASE_NAME
+          value: "immich"
+        - name: DB_USERNAME
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "postgres"
+        - name: REDIS_HOSTNAME
+          value: "immich-redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: UPLOAD_LOCATION
+          value: "/data"
+        - name: IMMICH_PORT
+          value: "2283"
+
+      - name: immich-folder-album-creator
+        image: salvoxia/immich-folder-album-creator:0.19.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /run/secrets/api_key
+          name: config
+          subPath: immich/api_key
+        - mountPath: /mnt/photos
+          name: nas-sam
+          subPath: Personal/Fotos/Publish-Web/Events
+          readOnly: true
+        # - mountPath: /mnt/videos
+        #   name: nas-sam
+        #   subPath: Personal/Videos/Done/
+        env:
+        - name: TZ
+          value: "Europe/Zurich"
+        - name: CRON_EXPRESSION
+          value: "00 * * * *"
+        - name: API_URL
+          value: "http://immich-service:2283/api/"
+        - name: API_KEY
+          value: ""
+        - name: ROOT_PATH
+          value: "/mnt/photos"
+        - name: API_KEY_FILE
+          value: "/run/secrets/api_key/api_key.txt"
+        - name: RUN_IMMEDIATELY
+          value: "true"
+        # - name: MODE
+        #   value: "DELETE_ALL"
+        # - name: DELETE_CONFIRM
+        #   value: "true"
+        - name: ALBUM_LEVELS
+          value: "-1"
+
+      - name: immich-db
+        image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: config
+          subPath: immich/postgres
+        env:
+        - name: POSTGRES_DB
+          value: "immich"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+        - name: POSTGRES_INITDB_ARGS
+          value: "--data-checksums"
+      - name: immich-redis
+        image: docker.io/valkey/valkey:8-bookworm
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+      - name: nas-sam
+        persistentVolumeClaim:
+          claimName: truenas-sam-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: immich-service
+  namespace: default
+spec:
+  selector:
+    app: immich
+  ports:
+  - protocol: TCP
+    port: 2283
+    targetPort: 2283
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: database
+  namespace: default
+spec:
+  selector:
+    app: immich
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: immich-redis-service
+  namespace: default
+spec:
+  selector:
+    app: immich
+  ports:
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immich-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Frame-Options: allow";
+    gethomepage.dev/description: immich-NGX
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: immich.svg
+    gethomepage.dev/name: immich
+    gethomepage.dev/pod-selector: app=immich
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'immich.example.com'
+    secretName: immich-tls
+  rules:
+  - host: immich.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: immich-service
+            port:
+              number: 2283
