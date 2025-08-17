@@ -84,7 +84,7 @@ spec:
           name: config
           subPath: paperless/redis
       - name: paperless-db
-        image: pgautoupgrade/pgautoupgrade:14.18-alpine
+        image: pgautoupgrade/pgautoupgrade:17.5-alpine
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
