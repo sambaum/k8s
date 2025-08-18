@@ -1,0 +1,13 @@
+resources:
+- pv-pvc.yaml
+- helmrepository.yaml
+- release.yaml
+
+# - namespace.yaml
+
+patches:
+- path: budibase-dnsconfig-patch.yaml
+  target:
+    kind: Deployment
+    name: budibase
+    namespace: default

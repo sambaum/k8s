@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: budibase
+  namespace: default
+spec:
+  releaseName: budibase
+  targetNamespace: default
+  chart:
+    spec:
+      chart: budibase
+      sourceRef:
+        kind: HelmRepository
+        name: budibase
+        namespace: flux-system
+      version: '3.0.399'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        # kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        gethomepage.dev/description: Budibase
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: budibase.svg
+        gethomepage.dev/name: budibase
+      className: "nginx"
+      hosts:
+      - host: budibase.example.com
+        paths:
+        - backend:
+            service:
+              name: proxy-service
+              port:
+                number: 10000
+          path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - 'budibase.example.com'
+        secretName: budibase-tls
+    couchdb:
+      persistentVolume:
+        enabled: true
+        storageClass: ""
+        existingClaim: openebs-local-hostpath-default-conf-pvc-budibase
+      adminPassword: admin
+    services:
+      objectStore:
+        storageClass: ""
+        existingClaim: openebs-local-hostpath-default-conf-pvc-budibase
+      redis:
+        storageClass: ""
+        existingClaim: openebs-local-hostpath-default-conf-pvc-budibase

@@ -1,0 +1,16 @@
+resources:
+- ../../../base/default/budibase/
+patches:
+- target:
+    kind: HelmRelease
+    name: budibase
+  patch: |-
+    - op: replace
+      path: /spec/values/ingress/hosts/0/host
+      value: budibase.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: budibase.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
