@@ -106,7 +106,7 @@ spec:
         - name: POSTGRES_INITDB_ARGS
           value: "--data-checksums"
       - name: immich-redis
-        image: docker.io/valkey/valkey:8-bookworm
+        image: valkey:8-bookworm
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 6379
