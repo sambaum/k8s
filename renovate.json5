@@ -146,6 +146,15 @@
         "**/firefly.yaml"
       ],
       "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 10
+    },
+    {
+      "matchPackageNames": [
+        "14-vectorchord0.3.0-pgvectors0.2.0"
+      ],
+      "matchFileNames": [
+        "**/immich.yaml"
+      ],
+      "versioning": "regex:^14.*$" // Stick to Version 14
     }
   ]
 }
