@@ -154,7 +154,7 @@
       "matchFileNames": [
         "**/immich.yaml"
       ],
-      "versioning": "regex:^14.*$" // Stick to Version 14
+      "allowedVersions": "regex:^14.*$" // Stick to Version 14
     }
   ]
 }
