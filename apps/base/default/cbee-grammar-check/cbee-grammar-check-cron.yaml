@@ -4,7 +4,7 @@ metadata:
   name: cbee-grammar-check-job
   namespace: default
 spec:
-  schedule: "40 10 * * *" # every hour
+  schedule: "9 9 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
