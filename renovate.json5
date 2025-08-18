@@ -149,7 +149,7 @@
     },
     {
       "matchPackageNames": [
-        "14-vectorchord0.3.0-pgvectors0.2.0"
+        "ghcr.io/immich-app/postgres"
       ],
       "matchFileNames": [
         "**/immich.yaml"
