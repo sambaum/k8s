@@ -2,9 +2,12 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: cbee-grammar-check-job
+  namespace: default
 spec:
-  schedule: "35 10 * * *" # every hour
+  schedule: "40 10 * * *" # every hour
   concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
