@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cbee-grammar-check
+  namespace: default
+  labels:
+    app: cbee-grammar-check
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cbee-grammar-check
+  template:
+    metadata:
+      labels:
+        app: cbee-grammar-check
+    spec:
+      containers:
+      - name: cbee-grammar-check
+        image: nginx:1.29.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: config
+          subPath: cbee-grammar-check/output
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cbee-grammar-check-service
+  namespace: default
+spec:
+  selector:
+    app: cbee-grammar-check
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cbee-grammar-check-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: cbee-grammar-check Subtitle Management
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://cbee.ch/wp-content/uploads/2025/04/pumphose-aus-musselin-mit-hasen-gr6268-neu-600x600.jpg
+    gethomepage.dev/name: cbee-grammar-check
+    gethomepage.dev/pod-selector: app=cbee-grammar-check
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'cbee-grammar-check.example.com'
+    secretName: cbee-grammar-check-tls
+  rules:
+  - host: cbee-grammar-check.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: cbee-grammar-check-service
+            port:
+              number: 80

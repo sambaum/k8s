@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cbee-grammar-check-job
+spec:
+  schedule: "0 9 * * *" # every hour
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cbee-grammar-check-job
+            image: bitnami/minideb:bullseye
+            command: [ "/bin/bash", "-c", "apt-get update && apt-get install -y curl jq parallel && /scripts/get-all-products.sh" ]
+            # command: [ "/bin/bash", "-c", "apt-get update && apt-get install -y curl jq parallel; tail -f /dev/null" ]
+            volumeMounts:
+            - mountPath: /output
+              name: config
+              subPath: cbee-grammar-check/output
+            - mountPath: /scripts
+              name: config
+              subPath: cbee-grammar-check/scripts
+          restartPolicy: OnFailure
+          volumes:
+          - name: config
+            persistentVolumeClaim:
+              claimName: local-conf-pvc

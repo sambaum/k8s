@@ -1,0 +1,16 @@
+resources:
+- ../../../base/default/cbee-grammar-check/
+patches:
+- target:
+    kind: Ingress
+    name: cbee-grammar-check-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: cbee-grammar-check.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [cbee-grammar-check.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

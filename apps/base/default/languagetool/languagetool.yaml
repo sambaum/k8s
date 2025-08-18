@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: languagetool
+  namespace: default
+  labels:
+    app: languagetool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: languagetool
+  template:
+    metadata:
+      labels:
+        app: languagetool
+    spec:
+      containers:
+      - name: languagetool
+        image: meyay/languagetool:6.6-4
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+        - mountPath: /ngrams
+          name: data
+          subPath: languagetool/ngrams
+        - mountPath: /fasttext
+          name: data
+          subPath: languagetool/fasttext
+        - mountPath: /languagetool/org/languagetool/resource/de/hunspell/spelling_custom.txt
+          name: conf
+          subPath: languagetool/hunspell/spelling_custom.txt
+        env:
+        - name: download_ngrams_for_langs
+          value: "en,de"
+        - name: MAP_UID
+          value: "783"
+        - name: MAP_GID
+          value: "783"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+      - name: conf
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: languagetool-service
+  namespace: default
+spec:
+  selector:
+    app: languagetool
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: languagetool-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: languagetool
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/4/languagetool-4f7zizp9ioylg7yb2acfga.png/languagetool-9v6j4oqpdciosyi5xji81g.png?_a=DATAg1AAZAA0
+    gethomepage.dev/name: languagetool
+    gethomepage.dev/pod-selector: app=languagetool
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'languagetool.example.com'
+    secretName: languagetool-tls
+  rules:
+  - host: languagetool.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: languagetool-service
+            port:
+              number: 8081
