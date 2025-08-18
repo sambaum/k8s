@@ -6,8 +6,28 @@ patches:
     name: immich-ingress
   patch: |-
     - op: replace
-      path: /spec/rules/0/host
-      value: immich.int.sambaum.ch
+      path: /spec/rules
+      value:
+        - host: foto.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: immich-service
+                  port:
+                    number: 2283
+        - host: immich.int.sambaum.ch
+          http:
+            paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: immich-service
+                  port:
+                    number: 2283
     - op: replace
       path: /spec/tls/0/hosts
       value: [immich.int.sambaum.ch]
