@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cbee-grammar-check-job
 spec:
-  schedule: "0 9 * * *" # every hour
+  schedule: "35 10 * * *" # every hour
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
