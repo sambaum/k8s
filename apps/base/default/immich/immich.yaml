@@ -30,8 +30,8 @@ spec:
           subPath: Personal/Fotos/Publish-Web/Events
           readOnly: true
         - mountPath: /mnt/videos
-          name: nas-sam
-          subPath: Personal/Videos/Done/
+          name: nas-media
+          subPath: Video/Home-Movies-Flat
           readOnly: true
         env:
         - name: TZ
@@ -62,9 +62,10 @@ spec:
           name: nas-sam
           subPath: Personal/Fotos/Publish-Web/Events
           readOnly: true
-        # - mountPath: /mnt/videos
-        #   name: nas-sam
-        #   subPath: Personal/Videos/Done/
+        - mountPath: /mnt/videos
+          name: nas-media
+          subPath: Video/Home-Movies-Flat
+          readOnly: true
         env:
         - name: TZ
           value: "Europe/Zurich"
@@ -120,6 +121,9 @@ spec:
       - name: nas-sam
         persistentVolumeClaim:
           claimName: truenas-sam-pvc
+      - name: nas-media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
       dnsConfig:
         options:
         - name: ndots

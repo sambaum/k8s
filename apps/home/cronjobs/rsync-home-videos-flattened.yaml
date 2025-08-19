@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rsync-home-videos-flattened
+  namespace: default
+spec:
+  schedule: "*/15 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rsync-home-videos-flattened
+            image: instrumentisto/rsync-ssh:alpine3.15
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - find /done -type f -name "*H265*" -exec rsync -av --inplace {} /home-movies/ \;
+            volumeMounts:
+            - mountPath: /done/
+              name: nas-sam
+              subPath: Personal/Videos/Done
+            - mountPath: /home-movies/
+              name: nas-media
+              subPath: Video/Home-Movies-Flat
+          restartPolicy: OnFailure
+          volumes:
+          - name: nas-sam
+            persistentVolumeClaim:
+              claimName: truenas-sam-pvc
+          - name: nas-media
+            persistentVolumeClaim:
+              claimName: truenas-media-pvc
+      ttlSecondsAfterFinished: 172800
