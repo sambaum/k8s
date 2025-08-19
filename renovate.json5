@@ -1,6 +1,5 @@
 {
   "enabled": true,
-
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
@@ -39,6 +38,17 @@
   "packageRules": [
     {
       "matchPackageNames": [
+        "cert-manager"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "registryUrls": [
+        "https://charts.jetstack.io" // supress the warning about the helm repository being deprecated
+      ]
+    },
+    {
+      "matchPackageNames": [
         "metallb",
         "ingress-nginx",
         "ghcr.io/fluxcd/kustomize-controller",
@@ -59,7 +69,7 @@
         "toddrob/searcharr"
       ],
       "versioning": "semver-coerced",
-      "allowedVersions": "<7.93 || >7.93"  // broken wekan version
+      "allowedVersions": "<7.93 || >7.93" // broken wekan version
     },
     {
       "matchPackageNames": [
