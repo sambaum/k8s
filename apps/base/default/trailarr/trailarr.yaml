@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: trailarr
-        image: nandyalu/trailarr:0.5.1
+        image: nandyalu/trailarr:0.5.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7889
