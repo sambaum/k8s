@@ -92,7 +92,6 @@ spec:
               selector:
                 matchLabels:
                   app: prometheus
-
       ingress:
         enabled: true
         ingressClassName: nginx

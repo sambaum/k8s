@@ -45,6 +45,9 @@ spec:
         - mountPath: /data/home-videos
           name: media
           subPath: Video/Home-Movies
+        - mountPath: /data/audio
+          name: media
+          subPath: MP3
         - mountPath: /data/home-photos
           name: nas-sam
           subPath: Personal/Fotos/Publish
