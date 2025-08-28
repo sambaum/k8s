@@ -24,6 +24,7 @@
       "archive/**"
     ]
   },
+  // Prevent automated major-upgrades for all packages
   "minor": {
     "automerge": true
   },
@@ -47,6 +48,7 @@
         "https://charts.jetstack.io" // supress the warning about the helm repository being deprecated
       ]
     },
+    // Prevent automated major- and minor-upgrades for below packages
     {
       "matchPackageNames": [
         "metallb",
@@ -63,6 +65,7 @@
         "automerge": true
       }
     },
+    // Configure specific versions for some packages
     {
       "matchPackageNames": [
         "wekanteam/wekan",
