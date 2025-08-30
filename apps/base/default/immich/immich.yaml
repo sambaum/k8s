@@ -51,7 +51,7 @@ spec:
         - name: IMMICH_PORT
           value: "2283"
 
-      - name: immich-folder-album-creator
+      - name: immich-folder-album-creator-fotos
         image: salvoxia/immich-folder-album-creator:0.20.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
@@ -62,15 +62,11 @@ spec:
           name: nas-sam
           subPath: Personal/Fotos/Publish-Web/Events
           readOnly: true
-        - mountPath: /mnt/videos
-          name: nas-media
-          subPath: Video/Home-Movies-Flat
-          readOnly: true
         env:
         - name: TZ
           value: "Europe/Zurich"
         - name: CRON_EXPRESSION
-          value: "00 * * * *"
+          value: "0 8 * * *"
         - name: API_URL
           value: "http://immich-service:2283/api/"
         - name: API_KEY
@@ -87,6 +83,41 @@ spec:
         #   value: "true"
         - name: ALBUM_LEVELS
           value: "-1"
+
+      - name: immich-folder-album-creator-videos
+        image: salvoxia/immich-folder-album-creator:0.20.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /run/secrets/api_key
+          name: config
+          subPath: immich/api_key
+        - mountPath: /mnt/videos
+          name: nas-media
+          subPath: Video/Home-Movies-Flat
+          readOnly: true
+        env:
+        - name: TZ
+          value: "Europe/Zurich"
+        - name: CRON_EXPRESSION
+          value: "0 8 * * *"
+        - name: API_URL
+          value: "http://immich-service:2283/api/"
+        - name: API_KEY
+          value: ""
+        - name: ROOT_PATH
+          value: "/mnt/videos"
+        - name: API_KEY_FILE
+          value: "/run/secrets/api_key/api_key.txt"
+        - name: RUN_IMMEDIATELY
+          value: "true"
+        # - name: MODE
+        #   value: "DELETE_ALL"
+        # - name: DELETE_CONFIRM
+        #   value: "true"
+        - name: ALBUM_LEVELS
+          value: "-1"
+
+      # /script/immich_auto_album.sh
 
       - name: immich-db
         image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0

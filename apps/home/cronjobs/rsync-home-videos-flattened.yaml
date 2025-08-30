@@ -19,7 +19,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - find /done -type f -name "*H265*" -exec rsync -av --inplace {} /home-movies/ \;
+            - find /done -type f -name "*H265*" -exec rsync -av --inplace {} /home-movies/Home-Videos \;
             volumeMounts:
             - mountPath: /done/
               name: nas-sam
