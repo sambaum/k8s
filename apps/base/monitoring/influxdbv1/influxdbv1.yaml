@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: influxdbv1
-        image: influxdb:1.11.8
+        image: influxdb:1.12.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8086
@@ -30,7 +30,7 @@ spec:
           subPath: influxdbv1
       initContainers:
       - name: influxdbv1-init
-        image: influxdb:1.11.8
+        image: influxdb:1.12.2
         imagePullPolicy: IfNotPresent
         command: ['sh', '-c', 'if [ -s /etc/influxdb/influxdb.conf ]; then echo file already there; else influxd config > /etc/influxdb/influxdb.conf; fi']
         # command: ['sh', '-c', 'influxd config > /etc/influxdb/influxdb.conf']
