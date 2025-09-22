@@ -58,6 +58,11 @@
     - source_labels: [ device ]
       action: drop
       regex: 'pflog0'
+  - job_name: 'node-exporter'
+    static_configs:
+    - targets: [ 'bazzite.int.sambaum.ch:9100' ]
+      labels:
+        group: 'console'
   - job_name: proxmox
     scrape_interval: 30s
     static_configs:
@@ -140,7 +145,9 @@
     metrics_path: '/metrics'
     scheme: http
     static_configs:
-    - targets: [ 'nvidia-gpu-exporter:9835' ]
+    - targets:
+      - 'nvidia-gpu-exporter:9835'
+      - 'bazzite.int.sambaum.ch:9835'
       labels:
         group: 'nvidia-gpu-exporter'
 
