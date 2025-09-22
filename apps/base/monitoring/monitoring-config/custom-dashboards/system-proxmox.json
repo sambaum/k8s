@@ -2309,6 +2309,19 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=~\"platform_nct.*\", sensor=~\"temp.*\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{sensor}}",
+          "range": true,
+          "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}",
           "format": "time_series",
@@ -2354,11 +2367,13 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"temp2\"}\t",
           "hide": false,
           "interval": "",
           "legendFormat": "System",
+          "range": true,
           "refId": "C"
         },
         {
@@ -2378,6 +2393,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"temp3\"}\t",
           "format": "time_series",
@@ -2385,6 +2401,7 @@
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "VRM MOS",
+          "range": true,
           "refId": "F"
         },
         {
