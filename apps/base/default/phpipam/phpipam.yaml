@@ -34,6 +34,8 @@ spec:
           value: '/'
         - name: IPAM_TRUST_X_FORWARDED
           value: "true"
+        - name: IPAM_DISABLE_INSTALLER
+          value: "1"
       - name: phpipam-cron
         image: phpipam/phpipam-cron:v1.7.3
         imagePullPolicy: IfNotPresent
