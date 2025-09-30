@@ -41,8 +41,19 @@ spec:
         type: pvc
         enabled: true
         existingClaim: openebs-local-hostpath-monitoring-conf-pvc-grafana
+      # initChownData workaround for "chown: Permission denied" on upgrades
       initChownData:
-        enabled: false # initChownData stopped working
+        enabled: true
+        securityContext:
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+          runAsUser: 0
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - CHOWN
+            - DAC_OVERRIDE
+            - FOWNER
       ingress:
         enabled: true
         ingressClassName: nginx
