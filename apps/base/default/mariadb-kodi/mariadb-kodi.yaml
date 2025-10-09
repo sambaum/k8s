@@ -40,7 +40,7 @@ spec:
         - name: PUID
           value: '1000'
       - name: mariadb-kodi-phpmyadmin
-        image: phpmyadmin:5.2.2
+        image: phpmyadmin:5.2.3
         imagePullPolicy: Always
         ports:
         - containerPort: 80
