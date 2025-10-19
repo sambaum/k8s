@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: immich
-        image: ghcr.io/immich-app/immich-server:v1.144.1
+        image: ghcr.io/immich-app/immich-server:v2.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 2283
@@ -205,6 +205,9 @@ metadata:
   name: immich-ingress
   namespace: default
   annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600' # Recommendation for websockets
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600' # Recommendation for websockets
+    nginx.ingress.kubernetes.io/use-http2: "false" # works better with websockets
     cert-manager.io/cluster-issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     nginx.ingress.kubernetes.io/configuration-snippet: |
