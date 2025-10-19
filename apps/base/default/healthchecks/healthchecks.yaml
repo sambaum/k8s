@@ -32,8 +32,6 @@ spec:
           value: '1000'
         - name: PGID
           value: '1000'
-        - name: DEBUG
-          value: 'True'
         - name: REGENERATE_SETTINGS
           value: 'true'
         - name: SITE_ROOT
