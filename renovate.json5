@@ -96,6 +96,12 @@
     },
     {
       "matchPackageNames": [
+        "nandyalu/trailarr"
+      ],
+      "allowedVersions": "!/^0\\.5\\.5$/" // Blacklist
+    },
+    {
+      "matchPackageNames": [
         "linuxserver/healthchecks"
       ],
       "allowedVersions": "!/^2\\.\\d{1,2}\\.\\d{8}$/" // Blacklist
