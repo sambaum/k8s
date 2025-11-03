@@ -20,7 +20,7 @@ spec:
         runAsGroup: 0
       containers:
       - name: jellyfin
-        image: linuxserver/jellyfin:10.11.1
+        image: linuxserver/jellyfin:10.11.2
         resources:
           limits:
             nvidia.com/gpu: '1'
