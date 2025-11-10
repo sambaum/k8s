@@ -11,3 +11,7 @@ configMapGenerator:
   namespace: monitoring
   files:
   - loki-config.yaml
+- name: promtail-config
+  namespace: monitoring
+  files:
+  - promtail-config.yaml
