@@ -1,0 +1,13 @@
+resources:
+# - change-folder-permissions-job.yaml
+- pv-pvc.yaml
+# - helmrepository.yaml
+# - release.yaml
+- loki.yaml
+- promtail.yaml
+
+configMapGenerator:
+- name: loki-config
+  namespace: monitoring
+  files:
+  - loki-config.yaml
