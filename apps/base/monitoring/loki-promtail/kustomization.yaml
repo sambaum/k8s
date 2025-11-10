@@ -15,3 +15,10 @@ configMapGenerator:
   namespace: monitoring
   files:
   - promtail-config.yaml
+- name: loki-datasource
+  namespace: monitoring
+  files:
+  - loki-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
