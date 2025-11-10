@@ -26,23 +26,23 @@ spec:
             fieldRef:
               fieldPath: 'spec.nodeName'
         volumeMounts:
-        # - name: logs
-        #   mountPath: /var/log
+        - name: logs
+          mountPath: /var/log
         # - name: promtail-config
         #   mountPath: /etc/promtail
-        # - mountPath: /var/lib/docker/containers
-        #   name: varlibdockercontainers
-        #   readOnly: true
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+          readOnly: true
         - name: config
           mountPath: /etc/promtail/promtail.yaml
           subPath: promtail-config.yaml
       volumes:
-      # - name: logs
-      #   hostPath:
-      #     path: /var/log
-      # - name: varlibdockercontainers
-      #   hostPath:
-      #     path: /var/lib/docker/containers
+      - name: logs
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
       # - name: promtail-config
       #   configMap:
       #     name: promtail-config

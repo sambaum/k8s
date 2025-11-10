@@ -61,8 +61,8 @@ spec:
                 - source_labels:
                     - __syslog_message_hostname
                   target_label: host
-    # grafana:
-    #   enabled: false
-    #   sidecar:
-    #     datasources:
-    #       enabled: true
+    grafana:
+      enabled: false
+      sidecar:
+        datasources:
+          enabled: true
