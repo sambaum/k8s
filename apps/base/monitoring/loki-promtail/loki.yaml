@@ -21,6 +21,7 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /tmp/loki
+          subPath: loki-promtail
       containers:
       - name: loki
         image: grafana/loki:3.5.8
@@ -35,13 +36,15 @@ spec:
           subPath: loki-config.yaml
         - name: data
           mountPath: /tmp/loki
+          subPath: loki-promtail
       volumes:
       - name: config
         configMap:
           name: loki-config
       - name: data
         persistentVolumeClaim:
-          claimName: openebs-local-hostpath-monitoring-data-pvc-loki-promtail
+          claimName: local-data-monitoring-pvc
+          # claimName: openebs-local-hostpath-monitoring-data-pvc-loki-promtail
 ---
 apiVersion: v1
 kind: Service
