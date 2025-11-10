@@ -14,6 +14,13 @@ spec:
       labels:
         app: loki
     spec:
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: [ "sh", "-c", "chown -R 10001:10001 /tmp/loki && chmod -R 755 /tmp/loki" ]
+        volumeMounts:
+        - name: data
+          mountPath: /tmp/loki
       containers:
       - name: loki
         image: grafana/loki:3.5.8
@@ -28,14 +35,13 @@ spec:
           subPath: loki-config.yaml
         - name: data
           mountPath: /tmp/loki
-          # subPath: loki
       volumes:
       - name: config
         configMap:
           name: loki-config
       - name: data
         persistentVolumeClaim:
-          claimName: openebs-local-hostpath-monitoring-data-pvc-loki
+          claimName: openebs-local-hostpath-monitoring-data-pvc-loki-promtail
 ---
 apiVersion: v1
 kind: Service
