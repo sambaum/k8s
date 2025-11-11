@@ -1,18 +1,17 @@
+namespace: monitoring
+
 resources:
 - loki.yaml
 - promtail.yaml
 
 configMapGenerator:
 - name: loki-config
-  namespace: monitoring
   files:
   - loki-config.yaml
 - name: promtail-config
-  namespace: monitoring
   files:
   - promtail-config.yaml
 - name: loki-datasource
-  namespace: monitoring
   files:
   - loki-datasource.yaml
   options:
