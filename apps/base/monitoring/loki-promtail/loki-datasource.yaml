@@ -6,3 +6,8 @@ datasources:
   url: "http://loki:3100"
   isDefault: false
   jsonData: {}
+
+# Temporary for deleting the datasource that came from loki-stack
+deleteDatasources:
+- name: Loki
+  orgId: 1
