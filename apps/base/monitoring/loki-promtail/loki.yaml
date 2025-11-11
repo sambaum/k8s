@@ -44,7 +44,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-monitoring-pvc
-          # claimName: openebs-local-hostpath-monitoring-data-pvc-loki-promtail
 ---
 apiVersion: v1
 kind: Service

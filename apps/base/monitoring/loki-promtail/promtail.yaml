@@ -28,8 +28,6 @@ spec:
         volumeMounts:
         - name: logs
           mountPath: /var/log
-        # - name: promtail-config
-        #   mountPath: /etc/promtail
         - mountPath: /var/lib/docker/containers
           name: varlibdockercontainers
           readOnly: true
@@ -43,9 +41,6 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
-      # - name: promtail-config
-      #   configMap:
-      #     name: promtail-config
       - name: config
         configMap:
           name: promtail-config
