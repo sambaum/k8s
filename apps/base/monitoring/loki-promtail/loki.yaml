@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loki
+spec:
+  serviceName: "loki"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: [ "sh", "-c", "chown -R 10001:10001 /tmp/loki && chmod -R 755 /tmp/loki" ]
+        volumeMounts:
+        - name: data
+          mountPath: /tmp/loki
+          subPath: loki-promtail
+      containers:
+      - name: loki
+        image: grafana/loki:3.5.8
+        args:
+        - -config.file=/etc/loki/config.yaml
+        ports:
+        - containerPort: 3100
+          name: http
+        volumeMounts:
+        - name: config
+          mountPath: /etc/loki/config.yaml
+          subPath: loki-config.yaml
+        - name: data
+          mountPath: /tmp/loki
+          subPath: loki-promtail
+      volumes:
+      - name: config
+        configMap:
+          name: loki-config
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-monitoring-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3100
+    targetPort: 3100
+    protocol: TCP
+    name: http
+  selector:
+    app: loki

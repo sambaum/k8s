@@ -1,0 +1,19 @@
+namespace: monitoring
+
+resources:
+- loki.yaml
+- promtail.yaml
+
+configMapGenerator:
+- name: loki-config
+  files:
+  - loki-config.yaml
+- name: promtail-config
+  files:
+  - promtail-config.yaml
+- name: loki-datasource
+  files:
+  - loki-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
