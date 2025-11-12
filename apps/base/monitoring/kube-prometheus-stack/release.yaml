@@ -81,10 +81,10 @@ spec:
       enabled: true
       prometheusSpec:
         enableAdminAPI: true
-        podMonitorNamespaceSelector: {}
-        podMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/component: monitoring
+        # podMonitorNamespaceSelector: {}
+        # podMonitorSelector:
+        #   matchLabels:
+        #     app.kubernetes.io/component: monitoring
         retention: 30d
         storageSpec:
           volumeClaimTemplate:
