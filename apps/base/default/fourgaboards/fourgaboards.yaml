@@ -102,7 +102,7 @@ metadata:
     gethomepage.dev/description: Straightforward boards system
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other
-    gethomepage.dev/icon: 4gaboards.svg
+    gethomepage.dev/icon: https://4gaboards.com/img/4gaboards200w-white.webp
     gethomepage.dev/name: 4ga Boards
     gethomepage.dev/pod-selector: app=fourgaboards
     gethomepage.dev/weight: '-10'
