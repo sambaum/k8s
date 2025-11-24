@@ -99,11 +99,11 @@ metadata:
   annotations:
     # nginx.ingress.kubernetes.io/proxy-body-size: 100m
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    gethomepage.dev/description: Open-Source Kanban
+    gethomepage.dev/description: Straightforward boards system
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other
-    gethomepage.dev/icon: fourgaboards.svg
-    gethomepage.dev/name: fourgaboards
+    gethomepage.dev/icon: 4gaboards.svg
+    gethomepage.dev/name: 4ga Boards
     gethomepage.dev/pod-selector: app=fourgaboards
     gethomepage.dev/weight: '-10'
 spec:
