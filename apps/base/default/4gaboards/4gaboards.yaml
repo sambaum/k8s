@@ -1,0 +1,125 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 4gaboards
+  namespace: default
+  labels:
+    app: 4gaboards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 4gaboards
+  template:
+    metadata:
+      labels:
+        app: 4gaboards
+    spec:
+      containers:
+      - name: 4gaboards
+        image: ghcr.io/rargames/4gaboards:3.2.14
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1337
+        volumeMounts:
+        - mountPath: /app/public/user-avatars
+          name: config
+          subPath: 4gaboards/user-avatars
+        - mountPath: /app/public/project-background-images
+          name: config
+          subPath: 4gaboards/project-background-images
+        - mountPath: /app/private/attachments
+          name: config
+          subPath: 4gaboards/attachments
+        env:
+        - name: BASE_URL
+          value: http://example.com
+        - name: SECRET_KEY
+          value: notsecretkey
+        - name: DATABASE_URL
+          value: postgresql://4gaboards:4gaboards@4gaboards-db/4gaBoards
+        - name: NODE_ENV
+          value: production
+      - name: 4gaboards-db
+        image: postgres:16-alpine3.22
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: config
+          subPath: 4gaboards/postgres
+        env:
+        - name: POSTGRES_DB
+          value: 4gaboards
+        - name: POSTGRES_USER
+          value: 4gaboards
+        - name: POSTGRES_PASSWORD
+          value: 4gaboards
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: 4gaboards-service
+  namespace: default
+spec:
+  selector:
+    app: 4gaboards
+  ports:
+  - protocol: TCP
+    port: 1337
+    targetPort: 1337
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: 4gaboards-db
+  namespace: default
+spec:
+  selector:
+    app: 4gaboards
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: 4gaboards-ingress
+  namespace: default
+  annotations:
+    # nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Open-Source Kanban
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other
+    gethomepage.dev/icon: 4gaboards.svg
+    gethomepage.dev/name: 4gaboards
+    gethomepage.dev/pod-selector: app=4gaboards
+    gethomepage.dev/weight: '-10'
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - '4gaboards.example.com'
+    secretName: 4gaboards-tls
+  rules:
+  - host: 4gaboards.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: 4gaboards-service
+            port:
+              number: 1337

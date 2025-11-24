@@ -1,0 +1,23 @@
+resources:
+- ../../../base/default/4gaboards/
+patches:
+- target:
+    kind: Deployment
+    name: 4gaboards
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: https://4gaboards.int.sambaum.ch
+- target:
+    kind: Ingress
+    name: 4gaboards-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: 4gaboards.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts/0
+      value: 4gaboards.int.sambaum.ch
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
