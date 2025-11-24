@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 4gaboards
+  name: fourgaboards
   namespace: default
   labels:
-    app: 4gaboards
+    app: fourgaboards
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 4gaboards
+      app: fourgaboards
   template:
     metadata:
       labels:
-        app: 4gaboards
+        app: fourgaboards
     spec:
       containers:
-      - name: 4gaboards
+      - name: fourgaboards
         image: ghcr.io/rargames/4gaboards:3.2.14
         imagePullPolicy: IfNotPresent
         ports:
@@ -24,23 +24,23 @@ spec:
         volumeMounts:
         - mountPath: /app/public/user-avatars
           name: config
-          subPath: 4gaboards/user-avatars
+          subPath: fourgaboards/user-avatars
         - mountPath: /app/public/project-background-images
           name: config
-          subPath: 4gaboards/project-background-images
+          subPath: fourgaboards/project-background-images
         - mountPath: /app/private/attachments
           name: config
-          subPath: 4gaboards/attachments
+          subPath: fourgaboards/attachments
         env:
         - name: BASE_URL
           value: http://example.com
         - name: SECRET_KEY
           value: notsecretkey
         - name: DATABASE_URL
-          value: postgresql://4gaboards:4gaboards@4gaboards-db/4gaBoards
+          value: postgresql://fourgaboards:fourgaboards@fourgaboards-db/fourgaboards
         - name: NODE_ENV
           value: production
-      - name: 4gaboards-db
+      - name: fourgaboards-db
         image: postgres:16-alpine3.22
         imagePullPolicy: IfNotPresent
         ports:
@@ -48,14 +48,14 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: config
-          subPath: 4gaboards/postgres
+          subPath: fourgaboards/postgres
         env:
         - name: POSTGRES_DB
-          value: 4gaboards
+          value: fourgaboards
         - name: POSTGRES_USER
-          value: 4gaboards
+          value: fourgaboards
         - name: POSTGRES_PASSWORD
-          value: 4gaboards
+          value: fourgaboards
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -68,11 +68,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: 4gaboards-service
+  name: fourgaboards-service
   namespace: default
 spec:
   selector:
-    app: 4gaboards
+    app: fourgaboards
   ports:
   - protocol: TCP
     port: 1337
@@ -81,11 +81,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: 4gaboards-db
+  name: fourgaboards-db
   namespace: default
 spec:
   selector:
-    app: 4gaboards
+    app: fourgaboards
   ports:
   - protocol: TCP
     port: 5432
@@ -94,7 +94,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 4gaboards-ingress
+  name: fourgaboards-ingress
   namespace: default
   annotations:
     # nginx.ingress.kubernetes.io/proxy-body-size: 100m
@@ -102,24 +102,24 @@ metadata:
     gethomepage.dev/description: Open-Source Kanban
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Other
-    gethomepage.dev/icon: 4gaboards.svg
-    gethomepage.dev/name: 4gaboards
-    gethomepage.dev/pod-selector: app=4gaboards
+    gethomepage.dev/icon: fourgaboards.svg
+    gethomepage.dev/name: fourgaboards
+    gethomepage.dev/pod-selector: app=fourgaboards
     gethomepage.dev/weight: '-10'
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - '4gaboards.example.com'
-    secretName: 4gaboards-tls
+    - 'fourgaboards.example.com'
+    secretName: fourgaboards-tls
   rules:
-  - host: 4gaboards.example.com
+  - host: fourgaboards.example.com
     http:
       paths:
       - pathType: Prefix
         path: '/'
         backend:
           service:
-            name: 4gaboards-service
+            name: fourgaboards-service
             port:
               number: 1337
