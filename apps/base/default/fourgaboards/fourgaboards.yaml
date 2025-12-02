@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fourgaboards
-        image: ghcr.io/rargames/4gaboards:3.2.15
+        image: ghcr.io/rargames/4gaboards:3.2.16
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 1337
