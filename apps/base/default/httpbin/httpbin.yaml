@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: default
+  labels:
+    app: httpbin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+    spec:
+      containers:
+      - name: httpbin
+        image: mccutchen/go-httpbin:2.19.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: httpbin-service
+  namespace: default
+spec:
+  selector:
+    app: httpbin
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpbin-ingress
+  namespace: default
+  annotations:
+    gethomepage.dev/description: A reasonably complete and well-tested golang port of httpbin
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: httpbin.svg
+    gethomepage.dev/name: httpbin
+    gethomepage.dev/pod-selector: app=httpbin
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'httpbin.example.com'
+    secretName: httpbin-tls
+  rules:
+  - host: httpbin.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: httpbin-service
+            port:
+              number: 8080
