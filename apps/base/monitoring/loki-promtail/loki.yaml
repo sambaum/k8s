@@ -23,7 +23,7 @@ spec:
           subPath: loki-promtail
       containers:
       - name: loki
-        image: grafana/loki:3.6.2
+        image: grafana/loki:3.6.3
         args:
         - -config.file=/etc/loki/config.yaml
         ports:
