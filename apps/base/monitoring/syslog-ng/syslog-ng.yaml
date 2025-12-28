@@ -18,7 +18,7 @@ spec:
       initContainers:
       containers:
       - name: syslog-ng
-        image: linuxserver/syslog-ng:4.8.3
+        image: linuxserver/syslog-ng:4.10.2
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: syslog-ng-config-vol
