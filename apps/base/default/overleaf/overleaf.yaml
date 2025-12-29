@@ -40,7 +40,7 @@ spec:
         - name: SHARELATEX_SITE_URL
           value: https://overleaf.example.com
       - name: mongo
-        image: mongo:4.4.29
+        image: mongo:4.4.30
         # perform onece: mongo --eval "rs.initiate({ _id: \"overleaf\", members: [ { _id: 0, host: \"127.0.0.1:27017\" } ] })"
         # image: mongo:5.0.25
         # args: ["--replSet", "overleaf"]
