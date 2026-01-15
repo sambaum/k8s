@@ -1,0 +1,26 @@
+resources:
+- deployment.yaml
+- regular-secret.yaml
+- configmap.yaml
+# - existing-secret.yaml
+
+# Kustomize generated resources
+configMapGenerator:
+- name: generated-config
+  literals:
+  - color=blue
+  files:
+  - extra-config.properties
+- name: showcase-script
+  files:
+  - showcase-script.sh
+
+secretGenerator:
+- name: generated-secret
+  literals:
+  - token=abcdef
+  files:
+  - credentials.txt
+  - cred=credentials.txt
+  - password.txt
+  - password=password.txt

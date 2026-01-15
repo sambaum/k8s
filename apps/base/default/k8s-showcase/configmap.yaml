@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: regular-config
+data:
+  log_level: DEBUG
+  feature_flag: "true"

@@ -1,0 +1,179 @@
+=== configmap.yaml ===
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: regular-config
+data:
+  log_level: DEBUG
+  feature_flag: "true"
+
+=== credentials.txt ===
+api_key=123456
+
+=== deployment.yaml ===
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: showcase-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: showcase
+  template:
+    metadata:
+      labels:
+        app: showcase
+    spec:
+      enableServiceLinks: false
+      containers:
+      - name: app
+        image: busybox:1.37.0
+        command: [ "/bin/sh", "-c" ]
+        args: [ "/scripts/showcase-script.sh" ]
+        env:
+
+        # Inject regular secret as environment variables
+        - name: SHOWCASE_SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: regular-secret
+              key: username
+        - name: SHOWCASE_SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: regular-secret
+              key: password
+
+        # Inject regular configmap as environment variables
+        - name: SHOWCASE_LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: regular-config
+              key: log_level
+        # Inject generated secret as environment variables where the password is read from a file
+        - name: PASSWORD_FROM_FILE
+          valueFrom:
+            secretKeyRef:
+              name: generated-secret
+              key: password.txt
+
+        # Inject generated secret as environment variables where the password is read from a file. the key is renamed.
+        - name: PASSWORD_FROM_FILE_WITH_RENAMED_KEY
+          valueFrom:
+            secretKeyRef:
+              name: generated-secret
+              key: password
+
+        volumeMounts:
+        # Mount regular configmap as a file. will create files under /etc/showcase/config for each key in the configmap
+        - name: config-volume
+          mountPath: /etc/showcase/config
+
+        # Mount regular secret as a file. will create files under /etc/showcase/secret for each key in the secret
+        - name: secret-volume
+          mountPath: /etc/showcase/secret
+          readOnly: true
+
+        # Mount generated secret as a file. will create files under /etc/showcase/generated-secret for each key in the secret
+        - name: generated-secret-volume
+          mountPath: /etc/showcase/generated-secret
+
+        # Mount script to output ENV and files
+        - name: showcase-script-volume
+          mountPath: /scripts/showcase-script.sh
+          readOnly: true
+          subPath: showcase-script.sh
+
+      volumes:
+      - name: config-volume
+        configMap:
+          name: regular-config
+      - name: secret-volume
+        secret:
+          secretName: regular-secret
+      - name: showcase-script-volume
+        configMap:
+          name: showcase-script
+          defaultMode: 0o755
+      - name: generated-secret-volume
+        secret:
+          secretName: generated-secret
+
+=== existing-secret.yaml ===
+apiVersion: v1
+kind: Secret
+metadata:
+  name: existing-secret
+  # assume this already exists in the cluster, used later with kustomize
+
+=== extra-config.properties ===
+# extra-config.properties
+# Demonstrates configMapGenerator from file
+
+app.name=showcase
+app.mode=demo
+
+=== kustomization.yaml ===
+resources:
+- deployment.yaml
+- regular-secret.yaml
+- configmap.yaml
+# - existing-secret.yaml
+
+# Kustomize generated resources
+configMapGenerator:
+- name: generated-config
+  literals:
+  - color=blue
+  files:
+  - extra-config.properties
+- name: showcase-script
+  files:
+  - showcase-script.sh
+
+secretGenerator:
+- name: generated-secret
+  literals:
+  - token=abcdef
+  files:
+  - credentials.txt
+  - cred=credentials.txt
+  - password.txt
+  - password=password.txt
+
+=== password.txt ===
+penis123
+
+=== regular-secret.yaml ===
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regular-secret
+type: Opaque
+data:
+  username: YWRtaW4= # base64 for "admin"
+  password: c2VjcmV0 # base64 for "secret"
+
+=== showcase-script.sh ===
+echo
+echo "=== ENV ==="
+env | env | egrep -v "(KUBERNETES|HOSTNAME|SHLVL|HOME|TERM|PATH|LANG|PWD|LC_ALL)" || true
+echo
+echo "=== CONFIG FILES ==="
+for dir in /etc/showcase/*; do
+	[ -d "$dir" ] || continue
+	echo "# $dir"
+	for file in "$dir"/*; do
+		[ -f "$file" ] || continue
+		echo "--- $file ---"
+		cat "$file"
+		echo
+	done
+done
+
+sleep 3600
+
+=== tmp.txt ===
+

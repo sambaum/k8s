@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: showcase-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: showcase
+  template:
+    metadata:
+      labels:
+        app: showcase
+    spec:
+      enableServiceLinks: false
+      containers:
+      - name: app
+        image: busybox:1.37.0
+        command: [ "/bin/sh", "-c" ]
+        args: [ "/scripts/showcase-script.sh" ]
+        env:
+
+        # Inject regular secret as environment variables
+        - name: SHOWCASE_SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: regular-secret
+              key: username
+        - name: SHOWCASE_SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: regular-secret
+              key: password
+
+        # Inject regular configmap as environment variables
+        - name: SHOWCASE_LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: regular-config
+              key: log_level
+        # Inject generated secret as environment variables where the password is read from a file
+        - name: PASSWORD_FROM_FILE
+          valueFrom:
+            secretKeyRef:
+              name: generated-secret
+              key: password.txt
+
+        # Inject generated secret as environment variables where the password is read from a file. the key is renamed.
+        - name: PASSWORD_FROM_FILE_WITH_RENAMED_KEY
+          valueFrom:
+            secretKeyRef:
+              name: generated-secret
+              key: password
+
+        volumeMounts:
+        # Mount regular configmap as a file. will create files under /etc/showcase/config for each key in the configmap
+        - name: config-volume
+          mountPath: /etc/showcase/config
+
+        # Mount regular secret as a file. will create files under /etc/showcase/secret for each key in the secret
+        - name: secret-volume
+          mountPath: /etc/showcase/secret
+          readOnly: true
+
+        # Mount generated secret as a file. will create files under /etc/showcase/generated-secret for each key in the secret
+        - name: generated-secret-volume
+          mountPath: /etc/showcase/generated-secret
+
+        # Mount script to output ENV and files
+        - name: showcase-script-volume
+          mountPath: /scripts/showcase-script.sh
+          readOnly: true
+          subPath: showcase-script.sh
+
+      volumes:
+      - name: config-volume
+        configMap:
+          name: regular-config
+      - name: secret-volume
+        secret:
+          secretName: regular-secret
+      - name: showcase-script-volume
+        configMap:
+          name: showcase-script
+          defaultMode: 0o755
+      - name: generated-secret-volume
+        secret:
+          secretName: generated-secret
