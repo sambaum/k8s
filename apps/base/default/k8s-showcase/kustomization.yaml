@@ -1,3 +1,5 @@
+namespace: default
+
 resources:
 - deployment.yaml
 - regular-secret.yaml
