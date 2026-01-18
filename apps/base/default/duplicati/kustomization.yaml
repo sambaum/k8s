@@ -1,3 +1,2 @@
-resources: []
-
-# - duplicati.yaml
+resources:
+- duplicati.yaml
