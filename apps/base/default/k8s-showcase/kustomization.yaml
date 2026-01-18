@@ -2,7 +2,6 @@ resources:
 - deployment.yaml
 - regular-secret.yaml
 - configmap.yaml
-# - existing-secret.yaml
 
 # Kustomize generated resources
 configMapGenerator:
@@ -24,3 +23,12 @@ secretGenerator:
   - cred=credentials.txt
   - password.txt
   - password=password.txt
+
+# existing secret credentials. this will create a secret with keys rootUser and rootPassword
+# Attention: if password.txt is SOPS encrypted, kustomize will NOT decrypt it automatically! hence, this does not work with SOPS encrypted files.
+secretGenerator:
+- name: my-credentials
+  literals:
+  - rootUser=user1
+  files:
+  - rootPassword=password.txt
