@@ -243,7 +243,7 @@
     scrape_interval: 30s
     metrics_path: '/probe'
     params:
-      target: [ 'https://truenas.int.sambaum.ch/api/v2.0/pool/dataset' ]
+      target: [ 'https://truenas.int.sambaum.ch/api/v2.0/pool/dataset/details' ]
       module: [ 'truenas-pool-dataset' ]
     scheme: https
     static_configs:
