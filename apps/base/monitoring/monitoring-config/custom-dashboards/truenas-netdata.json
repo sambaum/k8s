@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2277,
+  "id": 2309,
   "links": [],
   "panels": [
     {
@@ -666,11 +666,38 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "physical_memory{instance=~\"$instance\"}",
+          "expr": "truenas_truenas_truenas_meminfo_available_available/1000000",
+          "hide": false,
           "instant": false,
-          "legendFormat": "{{kind}}",
+          "legendFormat": "Free",
           "range": true,
-          "refId": "A"
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum({__name__=~\"truenas_truenas_services_mem.*\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Services",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "truenas_truenas_truenas_arcstats_size_size/1000000",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Cache",
+          "range": true,
+          "refId": "E"
         }
       ],
       "title": "Memory usage",
@@ -985,7 +1012,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 20,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1055,11 +1082,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "zfs_hits_rate{instance=~\"$instance\"}",
+          "expr": "\n# ARC demand hit rate (%)\n100 * (\n  truenas_truenas_truenas_arcstats_ddhit_ddhit\n+ truenas_truenas_truenas_arcstats_dmhit_dmhit\n)\n/\ntruenas_truenas_truenas_arcstats_dread_dread\n",
+          "hide": false,
           "instant": false,
-          "legendFormat": "{{op}}",
+          "legendFormat": "ARC",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "title": "ZFS cache hit rate",
@@ -1297,18 +1325,6 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "disk_utilization{instance=~\"$instance\"}",
-          "instant": false,
-          "legendFormat": "{{disk}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
           "expr": "{__name__=~\"truenas_truenas_truenas_disk_stats_busy__serial_lunid_.*\"}",
           "hide": false,
           "instant": false,
@@ -1506,6 +1522,19 @@
           "legendFormat": "{{op}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "\n# L2ARC hit rate (%)\n100 * truenas_truenas_truenas_arcstats_l2hits_l2hits\n    / truenas_truenas_truenas_arcstats_l2read_l2read\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "L2",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "L2 cache hit rate",
