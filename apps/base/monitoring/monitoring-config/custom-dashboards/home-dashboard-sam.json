@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2075,
+  "id": 2269,
   "links": [],
   "panels": [
     {
@@ -41,7 +41,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -96,7 +96,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -225,9 +225,9 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -248,7 +248,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -266,13 +266,7 @@
         "x": 6,
         "y": 0
       },
-      "id": 34,
-      "links": [
-        {
-          "title": "TrueNAS Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/truenas-scale/truenas-scale"
-        }
-      ],
+      "id": 36,
       "options": {
         "legend": {
           "calcs": [],
@@ -286,7 +280,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -299,9 +293,31 @@
           "legendFormat": "{{disk}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "{__name__=~\"truenas_truenas_truenas_disk_stats_busy__serial_lunid_.*\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "TrueNAS Disk utilization",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "{__name__=\"truenas_truenas_truenas_disk_stats_busy__serial_lunid_([a-zA-Z0-9]*)_([a-zA-Z0-9]*)_busy.*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -323,7 +339,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -378,7 +394,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -537,7 +553,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -593,7 +609,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -636,7 +652,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -721,7 +737,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -771,7 +787,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -811,7 +827,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "orange",
@@ -862,7 +878,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -945,7 +961,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -983,7 +999,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1054,7 +1070,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -1098,7 +1114,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1150,7 +1166,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "dark-purple",
@@ -1193,7 +1209,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1230,7 +1246,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -1277,7 +1293,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1342,7 +1358,7 @@
             "steps": [
               {
                 "color": "red",
-                "value": null
+                "value": 0
               },
               {
                 "color": "orange",
@@ -1389,7 +1405,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1426,7 +1442,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -1473,7 +1489,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1558,7 +1574,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -1597,7 +1613,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1689,7 +1705,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -1733,7 +1749,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1798,7 +1814,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "title": "Dashboards",
       "type": "dashlist"
     },
@@ -1822,7 +1838,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -1874,7 +1890,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -1931,7 +1947,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "blue",
@@ -1985,7 +2001,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -2163,7 +2179,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -2196,7 +2212,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -2222,7 +2238,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": 0
               },
               {
                 "color": "orange",
@@ -2269,7 +2286,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -2301,7 +2318,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2345,7 +2363,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -2378,7 +2396,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -2418,7 +2437,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
@@ -2441,7 +2460,7 @@
   ],
   "preload": false,
   "refresh": "30s",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
@@ -2687,6 +2706,5 @@
   "timezone": "",
   "title": "My Home Dashboard",
   "uid": "my-home-dashboard",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }
