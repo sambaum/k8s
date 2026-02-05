@@ -37,7 +37,7 @@ spec:
         - name: SECRET_KEY
           value: notsecretkey
         - name: DATABASE_URL
-          value: postgresql://fourgaboards:fourgaboards@fourgaboards-db/fourgaboards
+          value: postgresql://fourgaboards:fourgaboards@127.0.0.1/fourgaboards
         - name: NODE_ENV
           value: production
       - name: fourgaboards-db
@@ -77,19 +77,6 @@ spec:
   - protocol: TCP
     port: 1337
     targetPort: 1337
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: fourgaboards-db
-  namespace: default
-spec:
-  selector:
-    app: fourgaboards
-  ports:
-  - protocol: TCP
-    port: 5432
-    targetPort: 5432
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
