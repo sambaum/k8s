@@ -127,7 +127,7 @@ spec:
       # 5. Optionally delete old Postgres data after verifying that the restore was successful
       # Note: When 18 becomes available, /var/lib/postgresql/data might have to be changed to /var/lib/postgresql
       - name: immich-db
-        image: ghcr.io/immich-app/postgres:17-vectorchord0.5.3-pgvector0.8.1
+        image: ghcr.io/immich-app/postgres:18-vectorchord0.5.3-pgvector0.8.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
