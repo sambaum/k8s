@@ -126,15 +126,17 @@ spec:
       # 4. Select Restore from Backup in the UI and pick the latest backup
       # 5. Optionally delete old Postgres data after verifying that the restore was successful
       # Note: When 18 becomes available, /var/lib/postgresql/data might have to be changed to /var/lib/postgresql
+      # Links:
+      # https://docs.immich.app/administration/backup-and-restore/
       - name: immich-db
-        image: ghcr.io/immich-app/postgres:17-vectorchord0.5.3-pgvector0.8.1
+        image: ghcr.io/immich-app/postgres:18-vectorchord0.5.3-pgvector0.8.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
+        - mountPath: /var/lib/postgresql
           name: config
-          subPath: immich/postgres/17
+          subPath: immich/postgres/18
         env:
         - name: POSTGRES_DB
           value: "immich"
@@ -144,6 +146,8 @@ spec:
           value: "postgres"
         - name: POSTGRES_INITDB_ARGS
           value: "--data-checksums"
+        - name: TZ
+          value: "Europe/Zurich"
       - name: immich-redis
         image: valkey/valkey:8-bookworm
         imagePullPolicy: IfNotPresent
