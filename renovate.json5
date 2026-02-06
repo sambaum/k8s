@@ -162,14 +162,5 @@
       ],
       "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 10
     },
-    {
-      "matchPackageNames": [
-        "ghcr.io/immich-app/postgres"
-      ],
-      "matchFileNames": [
-        "**/immich.yaml"
-      ],
-      "allowedVersions": "14.x" // Stick to Version 14
-    }
   ]
 }

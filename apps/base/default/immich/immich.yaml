@@ -119,15 +119,22 @@ spec:
 
       # /script/immich_auto_album.sh
 
+      # Upgrade Postgres:
+      # 1. Stop immich
+      # 2. Change image and subPath
+      # 3. Start immich, which will start as a new installation
+      # 4. Select Restore from Backup in the UI and pick the latest backup
+      # 5. Optionally delete old Postgres data after verifying that the restore was successful
+      # Note: When 18 becomes available, /var/lib/postgresql/data might have to be changed to /var/lib/postgresql
       - name: immich-db
-        image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+        image: ghcr.io/immich-app/postgres:17-vectorchord0.5.3-pgvector0.8.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: config
-          subPath: immich/postgres/14
+          subPath: immich/postgres/17
         env:
         - name: POSTGRES_DB
           value: "immich"
