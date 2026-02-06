@@ -127,7 +127,7 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: config
-          subPath: immich/postgres
+          subPath: immich/postgres/14
         env:
         - name: POSTGRES_DB
           value: "immich"
