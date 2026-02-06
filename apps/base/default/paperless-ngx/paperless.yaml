@@ -84,12 +84,12 @@ spec:
           name: config
           subPath: paperless/redis
       - name: paperless-db
-        image: pgautoupgrade/pgautoupgrade:17.7-debian
+        image: pgautoupgrade/pgautoupgrade:18.1-debian
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
+        - mountPath: /var/lib/postgresql
           name: config
           subPath: paperless/postgres
         env:
