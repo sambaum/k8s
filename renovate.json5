@@ -145,15 +145,6 @@
     },
     {
       "matchPackageNames": [
-        "mongo"
-      ],
-      "matchFileNames": [
-        "**/wekan.yaml"
-      ],
-      "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 5
-    },
-    {
-      "matchPackageNames": [
         "redis"
       ],
       "matchFileNames": [
