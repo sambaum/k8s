@@ -1,0 +1,25 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: envoy-gateway
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoy-gateway
+  namespace: default
+spec:
+  gatewayClassName: envoy-gateway
+  listeners:
+  - name: https
+    protocol: HTTPS
+    port: 8443
+    hostname: "podinfo.dumpster.int.sambaum.ch"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: podinfo-tls
+        kind: Secret
+        namespace: default
