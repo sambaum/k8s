@@ -41,12 +41,12 @@ spec:
         - name: NODE_ENV
           value: production
       - name: fourgaboards-db
-        image: pgautoupgrade/pgautoupgrade:16.11-debian
+        image: pgautoupgrade/pgautoupgrade:18.1-debian
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
+        - mountPath: /var/lib/postgresql
           name: config
           subPath: fourgaboards/postgres
         env:
