@@ -82,14 +82,6 @@
     // Configure specific versions for some packages
     {
       "matchPackageNames": [
-        "wekanteam/wekan",
-        "toddrob/searcharr"
-      ],
-      "versioning": "semver-coerced",
-      "allowedVersions": "<7.93 || >7.93" // broken wekan version
-    },
-    {
-      "matchPackageNames": [
         "linuxserver/prowlarr"
       ],
       "allowedVersions": "!/^1\\.8\\.\\d{4}$/" // Blacklist
