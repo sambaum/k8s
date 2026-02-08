@@ -36,6 +36,7 @@ compactor:
   working_directory: /tmp/loki/compactor
   retention_enabled: true
   delete_request_store: filesystem
+  compaction_interval: 10m
 
 schema_config:
   configs:
