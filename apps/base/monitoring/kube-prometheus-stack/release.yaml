@@ -37,9 +37,13 @@ spec:
       sidecar:
         dashboards:
           searchNamespace: ALL
-          skipTlsVerify: true
+          env:
+          - name: SKIP_TLS_VERIFY
+            value: "true"
         datasources:
-          skipTlsVerify: true
+          env:
+          - name: SKIP_TLS_VERIFY
+            value: "true"
       persistence:
         type: pvc
         enabled: true
