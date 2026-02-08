@@ -37,6 +37,9 @@ spec:
       sidecar:
         dashboards:
           searchNamespace: ALL
+          skipTlsVerify: true
+        datasources:
+          skipTlsVerify: true
       persistence:
         type: pvc
         enabled: true
