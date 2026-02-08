@@ -3,7 +3,7 @@ auth_enabled: false
 server:
   http_listen_port: 3100
   grpc_listen_port: 9096
-  log_level: debug
+  # log_level: debug
   grpc_server_max_concurrent_streams: 1000
 
 common:
@@ -27,6 +27,15 @@ query_range:
 
 limits_config:
   metric_aggregation_enabled: true
+  volume_enabled: true
+  retention_period: 90d
+  max_streams_per_user: 0
+  max_global_streams_per_user: 0
+
+compactor:
+  working_directory: /tmp/loki/compactor
+  retention_enabled: true
+  delete_request_store: filesystem
 
 schema_config:
   configs:
