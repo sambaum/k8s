@@ -98,9 +98,9 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-namespace: monitoring
 metadata:
   name: thanos-query-ingress
+  namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     gethomepage.dev/description: Thanos Querier for aggregated metrics queries
