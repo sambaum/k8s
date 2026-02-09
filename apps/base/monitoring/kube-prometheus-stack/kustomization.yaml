@@ -5,6 +5,7 @@ resources:
 - release.yaml
 - pv-pvc.yaml
 - create-prometheus-dir-job.yaml
+- thanos-deployment.yaml
 configMapGenerator:
 - name: flux-kube-state-metrics-config
   namespace: monitoring
@@ -14,5 +15,23 @@ configMapGenerator:
     labels:
       app.kubernetes.io/part-of: flux
       app.kubernetes.io/component: monitoring
+
+- name: thanos-datasource
+  namespace: monitoring
+  files:
+  - thanos-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
+
+secretGenerator:
+- name: thanos-objstore
+  namespace: monitoring
+  files:
+  - objstore.yml
+  type: Opaque
+  options:
+    disableNameSuffixHash: true # because the helm chart (sidecar) references it directly by name and expects it to be stable.
+
 configurations:
 - kustomizeconfig.yaml

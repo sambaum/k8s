@@ -1,0 +1,22 @@
+type: S3
+config:
+    bucket: thanos
+    endpoint: minio:9000
+    access_key: thanos
+    secret_key: ENC[AES256_GCM,data:Df+3mvKgNc3CfthYWr/NoCNtuiH2a9azyQ9TuoCD,iv:op/UtTFCpTMyZX5hixEKTRcxfuDzcskMwiCMAKU2Gq0=,tag:tbXxtPNCzpbD6v5YIRp8Ug==,type:str]
+    insecure: true
+sops:
+    age:
+        - recipient: age1gte9z7ue3uk3a4088kx3hcsfcww4pdzenufcjcpaxkg225zcsfks4wfnem
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTb2J0VERieVpBYkx5VVo2
+            a0xGQitkNUZqZmcyYm9FMTIxelhUNDJNd21nCms5SCtlOUtWZjd0cE9scUtYTWlD
+            YXdBZmE3SGoyWWZ6YzhWcHBDOVNUbUEKLS0tIGxzTHQ5ZXQ4NCtyNDRqM3VJbWQv
+            QzAyYjV2UlFDb3RqOUNGWnVoMng4VzQKSQeaImjeV/ZU3/LzsqDeZmx0Mb0K/Ru/
+            D89YuN8YgFxbOF33FvhE5lBIPNDQjQ41vSyFb4G23M5xOM9ZBnwL+Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-09T14:40:58Z"
+    mac: ENC[AES256_GCM,data:na3EGxtaWchq7YeRThNf8Au7umHqSLQgRNfYnOHjCJdANZrCsrVKXsoY4ZVxycQPT+V5nRYQtSgIs5xP+Pve1wJlhv7UMVXfdRT/0YipQQ1VSHjfdb5kb0LWn9GvRO3Cr6ughsWxnJGi/s/Ot4XlLf3sSGsXWK6StLGFH3e5Ce4=,iv:W9IE+/90+emV0ByWtrfT7/EZQXr9v0Oz8+2Do1TKUXs=,tag:fRxE0JEf6SUqsoc1WMAGjw==,type:str]
+    encrypted_regex: ^secret_key$
+    version: 3.11.0

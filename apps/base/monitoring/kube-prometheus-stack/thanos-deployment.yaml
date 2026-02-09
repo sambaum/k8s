@@ -1,0 +1,125 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thanos
+  labels:
+    app: thanos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thanos
+  template:
+    metadata:
+      labels:
+        app: thanos
+    spec:
+      volumes:
+      - name: objstore
+        secret:
+          secretName: thanos-objstore
+      - name: compactor-data
+        emptyDir: {}
+      - name: store-data
+        emptyDir: {}
+
+      containers:
+
+      - name: thanos-compactor
+        image: quay.io/thanos/thanos:v0.40.1
+        args:
+        - compact
+        - --data-dir=/var/thanos/compact
+        - --objstore.config-file=/etc/thanos/objstore.yml
+        - --wait
+        - --retention.resolution-raw=5d
+        - --retention.resolution-5m=14d
+        - --retention.resolution-1h=2y
+        volumeMounts:
+        - name: objstore
+          mountPath: /etc/thanos/objstore.yml
+          subPath: objstore.yml
+          readOnly: true
+        - name: compactor-data
+          mountPath: /var/thanos/compact
+
+      - name: thanos-query
+        image: quay.io/thanos/thanos:v0.40.1
+        args:
+        - query
+        - --http-address=0.0.0.0:9090
+        - --grpc-address=0.0.0.0:19090
+        - --query.auto-downsampling
+        - --endpoint=dnssrv+_grpc._tcp.prometheus-operated:10901
+        - --endpoint=127.0.0.1:19091
+        ports:
+        - name: http
+          containerPort: 9090
+        - name: grpc
+          containerPort: 19090
+
+      - name: thanos-store
+        image: quay.io/thanos/thanos:v0.40.1
+        args:
+        - store
+        - --grpc-address=0.0.0.0:19091
+        - --http-address=0.0.0.0:19191
+        - --objstore.config-file=/etc/thanos/objstore.yml
+        - --data-dir=/data
+        ports:
+        - name: grpc
+          containerPort: 19091
+        - name: http
+          containerPort: 19191
+        volumeMounts:
+        - name: objstore
+          mountPath: /etc/thanos/objstore.yml
+          subPath: objstore.yml
+          readOnly: true
+        - name: store-data
+          mountPath: /data
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: thanos-query-service
+spec:
+  selector:
+    app: thanos
+  ports:
+  - name: http
+    port: 9090
+    targetPort: 9090
+  - name: grpc
+    port: 19090
+    targetPort: 19090
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: thanos-query-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Thanos Querier for aggregated metrics queries
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Placeholder
+    gethomepage.dev/icon: thanos.svg
+    gethomepage.dev/name: Thanos Querier/Query
+    gethomepage.dev/pod-selector: app=thanos
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'thanos-query.example.com'
+    secretName: thanos-query-tls
+  rules:
+  - host: thanos-query.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: thanos-query-service
+            port:
+              number: 9090
