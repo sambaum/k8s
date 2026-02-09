@@ -49,8 +49,8 @@ metadata:
     gethomepage.dev/description: A reasonably complete and well-tested golang port of httpbin
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: httpbin.svg
-    gethomepage.dev/name: httpbin
+    gethomepage.dev/icon: https://cdn-icons-png.flaticon.com/512/1674/1674969.png
+    gethomepage.dev/name: HTTPBin
     gethomepage.dev/pod-selector: app=httpbin
 spec:
   ingressClassName: nginx
