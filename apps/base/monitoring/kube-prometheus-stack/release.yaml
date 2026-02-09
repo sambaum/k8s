@@ -37,6 +37,10 @@ spec:
       sidecar:
         dashboards:
           searchNamespace: ALL
+        datasources:
+          enabled: true
+          defaultDashboardsEnabled: true
+          isDefaultDatasource: false
       persistence:
         type: pvc
         enabled: true
