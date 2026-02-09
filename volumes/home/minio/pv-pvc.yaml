@@ -1,0 +1,29 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-thanos-minio-pvc
+  namespace: monitoring
+spec:
+  volumeName: truenas-thanos-minio-pv
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-thanos-minio-pv
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: truenas-databus.int.sambaum.ch
+    path: "/mnt/pool1/other"
+  mountOptions:
+  - nfsvers=4.1

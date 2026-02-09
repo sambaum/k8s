@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fix-minio-pv-permissions
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: fix-permissions
+        image: busybox:1.37.0
+        command: [ "sh", "-c", "chown -R 1000:1000 /data" ]
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: define-in-overlay # This is always overridden by overlays

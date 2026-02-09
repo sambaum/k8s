@@ -2,3 +2,4 @@ resources:
 - local
 - open-ebs
 - nfs
+- minio

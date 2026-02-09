@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minio
+  namespace: monitoring
+spec:
+  releaseName: minio
+  chart:
+    spec:
+      chart: minio
+      sourceRef:
+        kind: HelmRepository
+        name: minio
+        namespace: flux-system
+      version: '5.4.0'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+
+    mode: standalone
+    replicas: 1
+    persistence:
+      enabled: true
+      existingClaim: define-in-overlay # This is always overridden by overlays
+      subPath: define-in-overlay # This is always overridden by overlays
+    resources:
+      requests:
+        memory: 128Mi # because the chart default is 16Gi
+    existingSecret: minio-secrets
+    users:
+    - accessKey: thanos
+      existingSecret: minio-secrets
+      existingSecretKey: thanosPassword
+      policy: readwrite
+    buckets:
+    - name: thanos
+      policy: none
+      purge: false
+    service:
+      type: ClusterIP
+      port: 9000
+    consoleService:
+      type: ClusterIP
+      port: 9001
+    consoleIngress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        gethomepage.dev/description: MinIO S3 Object Storage Console
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: minio.svg
+        gethomepage.dev/name: MinIO Console
+        gethomepage.dev/pod-selector: app=minio
+      hosts:
+      - minio-console.example.com
+      tls:
+      - hosts:
+        - minio-console.example.com
+        secretName: thanos-minio-console-tls
+    metrics:
+      serviceMonitor:
+        enabled: false
