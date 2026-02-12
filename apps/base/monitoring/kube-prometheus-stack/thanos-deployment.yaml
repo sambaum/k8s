@@ -27,7 +27,7 @@ spec:
       containers:
 
       - name: thanos-compactor
-        image: quay.io/thanos/thanos:v0.40.1
+        image: quay.io/thanos/thanos:v0.41.0
         args:
         - compact
         - --data-dir=/var/thanos/compact
@@ -45,7 +45,7 @@ spec:
           mountPath: /var/thanos/compact
 
       - name: thanos-query
-        image: quay.io/thanos/thanos:v0.40.1
+        image: quay.io/thanos/thanos:v0.41.0
         args:
         - query
         - --http-address=0.0.0.0:9090
@@ -60,7 +60,7 @@ spec:
           containerPort: 19090
 
       - name: thanos-store
-        image: quay.io/thanos/thanos:v0.40.1
+        image: quay.io/thanos/thanos:v0.41.0
         args:
         - store
         - --grpc-address=0.0.0.0:19091
