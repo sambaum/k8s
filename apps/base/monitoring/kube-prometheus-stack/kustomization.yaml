@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: monitoring
 resources:
 - helmrepository.yaml
 - release.yaml
@@ -8,7 +9,6 @@ resources:
 - thanos-deployment.yaml
 configMapGenerator:
 - name: flux-kube-state-metrics-config
-  namespace: monitoring
   files:
   - kube-state-metrics-config.yaml
   options:
@@ -17,7 +17,6 @@ configMapGenerator:
       app.kubernetes.io/component: monitoring
 
 - name: thanos-datasource
-  namespace: monitoring
   files:
   - thanos-datasource.yaml
   options:
@@ -26,7 +25,6 @@ configMapGenerator:
 
 secretGenerator:
 - name: thanos-objstore
-  namespace: monitoring
   files:
   - objstore.yml
   type: Opaque
