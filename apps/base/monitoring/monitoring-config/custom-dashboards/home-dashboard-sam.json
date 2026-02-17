@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2368,
+  "id": 2416,
   "links": [],
   "panels": [
     {
@@ -96,7 +96,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -232,6 +232,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -280,7 +281,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -394,7 +395,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -547,13 +548,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -652,7 +654,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -787,7 +789,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -878,7 +880,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -945,6 +947,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -999,7 +1002,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1055,6 +1058,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1114,7 +1118,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1209,7 +1213,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1293,7 +1297,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1405,7 +1409,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1489,7 +1493,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1559,6 +1563,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1613,7 +1618,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1690,6 +1695,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1749,7 +1755,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -1805,7 +1811,7 @@
         "keepTime": false,
         "maxItems": 30,
         "query": "",
-        "showFolderNames": true,
+        "showFolderNames": false,
         "showHeadings": false,
         "showRecentlyViewed": false,
         "showSearch": true,
@@ -1814,7 +1820,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "title": "Dashboards",
       "type": "dashlist"
     },
@@ -1890,7 +1896,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2001,7 +2007,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2162,6 +2168,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2212,7 +2219,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2286,7 +2293,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2363,7 +2370,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2437,7 +2444,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.3.3",
       "targets": [
         {
           "datasource": {
@@ -2460,7 +2467,7 @@
   ],
   "preload": false,
   "refresh": "30s",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
