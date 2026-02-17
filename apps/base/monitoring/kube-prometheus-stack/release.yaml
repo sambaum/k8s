@@ -37,10 +37,14 @@ spec:
       sidecar:
         dashboards:
           searchNamespace: ALL
+          env:
+            SKIP_TLS_VERIFY: "true"
         datasources:
           enabled: true
           defaultDashboardsEnabled: true
           isDefaultDatasource: false
+          env:
+            SKIP_TLS_VERIFY: "true"
       persistence:
         type: pvc
         enabled: true
@@ -84,6 +88,10 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
+        securityContext:
+          runAsUser: 10001
+          runAsGroup: 10001
+          fsGroup: 10001
         thanos:
           objectStorageConfig:
             existingSecret:
