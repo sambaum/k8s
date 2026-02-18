@@ -64,21 +64,6 @@
         "automerge": true
       }
     },
-    // Prevent all automated updates for below packages
-    {
-      "matchPackageNames": [
-        "linuxserver/duplicati"
-      ],
-      "minor": {
-        "automerge": false
-      },
-      "patch": {
-        "automerge": false
-      },
-      "pin": {
-        "automerge": false
-      }
-    },
     // Configure specific versions for some packages
     {
       "matchPackageNames": [
