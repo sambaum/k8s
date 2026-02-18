@@ -34,6 +34,8 @@ spec:
 
     grafana:
       enabled: true
+      adminUser: admin
+      adminPassword: prom-operator
       sidecar:
         dashboards:
           searchNamespace: ALL
