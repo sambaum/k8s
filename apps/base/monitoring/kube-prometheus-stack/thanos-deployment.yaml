@@ -105,7 +105,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     gethomepage.dev/description: Thanos Querier for aggregated metrics queries
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Placeholder
+    gethomepage.dev/group: More Apps
     gethomepage.dev/icon: thanos.svg
     gethomepage.dev/name: Thanos Querier/Query
     gethomepage.dev/pod-selector: app=thanos
