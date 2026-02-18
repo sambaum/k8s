@@ -132,14 +132,5 @@
       ],
       "versioning": "regex:^5\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 5
     },
-    {
-      "matchPackageNames": [
-        "mariadb"
-      ],
-      "matchFileNames": [
-        "**/firefly.yaml"
-      ],
-      "versioning": "regex:^10\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 10
-    },
   ]
 }
