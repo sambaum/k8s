@@ -18,7 +18,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2503,
+    "id": 2504,
     "links": [],
     "panels": [
         {
@@ -433,6 +433,7 @@
                     },
                     "expr": "probe_success{job=~\"$job\", instance=~\"$instance\"}",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -445,6 +446,7 @@
                     },
                     "expr": "probe_http_ssl{job=~\"$job\", instance=~\"$instance\"} > 0",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -457,6 +459,7 @@
                     },
                     "expr": "(probe_ssl_earliest_cert_expiry{job=~\"$job\", instance=~\"$instance\"} - time()) / 3600 / 24",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -469,6 +472,7 @@
                     },
                     "expr": "probe_http_status_code{job=~\"$job\", instance=~\"$instance\"} > 0",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -495,6 +499,7 @@
                     },
                     "expr": "probe_tls_version_info{job=~\"$job\", instance=~\"$instance\"}",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -507,6 +512,7 @@
                     },
                     "expr": "avg_over_time(probe_dns_lookup_time_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
                     "format": "table",
+                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -615,6 +621,14 @@
                             "instance": "Instance",
                             "type 6": "",
                             "version": "TLS Version"
+                        }
+                    }
+                },
+                {
+                    "id": "filterFieldsByName",
+                    "options": {
+                        "include": {
+                            "pattern": "^(?!.*(namespace|replica|prometheus)).*$"
                         }
                     }
                 }
