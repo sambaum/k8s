@@ -38,6 +38,15 @@ spec:
           value: "783"
         - name: MAP_GID
           value: "783"
+        - name: JAVA_OPTS
+          value: "-Xms1G -Xmx8G -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError"
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 500m
+          limits:
+            memory: 10Gi
+            cpu: 8
       volumes:
       - name: data
         persistentVolumeClaim:
