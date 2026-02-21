@@ -8,7 +8,7 @@ metadata:
     release: kube-prometheus-stack
 spec:
   interval: 30s
-  module: http_2xx_woocommerce
+  module: http_check_woocommerce_cbee
   prober:
     url: blackbox-exporter.monitoring.svc:9115
   targets:

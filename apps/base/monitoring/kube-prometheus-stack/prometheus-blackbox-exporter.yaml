@@ -27,7 +27,7 @@ spec:
         release: kube-prometheus-stack
     config:
       modules:
-        http_2xx_woocommerce:
+        http_check_woocommerce_cbee:
           prober: http
           timeout: 5s
           http:
@@ -35,6 +35,8 @@ spec:
             preferred_ip_protocol: "ip4"
             valid_status_codes: [ 200 ]
             follow_redirects: true
+            fail_if_not_matches_regexp:
+            - "cbee.ch"
             tls_config:
               insecure_skip_verify: false
         http_checkout:
