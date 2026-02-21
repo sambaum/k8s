@@ -45,7 +45,7 @@ spec:
             memory: 2Gi
             cpu: 500m
           limits:
-            memory: 10Gi
+            memory: 12Gi
             cpu: 8
       volumes:
       - name: data
