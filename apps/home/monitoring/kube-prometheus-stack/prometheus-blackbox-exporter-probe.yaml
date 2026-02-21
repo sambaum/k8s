@@ -15,5 +15,8 @@ spec:
     staticConfig:
       static:
       - https://cbee.ch/
+      - https://cbee.ch/shop/
+      - https://cbee.ch/product-category/hosen/pumphosen-kleidung/
       - https://cbee.ch/product/kurze-pumphose-leuchtturm-und-marine/
       - https://cbee.ch/warenkorb/
+      - https://cbee.ch/my-account/
