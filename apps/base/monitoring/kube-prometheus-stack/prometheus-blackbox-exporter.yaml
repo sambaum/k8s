@@ -35,8 +35,8 @@ spec:
             preferred_ip_protocol: "ip4"
             valid_status_codes: [ 200 ]
             follow_redirects: true
-            fail_if_not_matches_regexp:
-            - "cbee.ch"
+            # fail_if_not_matches_regexp:
+            # - "cbee.ch"
             tls_config:
               insecure_skip_verify: false
         http_checkout:
