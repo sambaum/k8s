@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: languagetool
-        image: meyay/languagetool:6.7-4
+        image: meyay/languagetool:6.7-6
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
