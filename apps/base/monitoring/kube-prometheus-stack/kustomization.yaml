@@ -6,6 +6,7 @@ resources:
 - pv-pvc.yaml
 - create-prometheus-dir-job.yaml
 - thanos-deployment.yaml
+- prometheus-blackbox-exporter.yaml
 configMapGenerator:
 - name: flux-kube-state-metrics-config
   namespace: monitoring

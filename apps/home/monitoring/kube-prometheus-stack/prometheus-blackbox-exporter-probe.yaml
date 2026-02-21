@@ -1,0 +1,19 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: woocommerce-cbee
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  interval: 30s
+  module: http_2xx_woocommerce
+  prober:
+    url: blackbox-exporter.monitoring.svc:9115
+  targets:
+    staticConfig:
+      static:
+      - https://cbee.ch/
+      - https://cbee.ch/product/kurze-pumphose-leuchtturm-und-marine/
+      - https://cbee.ch/warenkorb/

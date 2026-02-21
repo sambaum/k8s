@@ -1,5 +1,6 @@
 resources:
 - ../../../base/monitoring/kube-prometheus-stack/
+- prometheus-blackbox-exporter-probe.yaml
 patches:
 - target:
     kind: HelmRelease
