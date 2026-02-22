@@ -6,7 +6,7 @@ metadata:
   labels:
     app: languagetool
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: languagetool
@@ -38,15 +38,15 @@ spec:
           value: "783"
         - name: MAP_GID
           value: "783"
-        - name: JAVA_OPTS
-          value: "-Xms1G -Xmx4G -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError"
+        # - name: JAVA_OPTS
+        #   value: "-Xms1G -Xmx4G -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError"
         resources:
           requests:
             memory: 2Gi
             cpu: 500m
           limits:
-            memory: 5Gi
-            cpu: 2
+            memory: 16Gi
+            cpu: 10
       volumes:
       - name: data
         persistentVolumeClaim:
