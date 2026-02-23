@@ -2,6 +2,9 @@
   path: /spec/values/grafana/enabled
   value: false
 - op: replace
+  path: /spec/values/prometheus/prometheusSpec/retention
+  value: 3d
+- op: replace
   path: /spec/values/prometheus/ingress/hosts/0
   value: prometheus.deskcube.int.sambaum.ch
 - op: replace
