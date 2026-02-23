@@ -20,6 +20,12 @@ patches:
     - op: replace
       path: /spec/values/consoleIngress/tls/0/hosts/0
       value: thanos-minio-console.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/hosts/0
+      value: thanos-minio-api.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: thanos-minio-api.dumpster.int.sambaum.ch
 - target:
     kind: Job
     name: fix-minio-pv-permissions

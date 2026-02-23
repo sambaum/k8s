@@ -65,6 +65,24 @@ spec:
       - hosts:
         - minio-console.example.com
         secretName: thanos-minio-console-tls
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        gethomepage.dev/description: Minio S3 Object Storage API endpoint
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: minio.svg
+        gethomepage.dev/name: MinIO API
+        gethomepage.dev/pod-selector: app=minio
+      hosts:
+      - minio.example.com
+      tls:
+      - hosts:
+        - minio.example.com
+        secretName: minio-tls
     metrics:
       serviceMonitor:
         enabled: false
