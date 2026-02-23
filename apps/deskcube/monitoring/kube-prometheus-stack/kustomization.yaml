@@ -8,6 +8,7 @@ patches:
 secretGenerator:
 - name: thanos-objstore
   namespace: monitoring
+  behavior: replace
   files:
   - objstore.yml
   type: Opaque
