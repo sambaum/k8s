@@ -16,3 +16,12 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [thanos-query.dumpster.int.sambaum.ch]
+
+configMapGenerator:
+- name: influxdb-datasource
+  namespace: monitoring
+  files:
+  - influxdb-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
