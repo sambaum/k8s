@@ -53,6 +53,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-staging
         gethomepage.dev/description: MinIO S3 Object Storage Console
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: More Apps
