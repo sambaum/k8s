@@ -6,3 +6,13 @@ patches:
     kind: HelmRelease
     name: kube-prometheus-stack
   path: helmrelease-patch.yaml
+- target:
+    kind: Ingress
+    name: thanos-query-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: thanos-query.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [thanos-query.dumpster.int.sambaum.ch]
