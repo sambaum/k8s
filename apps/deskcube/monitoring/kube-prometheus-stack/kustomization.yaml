@@ -5,3 +5,11 @@ patches:
     kind: HelmRelease
     name: kube-prometheus-stack
   path: helmrelease-patch.yaml
+secretGenerator:
+- name: thanos-objstore
+  namespace: monitoring
+  files:
+  - objstore.yml
+  type: Opaque
+  options:
+    disableNameSuffixHash: true # because the helm chart (sidecar) references it directly by name and expects it to be stable.
