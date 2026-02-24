@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2416,
   "links": [],
   "panels": [
     {
@@ -26,7 +25,6 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -96,7 +94,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -106,7 +104,6 @@
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox.int.sambaum.ch:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Proxmox",
@@ -122,7 +119,6 @@
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Proxmox 2",
@@ -138,7 +134,6 @@
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"opnsense.int.sambaum.ch:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "OPNSense",
@@ -154,7 +149,6 @@
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Dumpster",
@@ -165,12 +159,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Deskcube",
@@ -186,7 +179,6 @@
           "editorMode": "code",
           "expr": "avg(irate(cpu_total{instance=~\"$instance\"}[5m]))",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "TrueNAS",
@@ -281,7 +273,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -302,7 +294,6 @@
           },
           "editorMode": "code",
           "expr": "{__name__=~\"truenas_truenas_truenas_disk_stats_busy__serial_lunid_.*\"}",
-          "hide": false,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -326,7 +317,6 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -395,7 +385,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -405,7 +395,6 @@
           "editorMode": "code",
           "expr": "time() - node_boot_time_seconds{instance=~\"proxmox.int.sambaum.ch:9100\"}",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "intervalFactor": 2,
           "legendFormat": "Proxmox",
@@ -420,7 +409,6 @@
           "editorMode": "code",
           "expr": "time() - node_boot_time_seconds{instance=~\"proxmox2.int.sambaum.ch:9100\"}",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "intervalFactor": 2,
           "legendFormat": "Proxmox2",
@@ -435,7 +423,6 @@
           "editorMode": "code",
           "expr": "time() - node_boot_time_seconds{instance=~\"opnsense.int.sambaum.ch:9100\"}",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "intervalFactor": 2,
           "legendFormat": "OPNSense",
@@ -445,12 +432,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "time() - node_boot_time_seconds{instance=~\"192.168.1.40:9100\"}",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "intervalFactor": 2,
           "legendFormat": "Deskcube",
@@ -465,7 +451,6 @@
           "editorMode": "code",
           "expr": "time() - node_boot_time_seconds{instance=~\"192.168.1.35:9100\"}",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "intervalFactor": 2,
           "legendFormat": "Dumpster",
@@ -479,7 +464,6 @@
           },
           "editorMode": "code",
           "expr": "uptime{instance=~\"$instance\"}",
-          "hide": false,
           "legendFormat": "TrueNAS",
           "range": true,
           "refId": "F"
@@ -493,7 +477,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -555,7 +538,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -576,7 +559,6 @@
           },
           "editorMode": "code",
           "expr": "truenas_pool_dataset_used{mountpoint=\"/mnt/pool1\"}",
-          "hide": false,
           "instant": false,
           "legendFormat": "Used",
           "range": true,
@@ -600,7 +582,6 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "decimals": 0,
@@ -654,7 +635,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -665,7 +646,6 @@
           "exemplar": false,
           "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", customresource_kind=~\"Kustomization|HelmRelease\", ready=\"False\"})",
           "format": "time_series",
-          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "Home",
@@ -675,12 +655,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": false,
           "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", customresource_kind=~\"Kustomization|HelmRelease\", ready=\"False\"})",
-          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "Deskcube",
@@ -695,7 +674,6 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", customresource_kind=~\"Kustomization|HelmRelease\", suspended=\"true\"})",
-          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "Home S",
@@ -705,12 +683,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": false,
           "expr": "count(gotk_resource_info{exported_namespace=~\"$namespace\", customresource_kind=~\"Kustomization|HelmRelease\", suspended=\"true\"})",
-          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "Deskcube S",
@@ -789,7 +766,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -798,7 +775,6 @@
           },
           "editorMode": "code",
           "expr": "disk_temperature{instance=~\"$instance\"}",
-          "hide": false,
           "instant": false,
           "legendFormat": "{{serial}}",
           "range": true,
@@ -880,7 +856,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -895,7 +871,6 @@
             "type": "influxdb",
             "uid": "bY0ll83nk"
           },
-          "hide": false,
           "query": "from(bucket: \"proxmox\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"system\")\r\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\r\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve2\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with \r\n    _time: r._time,\r\n    _measurement: r.measurement,\r\n    _field: \"used_perc\",\r\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\r\n     }))\r\n  |> drop(columns: [\"avail\",\"used\"])\r\n",
           "refId": "B"
         }
@@ -1002,7 +977,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1118,7 +1093,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1144,7 +1119,6 @@
           "exemplar": true,
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\", node=~\"dumpster\"}) by (pod)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{pod}}",
@@ -1213,7 +1187,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1222,7 +1196,6 @@
           },
           "editorMode": "code",
           "expr": "truenas_current_test_percent_done",
-          "hide": false,
           "instant": false,
           "legendFormat": "{{disk}}",
           "range": true,
@@ -1297,7 +1270,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1319,7 +1292,6 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg_over_time(mystrom_Ws[15m])",
-          "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "15m Average",
@@ -1334,7 +1306,6 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "avg_over_time(mystrom_Ws[1d])",
-          "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "24h Average",
@@ -1409,7 +1380,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1418,7 +1389,6 @@
           },
           "editorMode": "code",
           "expr": "floor(nut_http_runtime/60)",
-          "hide": false,
           "instant": false,
           "legendFormat": "Current",
           "range": true,
@@ -1493,7 +1463,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1502,7 +1472,6 @@
           },
           "editorMode": "code",
           "expr": "600 / 100 * nut_http_load",
-          "hide": false,
           "instant": false,
           "legendFormat": "Current",
           "range": true,
@@ -1515,7 +1484,6 @@
           },
           "editorMode": "code",
           "expr": "600 / 100 * avg_over_time(nut_http_load[1d])",
-          "hide": false,
           "instant": false,
           "legendFormat": "24h Average",
           "range": true,
@@ -1530,7 +1498,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1618,7 +1585,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1660,7 +1627,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+        "uid": "P78D5DD53BDAA63F7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1755,12 +1722,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_capacity{cluster=\"$cluster\", node=~\"deskcube\", resource=\"cpu\"})",
@@ -1775,13 +1742,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": true,
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\", node=~\"deskcube\"}) by (pod)",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{pod}}",
@@ -1820,7 +1786,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "title": "Dashboards",
       "type": "dashlist"
     },
@@ -1829,7 +1795,6 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1896,7 +1861,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -1906,7 +1871,6 @@
           "editorMode": "code",
           "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.35:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Dumpster",
@@ -1917,12 +1881,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Deskcube",
@@ -2007,7 +1970,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -2033,7 +1996,6 @@
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme0\", sensor=\"temp3\"}",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "SSD 1",
@@ -2049,7 +2011,6 @@
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"nvme_nvme1\", sensor=\"temp3\"}",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "SSD 2",
@@ -2064,7 +2025,6 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp2\"}\t",
-          "hide": false,
           "interval": "",
           "legendFormat": "System",
           "range": true,
@@ -2078,7 +2038,6 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp4\"}\t",
-          "hide": false,
           "interval": "",
           "legendFormat": "PCH Chipset",
           "range": true,
@@ -2093,7 +2052,6 @@
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"proxmox.int.sambaum.ch:9100\", chip=\"platform_nct6687_2592\", sensor=\"temp3\"}\t",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "VRM MOS",
@@ -2109,7 +2067,6 @@
           "exemplar": true,
           "expr": "avg_over_time(node_hwmon_temp_celsius{instance=\"proxmox2.int.sambaum.ch:9100\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}[5m])",
           "format": "time_series",
-          "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "PVE2 CPU (5m)",
@@ -2123,7 +2080,6 @@
           },
           "editorMode": "code",
           "expr": "max(cpu_temperature{instance=~\"$instance\"})",
-          "hide": false,
           "legendFormat": "TrueNAS",
           "range": true,
           "refId": "H"
@@ -2219,7 +2175,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -2293,7 +2249,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -2370,7 +2326,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -2444,7 +2400,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.3",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "datasource": {
@@ -2495,6 +2451,7 @@
         },
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
         "sort": 5,
         "type": "query"
       },
@@ -2522,6 +2479,7 @@
         },
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2544,6 +2502,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "sort": 1,
         "type": "query"
       },
@@ -2613,6 +2572,7 @@
         "query": "buckets()",
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2635,6 +2595,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2657,6 +2618,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2679,6 +2641,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2701,6 +2664,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       },
       {
@@ -2722,8 +2686,9 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "My Home Dashboard",
   "uid": "my-home-dashboard",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
