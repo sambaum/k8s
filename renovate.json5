@@ -21,7 +21,8 @@
       "\\.ya?ml$"
     ],
     "ignorePaths": [
-      "archive/**"
+      "archive/**",
+      "clusters/**"
     ]
   },
   // Prevent automated major-upgrades for all packages
