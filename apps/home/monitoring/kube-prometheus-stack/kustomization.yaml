@@ -16,12 +16,22 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [thanos-query.dumpster.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
 
 configMapGenerator:
 - name: influxdb-datasource
   namespace: monitoring
   files:
   - influxdb-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
+- name: thanos-datasources-external
+  namespace: monitoring
+  files:
+  - thanos-datasources.yaml
   options:
     labels:
       grafana_datasource: "1"

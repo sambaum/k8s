@@ -15,6 +15,9 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [thanos-query.deskcube.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
 secretGenerator:
 - name: thanos-objstore
   namespace: monitoring
