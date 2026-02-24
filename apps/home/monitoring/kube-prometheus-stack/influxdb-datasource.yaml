@@ -1,25 +1,10 @@
 apiVersion: 1
 datasources:
-    - name: InfluxDB
-      type: influxdb
-      url: http://influxdb-service:8086
-      jsonData:
-        version: Flux
-        organization: sam
-      secureJsonData:
-        token: ENC[AES256_GCM,data:QPpl+m+0Hs+DRYKHhs/8aspY5Rk3ocVLgAF209bWD5syWrT2KfF16Elod6IzG2YnNTJZgpswFGY6uzgnoHVZSdKaVkvlxV47F0ofeKMKb/pjPEYsrbwfTA==,iv:GB4XAnyVn71LCykijkyu1cxTtuFqxi+4EFkEJZaoOZc=,tag:DX0EXfbo+XlEulJ5Nu50+A==,type:str]
-sops:
-    age:
-        - recipient: age1gte9z7ue3uk3a4088kx3hcsfcww4pdzenufcjcpaxkg225zcsfks4wfnem
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLU05hQVltcHNySTJqdmgz
-            NWtmVVJKZ0F2YjVQN0g3dE5VaU5aWURPTTN3CjZYOVZoalRUS1RaS0h1emUrazM5
-            bGlDVjZPcnhRQmNGeGZ1bGNHMElvODgKLS0tIERZTUY2TkNpcFRLRW9OallMdXJZ
-            SkZwL3ZDa01UWitycDNrMks5dWNMUkUKNfu9caC9dig8qLhn/wgeqttOCRZo3wHc
-            Gwd3ZTKOMN0yX+fowEm/k1XZ6LMiRZQ7AqHvyPzITz9Dsz6SqrGXsQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-23T15:15:57Z"
-    mac: ENC[AES256_GCM,data:jmMkPxkXKwLPUhF9DpdjKH5fYv2x7KKwVtAc663ZVju4N0rMmNV2P9f7j7qNVMJJQ/YZY32XJeXSSXenDAHzxDDPJUMgKjcNwmFIxtVkgeYYXN49UWMBNaya2rsFXk5uzxTmPZbjljABy5ESGWh7iglh8tkS6JcAzdxaUR/oUG4=,iv:pSUZCfnOynW7fBd9Lc1nFG1NRory1z12ml98Jj3ztIQ=,tag:MSCRx3EYjltgu1Vcw1Qlkw==,type:str]
-    encrypted_regex: ^token$
-    version: 3.11.0
+- name: InfluxDB
+  type: influxdb
+  url: http://influxdb-service:8086
+  jsonData:
+    version: Flux
+    organization: sam
+  secureJsonData:
+    token: NyR_zJtKbGA53y_VWXZ12HzgrjT9fDEqHAqLxd_NBFYcoPxR2Z6v6GvEhTXoEb2y-dnsdI2U_2vsvwHtODDBlw== # Read-only 
