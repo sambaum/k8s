@@ -3,5 +3,5 @@ datasources:
 - name: Thanos
   type: prometheus
   access: proxy
-  url: http://thanos-query-service:9090
+  url: https://thanos-query-service:9090
   isDefault: true
