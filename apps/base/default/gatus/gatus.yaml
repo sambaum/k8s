@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatus
+  namespace: default
+  labels:
+    app: gatus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gatus
+  template:
+    metadata:
+      labels:
+        app: gatus
+    spec:
+
+      initContainers:
+      - name: init-config
+        image: badouralix/curl-jq@sha256:554222a9e8a786b91a1db05d3fff47854b381dfd5d7e73c4ac166faa29c9a2b7
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 0
+        command:
+        - /bin/sh
+        - -c
+        args:
+        - |
+          mkdir -p /config/db
+          mkdir -p /config/gatus-config
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          subPath: gatus
+
+      containers:
+      - name: gatus
+        image: twinproduction/gatus:v5.35.0
+
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+
+        env:
+        - name: GATUS_CONFIG_PATH
+          value: /config/gatus-config/
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          subPath: gatus
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gatus-service
+  namespace: default
+spec:
+  selector:
+    app: gatus
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gatus-ingress
+  namespace: default
+  annotations:
+    gethomepage.dev/description: Automated service health dashboard
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Other
+    gethomepage.dev/icon: gatus.svg
+    gethomepage.dev/name: Gatus
+    gethomepage.dev/pod-selector: app=gatus
+    # gethomepage.dev/widget.type: gatus
+    # gethomepage.dev/widget.url: https://example.com/
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'uptime.example.com'
+    secretName: ispin-intdomain-wsop-wildcard-tls
+  rules:
+  - host: uptime.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: gatus-service
+            port:
+              number: 8080
