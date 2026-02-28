@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: httpbin
-        image: mccutchen/go-httpbin:2.20.0
+        image: mccutchen/go-httpbin:2.21.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
