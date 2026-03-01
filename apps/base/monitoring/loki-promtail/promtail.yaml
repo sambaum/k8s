@@ -17,13 +17,13 @@ spec:
       containers:
       - name: promtail-container
         image: grafana/promtail
-        ports:
-        - containerPort: 1514
-          name: syslog-udp
-          protocol: UDP
-        - containerPort: 1514
-          name: syslog-tcp
-          protocol: TCP
+        # ports:
+        # - containerPort: 1514
+        #   name: syslog-udp
+        #   protocol: UDP
+        # - containerPort: 1514
+        #   name: syslog-tcp
+        #   protocol: TCP
         args:
         - -config.file=/etc/promtail/promtail.yaml
         env:
@@ -87,22 +87,23 @@ roleRef:
   kind: ClusterRole
   name: promtail-clusterrole
   apiGroup: rbac.authorization.k8s.io
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: promtail-syslog
-  namespace: monitoring
-spec:
-  type: LoadBalancer
-  selector:
-    name: promtail
-  ports:
-  - name: syslog-tcp
-    port: 514
-    targetPort: 1514
-    protocol: TCP
-  - name: syslog-udp
-    port: 514
-    targetPort: 1514
-    protocol: UDP
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: promtail-syslog
+#   namespace: monitoring
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     name: promtail
+#   ports:
+#   - name: syslog-tcp
+#     port: 514
+#     targetPort: 1514
+#     protocol: TCP
+#   - name: syslog-udp
+#     port: 514
+#     targetPort: 1514
+#     protocol: UDP

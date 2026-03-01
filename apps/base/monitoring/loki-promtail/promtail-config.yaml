@@ -45,74 +45,74 @@ scrape_configs:
     - __meta_kubernetes_pod_container_name
     target_label: __path__
 
-- job_name: syslog-tcp
-  syslog:
-    listen_address: 0.0.0.0:1514
-    listen_protocol: tcp
-    idle_timeout: 60s
-    label_structured_data: true
-    labels:
-      job: syslog
-      protocol: tcp
-  relabel_configs:
-  - source_labels: [ '__syslog_message_hostname' ]
-    target_label: host
-  - source_labels: [ '__syslog_message_severity' ]
-    target_label: severity
-  - source_labels: [ '__syslog_message_facility' ]
-    target_label: facility
+# - job_name: syslog-tcp
+#   syslog:
+#     listen_address: 0.0.0.0:1514
+#     listen_protocol: tcp
+#     idle_timeout: 60s
+#     label_structured_data: true
+#     labels:
+#       job: syslog
+#       protocol: tcp
+#   relabel_configs:
+#   - source_labels: [ '__syslog_message_hostname' ]
+#     target_label: host
+#   - source_labels: [ '__syslog_message_severity' ]
+#     target_label: severity
+#   - source_labels: [ '__syslog_message_facility' ]
+#     target_label: facility
 
-  pipeline_stages:
-  # Try RFC5424 first
-  - match:
-      selector: '{job="syslog"}'
-      stages:
-      - regex:
-          expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
-      - labels:
-          host:
-          app: # Fall back to RFC3164
-  - match:
-      selector: '{job="syslog", app=""}'
-      stages:
-      - regex:
-          expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
-      - labels:
-          host:
-          app: tag
+#   pipeline_stages:
+#   # Try RFC5424 first
+#   - match:
+#       selector: '{job="syslog"}'
+#       stages:
+#       - regex:
+#           expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
+#       - labels:
+#           host:
+#           app: # Fall back to RFC3164
+#   - match:
+#       selector: '{job="syslog", app=""}'
+#       stages:
+#       - regex:
+#           expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
+#       - labels:
+#           host:
+#           app: tag
 
-- job_name: syslog-udp
-  syslog:
-    listen_address: 0.0.0.0:1514
-    listen_protocol: udp
-    idle_timeout: 60s
-    label_structured_data: true
-    labels:
-      job: syslog
-      protocol: udp
-  relabel_configs:
-  - source_labels: [ '__syslog_message_hostname' ]
-    target_label: host
-  - source_labels: [ '__syslog_message_severity' ]
-    target_label: severity
-  - source_labels: [ '__syslog_message_facility' ]
-    target_label: facility
+# - job_name: syslog-udp
+#   syslog:
+#     listen_address: 0.0.0.0:1514
+#     listen_protocol: udp
+#     idle_timeout: 60s
+#     label_structured_data: true
+#     labels:
+#       job: syslog
+#       protocol: udp
+#   relabel_configs:
+#   - source_labels: [ '__syslog_message_hostname' ]
+#     target_label: host
+#   - source_labels: [ '__syslog_message_severity' ]
+#     target_label: severity
+#   - source_labels: [ '__syslog_message_facility' ]
+#     target_label: facility
 
-  pipeline_stages:
-  # Try RFC5424 first
-  - match:
-      selector: '{job="syslog"}'
-      stages:
-      - regex:
-          expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
-      - labels:
-          host:
-          app: # Fall back to RFC3164
-  - match:
-      selector: '{job="syslog", app=""}'
-      stages:
-      - regex:
-          expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
-      - labels:
-          host:
-          app: tag
+#   pipeline_stages:
+#   # Try RFC5424 first
+#   - match:
+#       selector: '{job="syslog"}'
+#       stages:
+#       - regex:
+#           expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
+#       - labels:
+#           host:
+#           app: # Fall back to RFC3164
+#   - match:
+#       selector: '{job="syslog", app=""}'
+#       stages:
+#       - regex:
+#           expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
+#       - labels:
+#           host:
+#           app: tag
