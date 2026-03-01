@@ -17,3 +17,6 @@ patches:
     - op: replace
       path: /metadata/annotations/gethomepage.dev~1widget.url
       value: https://gatus.deskcube.int.sambaum.ch
+    - op: add
+      path: /metadata/annotations/gethomepage.dev~1href
+      value: https://gatus.deskcube.int.sambaum.ch
