@@ -31,6 +31,7 @@ limits_config:
   retention_period: 30d
   max_streams_per_user: 0
   max_global_streams_per_user: 0
+  max_label_names_per_series: 20
 
 compactor:
   working_directory: /tmp/loki/compactor
