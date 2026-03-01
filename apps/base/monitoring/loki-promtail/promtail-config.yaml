@@ -61,6 +61,26 @@ scrape_configs:
     target_label: severity
   - source_labels: [ '__syslog_message_facility' ]
     target_label: facility
+
+  pipeline_stages:
+  # Try RFC5424 first
+  - match:
+      selector: '{job="syslog"}'
+      stages:
+      - regex:
+          expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
+      - labels:
+          host:
+          app: # Fall back to RFC3164
+  - match:
+      selector: '{job="syslog", app=""}'
+      stages:
+      - regex:
+          expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
+      - labels:
+          host:
+          app: tag
+
 - job_name: syslog-udp
   syslog:
     listen_address: 0.0.0.0:1514
@@ -77,3 +97,22 @@ scrape_configs:
     target_label: severity
   - source_labels: [ '__syslog_message_facility' ]
     target_label: facility
+
+  pipeline_stages:
+  # Try RFC5424 first
+  - match:
+      selector: '{job="syslog"}'
+      stages:
+      - regex:
+          expression: '^\<\d+\>1\s+(?P<timestamp>\S+)\s+(?P<host>\S+)\s+(?P<app>\S+)\s+(?P<pid>\S+)\s+(?P<msgid>\S+)\s+(?P<sd>\[.*\]|-)\s+(?P<message>.*)'
+      - labels:
+          host:
+          app: # Fall back to RFC3164
+  - match:
+      selector: '{job="syslog", app=""}'
+      stages:
+      - regex:
+          expression: '^(?P<timestamp>\w+\s+\d+\s+[\d:]+)\s+(?P<host>\S+)\s+(?P<tag>[^\[:\s]+)(?:\[(?P<pid>\d+)\])?[:\s]+(?P<message>.*)'
+      - labels:
+          host:
+          app: tag
