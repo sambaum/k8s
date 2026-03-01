@@ -87,23 +87,22 @@ roleRef:
   kind: ClusterRole
   name: promtail-clusterrole
   apiGroup: rbac.authorization.k8s.io
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: promtail-syslog
-#   namespace: monitoring
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     name: promtail
-#   ports:
-#   - name: syslog-tcp
-#     port: 514
-#     targetPort: 1514
-#     protocol: TCP
-#   - name: syslog-udp
-#     port: 514
-#     targetPort: 1514
-#     protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: promtail-syslog
+  namespace: monitoring
+spec:
+  type: ClusterIP
+  selector:
+    name: promtail
+  ports:
+  - name: syslog-tcp
+    port: 514
+    targetPort: 1514
+    protocol: TCP
+  - name: syslog-udp
+    port: 514
+    targetPort: 1514
+    protocol: UDP
