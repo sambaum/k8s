@@ -82,7 +82,7 @@ metadata:
   annotations:
     gethomepage.dev/description: Automated service health dashboard
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Other
+    gethomepage.dev/group: Infrastructure
     gethomepage.dev/icon: gatus.svg
     gethomepage.dev/name: Gatus
     gethomepage.dev/pod-selector: app=gatus
