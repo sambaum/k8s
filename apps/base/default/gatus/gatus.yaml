@@ -88,6 +88,7 @@ metadata:
     gethomepage.dev/pod-selector: app=gatus
     gethomepage.dev/widget.type: gatus
     gethomepage.dev/widget.url: https://example.com/
+    gethomepage.dev/weight: 10
 spec:
   ingressClassName: nginx
   tls:
