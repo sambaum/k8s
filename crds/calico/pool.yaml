@@ -7,7 +7,7 @@ items:
     name: default-ipv4-ippool
   spec:
     blockSize: 26
-    cidr: 10.1.0.0/16
+    cidr: 10.1.0.0/17
     ipipMode: Never
     natOutgoing: true
     nodeSelector: all()
@@ -23,7 +23,7 @@ items:
     name: fixed-ipv4-ippool-vpn
   spec:
     blockSize: 26
-    cidr: 10.1.1.0/24
+    cidr: 10.1.255.0/24
     ipipMode: Never
     natOutgoing: false
     nodeSelector: '!all()'
