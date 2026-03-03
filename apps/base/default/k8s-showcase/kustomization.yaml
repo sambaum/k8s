@@ -28,7 +28,6 @@ secretGenerator:
 
 # existing secret credentials. this will create a secret with keys rootUser and rootPassword
 # Attention: if password.txt is SOPS encrypted, kustomize will NOT decrypt it automatically! hence, this does not work with SOPS encrypted files.
-secretGenerator:
 - name: my-credentials
   literals:
   - rootUser=user1
