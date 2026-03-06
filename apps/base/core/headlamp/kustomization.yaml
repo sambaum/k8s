@@ -1,0 +1,3 @@
+resources:
+- headlamp-release.yaml
+- headlamp-genereate-credentials.yaml

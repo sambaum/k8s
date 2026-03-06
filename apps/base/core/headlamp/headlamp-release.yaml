@@ -1,0 +1,81 @@
+# https://artifacthub.io/packages/helm/headlamp/headlamp
+
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+spec:
+  releaseName: headlamp
+  targetNamespace: default
+  chart:
+    spec:
+      chart: headlamp
+      sourceRef:
+        kind: HelmRepository
+        name: headlamp
+        namespace: flux-system
+      version: '0.40.0'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+  values:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        gethomepage.dev/description: Headlamp is a user-friendly Kubernetes UI focused on extensibility
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Other
+        gethomepage.dev/icon: headlamp.svg
+        gethomepage.dev/name: Headlamp
+        gethomepage.dev/pod-selector: app=headlamp
+      hosts:
+      - host: headlamp.example.com
+        paths:
+        - path: /
+          type: Prefix
+      tls:
+      - hosts:
+        - headlamp.example.com
+        secretName: ispin-intdomain-wsop-wildcard-tls
+    config:
+      #   watchPlugins: true
+      # pluginsManager:
+      #   enabled: true
+      #   configContent: |
+      #     plugins:
+      #       - name: headlamp_flux
+      #         source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_flux
+      #         version: 0.5.0
+      #   env:
+      #   - name: HTTPS_PROXY
+      #     value: "http://proxy.intdomain.net:8080"
+
+
+
+      pluginsDir: /build/plugins
+    initContainers:
+    - command:
+      - /bin/sh
+      - -c
+      - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/ && chown -R 100:101 /build
+      image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
+      imagePullPolicy: Always
+      name: headlamp-plugins
+      securityContext:
+        runAsNonRoot: false
+        privileged: false
+        runAsUser: 0
+        runAsGroup: 0
+      volumeMounts:
+      - mountPath: /build/plugins
+        name: headlamp-plugins
+    volumeMounts:
+    - mountPath: /build/plugins
+      name: headlamp-plugins
+    volumes:
+    - name: headlamp-plugins
+      emptyDir: {}
