@@ -4,7 +4,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: headlamp
-  namespace: fllux-system
+  namespace: flux-system
 spec:
   releaseName: headlamp
   targetNamespace: default
