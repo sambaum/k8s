@@ -27,12 +27,13 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-staging
         gethomepage.dev/description: Headlamp is a user-friendly Kubernetes UI focused on extensibility
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Other
         gethomepage.dev/icon: headlamp.svg
         gethomepage.dev/name: Headlamp
-        gethomepage.dev/pod-selector: app=headlamp
+        gethomepage.dev/pod-selector: app.kubernetes.io/name=headlamp
       hosts:
       - host: headlamp.example.com
         paths:
@@ -41,7 +42,7 @@ spec:
       tls:
       - hosts:
         - headlamp.example.com
-        secretName: ispin-intdomain-wsop-wildcard-tls
+        secretName: headlamp-tls
     config:
       pluginsDir: /build/plugins
     volumeMounts:
