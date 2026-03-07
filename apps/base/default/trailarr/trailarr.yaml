@@ -79,7 +79,7 @@ metadata:
     gethomepage.dev/description: Trailers for Sonarr/Radarr
     gethomepage.dev/enabled: 'true'
     gethomepage.dev/group: Other
-    gethomepage.dev/icon: https://raw.githubusercontent.com/nandyalu/trailarr/main/assets/images/trailarr-256.png
+    gethomepage.dev/icon: trailarr.svg
     gethomepage.dev/name: Trailarr
     gethomepage.dev/pod-selector: app=trailarr
 spec:
