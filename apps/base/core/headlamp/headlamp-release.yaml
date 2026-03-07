@@ -44,8 +44,14 @@ spec:
         secretName: ispin-intdomain-wsop-wildcard-tls
     config:
       pluginsDir: /build/plugins
+    volumeMounts:
+    - mountPath: /build/plugins
+      name: headlamp-plugins
+    volumes:
+    - name: headlamp-plugins
+      emptyDir: {}
     initContainers:
-
+    # Fluxcd Plugin
     - name: headlamp-plugins-flux
       image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
       imagePullPolicy: Always
@@ -61,7 +67,7 @@ spec:
       volumeMounts:
       - mountPath: /build/plugins
         name: headlamp-plugins
-
+      # Cert-Manager Plugin
     - name: headlamp-plugins-cert-manager
       image: ghcr.io/headlamp-k8s/headlamp-plugin-cert-manager:latest
       imagePullPolicy: Always
@@ -77,10 +83,3 @@ spec:
       volumeMounts:
       - mountPath: /build/plugins
         name: headlamp-plugins
-
-    volumeMounts:
-    - mountPath: /build/plugins
-      name: headlamp-plugins
-    volumes:
-    - name: headlamp-plugins
-      emptyDir: {}
