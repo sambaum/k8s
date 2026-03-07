@@ -1,0 +1,16 @@
+resources:
+- ../../../base/core/headlamp/
+patches:
+- target:
+    kind: HelmRelease
+    name: headlamp
+  patch: |-
+    - op: replace
+      path: /spec/values/ingress/hosts/0/host
+      value: headlamp.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: headlamp.t21.circle.ispin.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
