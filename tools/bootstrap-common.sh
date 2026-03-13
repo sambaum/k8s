@@ -4,56 +4,75 @@ RED='\033[0;31m'
 BOLD='\033[1m'
 NOCOLOR='\033[0m'
 
-# Check if the script is run as root
-if [ "$EUID" -eq 0 ]
-then
-    echo "This script should not be run as root. Aborting."
-    exit 1
-fi
+# Exit on any error
+set -euo pipefail
 
-# # Check if Homebrew is installed
-# if ! command -v brew &> /dev/null
-# then
-#     echo "Homebrew is not installed. Installing Homebrew..."
-#     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#     echo
-#     echo -e "${RED}Homebrew should now be installed. Open a new shell and run the script again ${NOCOLOR}"
-#     exit 1
-# else
-#     echo "Homebrew is already installed."
-# fi
+# --- Utility functions ---
+error() { echo -e "${RED}[ERROR] $*${NOCOLOR}" >&2; }
+info()  { echo "[INFO] $*"; }
 
-# if ! dpkg -s build-essential >/dev/null 2>&1; then
-#   echo build-essential not yet installed. Installing...
-#   sudo apt-get update
-#   sudo apt-get install -y build-essential
-# fi
+abort() { error "$1"; exit 1; }
 
-# brew install gcc 
-# brew install derailed/k9s/k9s fluxcd/tap/flux sops age
+check_root() {
+  if [ "$EUID" -eq 0 ]; then
+    abort "This script should not be run as root."
+  fi
+}
 
-# Check if GITHUB_TOKEN is set
-if [ -z "${GITHUB_TOKEN}" ]; then
-  echo
-  echo -e "${RED}Please set GITHUB_TOKEN variable (flux token) first using:${BOLD} export GITHUB_TOKEN=*** ${NOCOLOR}"
-  exit 1
-else
-  echo "GITHUB_TOKEN is set, continuing..."
-fi
+check_env() {
+  if [ -z "${GITHUB_TOKEN:-}" ]; then
+    abort "Please set GITHUB_TOKEN first: export GITHUB_TOKEN=***"
+  fi
+  info "GITHUB_TOKEN is set, continuing..."
+}
 
-# Check if age key exists
-FILE=$(realpath ~/.sops/age.agekey)
-if [ ! -f "$FILE" ]; then
-  echo "$FILE does not exist. Aborting."
-  exit 1
-else
-  echo "$FILE exist, continuing..."
-fi
+check_sops_key() {
+  local FILE
+  FILE=$(realpath ~/.sops/age.agekey)
+  if [ ! -f "$FILE" ]; then
+    abort "$FILE does not exist."
+  fi
+  info "$FILE exists, continuing..."
+}
 
-microk8s config >~/.kube/config
+setup_kubeconfig() {
+  info "Getting microk8s config..."
+  mkdir -p ~/.kube
+  microk8s config | tee ~/.kube/config > /dev/null
+}
 
-kubectl create namespace flux-system
-cat ~/.sops/age.agekey |
+create_flux_system() {
+  info "Creating flux-system namespace..."
+  kubectl get ns flux-system &>/dev/null || kubectl create ns flux-system
+}
+
+create_sops_secret() {
+  info "Creating SOPS key in the cluster..."
+  local SOPS_KEY
+  SOPS_KEY="$HOME/.sops/age.agekey"
+  [ ! -f "$SOPS_KEY" ] && abort "SOPS key not found: $SOPS_KEY"
   kubectl create secret generic sops-age \
     --namespace=flux-system \
-    --from-file=age.agekey=/dev/stdin
+    --from-file=age.agekey="$SOPS_KEY" \
+    --dry-run=client -o yaml | kubectl apply -f -
+}
+
+check_flux() {
+  info "Checking flux..."
+  flux check --pre
+}
+
+main() {
+  check_root
+  check_env
+  check_sops_key
+  setup_kubeconfig
+  create_flux_system
+  create_sops_secret
+  check_flux
+  info "Bootstrap pre-checks completed successfully."
+  echo
+  read -p "Press Enter to continue..."
+}
+
+main
