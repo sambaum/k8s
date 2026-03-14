@@ -45,6 +45,7 @@ spec:
         secretName: headlamp-tls
     config:
       pluginsDir: /build/plugins
+      sessionTTL: null # workaround for bug in 0.40.1
     volumeMounts:
     - mountPath: /build/plugins
       name: headlamp-plugins
