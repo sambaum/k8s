@@ -106,6 +106,16 @@
     - targets: [ 'uptime.int.sambaum.ch:443' ]
       labels:
         group: 'uptime-kuma'
+  - job_name: 'gatus'
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    scheme: https
+    # tls_config:
+    #   insecure_skip_verify: true
+    static_configs:
+    - targets: [ 'gatus.deskcube.int.sambaum.ch:443' ]
+      labels:
+        group: 'gatus'
   - job_name: 'json-exporter-mystrom'
     scrape_interval: 30s
     metrics_path: '/probe'
