@@ -94,7 +94,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -273,7 +273,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -385,7 +385,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -538,7 +538,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -635,7 +635,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -766,7 +766,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -856,7 +856,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -977,7 +977,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1093,7 +1093,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1187,7 +1187,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1270,7 +1270,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1380,7 +1380,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1463,7 +1463,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1585,7 +1585,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1722,7 +1722,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1786,7 +1786,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "title": "Dashboards",
       "type": "dashlist"
     },
@@ -1861,7 +1861,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -1970,7 +1970,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -2175,7 +2175,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -2214,7 +2214,7 @@
               }
             ]
           },
-          "unit": "days"
+          "unit": "s"
         },
         "overrides": []
       },
@@ -2249,7 +2249,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -2258,7 +2258,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "min(monitor_cert_days_remaining)",
+          "expr": "min(gatus_results_certificate_expiration_seconds)",
           "interval": "",
           "legendFormat": "{{ monitor_name }}",
           "range": true,
@@ -2305,8 +2305,8 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "Uptime Kuma Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
+          "title": "Gatus",
+          "url": "https://gatus.deskcube.int.sambaum.ch/"
         }
       ],
       "options": {
@@ -2326,7 +2326,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -2335,7 +2335,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "count(monitor_status{monitor_url!~\".*composter.*\"}==0)",
+          "expr": "count(gatus_results_endpoint_success == 0)",
           "interval": "",
           "legendFormat": "{{ monitor_name }}",
           "range": true,
@@ -2379,8 +2379,8 @@
       "links": [
         {
           "targetBlank": true,
-          "title": "Uptime Kuma Dashboard",
-          "url": "https://grafana.dumpster.int.sambaum.ch/d/CN8E-vZ7k/uptime-kuma"
+          "title": "Gatus",
+          "url": "https://gatus.deskcube.int.sambaum.ch/"
         }
       ],
       "options": {
@@ -2400,7 +2400,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "12.4.1",
       "targets": [
         {
           "datasource": {
@@ -2409,7 +2409,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "count (monitor_status)",
+          "expr": "count (gatus_results_endpoint_success)",
           "interval": "",
           "legendFormat": "{{ monitor_name }}",
           "range": true,
@@ -2417,7 +2417,7 @@
         }
       ],
       "timeFrom": "1m",
-      "title": "Sites",
+      "title": "Sites Total",
       "type": "stat"
     }
   ],
