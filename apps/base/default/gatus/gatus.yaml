@@ -18,7 +18,7 @@ spec:
 
       initContainers:
       - name: init-config
-        image: badouralix/curl-jq@sha256:554222a9e8a786b91a1db05d3fff47854b381dfd5d7e73c4ac166faa29c9a2b7
+        image: badouralix/curl-jq@sha256:3670578737d1d2019b10a4f9e607284101feb9fdd6b0478e78ea87bf61d96145
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 0
