@@ -1,3 +1,5 @@
+# Notes
+# Icons: https://github.com/walkxcode/dashboard-icons
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
@@ -10,8 +12,6 @@ resources:
 - manifests/deployment.yaml
 - manifests/service.yaml
 - manifests/ingress.yaml
-commonLabels:
-  app.kubernetes.io/name: homepage
 #   # app.kubernetes.io/version: 0.7.3
 # images:
 #   - name: homepage
@@ -22,16 +22,14 @@ configMapGenerator:
 - name: homepage
   files:
   - config/kubernetes.yaml
-#   - config/bookmarks.yaml
-#   - config/services.yaml
-#   - config/widgets.yaml
-
-# - config/settings.yaml
-# - config/custom.css
-# - config/custom.js
-# - config/docker.yaml
-
-
-
-# Notes
-# Icons: https://github.com/walkxcode/dashboard-icons?tab=readme-ov-file#-icons
+  # - config/bookmarks.yaml
+  # - config/services.yaml
+  # - config/widgets.yaml
+  # - config/settings.yaml
+  # - config/custom.css
+  # - config/custom.js
+  # - config/docker.yaml
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: homepage
