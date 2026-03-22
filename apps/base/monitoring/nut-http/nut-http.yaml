@@ -24,6 +24,14 @@ spec:
         env:
         - name: NUT_ADDRESS
           value: 'truenas.int.sambaum.ch'
+        livenessProbe:
+          httpGet:
+            path: /devices/ups
+            port: 3001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 2
       dnsConfig:
         options:
         - name: ndots
