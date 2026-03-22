@@ -63,6 +63,7 @@ metadata:
     gethomepage.dev/icon: ups.png
     gethomepage.dev/name: NTU-HTTP
     gethomepage.dev/pod-selector: app=nut-http
+    monitoring.gatus.dev/path: /devices/ups
 spec:
   ingressClassName: nginx
   tls:
