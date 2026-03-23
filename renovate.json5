@@ -17,6 +17,9 @@
     ]
   },
   "flux": {
+    "managerFilePatterns": [
+      "\\.ya?ml$"
+    ],
     "fileMatch": [
       "\\.ya?ml$"
     ],
