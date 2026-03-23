@@ -6,4 +6,5 @@ metadata:
 spec:
   interval: 30m
   url: oci://ghcr.io/stevehipwell/helm-charts/thanos
-  tag: "1.22.0"
+  ref:
+    tag: "1.22.0"
