@@ -18,7 +18,6 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2504,
     "links": [],
     "panels": [
         {
@@ -26,7 +25,6 @@
                 "type": "prometheus",
                 "uid": "P5DCFC7561CCDE821"
             },
-            "description": "",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -424,16 +422,16 @@
                     }
                 ]
             },
-            "pluginVersion": "12.3.3",
+            "pluginVersion": "12.4.1",
             "targets": [
                 {
                     "datasource": {
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "probe_success{job=~\"$job\", instance=~\"$instance\"}",
+                    "editorMode": "code",
+                    "expr": "probe_success{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -444,9 +442,9 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "probe_http_ssl{job=~\"$job\", instance=~\"$instance\"} > 0",
+                    "editorMode": "code",
+                    "expr": "probe_http_ssl{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"} > 0",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -457,9 +455,9 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "(probe_ssl_earliest_cert_expiry{job=~\"$job\", instance=~\"$instance\"} - time()) / 3600 / 24",
+                    "editorMode": "code",
+                    "expr": "(probe_ssl_earliest_cert_expiry{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"} - time()) / 3600 / 24",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -472,7 +470,6 @@
                     },
                     "expr": "probe_http_status_code{job=~\"$job\", instance=~\"$instance\"} > 0",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -485,7 +482,6 @@
                     },
                     "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
                     "format": "table",
-                    "hide": false,
                     "instant": false,
                     "interval": "",
                     "intervalFactor": 1,
@@ -497,9 +493,9 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "probe_tls_version_info{job=~\"$job\", instance=~\"$instance\"}",
+                    "editorMode": "code",
+                    "expr": "probe_tls_version_info{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -510,9 +506,9 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "avg_over_time(probe_dns_lookup_time_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
+                    "editorMode": "code",
+                    "expr": "avg_over_time(probe_dns_lookup_time_seconds{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}[1m])",
                     "format": "table",
-                    "hide": false,
                     "instant": true,
                     "interval": "",
                     "legendFormat": "",
@@ -724,14 +720,15 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "12.3.3",
+            "pluginVersion": "12.4.1",
             "targets": [
                 {
                     "datasource": {
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "sum(probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\"}) by (instance)",
+                    "editorMode": "code",
+                    "expr": "sum(probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}) by (instance)",
                     "instant": false,
                     "interval": "",
                     "intervalFactor": 2,
@@ -743,7 +740,7 @@
             "type": "timeseries"
         },
         {
-            "collapsed": true,
+            "collapsed": false,
             "gridPos": {
                 "h": 1,
                 "w": 24,
@@ -751,50 +748,112 @@
                 "y": 18
             },
             "id": 8,
-            "panels": [
+            "panels": [],
+            "repeat": "instance",
+            "title": "$instance",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "P5DCFC7561CCDE821"
+            },
+            "description": "Duration of http request by phase, summed over all redirects",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 24,
+                "x": 0,
+                "y": 19
+            },
+            "id": 6,
+            "options": {
+                "alertThreshold": true,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.4.1",
+            "targets": [
                 {
                     "datasource": {
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "description": "Duration of http request by phase, summed over all redirects",
-                    "fieldConfig": {
-                        "defaults": {
-                            "custom": {}
-                        },
-                        "overrides": []
-                    },
-                    "gridPos": {
-                        "h": 7,
-                        "w": 24,
-                        "x": 0,
-                        "y": 27
-                    },
-                    "id": 6,
-                    "options": {
-                        "alertThreshold": true
-                    },
-                    "pluginVersion": "7.3.5",
-                    "targets": [
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "P5DCFC7561CCDE821"
-                            },
-                            "expr": "probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\"}",
-                            "interval": "",
-                            "intervalFactor": 2,
-                            "legendFormat": "{{ phase }}",
-                            "refId": "A"
-                        }
-                    ],
-                    "title": "HTTP Probe Phases Duration",
-                    "type": "timeseries"
+                    "editorMode": "code",
+                    "expr": "probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}",
+                    "interval": "",
+                    "intervalFactor": 2,
+                    "legendFormat": "{{ phase }}",
+                    "range": true,
+                    "refId": "A"
                 }
             ],
-            "repeat": "instance",
-            "title": "$instance",
-            "type": "row"
+            "title": "HTTP Probe Phases Duration",
+            "type": "timeseries"
         }
     ],
     "preload": false,
@@ -812,7 +871,6 @@
                     "text": "All",
                     "value": "$__all"
                 },
-                "datasource": "P5DCFC7561CCDE821",
                 "definition": "label_values(probe_success, job)",
                 "includeAll": true,
                 "label": "Job",
@@ -821,6 +879,7 @@
                 "query": "label_values(probe_success, job)",
                 "refresh": 1,
                 "regex": "",
+                "regexApplyTo": "value",
                 "sort": 2,
                 "type": "query"
             },
@@ -830,7 +889,6 @@
                     "text": "All",
                     "value": "$__all"
                 },
-                "datasource": "P5DCFC7561CCDE821",
                 "definition": "label_values(probe_success{job=~\"$job\"}, instance)",
                 "includeAll": true,
                 "label": "Instance",
@@ -839,7 +897,31 @@
                 "query": "label_values(probe_success{job=~\"$job\"}, instance)",
                 "refresh": 1,
                 "regex": "",
+                "regexApplyTo": "value",
                 "sort": 2,
+                "type": "query"
+            },
+            {
+                "current": {
+                    "text": "production",
+                    "value": "production"
+                },
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "P5DCFC7561CCDE821"
+                },
+                "definition": "label_values(probe_success,stage)",
+                "label": "Stage",
+                "name": "stage",
+                "options": [],
+                "query": {
+                    "qryType": 1,
+                    "query": "label_values(probe_success,stage)",
+                    "refId": "PrometheusVariableQueryEditor-VariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "regexApplyTo": "value",
                 "type": "query"
             }
         ]
@@ -849,8 +931,9 @@
         "to": "now"
     },
     "timepicker": {},
-    "timezone": "",
+    "timezone": "browser",
     "title": "Blackbox Exporter (HTTP prober)",
     "uid": "blackbox-exporter-http-prober",
-    "version": 1
+    "version": 1,
+    "weekStart": ""
 }
