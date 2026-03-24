@@ -49,4 +49,4 @@ spec:
       - https://test.cbee.ch/my-account/
   metricRelabelings:
   - targetLabel: stage
-    replacement: production
+    replacement: test
