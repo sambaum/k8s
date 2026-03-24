@@ -6,6 +6,7 @@ metadata:
   namespace: monitoring
   labels:
     release: kube-prometheus-stack
+    stage: production
 spec:
   interval: 30s
   module: http_check_woocommerce_cbee
@@ -20,3 +21,32 @@ spec:
       - https://cbee.ch/product/kurze-pumphose-leuchtturm-und-marine/
       - https://cbee.ch/warenkorb/
       - https://cbee.ch/my-account/
+  metricRelabelings:
+  - targetLabel: stage
+    replacement: production
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: woocommerce-cbee-test
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+    stage: test
+spec:
+  interval: 30s
+  module: http_check_woocommerce_cbee
+  prober:
+    url: blackbox-exporter.monitoring.svc:9115
+  targets:
+    staticConfig:
+      static:
+      - https://test.cbee.ch/
+      - https://test.cbee.ch/shop/
+      - https://test.cbee.ch/product-category/hosen/pumphosen-kleidung/
+      - https://test.cbee.ch/product/kurze-pumphose-leuchtturm-und-marine/
+      - https://test.cbee.ch/warenkorb/
+      - https://test.cbee.ch/my-account/
+  metricRelabelings:
+  - targetLabel: stage
+    replacement: production
