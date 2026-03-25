@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cbee-grammar-check
-        image: nginx:1.29.6
+        image: nginx:1.29.7
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
