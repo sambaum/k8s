@@ -4,6 +4,8 @@ resources:
 - deployment.yaml
 - regular-secret.yaml
 - configmap.yaml
+- configmap-envFrom.yaml
+- regular-secret-envFrom.yaml
 
 # Kustomize generated resources
 configMapGenerator:
