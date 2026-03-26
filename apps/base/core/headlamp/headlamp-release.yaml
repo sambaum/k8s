@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: headlamp
         namespace: flux-system
-      version: '0.40.1'
+      version: '0.41.0'
   interval: 30m
   install:
     remediation:
