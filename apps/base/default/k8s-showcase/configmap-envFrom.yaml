@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: regular-config-envFrom
+data:
+  log_level_envFrom: DEBUG
+  feature_flag_envFrom: "true"

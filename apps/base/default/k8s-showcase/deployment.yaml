@@ -52,6 +52,12 @@ spec:
             secretKeyRef:
               name: generated-secret
               key: password
+        # create full environment variables from regular secret and configmap. will create env vars for each key in the secret and configmap with the same name as the key
+        envFrom:
+        - secretRef:
+            name: regular-secret-envFrom
+        - configMapRef:
+            name: regular-config-envFrom
 
         volumeMounts:
         # Mount regular configmap as a file. will create files under /etc/showcase/config for each key in the configmap
