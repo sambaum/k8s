@@ -1,0 +1,47 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: influxdb2
+  namespace: monitoring
+spec:
+  releaseName: influxdb2
+  chart:
+    spec:
+      chart: influxdb2
+      sourceRef:
+        kind: HelmRepository
+        name: influxdata
+        namespace: flux-system
+      version: '2.1.2'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    adminUser:
+      organization: "sam"
+      bucket: "proxmox"
+      user: "sam"
+      retention_policy: "90d"
+      existingSecret: influxdb-auth
+    persistence:
+      enabled: true
+      useExisting: true
+      name: local-data-monitoring-pvc
+      storageClass: "-"
+      subPath: "influxdb2"
+    ingress:
+      enabled: true
+      className: nginx
+      tls: true
+      secretName: influxdb2-tls
+      hostname: example.com
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        gethomepage.dev/description: V2
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: influxdb.svg
+        gethomepage.dev/name: InfluxDB
+        gethomepage.dev/pod-selector: app=influxdb
+      path: /

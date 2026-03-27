@@ -1,2 +1,6 @@
 resources:
-- influxdb.yaml
+# - influxdb.yaml
+
+- helmrepository.yaml
+- secret.yaml
+- release.yaml
