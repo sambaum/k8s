@@ -26,6 +26,14 @@ configMapGenerator:
     labels:
       grafana_datasource: "1"
 
+- name: influxdb-datasource
+  namespace: monitoring
+  files:
+  - influxdb-datasource.yaml
+  options:
+    labels:
+      grafana_datasource: "1"
+
 secretGenerator:
 - name: thanos-objstore
   namespace: monitoring
