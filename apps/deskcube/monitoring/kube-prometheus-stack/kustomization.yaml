@@ -18,6 +18,18 @@ patches:
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+
+- target:
+    kind: HelmRelease
+    name: thanos
+  patch: |-
+    - op: replace
+      path: /spec/values/query/ingress/hosts/0
+      value: thanos-query.deskcube.int.sambaum.ch
+    - op: replace
+      path: /spec/values/query/ingress/tls/0/hosts/0
+      value: thanos-query.deskcube.int.sambaum.ch
+
 secretGenerator:
 - name: thanos-objstore
   namespace: monitoring

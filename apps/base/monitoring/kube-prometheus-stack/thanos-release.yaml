@@ -1,0 +1,55 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: thanos
+  namespace: monitoring
+spec:
+  interval: 10m
+  releaseName: thanos
+  chartRef:
+    kind: OCIRepository
+    name: thanos
+    namespace: flux-system
+  targetNamespace: monitoring
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    # logLevel: debug
+    objstoreConfig:
+      create: false
+      name: thanos-objstore
+      key: objstore.yml
+    compact:
+      enabled: true
+      # persistence:
+      #   enabled: true
+      #   storageClass: openebs-local-hostpath-data-placeholder-sc # will be overwritten in overlay
+      extraArgs:
+      - --retention.resolution-raw=5d
+      - --retention.resolution-5m=60d
+      - --retention.resolution-1h=720d
+    query:
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+        - thanos-query.example.com # will be overwritten in overlay
+        tls:
+        - hosts:
+          - thanos-query.example.com # will be overwritten in overlay
+          secretName: thanos-query-tls
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-staging
+          gethomepage.dev/description: Thanos Querier for aggregated metrics queries
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: More Apps
+          gethomepage.dev/icon: thanos.svg
+          gethomepage.dev/name: Thanos Querier/Query
+          gethomepage.dev/pod-selector: app.kubernetes.io/name=thanos
+    storeGateway:
+      enabled: true
+    additionalEndpoints:
+    - dnssrv+_grpc._tcp.prometheus-operated:10901
