@@ -2,7 +2,7 @@ apiVersion: 1
 datasources:
 - name: InfluxDB
   type: influxdb
-  url: http://influxdb-service:8086
+  url: http://influxdb2:80
   jsonData:
     version: Flux
     organization: sam
