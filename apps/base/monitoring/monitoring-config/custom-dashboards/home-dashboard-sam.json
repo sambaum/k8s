@@ -2557,6 +2557,7 @@
         "type": "interval"
       },
       {
+        "allowCustomValue": false,
         "current": {
           "text": "proxmox",
           "value": "proxmox"

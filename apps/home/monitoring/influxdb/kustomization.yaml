@@ -1,25 +1,6 @@
 resources:
 - ../../../base/monitoring/influxdb/
 patches:
-
-# Old Deployment:
-
-# - target:
-#     kind: Ingress
-#     name: influxdb-ingress
-#   patch: |-
-#     - op: replace
-#       path: /spec/rules/0/host
-#       value: influxdb.int.sambaum.ch
-#     - op: replace
-#       path: /spec/tls/0/hosts
-#       value: [influxdb.int.sambaum.ch]
-#     - op: replace
-#       path: /metadata/annotations/cert-manager.io~1cluster-issuer
-#       value: letsencrypt-production
-
-# New Helm Chart
-
 - target:
     kind: HelmRelease
     name: influxdb2
