@@ -47,6 +47,10 @@ spec:
           isDefaultDatasource: false
           env:
             SKIP_TLS_VERIFY: "true"
+      grafana.ini:
+        auth.anonymous:
+          enabled: true
+          org_role: Viewer
       persistence:
         type: pvc
         enabled: true
