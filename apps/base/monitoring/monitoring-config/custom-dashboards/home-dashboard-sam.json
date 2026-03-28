@@ -94,7 +94,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -273,7 +273,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -385,7 +385,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -538,7 +538,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -635,7 +635,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -766,7 +766,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -788,7 +788,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bY0ll83nk"
+        "uid": "${influxdb2_datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -856,12 +856,12 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "bY0ll83nk"
+            "uid": "${influxdb2_datasource}"
           },
           "query": "from(bucket: \"proxmox\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"system\")\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\n  |> filter(fn: (r) => r[\"nodename\"] == \"proxmox\")\n  |> last()\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({ r with \n    _time: r._time,\n    _measurement: r.measurement,\n    _field: \"used_perc\",\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\n     }))\n  |> drop(columns: [\"avail\",\"used\"])\n",
           "refId": "A"
@@ -869,7 +869,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "bY0ll83nk"
+            "uid": "${influxdb2_datasource}"
           },
           "query": "from(bucket: \"proxmox\")\r\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"system\")\r\n  |> filter(fn: (r) => r._field == \"avail\" or r._field == \"used\")\r\n  |> filter(fn: (r) => r[\"nodename\"] == \"pve2\")\r\n  |> last()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with \r\n    _time: r._time,\r\n    _measurement: r.measurement,\r\n    _field: \"used_perc\",\r\n    _value: float(v: 100) / (float(v: r.avail) + float(v: r.used)) * float(v:r.used)\r\n     }))\r\n  |> drop(columns: [\"avail\",\"used\"])\r\n",
           "refId": "B"
@@ -977,7 +977,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1093,7 +1093,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1187,7 +1187,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1270,7 +1270,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1380,7 +1380,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1463,7 +1463,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1585,7 +1585,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1722,7 +1722,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1786,7 +1786,7 @@
           "Starred"
         ]
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "title": "Dashboards",
       "type": "dashlist"
     },
@@ -1861,7 +1861,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -1970,7 +1970,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -2092,7 +2092,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bY0ll83nk"
+        "uid": "${influxdb2_datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2175,12 +2175,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "bY0ll83nk"
+            "uid": "${influxdb2_datasource}"
           },
           "query": "from(bucket: \"${Bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"system\")\n  |> filter(fn: (r) => r[\"_field\"] == \"cpu\")\n  |> filter(fn: (r) => r[\"object\"] == \"qemu\")\n  |> filter(fn: (r) => r[\"_value\"] > 0)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n//  |> yield(name: \"mean\")\n",
           "refId": "A"
@@ -2249,7 +2249,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -2326,7 +2326,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -2400,7 +2400,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.1",
+      "pluginVersion": "12.4.2",
       "targets": [
         {
           "datasource": {
@@ -2675,6 +2675,18 @@
         "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "InfluxDB",
+          "value": "bY0ll83nk"
+        },
+        "name": "influxdb2_datasource",
+        "options": [],
+        "query": "influxdb",
         "refresh": 1,
         "regex": "",
         "type": "datasource"
