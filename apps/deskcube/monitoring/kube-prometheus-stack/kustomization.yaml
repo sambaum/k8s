@@ -29,6 +29,9 @@ patches:
     - op: replace
       path: /spec/values/query/ingress/tls/0/hosts/0
       value: thanos-query.deskcube.int.sambaum.ch
+    - op: replace
+      path: /spec/values/query/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
 
 secretGenerator:
 - name: thanos-objstore
