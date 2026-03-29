@@ -43,5 +43,5 @@ spec:
         gethomepage.dev/group: More Apps
         gethomepage.dev/icon: influxdb.svg
         gethomepage.dev/name: InfluxDB
-        gethomepage.dev/pod-selector: app=influxdb
+        gethomepage.dev/pod-selector: app.kubernetes.io/name=influxdb2
       path: /
