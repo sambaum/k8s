@@ -1,0 +1,17 @@
+resources:
+- ../../../base/monitoring/polaris/
+
+patches:
+- target:
+    kind: HelmRelease
+    name: polaris
+  patch: |-
+    - op: replace
+      path: /spec/values/dashboard/ingress/hosts/0
+      value: polaris.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/dashboard/ingress/tls/0/hosts/0
+      value: polaris.dumpster.int.sambaum.ch
+    - op: replace
+      path: /spec/values/dashboard/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

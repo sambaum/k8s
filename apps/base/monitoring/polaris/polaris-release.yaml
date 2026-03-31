@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: polaris
+  namespace: monitoring
+spec:
+  releaseName: polaris
+  chart:
+    spec:
+      chart: polaris
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds-stable
+        namespace: flux-system
+      version: '5.19.0'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    dashboard:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+        - host: polaris.example.com
+        tls:
+        - hosts:
+          - polaris.example.com # will be overwritten in overlay
+          secretName: polaris-tls
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-staging
+          gethomepage.dev/description: Polaris Dashboard for Kubernetes best practices and security checks
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: More Apps
+          gethomepage.dev/icon: polaris.svg
+          gethomepage.dev/name: Polaris Dashboard
+          gethomepage.dev/pod-selector: app.kubernetes.io/name=polaris-dashboard
