@@ -108,7 +108,7 @@ spec:
         # podMonitorSelector:
         #   matchLabels:
         #     app.kubernetes.io/component: monitoring
-        retention: 30d
+        retention: 3d
         storageSpec:
           volumeClaimTemplate:
             metadata:
