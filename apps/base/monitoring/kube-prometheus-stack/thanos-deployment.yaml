@@ -33,9 +33,9 @@ spec:
         - --data-dir=/var/thanos/compact
         - --objstore.config-file=/etc/thanos/objstore.yml
         - --wait
-        - --retention.resolution-raw=5d
-        - --retention.resolution-5m=14d
-        - --retention.resolution-1h=2y
+        - --retention.resolution-raw=90d
+        - --retention.resolution-5m=180d
+        - --retention.resolution-1h=720d
         volumeMounts:
         - name: objstore
           mountPath: /etc/thanos/objstore.yml
