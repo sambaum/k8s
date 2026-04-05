@@ -7,4 +7,4 @@ datasources:
   isDefault: true
   jsonData:
     prometheusType: Thanos
-    customQueryParameters: max_source_resolution=1h
+    # customQueryParameters: max_source_resolution=1h
