@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skiptro
+  namespace: default
+  labels:
+    app: skiptro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skiptro
+  template:
+    metadata:
+      labels:
+        app: skiptro
+    spec:
+      containers:
+      - name: skiptro
+        image: mikesilvo/skiptro:v0.16.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /root/.config/Skiptro
+          name: config
+          subPath: skiptro
+        - mountPath: /tv
+          name: media
+          subPath: Video/TV-Shows
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: MEDIA_PATHS
+          value: '/tv'
+        - name: SCAN_SCHEDULE
+          value: '00 11 * * *'
+        - name: SCAN_ARGS
+          value: '--all --export'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: truenas-media-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
