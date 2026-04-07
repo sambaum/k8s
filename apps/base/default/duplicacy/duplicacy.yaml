@@ -5,6 +5,8 @@ metadata:
   namespace: default
   labels:
     app: duplicacy
+  annotations:
+    polaris.fairwinds.com/runAsRootAllowed-exempt: "true" # saspus/duplicacy-web starts as root to chown dirs, then su-exec drops to USR_ID/GRP_ID
 spec:
   replicas: 1
   selector:
@@ -25,6 +27,10 @@ spec:
         env:
         - name: TZ
           value: 'Europe/Zurich'
+        - name: USR_ID
+          value: '1000'
+        - name: GRP_ID
+          value: '1000'
       dnsConfig:
         options:
         - name: ndots
