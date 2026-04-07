@@ -1,19 +1,32 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: minio-ghost-cleanup
+  name: deletion-mark-cleanup
   namespace: monitoring
 spec:
-  schedule: "0 16 * * *" # every day at 16:00
-  # suspend: true
+  schedule: "45 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
           containers:
           - name: cleanup
             image: minio/mc:RELEASE.2025-08-13T08-35-41Z
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: mc-config
+              mountPath: /.mc
             env:
             - name: MINIO_ROOT_USER
               valueFrom:
@@ -44,3 +57,8 @@ spec:
                 done < /tmp/prefixes.txt
               done < /tmp/buckets.txt
               echo "Removed $count ghost block directories"
+          volumes:
+          - name: tmp
+            emptyDir: {}
+          - name: mc-config
+            emptyDir: {}

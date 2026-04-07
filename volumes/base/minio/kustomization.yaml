@@ -4,5 +4,5 @@ resources:
 - helmrepository.yaml
 - release.yaml
 # - fs-permissions-job.yaml
-- ghost-cleanup-cronjob.yaml
+- mino-deletion-mark-cleanup-cronjob.yaml
 - secrets.yaml
