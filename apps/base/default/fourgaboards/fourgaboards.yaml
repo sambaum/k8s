@@ -15,10 +15,21 @@ spec:
       labels:
         app: fourgaboards
     spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox:1.37.0
+        command: [ 'sh', '-c', 'chown -R 999:999 /postgres' ]
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /postgres
+          name: config
+          subPath: fourgaboards/postgres
       containers:
       - name: fourgaboards
         image: ghcr.io/rargames/4gaboards:3.3.4
         imagePullPolicy: IfNotPresent
+        securityContext: { runAsNonRoot: true, runAsUser: 1000, runAsGroup: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         ports:
         - containerPort: 1337
         volumeMounts:
@@ -43,6 +54,7 @@ spec:
       - name: fourgaboards-db
         image: pgautoupgrade/pgautoupgrade:18.3-debian
         imagePullPolicy: IfNotPresent
+        securityContext: { runAsUser: 999, runAsGroup: 999, runAsNonRoot: true, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         ports:
         - containerPort: 5432
         volumeMounts:
