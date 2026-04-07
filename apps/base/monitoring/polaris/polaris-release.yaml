@@ -33,6 +33,6 @@ spec:
           gethomepage.dev/description: Polaris Dashboard for Kubernetes best practices and security checks
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: More Apps
-          gethomepage.dev/icon: polaris.svg
+          gethomepage.dev/icon: kubernetes.svg
           gethomepage.dev/name: Polaris Dashboard
           gethomepage.dev/pod-selector: app.kubernetes.io/name=polaris-dashboard
