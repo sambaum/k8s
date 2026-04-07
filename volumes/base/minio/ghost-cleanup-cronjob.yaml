@@ -4,8 +4,8 @@ metadata:
   name: minio-ghost-cleanup
   namespace: monitoring
 spec:
-  schedule: "0 3 * * 0" # Weekly on Sunday at 3am
-  suspend: true
+  schedule: "0 16 * * *" # every day at 16:00
+  # suspend: true
   jobTemplate:
     spec:
       template:
@@ -13,7 +13,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: cleanup
-            image: minio/mc:RELEASE.2024-11-21T17-21-54Z
+            image: minio/mc:RELEASE.2025-08-13T08-35-41Z
             env:
             - name: MINIO_ROOT_USER
               valueFrom:
@@ -31,12 +31,16 @@ spec:
             - |
               mc alias set minio http://minio:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD"
               count=0
-              for bucket in $(mc ls minio/ | awk '{print $NF}'); do
-                for prefix in $(mc ls "minio/$bucket" | awk '{print $NF}'); do
+              mc ls minio/ > /tmp/buckets.txt
+              while IFS= read -r line; do
+                bucket="${line##* }"
+                mc ls "minio/$bucket" > /tmp/prefixes.txt 2>/dev/null
+                while IFS= read -r line2; do
+                  prefix="${line2##* }"
                   if [ -z "$(mc ls --recursive "minio/$bucket$prefix" 2>/dev/null)" ]; then
                     mc rm --versions --recursive --force "minio/$bucket$prefix"
                     count=$((count + 1))
                   fi
-                done
-              done
+                done < /tmp/prefixes.txt
+              done < /tmp/buckets.txt
               echo "Removed $count ghost block directories"
