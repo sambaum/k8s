@@ -36,6 +36,7 @@ spec:
           gethomepage.dev/icon: kubernetes.svg
           gethomepage.dev/name: Polaris Dashboard
           gethomepage.dev/pod-selector: app.kubernetes.io/name=polaris-dashboard
+    mergeConfig: true
     config:
       checks:
         deploymentMissingReplicas: ignore # single replicas is by design, because we dont need 100% uptime.
