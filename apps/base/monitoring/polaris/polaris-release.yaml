@@ -36,3 +36,30 @@ spec:
           gethomepage.dev/icon: kubernetes.svg
           gethomepage.dev/name: Polaris Dashboard
           gethomepage.dev/pod-selector: app.kubernetes.io/name=polaris-dashboard
+    config:
+      checks:
+        deploymentMissingReplicas: ignore # single replicas is by design, because we dont need 100% uptime.
+        missingNetworkPolicy: ignore # all workloads deployed by a single team, no untrusted tenants, low lateral movement risk.
+        topologySpreadConstraint: ignore # relevant for multi-node HA deployments.
+        priorityClassNotSet: ignore # for contention between critical and non-critical workloads. Can be handles reactively on this cluster.
+        pullPolicyNotAlways: ignore # we always use images tags, which are then updated by Renovate.
+      exemptions:
+      - containerNames:
+        # init containers to set up files/permissions, need root access
+        - init-permissions
+        rules:
+        - runAsRootAllowed
+        - privilegeEscalationAllowed
+      - containerNames:
+        # thanos maintained by Helm chart
+        - config-reloader
+        rules:
+        - privilegeEscalationAllowed
+      - controllerNames:
+        # Helm chart managed
+        - kube-prometheus-stack-prometheus-node-exporter
+    additionalExemptions:
+    - namespace: kube-system
+    - namespace: openebs
+    - namespace: ingress-nginx
+    - namespace: flux-system
