@@ -19,6 +19,7 @@ spec:
       - name: echo
         image: mendhak/http-https-echo:40
         imagePullPolicy: Always
+        securityContext: { runAsNonRoot: true, runAsUser: 1000, runAsGroup: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         ports:
         - containerPort: 8080
       dnsConfig:
