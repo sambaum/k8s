@@ -19,6 +19,7 @@ spec:
       - name: cyberchef
         image: mpepping/cyberchef:v10.22.1
         imagePullPolicy: Always
+        securityContext: { allowPrivilegeEscalation: false, runAsNonRoot: true, capabilities: { drop: [ ALL ] } }
         ports:
         - containerPort: 8000
       dnsConfig:
