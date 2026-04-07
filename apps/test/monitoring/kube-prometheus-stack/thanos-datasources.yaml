@@ -5,3 +5,5 @@ datasources:
   access: proxy
   url: https://thanos-query.deskcube.int.sambaum.ch:443
   isDefault: false
+  jsonData:
+    prometheusType: Thanos
