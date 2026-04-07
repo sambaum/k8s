@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: minio-ghost-cleanup
+  namespace: monitoring
+spec:
+  schedule: "0 3 * * 0" # Weekly on Sunday at 3am
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: cleanup
+            image: minio/mc:RELEASE.2024-11-21T17-21-54Z
+            env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secrets
+                  key: rootUser
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secrets
+                  key: rootPassword
+            command:
+            - sh
+            - -c
+            - |
+              mc alias set minio http://minio:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD"
+              count=0
+              for bucket in $(mc ls minio/ | awk '{print $NF}'); do
+                for prefix in $(mc ls "minio/$bucket" | awk '{print $NF}'); do
+                  if [ -z "$(mc ls --recursive "minio/$bucket$prefix" 2>/dev/null)" ]; then
+                    mc rm --versions --recursive --force "minio/$bucket$prefix"
+                    count=$((count + 1))
+                  fi
+                done
+              done
+              echo "Removed $count ghost block directories"
