@@ -11,6 +11,13 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            # non-root not possible, installs software
+            polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
+            polaris.fairwinds.com/runAsPrivileged-exempt: "true"
+            polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
+            polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
         spec:
           containers:
           - name: cbee-grammar-check-job

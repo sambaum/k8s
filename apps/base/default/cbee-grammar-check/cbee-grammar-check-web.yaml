@@ -17,10 +17,11 @@ spec:
     spec:
       containers:
       - name: cbee-grammar-check
-        image: nginx:1.29.7
+        image: nginxinc/nginx-unprivileged:1.29
         imagePullPolicy: IfNotPresent
+        securityContext: { allowPrivilegeEscalation: false, runAsNonRoot: true, capabilities: { drop: [ ALL ] } }
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
         - mountPath: /usr/share/nginx/html
           name: config
@@ -45,7 +46,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
