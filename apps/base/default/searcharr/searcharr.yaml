@@ -23,9 +23,6 @@ spec:
         - mountPath: /app/data
           name: config
           subPath: searcharr/data
-        - mountPath: /app/settings.py
-          name: settings
-          # subPath: searcharr/settings.py
         - mountPath: /app/logs
           name: data
           subPath: searcharr
@@ -39,10 +36,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-pvc
-      - name: settings
-        hostPath:
-          path: /conf/searcharr/settings.py
-          type: FileOrCreate
       dnsConfig:
         options:
         - name: ndots
