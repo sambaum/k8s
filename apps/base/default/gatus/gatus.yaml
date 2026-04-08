@@ -15,33 +15,40 @@ spec:
       labels:
         app: gatus
     spec:
-
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      # ------------------------------------------------------
+      # InitContainer: runs before Gatus starts
+      # Creates required directories as uid 1000
+      # ------------------------------------------------------
       initContainers:
       - name: init-config
-        image: badouralix/curl-jq@sha256:3670578737d1d2019b10a4f9e607284101feb9fdd6b0478e78ea87bf61d96145
+        image: busybox:1.37.0
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 0
-        command:
-        - /bin/sh
-        - -c
+          runAsNonRoot: false
+          allowPrivilegeEscalation: false
+          capabilities: { drop: [ ALL ], add: [ CHOWN ] }
+        command: [ "sh", "-c" ]
         args:
         - |
           mkdir -p /config/db
           mkdir -p /config/gatus-config
+          chown -R 1000:1000 /config
         volumeMounts:
         - name: config
           mountPath: /config
           subPath: gatus
-
+      # ------------------------------------------------------
+      # Main Gatus container
+      # ------------------------------------------------------
       containers:
       - name: gatus
         image: twinproduction/gatus:v5.35.0
-
-        securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-
+        securityContext: { runAsUser: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         env:
         - name: GATUS_CONFIG_PATH
           value: /config/gatus-config/
