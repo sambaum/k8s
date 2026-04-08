@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: searcharr
-        image: toddrob/searcharr:v3.2.2
+        image: toddrob/searcharr:v3.4.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /app/data
