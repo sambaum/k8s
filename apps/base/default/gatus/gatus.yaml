@@ -14,19 +14,16 @@ spec:
     metadata:
       labels:
         app: gatus
-      annotations:
-        polaris.fairwinds.com/runAsRootAllowed-exempt: "true" # ICMP requires root (ping_group_range disabled, pro-bing only uses SOCK_RAW as root)
     spec:
-      securityContext: {}
-      # ------------------------------------------------------
-      # InitContainer: runs before Gatus starts
-      # Creates required directories as uid 1000
-      # ------------------------------------------------------
       initContainers:
       - name: init-config
         image: busybox:1.37.0
         imagePullPolicy: IfNotPresent
-        command: [ "sh", "-c" ]
+        securityContext:
+          runAsUser: 0
+        command:
+        - /bin/sh
+        - -c
         args:
         - |
           mkdir -p /config/db
@@ -35,15 +32,12 @@ spec:
         - name: config
           mountPath: /config
           subPath: gatus
-      # ------------------------------------------------------
-      # Main Gatus container
-      # ------------------------------------------------------
       containers:
       - name: gatus
         image: twinproduction/gatus:v5.35.0
         securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: { drop: [ ALL ], add: [ NET_RAW ] }
+          runAsUser: 0
+          runAsGroup: 0
         env:
         - name: GATUS_CONFIG_PATH
           value: /config/gatus-config/
