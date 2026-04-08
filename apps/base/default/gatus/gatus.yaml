@@ -48,7 +48,7 @@ spec:
       containers:
       - name: gatus
         image: twinproduction/gatus:v5.35.0
-        securityContext: { runAsUser: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
+        securityContext: { runAsUser: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ], add: [ NET_RAW ] } }
         env:
         - name: GATUS_CONFIG_PATH
           value: /config/gatus-config/
