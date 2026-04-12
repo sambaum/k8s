@@ -15,6 +15,7 @@ spec:
       labels:
         app: immich
     spec:
+      terminationGracePeriodSeconds: 90
       containers:
       - name: immich
         image: ghcr.io/immich-app/immich-server:v2.7.2
@@ -131,6 +132,10 @@ spec:
       - name: immich-db
         image: ghcr.io/immich-app/postgres:18-vectorchord0.5.3-pgvector0.8.1
         imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command: [ "su-exec", "postgres", "pg_ctl", "stop", "-m", "fast", "-w", "-t", "60" ]
         ports:
         - containerPort: 5432
         volumeMounts:
