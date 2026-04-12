@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 90
       containers:
       - name: immich
-        image: ghcr.io/immich-app/immich-server:v2.7.2
+        image: ghcr.io/immich-app/immich-server:v2.7.4
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 2283
