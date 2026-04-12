@@ -15,7 +15,6 @@ spec:
       labels:
         app: immich
     spec:
-      terminationGracePeriodSeconds: 90
       containers:
       - name: immich
         image: ghcr.io/immich-app/immich-server:v2.7.4
@@ -135,7 +134,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: [ "su-exec", "postgres", "pg_ctl", "stop", "-m", "fast", "-w", "-t", "60" ]
+              command: [ "gosu", "postgres", "pg_ctl", "stop", "-m", "fast", "-w", "-t", "30" ]
         ports:
         - containerPort: 5432
         volumeMounts:
