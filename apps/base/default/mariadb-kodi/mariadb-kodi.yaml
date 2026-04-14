@@ -7,6 +7,8 @@ metadata:
     app: mariadb-kodi
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: mariadb-kodi

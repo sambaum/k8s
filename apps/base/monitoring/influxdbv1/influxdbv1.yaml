@@ -7,6 +7,8 @@ metadata:
     app: influxdbv1
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: influxdbv1
