@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: skiptro
-        image: mikesilvo/skiptro:v0.17.0
+        image: mikesilvo/skiptro:v0.17.1
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /root/.config/Skiptro
