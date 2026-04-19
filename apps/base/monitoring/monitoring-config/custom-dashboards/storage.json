@@ -32,7 +32,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -112,7 +112,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum by (mountpoint) (1-(node_filesystem_free_bytes{instance=~'$node',fstype=~\"ext4|xfs|zfs|btrfs\"} / node_filesystem_size_bytes{instance=~'$node',fstype=~\"ext4|xfs|zfs|btrfs\"}))",
@@ -141,7 +141,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_exporter_build_info,instance)",
         "hide": 0,
@@ -168,7 +168,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_exporter_build_info,pod)",
         "hide": 0,

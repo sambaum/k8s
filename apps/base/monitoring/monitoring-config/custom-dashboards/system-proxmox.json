@@ -78,7 +78,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -158,7 +158,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -237,7 +237,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -322,7 +322,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -407,7 +407,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -481,7 +481,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -553,7 +553,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -635,7 +635,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Get the largest partition by the variable maxmount. ",
       "fieldConfig": {
@@ -717,7 +717,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -796,7 +796,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -915,7 +915,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -970,7 +970,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes {instance=~\"$node\",fstype=~\"ext4|xfs|zfs\"}",
@@ -988,7 +988,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1244,7 +1244,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{instance=~'$node',fstype=~\"ext4|xfs|zfs\"}",
@@ -1259,7 +1259,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "node_filesystem_avail_bytes {instance=~'$node',fstype=~\"ext4|xfs|zfs\"}",
@@ -1274,7 +1274,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "1-(node_filesystem_free_bytes{instance=~'$node',fstype=~\"ext4|xfs|zfs\"} / node_filesystem_size_bytes{instance=~'$node',fstype=~\"ext4|xfs|zfs\"})",
@@ -1289,7 +1289,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "",
           "format": "table",
@@ -1326,7 +1326,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "node_disk_io_time_seconds_total：\nThe number of milliseconds the disk spends on input/output operations. This value is the accumulated value.（Milliseconds Spent Doing I/Os）\n\nirate(node_disk_io_time_seconds_total[1m])：\nCalculate the rate per second: (last value - last previous value) / timestamp difference, that is, the percentage of time that the disk spends on I/O operations in 1 second.",
       "fieldConfig": {
@@ -1455,7 +1455,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1605,7 +1605,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Reads completed: Reads per second per disk partition\n\nWrites completed: Number of writes per second per disk partition\n\nIO now Number of input/output requests being processed per disk partition per second",
       "fieldConfig": {
@@ -1714,7 +1714,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Read bytes The number of bits read per second per disk partition\nWritten bytes The number of bits written per second per disk partition",
       "fieldConfig": {
@@ -1817,7 +1817,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Read time ms Number of seconds per disk partition read operation\n\nWrite time ms Number of seconds spent per disk partition write operation\n\nIO time ms Number of seconds spent per disk partition input/output operation\n\n IO time weighted Weighted seconds spent per disk partition input/output operation",
       "fieldConfig": {
@@ -1940,7 +1940,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2043,7 +2043,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "CurrEstab - TCP connections with current state ESTABLISHED or CLOSE-WAIT\n\nActiveOpens - TCP average connections that have been converted from CLOSED state to SYN-SENT state (within 1 minute)\n\nPassiveOpens - Directly from LISTEN state The average number of TCP connections to SYN-RCVD state (within 1 minute)\n\nTCP_all oc - the number of TCP sockets allocated (established, applied to sk_buff)\n\nTCP_inuse - in use (listening The number of TCP sockets \n\nTCP_tw - the number of TCP connections waiting to be closed",
       "fieldConfig": {
@@ -2178,7 +2178,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2308,7 +2308,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=~\"platform_nct.*\", sensor=~\"temp.*\"}",
@@ -2321,7 +2321,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_coretemp_0\", sensor=\"temp1\"}",
@@ -2334,7 +2334,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2350,7 +2350,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2366,7 +2366,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2380,7 +2380,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=\"temp4\"}\t",
@@ -2392,7 +2392,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2408,7 +2408,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nvidia_smi_temperature_gpu{uuid=\"$gpu\"}",
@@ -2425,7 +2425,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2555,7 +2555,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_hwmon_temp_celsius{instance=\"$node\", chip=\"platform_coretemp_0\"}",
@@ -2572,7 +2572,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2676,7 +2676,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "node_hwmon_fan_rpm{instance=\"$node\", sensor=~\"fan.*\"}",
@@ -2689,7 +2689,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2703,7 +2703,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2716,7 +2716,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2730,7 +2730,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2744,7 +2744,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nvidia_smi_fan_speed_ratio{uuid=\"$gpu\"}",
@@ -2761,7 +2761,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -2849,7 +2849,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_cpu_core_throttles_total{instance=\"$node\"}[$interval])",
@@ -2866,7 +2866,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2990,7 +2990,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$node\",cpu=~\"([0-9]{1}[0-5]{0,1})\" }[$interval])) by (cpu) * 100",
@@ -3004,7 +3004,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$node\",cpu=~\"(16|17|18|19)\" }[$interval])) by (cpu) * 100",
@@ -3021,7 +3021,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -3107,7 +3107,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_scaling_frequency_hertz{instance=\"$node\", cpu=~\"([0-9]{1}[0-5]{0,1})\"}",
@@ -3124,7 +3124,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -3210,7 +3210,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_scaling_frequency_hertz{instance=\"$node\", cpu=~\"(16|17|18|19)\"}",
@@ -3227,7 +3227,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -3362,7 +3362,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_hwmon_in_volts{instance=\"$node\", chip=\"platform_nct6687_2592\", sensor=~\"in(3|4|7|8)\"}\t",
@@ -3379,7 +3379,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -3466,7 +3466,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3481,7 +3481,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nvidia_smi_clocks_current_video_clock_hz{uuid=\"$gpu\"}",
@@ -3494,7 +3494,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nvidia_smi_clocks_current_sm_clock_hz{uuid=\"$gpu\"}",
@@ -3507,7 +3507,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nvidia_smi_clocks_current_memory_clock_hz{uuid=\"$gpu\"}",
@@ -3622,7 +3622,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "",
         "includeAll": false,
@@ -3646,7 +3646,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_exporter_build_info{env='$env'},name)",
         "includeAll": false,
@@ -3669,7 +3669,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_exporter_build_info{name='$name'},instance)",
         "includeAll": false,
@@ -3693,7 +3693,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "",
         "hide": 2,
@@ -3715,7 +3715,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(nvidia_smi_index,uuid)",
         "includeAll": false,

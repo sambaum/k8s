@@ -33,7 +33,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -49,7 +49,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -127,7 +127,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -190,7 +190,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_memory_size_bytes{instance=\"$instance\"}",
@@ -209,7 +209,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -283,7 +283,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -365,7 +365,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -414,7 +414,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "time() - node_boot_time_seconds{instance=\"$instance\"} ",
@@ -429,7 +429,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -488,7 +488,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\"}[1m])) / count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)) * 100",
@@ -500,7 +500,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "((node_memory_active_bytes{instance=\"$instance\"} + node_memory_wired_bytes{instance=\"$instance\"}) / node_memory_size_bytes{instance=\"$instance\"}) * 100",
@@ -512,7 +512,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "(node_filesystem_size_bytes{instance=\"$instance\",mountpoint=~\"/\"} - node_filesystem_avail_bytes{instance=\"$instance\",mountpoint=~\"/\"}) / node_filesystem_size_bytes{instance=\"$instance\",mountpoint=~\"/\"} * 100",
@@ -528,7 +528,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -584,7 +584,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_load1{instance=\"$instance\"} / scalar(count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)))",
@@ -595,7 +595,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_load5{instance=\"$instance\"} / scalar(count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)))",
@@ -607,7 +607,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_load15{instance=\"$instance\"} / scalar(count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu)))",
@@ -624,7 +624,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -640,7 +640,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -725,7 +725,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
@@ -739,7 +739,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
@@ -759,7 +759,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -841,7 +841,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_receive_packets_total{instance=\"$instance\"}[$interval]) > 0",
@@ -855,7 +855,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_transmit_packets_total{instance=\"$instance\"}[$interval]) > 0",
@@ -874,7 +874,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -959,7 +959,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_receive_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1014 > 0",
@@ -974,7 +974,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_transmit_bytes_total{instance=\"$instance\"}[$interval]) * 8 / 1024 > 0",
@@ -994,7 +994,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1075,7 +1075,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_network_receive_multicast_total{instance=\"$instance\"}[$interval]) > 0",
@@ -1089,7 +1089,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "irate(node_network_transmit_multicast_total{instance=\"$instance\"}[$interval]) > 0",
           "format": "time_series",
@@ -1107,7 +1107,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -1123,7 +1123,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1211,7 +1211,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"0\"}[$interval])) * 100",
@@ -1225,7 +1225,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "sum(irate(node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"1\"}[$interval])) * 100",
@@ -1239,7 +1239,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"2\"} ",
@@ -1253,7 +1253,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"3\"} ",
@@ -1267,7 +1267,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"4\"} ",
@@ -1281,7 +1281,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"5\"} ",
@@ -1295,7 +1295,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"6\"} ",
@@ -1309,7 +1309,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_seconds_total{mode!=\"idle\",instance=\"$instance\", cpu=\"7\"} ",
@@ -1328,7 +1328,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1409,7 +1409,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"0\"}",
@@ -1422,7 +1422,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"1\"}",
           "format": "time_series",
@@ -1433,7 +1433,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"2\"}",
           "format": "time_series",
@@ -1444,7 +1444,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"3\"}",
           "format": "time_series",
@@ -1455,7 +1455,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"4\"}",
           "format": "time_series",
@@ -1466,7 +1466,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"5\"}",
           "format": "time_series",
@@ -1477,7 +1477,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"6\"}",
           "format": "time_series",
@@ -1488,7 +1488,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_cpu_temperature_celsius{instance=\"$instance\", cpu=\"7\"}",
           "format": "time_series",
@@ -1504,7 +1504,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1608,7 +1608,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1693,7 +1693,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_memory_size_bytes{instance=\"$instance\"}[$interval])",
@@ -1708,7 +1708,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_memory_active_bytes{instance=\"$instance\"}[$interval])",
@@ -1723,7 +1723,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_memory_cache_bytes{instance=\"$instance\"} + node_memory_buffer_bytes{instance=\"$instance\"}",
           "format": "time_series",
@@ -1735,7 +1735,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_memory_free_bytes{instance=\"$instance\"}",
           "format": "time_series",
@@ -1747,7 +1747,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "expr": "node_memory_inactive_bytes{instance=\"$instance\"}",
           "format": "time_series",
@@ -1760,7 +1760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "node_memory_wired_bytes{instance=\"$instance\"}",
@@ -1780,7 +1780,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -1796,7 +1796,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1877,7 +1877,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_context_switches_total{instance=\"$instance\"}[$interval])",
@@ -1896,7 +1896,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1977,7 +1977,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_device_interrupts_total{instance=\"$instance\"}[$interval])",
@@ -1996,7 +1996,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -2077,7 +2077,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_software_interrupts_total{instance=\"$instance\"}[$interval])",
@@ -2096,7 +2096,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Number of fork() calls / sec",
       "fieldConfig": {
@@ -2177,7 +2177,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_forks_total{instance=\"$instance\"}[$interval])",
@@ -2196,7 +2196,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -2277,7 +2277,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_traps_total{instance=\"$instance\"}[$interval])",
@@ -2296,7 +2296,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -2377,7 +2377,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "irate(node_exec_system_calls_total{instance=\"$instance\"}[$interval])",
@@ -2411,7 +2411,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values({instance=\"opnsense.int.sambaum.ch:9100\",job=\"opnsense\"}, instance)",
         "hide": 0,
@@ -2441,7 +2441,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(up{job=\"opnsense\"}, instance)",
         "hide": 2,
@@ -2526,7 +2526,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_cpu_seconds_total{job=\"opnsense\"}, cpu)",
         "description": "job=\"opnsense\"",
@@ -2557,7 +2557,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(node_filesystem_size{instance=~\"$instance:$port\"}, mountpoint)",
         "hide": 2,

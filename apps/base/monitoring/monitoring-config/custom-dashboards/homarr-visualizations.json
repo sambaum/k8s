@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -78,7 +78,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -153,7 +153,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -168,7 +168,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -183,7 +183,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -198,7 +198,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -292,7 +292,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -355,7 +355,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "mystrom_Ws",
@@ -367,7 +367,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -382,7 +382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -397,7 +397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "nut_http_realpower_nominal/100*nut_http_load",
@@ -481,7 +481,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
@@ -497,7 +497,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"proxmox2.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
@@ -513,7 +513,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"opnsense.int.sambaum.ch:9100\",mode=\"idle\"}[1m])) * 100)",
@@ -529,7 +529,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.35:9100\",mode=\"idle\"}[1m])) * 100)",
@@ -545,7 +545,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "e54fbaef-839a-4505-861c-ed9894beb6a0"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[1m])) * 100)",
@@ -566,7 +566,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -628,7 +628,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -645,7 +645,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -768,7 +768,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "sum(truenas_pool_dataset_usedbysnapshots)",
@@ -780,7 +780,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "truenas_pool_dataset_used{mountpoint=\"/mnt/pool1\"}",
@@ -792,7 +792,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "expr": "truenas_pool_dataset_available{mountpoint=\"/mnt/pool1\"}",

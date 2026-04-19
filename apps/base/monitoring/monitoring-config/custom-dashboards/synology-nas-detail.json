@@ -50,7 +50,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -66,7 +66,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -386,7 +386,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "sysUpTime{job=~'$JobName',instance=~'$Device'}/100",
@@ -399,7 +399,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "upgradeAvailable{job=~'$JobName',instance=~'$Device'}",
@@ -412,7 +412,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "temperature{job=~'$JobName',instance=~'$Device'}",
@@ -425,7 +425,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "cpuFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -438,7 +438,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -451,7 +451,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "systemStatus{job=~'$JobName',instance=~'$Device'}",
@@ -464,7 +464,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "powerStatus{job=~'$JobName',instance=~'$Device'}",
@@ -477,7 +477,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "modelName{job=~'$JobName',instance=~'$Device'}",
@@ -491,7 +491,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "version{job=~'$JobName',instance=~'$Device'}",
@@ -505,7 +505,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "serialNumber{job=~'$JobName',instance=~'$Device'}",
@@ -519,7 +519,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "memTotalReal{job=~'$JobName',instance=~'$Device'}",
@@ -533,7 +533,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}+1",
@@ -618,7 +618,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Enter the number of Synology's you are monitoring in the NASDevices variable. A positive Number here means there is a NAS down or not being scraped for data. A negative Number means you are collecting data from more Synology's than the system expects in the NASDevices variable.",
       "fieldConfig": {
@@ -787,7 +787,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -943,7 +943,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1080,7 +1080,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1214,7 +1214,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1349,7 +1349,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -1452,7 +1452,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -1472,7 +1472,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1611,7 +1611,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1751,7 +1751,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -1912,7 +1912,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2075,7 +2075,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "decimals": 2,
       "description": "",
@@ -2229,7 +2229,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fill": 10,
       "fillGradient": 0,
@@ -2361,7 +2361,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fill": 1,
@@ -2453,7 +2453,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fill": 0,
@@ -2543,7 +2543,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -2616,7 +2616,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "temperature{job=~'$JobName',instance=~'$Device'}",
@@ -2627,7 +2627,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": true,
           "expr": "max(diskTemperature{job=~'$JobName',instance=~'$Device'})",
@@ -2644,7 +2644,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -2660,7 +2660,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "fieldConfig": {
         "defaults": {
@@ -3016,7 +3016,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -3211,7 +3211,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "diskTemperature{job=~'$JobName',instance=~'$Device'}",
@@ -3224,7 +3224,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "diskType{job=~'$JobName',instance=~'$Device'}",
@@ -3237,7 +3237,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "diskStatus{job=~'$JobName',instance=~'$Device'}",
@@ -3250,7 +3250,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "exemplar": false,
           "expr": "diskModel{job=~'$JobName',instance=~'$Device'}",
@@ -3310,7 +3310,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -3327,7 +3327,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -3483,7 +3483,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -3620,7 +3620,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -3685,7 +3685,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "",
       "fieldConfig": {
@@ -3764,7 +3764,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -3777,7 +3777,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -3851,7 +3851,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -3987,7 +3987,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -4071,7 +4071,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -4088,7 +4088,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4190,7 +4190,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -4324,7 +4324,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4429,7 +4429,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -4446,7 +4446,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4547,7 +4547,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4648,7 +4648,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4749,7 +4749,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4850,7 +4850,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fill": 1,
@@ -4951,7 +4951,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "The number of\ndata writes to SSD\nfor the first time",
           "fill": 1,
@@ -5041,7 +5041,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -5054,7 +5054,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -5128,7 +5128,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -5264,7 +5264,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -5346,7 +5346,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -5359,7 +5359,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "fieldConfig": {
             "defaults": {
@@ -5666,7 +5666,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "editable": true,
@@ -5787,7 +5787,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "editable": true,
@@ -5930,7 +5930,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "editable": true,
@@ -6065,7 +6065,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -6082,7 +6082,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -6187,7 +6187,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6293,7 +6293,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "P5DCFC7561CCDE821"
       },
       "gridPos": {
         "h": 1,
@@ -6306,7 +6306,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "fieldConfig": {
             "defaults": {
@@ -6368,7 +6368,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "description": "",
           "fieldConfig": {
@@ -6599,7 +6599,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "P5DCFC7561CCDE821"
           },
           "fieldConfig": {
             "defaults": {
@@ -6798,7 +6798,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(ssCpuUser, job)",
         "hide": 0,
@@ -6828,7 +6828,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "query_result(ssCpuUser{job=~'$JobName'})",
         "hide": 0,
@@ -6855,7 +6855,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Regex controls interfaces to show.  Default: ^eth.*|^bond.*|^docker[0-9]",
@@ -6883,7 +6883,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Physical Network Interfaces",
@@ -6914,7 +6914,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(ifType_info{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Bonds an VLans",
@@ -6945,7 +6945,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
         "hide": 2,
@@ -6975,7 +6975,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
         "hide": 2,
@@ -7005,7 +7005,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(raidName{job=~'$JobName',instance=~'$Device'},raidName)",
         "hide": 0,
@@ -7033,7 +7033,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(storageIODevice{job=~'$JobName',instance=~'$Device'},storageIODevice)",
         "hide": 0,
@@ -7061,7 +7061,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(spaceIODevice{job=~'$JobName',instance=~'$Device'},spaceIODevice)",
         "hide": 0,
@@ -7089,7 +7089,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(hrStorageDescr{job=~'$JobName',instance=~'$Device'},hrStorageDescr)",
         "description": "Regex controls the hrStorageDescr devices  to hide.  Memory is hidden here and used in the \"hrMemoryDescr\" variable instead.  Default: /^(?!/run|/sys/.*|/dev|.*@docker.*|.*[M|m]emory)/",
@@ -7118,7 +7118,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(flashCacheSSDDev{job=~'$JobName',instance=~'$Device'},flashCacheSSDDev)",
         "hide": 0,
@@ -7146,7 +7146,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(hrStorageDescr{job=~'$JobName',instance=~'$Device'},hrStorageDescr)",
         "description": "Regex controls file hrStorageDescr devices to show here.   Default: /.*[M|m]emory.*/",
@@ -7175,7 +7175,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(diskSMARTInfoDevName{job=~'$JobName',instance=~'$Device'},diskSMARTInfoDevName)",
         "hide": 0,
@@ -7203,7 +7203,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "definition": "label_values(serviceName{job=~'$JobName',instance=~'$Device'},serviceName)",
         "description": "Regex controls which services to hide.  Default: /^(?!TELNET|FTP|AFP|OTHER)/",

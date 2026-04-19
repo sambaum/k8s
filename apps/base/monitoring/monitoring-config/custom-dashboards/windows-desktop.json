@@ -25,7 +25,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "description": "",
         "fieldConfig": {
@@ -71,7 +71,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_os_time{instance=~\"$server\"} - on () windows_process_start_time{creating_process_id=\"0\",instance=\"$server\",process=\"Idle\",process_id=\"0\"}",
             "format": "time_series",
@@ -89,7 +89,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -157,7 +157,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "editorMode": "code",
             "expr": "100 - (avg by (instance) (irate(windows_cpu_time_total{mode=\"idle\", instance=~\"$server\"}[1m])) * 100)",
@@ -174,7 +174,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -242,7 +242,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "(windows_cs_physical_memory_bytes{instance=~\"$server\"} - windows_os_physical_memory_free_bytes{instance=~\"$server\"}) / windows_cs_physical_memory_bytes{instance=~\"$server\"} * 100",
             "format": "time_series",
@@ -256,7 +256,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -324,7 +324,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "(sum(windows_logical_disk_size_bytes{volume!~\"Harddisk.*\", instance=\"$server\"}) by (instance) - sum(windows_logical_disk_free_bytes{volume!~\"Harddisk.*\", instance=\"$server\"}) by (instance)) / sum(windows_logical_disk_size_bytes{volume!~\"Harddisk.*\", instance=\"$server\"}) by (instance) * 100",
             "format": "time_series",
@@ -338,7 +338,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -407,7 +407,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "(sum(irate(windows_net_bytes_total{instance=\"$server\"}[1m])) > 1)* 8",
             "format": "time_series",
@@ -419,7 +419,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "  sum(irate(windows_net_bytes_total{instance=~\"$server\",nic=\"Red_Hat_VirtIO_Ethernet_Adapter\"}[5m])) / sum(windows_net_current_bandwidth{instance=~\"$server\",nic=\"Red_Hat_VirtIO_Ethernet_Adapter\"}/8) * 100",
             "format": "time_series",
@@ -434,7 +434,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -510,7 +510,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "100 - (windows_logical_disk_free_bytes{instance=~\"$server\"} / windows_logical_disk_size_bytes{instance=~\"$server\"})*100",
             "format": "time_series",
@@ -523,7 +523,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_logical_disk_free_bytes{instance=~\"$server\"}",
             "hide": true,
@@ -538,7 +538,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "description": "",
         "fieldConfig": {
@@ -585,7 +585,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_cs_logical_processors{instance=~\"$server\"}",
             "format": "time_series",
@@ -600,7 +600,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "description": "",
         "fieldConfig": {
@@ -647,7 +647,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_cs_physical_memory_bytes{instance=~\"$server\"}",
             "format": "time_series",
@@ -662,7 +662,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -783,7 +783,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "sum by (mode) (rate(windows_cpu_time_total{instance=~\"$server\"}[5m]))",
             "format": "time_series",
@@ -815,7 +815,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -884,7 +884,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_memory_swap_page_operations_total{instance=\"$server\"}",
             "format": "time_series",
@@ -901,7 +901,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -990,7 +990,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_cs_physical_memory_bytes{instance=~\"$server\"}",
             "format": "time_series",
@@ -1021,7 +1021,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_os_physical_memory_free_bytes{instance=~\"$server\"}",
             "format": "time_series",
@@ -1052,7 +1052,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_os_virtual_memory_bytes{instance=~\"$server\"}",
             "format": "time_series",
@@ -1080,7 +1080,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_os_virtual_memory_free_bytes{instance=~\"$server\"}",
             "format": "time_series",
@@ -1095,7 +1095,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1183,7 +1183,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "(avg without (cpu) (sum(irate(windows_cpu_time_total{instance=\"$server\",mode!=\"idle\"}[5m])) by (mode)) / 16)* 100",
             "format": "time_series",
@@ -1198,7 +1198,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1288,7 +1288,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "rate(windows_net_bytes_sent_total{instance=~\"$server\"}[$interval]) >0",
             "format": "time_series",
@@ -1320,7 +1320,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "- rate(windows_net_bytes_received_total{instance=~\"$server\"}[$interval]) <0",
             "format": "time_series",
@@ -1353,7 +1353,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1443,7 +1443,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "rate(windows_logical_disk_split_ios_total{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}[60s])",
             "format": "time_series",
@@ -1475,7 +1475,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1565,7 +1565,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "irate(windows_logical_disk_write_bytes_total{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}[60s])",
             "format": "time_series",
@@ -1596,7 +1596,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "- irate(windows_logical_disk_read_bytes_total{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}[60s])",
             "format": "time_series",
@@ -1628,7 +1628,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1747,7 +1747,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "sum(windows_service_state{instance=~\"$server\"}) by (state)",
             "format": "time_series",
@@ -1777,7 +1777,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
@@ -1836,7 +1836,7 @@
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "P5DCFC7561CCDE821"
             },
             "expr": "windows_logical_disk_free_bytes{instance=~\"$server\", volume !~\"HarddiskVolume.+\"}",
             "format": "time_series",
@@ -1868,7 +1868,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "P5DCFC7561CCDE821"
         },
         "fieldConfig": {
           "defaults": {
