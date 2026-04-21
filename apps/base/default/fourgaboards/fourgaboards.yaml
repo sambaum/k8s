@@ -27,7 +27,7 @@ spec:
           subPath: fourgaboards/postgres
       containers:
       - name: fourgaboards
-        image: ghcr.io/rargames/4gaboards:3.3.5
+        image: ghcr.io/rargames/4gaboards:3.3.6
         imagePullPolicy: IfNotPresent
         securityContext: { runAsNonRoot: true, runAsUser: 1000, runAsGroup: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         ports:
