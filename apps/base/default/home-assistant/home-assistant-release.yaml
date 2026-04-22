@@ -1,0 +1,58 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: default
+spec:
+  releaseName: home-assistant
+  chart:
+    spec:
+      chart: home-assistant
+      sourceRef:
+        kind: HelmRepository
+        name: pajikos
+        namespace: flux-system
+      version: '0.3.55'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    persistence:
+      enabled: true
+      storageClass: openebs-local-hostpath-default-conf-sc
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+      - host: homeassistant.example.com
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - homeassistant.example.com # will be overwritten in overlay
+        secretName: homeassistant-tls
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        gethomepage.dev/description: Open source home automation
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: More Apps
+        gethomepage.dev/icon: home-assistant.svg
+        gethomepage.dev/name: Home Assistant
+        gethomepage.dev/pod-selector: app.kubernetes.io/name=home-assistant
+
+    configuration:
+      enabled: true
+      forceInit: true
+      use_x_forwarded_for: true
+      trusted_proxies:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 127.0.0.0/8
+
+    dnsConfig:
+      options:
+      - name: ndots
+        value: "1"
