@@ -44,7 +44,7 @@ spec:
 
     configuration:
       enabled: true
-      forceInit: true
+      forceInit: false
       use_x_forwarded_for: true
       trusted_proxies:
       - 10.0.0.0/8
