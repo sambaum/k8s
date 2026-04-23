@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: esphome
+  namespace: default
+spec:
+  releaseName: esphome
+  chart:
+    spec:
+      chart: esphome
+      sourceRef:
+        kind: HelmRepository
+        name: gabe565
+        namespace: flux-system
+      version: '0.15.0'
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  values:
+    env:
+      TZ: "Europe/Zurich"
+      ESPHOME_DASHBOARD_USE_PING: "true"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: local-conf-pvc
+        subPath: esphome
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-staging
+          gethomepage.dev/description: ESPHome Dashboard
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: More Apps
+          gethomepage.dev/icon: esphome.svg
+          gethomepage.dev/name: ESPHome
+          gethomepage.dev/pod-selector: app.kubernetes.io/name=esphome
+        hosts:
+        - host: esphome.example.com
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - esphome.example.com
+          secretName: esphome-tls
+    dnsPolicy: None
+    dnsConfig:
+      nameservers:
+      - 192.168.1.1
+      options:
+      - name: ndots
+        value: "1"
