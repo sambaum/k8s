@@ -1,0 +1,17 @@
+resources:
+- ../../../base/default/home-assistant/
+
+patches:
+- target:
+    kind: HelmRelease
+    name: home-assistant
+  patch: |-
+    - op: replace
+      path: /spec/values/ingress/hosts/0/host
+      value: homeassistant.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/tls/0/hosts/0
+      value: homeassistant.int.sambaum.ch
+    - op: replace
+      path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
