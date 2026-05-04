@@ -159,7 +159,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.1.40:9100\",mode=\"idle\"}[5m])) * 100)",
@@ -640,7 +640,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -655,7 +655,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -669,7 +669,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "P5DCFC7561CCDE821"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -683,7 +683,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1627,7 +1627,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P5DCFC7561CCDE821"
+        "uid": "P78D5DD53BDAA63F7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1727,7 +1727,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_capacity{cluster=\"$cluster\", node=~\"deskcube\", resource=\"cpu\"})",
@@ -1742,7 +1742,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1881,7 +1881,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P5DCFC7561CCDE821"
+            "uid": "P78D5DD53BDAA63F7"
           },
           "editorMode": "code",
           "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"} * 100) / node_filesystem_size_bytes {instance=~\"192.168.1.40:9100\",mountpoint=\"/\",fstype=~\"ext4|xfs\"})",
