@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: alloy
+spec:
+  selector:
+    matchLabels:
+      name: alloy
+  template:
+    metadata:
+      labels:
+        name: alloy
+    spec:
+      serviceAccount: alloy-serviceaccount
+      containers:
+      - name: alloy
+        image: grafana/alloy:v1.8.3
+        args:
+        - run
+        - /etc/alloy/config.alloy
+        - --storage.path=/tmp/alloy
+        volumeMounts:
+        - name: config
+          mountPath: /etc/alloy/config.alloy
+          subPath: alloy-config.alloy
+      volumes:
+      - name: config
+        configMap:
+          name: alloy-config
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: alloy-clusterrole
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - pods
+  - pods/log
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: alloy-serviceaccount
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: alloy-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: alloy-serviceaccount
+  namespace: monitoring
+roleRef:
+  kind: ClusterRole
+  name: alloy-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alloy-syslog
+spec:
+  type: ClusterIP
+  selector:
+    name: alloy
+  ports:
+  - name: syslog-tcp
+    port: 514
+    targetPort: 1514
+    protocol: TCP
+  - name: syslog-udp
+    port: 514
+    targetPort: 1514
+    protocol: UDP
