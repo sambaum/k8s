@@ -1,2 +1,9 @@
 resources:
 - ../../../base/monitoring/syslog-ng/
+
+configMapGenerator:
+- name: syslog-ng-config
+  behavior: replace
+  namespace: monitoring
+  files:
+  - syslog-ng.conf
