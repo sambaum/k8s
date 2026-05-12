@@ -34,7 +34,7 @@ loki.source.kubernetes "pods" {
   forward_to = [loki.write.default.receiver]
 }
 
-// Syslog
+// Syslog — receives from syslog-ng via RFC5424/TCP, direct devices via UDP
 loki.source.syslog "syslog" {
   listener {
     address               = "0.0.0.0:1514"

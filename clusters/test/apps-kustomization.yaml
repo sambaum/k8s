@@ -8,6 +8,7 @@ spec:
   dependsOn:
   - name: volumes
   path: ./apps/test
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository

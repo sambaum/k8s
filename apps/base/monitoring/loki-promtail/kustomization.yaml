@@ -2,15 +2,19 @@ namespace: monitoring
 
 resources:
 - loki.yaml
-- promtail.yaml
+# - promtail.yaml
+- alloy.yaml
 
 configMapGenerator:
 - name: loki-config
   files:
   - loki-config.yaml
-- name: promtail-config
+- name: alloy-config
   files:
-  - promtail-config.yaml
+  - alloy-config.alloy
+# - name: promtail-config
+#   files:
+#   - promtail-config.yaml
 - name: loki-datasource
   files:
   - loki-datasource.yaml

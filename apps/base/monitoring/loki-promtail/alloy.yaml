@@ -33,7 +33,7 @@ kind: ClusterRole
 metadata:
   name: alloy-clusterrole
 rules:
-- apiGroups: [""]
+- apiGroups: [ "" ]
   resources:
   - nodes
   - services
@@ -65,7 +65,7 @@ roleRef:
 apiVersion: v1
 kind: Service
 metadata:
-  name: alloy-syslog
+  name: promtail-syslog
 spec:
   type: ClusterIP
   selector:
