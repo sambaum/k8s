@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: fairwinds-stable
         namespace: flux-system
-      version: '5.19.0'
+      version: '6.0.0'
   interval: 30m
   install:
     remediation:
