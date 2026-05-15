@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cbee-grammar-check
-        image: nginxinc/nginx-unprivileged:1.30
+        image: nginxinc/nginx-unprivileged:1.31
         imagePullPolicy: IfNotPresent
         securityContext: { allowPrivilegeEscalation: false, runAsNonRoot: true, capabilities: { drop: [ ALL ] } }
         ports:
