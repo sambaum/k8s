@@ -34,7 +34,7 @@ spec:
           subPath: gatus
       containers:
       - name: gatus
-        image: twinproduction/gatus:v5.35.0
+        image: twinproduction/gatus:v5.36.0
         securityContext:
           runAsUser: 0
           runAsGroup: 0
