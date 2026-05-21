@@ -15,3 +15,16 @@ patches:
     - op: replace
       path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
+- target:
+    kind: Ingress
+    name: zigbee2mqtt-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: zigbee2mqtt.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [zigbee2mqtt.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

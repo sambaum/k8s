@@ -1,0 +1,7 @@
+homeassistant:
+  enabled: true
+mqtt:
+  server: mqtt://mosquitto.default.svc.cluster.local:1883
+serial:
+  port: tcp://sonoff.int.sambaum.ch:6638
+  adapter: ember

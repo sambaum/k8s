@@ -3,3 +3,13 @@ kind: Kustomization
 resources:
 - home-assistant-helmrepository.yaml
 - home-assistant-release.yaml
+- mosquitto.yaml
+- zigbee2mqtt.yaml
+
+configMapGenerator:
+- name: mosquitto-config
+  files:
+  - mosquitto.conf
+- name: zigbee2mqtt-config
+  files:
+  - configuration.yaml=zigbee2mqtt-configuration.yaml
