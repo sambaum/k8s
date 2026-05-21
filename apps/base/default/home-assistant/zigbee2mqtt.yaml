@@ -47,6 +47,10 @@ spec:
       - name: config
         configMap:
           name: zigbee2mqtt-config
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
 ---
 
 apiVersion: v1
