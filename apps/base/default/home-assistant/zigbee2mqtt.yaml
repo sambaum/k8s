@@ -30,7 +30,7 @@ spec:
           mountPath: /config
       containers:
       - name: zigbee2mqtt
-        image: ghcr.io/koenkk/zigbee2mqtt:2.1.0
+        image: ghcr.io/koenkk/zigbee2mqtt:2.10.1
         env:
         - name: TZ
           value: Europe/Zurich
