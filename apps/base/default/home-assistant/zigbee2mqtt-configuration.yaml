@@ -5,5 +5,8 @@ mqtt:
 serial:
   port: tcp://sonoff.int.sambaum.ch:6638
   adapter: ember
+frontend:
+  enabled: true
+  port: 8080
 advanced:
   channel: 20
