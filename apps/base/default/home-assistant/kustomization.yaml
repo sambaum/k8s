@@ -12,7 +12,3 @@ configMapGenerator:
   namespace: default
   files:
   - mosquitto.conf
-- name: zigbee2mqtt-config
-  namespace: default
-  files:
-  - configuration.yaml=zigbee2mqtt-configuration.yaml
