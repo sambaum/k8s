@@ -5,6 +5,7 @@ resources:
 - home-assistant-release.yaml
 - mosquitto.yaml
 - zigbee2mqtt.yaml
+- zigbee2mqtt-secret.yaml
 
 configMapGenerator:
 - name: mosquitto-config
