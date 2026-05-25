@@ -35,6 +35,8 @@ spec:
           value: "8080"
         - name: ZIGBEE2MQTT_CONFIG_ADVANCED_CHANNEL
           value: "20"
+        - name: ZIGBEE2MQTT_CONFIG_AVAILABILITY_ENABLED
+          value: "true"
         - name: ZIGBEE2MQTT_CONFIG_AVAILABILITY_ACTIVE_TIMEOUT
           value: "1"
         - name: ZIGBEE2MQTT_CONFIG_AVAILABILITY_PASSIVE_TIMEOUT
