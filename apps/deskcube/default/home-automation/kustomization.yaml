@@ -1,5 +1,5 @@
 resources:
-- ../../../base/default/home-assistant/
+- ../../../base/default/home-automation/
 
 patches:
 - target:

@@ -56,3 +56,9 @@ spec:
       options:
       - name: ndots
         value: "1"
+
+# Install HACS:
+# mkdir -p custom_components/hacs
+# wget https://github.com/hacs/integration/releases/download/2.0.5/hacs.zip
+# unzip hacs.zip
+# rm hacs.zip
