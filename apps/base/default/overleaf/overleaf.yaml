@@ -19,33 +19,48 @@ spec:
     spec:
       containers:
       - name: overleaf
-        image: tuetenk0pp/sharelatex-full:3.1.0.3
-        # image: tuetenk0pp/sharelatex-full:4.2.3
+        image: tuetenk0pp/sharelatex-full:6.1.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         volumeMounts:
-        - mountPath: /var/lib/sharelatex
+        - mountPath: /var/lib/overleaf
           name: config
           subPath: overleaf/overleaf
+        - mountPath: /overleaf/libraries/metrics/initialize.js
+          name: metrics-patch
+          subPath: initialize.js
+        - mountPath: /overleaf/libraries/metrics/event_loop.js
+          name: metrics-patch
+          subPath: event_loop.js
         env:
         - name: TZ
           value: 'Europe/Zurich'
-        - name: SHARELATEX_MONGO_URL
-          value: mongodb://overleaf-service-mongo/sharelatex
-        - name: SHARELATEX_REDIS_HOST
+        - name: OVERLEAF_MONGO_URL
+          value: mongodb://overleaf-service-mongo/sharelatex?heartbeatFrequencyMS=60000&minHeartbeatFrequencyMS=10000 # default 10s topology polling × 12 services = noisy; 60s is enough
+        - name: OVERLEAF_REDIS_HOST
           value: overleaf-service-redis
         - name: REDIS_HOST
           value: overleaf-service-redis
         - name: EMAIL_CONFIRMATION_DISABLED
           value: 'true'
-        - name: SHARELATEX_SITE_URL
+        - name: OVERLEAF_SITE_URL
           value: https://overleaf.example.com
+        - name: NGINX_WORKER_PROCESSES
+          value: '1' # default is auto (= CPU count); 1 is enough for a single-user instance
       - name: mongo
-        image: mongo:4.4.30
-        # perform onece: mongo --eval "rs.initiate({ _id: \"overleaf\", members: [ { _id: 0, host: \"127.0.0.1:27017\" } ] })"
-        # image: mongo:5.0.25
-        # args: ["--replSet", "overleaf"]
+        image: mongo:8.0
+        args:
+        - "--replSet"
+        - "overleaf"
+        - "--wiredTigerCacheSizeGB"
+        - "0.25" # default is ~50% of RAM; smaller cache = less eviction activity
+        - "--setParameter"
+        - "diagnosticDataCollectionEnabled=false" # disables FTDC diagnostic collection (fires every 1s by default)
+        - "--wiredTigerEngineConfigString"
+        - "eviction=(threads_min=1,threads_max=1)" # default spawns up to 4 eviction threads; 1 is enough for a small idle cache
+        - "--setParameter"
+        - "journalCommitInterval=500" # max allowed (ms); reduces journal flushes from ~12/s to 2/s. cannot disable journaling on a replica set member.
         ports:
         - containerPort: 27017
         volumeMounts:
@@ -53,8 +68,8 @@ spec:
           name: config
           subPath: overleaf/mongodb
       - name: redis
-        image: redis:5.0.14
-        # image: redis:6.2.14
+        image: redis:8.8.0
+        args: ["redis-server", "--hz", "1", "--dynamic-hz", "no"] # default hz=10 runs serverCron 10×/s; 1Hz is the minimum for an idle instance
         ports:
         - containerPort: 6379
         volumeMounts:
@@ -65,6 +80,9 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: local-conf-pvc
+      - name: metrics-patch
+        configMap:
+          name: overleaf-metrics-patch
       dnsConfig:
         options:
         - name: ndots
