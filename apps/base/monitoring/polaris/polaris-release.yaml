@@ -19,6 +19,7 @@ spec:
       retries: 3
   values:
     dashboard:
+      replicaCount: 1
       ingress:
         enabled: true
         ingressClassName: nginx
@@ -36,6 +37,7 @@ spec:
           gethomepage.dev/icon: kubernetes.svg
           gethomepage.dev/name: Polaris Dashboard
           gethomepage.dev/pod-selector: app.kubernetes.io/name=polaris-dashboard
+          monitoring.gatus.dev/path: /health
     mergeConfig: true
     config:
       checks:
