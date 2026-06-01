@@ -69,7 +69,7 @@ data:
           OTLPTraceExporter,
         } = require('@opentelemetry/exporter-trace-otlp-http')
         exporter = new OTLPTraceExporter({
-          url: `http://${process.env.JAEGER_HOST || 'jaeger'}:4318/v1/traces`,
+          url: `http://$${process.env.JAEGER_HOST || 'jaeger'}:4318/v1/traces`,
         })
       } else {
         return
