@@ -4,4 +4,3 @@ flux bootstrap github \
   --path=./clusters/vps1 \
   --personal \
   --branch=master
-

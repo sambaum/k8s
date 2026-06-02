@@ -9,9 +9,12 @@ set -euo pipefail
 
 # --- Utility functions ---
 error() { echo -e "${RED}[ERROR] $*${NOCOLOR}" >&2; }
-info()  { echo "[INFO] $*"; }
+info() { echo "[INFO] $*"; }
 
-abort() { error "$1"; exit 1; }
+abort() {
+  error "$1"
+  exit 1
+}
 
 check_root() {
   if [ "$EUID" -eq 0 ]; then
@@ -38,7 +41,7 @@ check_sops_key() {
 setup_kubeconfig() {
   info "Getting microk8s config..."
   mkdir -p ~/.kube
-  microk8s config | tee ~/.kube/config > /dev/null
+  microk8s config | tee ~/.kube/config >/dev/null
 }
 
 create_flux_system() {

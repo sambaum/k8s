@@ -4,4 +4,3 @@ flux bootstrap github \
   --path=./clusters/deskcube \
   --personal \
   --branch=master
-
