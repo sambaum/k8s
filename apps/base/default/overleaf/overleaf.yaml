@@ -49,7 +49,7 @@ spec:
         - name: NGINX_WORKER_PROCESSES
           value: '1' # default is auto (= CPU count); 1 is enough for a single-user instance
       - name: mongo
-        image: mongo:8.0
+        image: mongo:8.3
         args:
         - "--replSet"
         - "overleaf"
