@@ -40,12 +40,12 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
-- name: grafana-dashboards-other
-  files:
-  - custom-dashboards/uptime-kuma.json
-  options:
-    labels:
-      grafana_dashboard: '1'
+# - name: grafana-dashboards-other
+#   files:
+#   - custom-dashboards/uptime-kuma.json
+#   options:
+#     labels:
+#       grafana_dashboard: '1'
 
 - name: grafana-dashboards-truenas
   files:
@@ -62,12 +62,12 @@ configMapGenerator:
     labels:
       grafana_dashboard: '1'
 
-- name: grafana-dashboards-logs
-  files:
-  - custom-dashboards/filtered-logs.json
-  options:
-    labels:
-      grafana_dashboard: '1'
+# - name: grafana-dashboards-logs
+#   files:
+#   - custom-dashboards/filtered-logs.json
+#   options:
+#     labels:
+#       grafana_dashboard: '1'
 
 - name: grafana-dashboards-mystrom
   files:
