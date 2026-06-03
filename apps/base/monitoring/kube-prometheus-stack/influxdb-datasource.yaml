@@ -2,6 +2,7 @@ apiVersion: 1
 datasources:
 - name: InfluxDB
   type: influxdb
+  uid: influxdb-main
   url: http://influxdb2:80
   jsonData:
     version: Flux

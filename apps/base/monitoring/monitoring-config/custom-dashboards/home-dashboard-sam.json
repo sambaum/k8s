@@ -2552,7 +2552,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "bY0ll83nk"
+          "uid": "influxdb-main"
         },
         "definition": "buckets()",
         "includeAll": false,
@@ -2671,7 +2671,7 @@
       {
         "current": {
           "text": "InfluxDB",
-          "value": "bY0ll83nk"
+          "value": "influxdb-main"
         },
         "name": "influxdb2_datasource",
         "options": [],
