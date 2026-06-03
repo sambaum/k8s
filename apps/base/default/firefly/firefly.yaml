@@ -55,7 +55,7 @@ spec:
         - name: TRUSTED_PROXIES
           value: "**"
       - name: maria
-        image: mariadb:12.2.2
+        image: mariadb:12.3.2
         ports:
         - containerPort: 3306
         volumeMounts:
