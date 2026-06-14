@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e
-umask 022
 
 PLAYLISTS="
   https://www.init7.net/assets/downloads/playlist/srg-fhd-mc.m3u
@@ -17,4 +16,5 @@ for url in $PLAYLISTS; do
   wget -q -O - "$url" | grep -v "^#EXTM3U" >> "$TMPFILE" || echo "  warning: failed to fetch $url" >&2
 done
 mv "$TMPFILE" "$OUTPUT_FILE"
+chmod 644 "$OUTPUT_FILE"
 echo "$(date): merged $(grep -c '^#EXTINF' "$OUTPUT_FILE" 2>/dev/null || echo 0) channels"
