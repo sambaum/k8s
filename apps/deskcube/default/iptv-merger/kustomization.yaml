@@ -1,0 +1,19 @@
+resources:
+- ../../../base/default/iptv-merger/
+patches:
+- target:
+    kind: Ingress
+    name: iptv-merger-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: m3u.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [m3u.int.sambaum.ch]
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: iptv-merger-tls-prod
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
