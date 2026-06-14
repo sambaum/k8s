@@ -1,3 +1,9 @@
 resources:
-- configmap.yaml
 - iptv-merger.yaml
+
+configMapGenerator:
+- name: iptv-merger-config
+  namespace: default
+  files:
+  - merge.sh
+  - default.conf
