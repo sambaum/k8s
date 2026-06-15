@@ -1,6 +1,7 @@
 resources:
 - ../../../base/monitoring/kube-prometheus-stack/
 - prometheus-blackbox-exporter-probe.yaml
+- target-auth-secret.yaml
 patches:
 - target:
     kind: HelmRelease

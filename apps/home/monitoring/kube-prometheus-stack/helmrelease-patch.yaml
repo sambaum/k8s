@@ -17,6 +17,10 @@
   path: /spec/values/prometheus/ingress/annotations/cert-manager.io~1cluster-issuer
   value: letsencrypt-production
 - op: add
+  path: /spec/values/prometheus/prometheusSpec/secrets
+  value:
+  - prometheus-target-auth
+- op: add
   path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
   value:
   - job_name: opnsense
@@ -304,3 +308,15 @@
     - targets: [ 'desktop-sam.int.sambaum.ch:9182' ]
       labels:
         group: 'desktop-sam'
+
+  - job_name: 'homeassistant'
+    scrape_interval: 30s
+    metrics_path: '/api/prometheus'
+    scheme: https
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/prometheus-target-auth/homeassistant-token
+    static_configs:
+    - targets: [ 'homeassistant.int.sambaum.ch:443' ]
+      labels:
+        group: 'homeassistant'
