@@ -26,6 +26,11 @@ spec:
         enabled: true
         existingClaim: local-conf-pvc
         subPath: esphome
+      cache:
+        enabled: true
+        existingClaim: local-data-pvc
+        subPath: esphome-cache
+        mountPath: /config/.esphome
     ingress:
       main:
         enabled: true
