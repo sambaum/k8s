@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: echo
-        image: mendhak/http-https-echo:40
+        image: mendhak/http-https-echo:41
         imagePullPolicy: Always
         securityContext: { runAsNonRoot: true, runAsUser: 1000, runAsGroup: 1000, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
         ports:
