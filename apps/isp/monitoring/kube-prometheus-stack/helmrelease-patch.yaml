@@ -23,14 +23,6 @@
 - op: add
   path: /spec/values/prometheus/prometheusSpec/additionalScrapeConfigs
   value:
-  - job_name: 'version-checker'
-    scrape_interval: 30s
-    metrics_path: '/metrics'
-    scheme: http
-    static_configs:
-    - targets: [ 'version-checker:8080' ]
-      labels:
-        group: 'version-checker'
   - job_name: 'waf-metrics'
     scrape_interval: 30s
     metrics_path: '/metrics'
