@@ -4,20 +4,20 @@
   "metadata": {
     "name": "compute-pods-sam",
     "namespace": "default",
-    "uid": "b0c9cc36-e2a4-4fe0-9738-4ad1f853d815",
-    "resourceVersion": "1782388416632013",
+    "uid": "d66c3e31-39af-4d81-9534-f7f2c0d0e543",
+    "resourceVersion": "1782393517570991",
     "generation": 1,
-    "creationTimestamp": "2026-06-25T11:53:36Z",
+    "creationTimestamp": "2026-06-25T13:18:37Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "2960946923462656"
+      "grafana.app/deprecatedInternalID": "2982341808119808"
     },
     "annotations": {
       "grafana.app/createdBy": "access-policy:service",
       "grafana.app/managedBy": "classic-file-provisioning",
       "grafana.app/managerId": "sidecarProvider",
-      "grafana.app/sourceChecksum": "11e81e1d192487eba42f21cec8d93c7d",
+      "grafana.app/sourceChecksum": "5fe2ede9f84aff6bbfb1c4787e39bc61",
       "grafana.app/sourcePath": "/tmp/dashboards/node-pods-sam.json",
-      "grafana.app/sourceTimestamp": "1782388416000",
+      "grafana.app/sourceTimestamp": "1782393517000",
       "grafana.app/folder": ""
     }
   },
@@ -952,7 +952,7 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
+                    "hidden": true,
                     "query": {
                       "datasource": {
                         "name": "$datasource"
@@ -969,6 +969,28 @@
                       "version": "v0"
                     },
                     "refId": "C"
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "$datasource"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "  sum by (namespace, container) (\n    sum_over_time(\n      rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[$__rate_interval])\n      [24h:5m]\n    ) / (24 * 60 / 5)\n  ) > 0.003",
+                        "instant": false,
+                        "legendFormat": "{{container}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "D"
                   }
                 }
               ],
@@ -1055,9 +1077,7 @@
                   ],
                   "displayMode": "table",
                   "placement": "right",
-                  "showLegend": true,
-                  "sortBy": "Mean",
-                  "sortDesc": true
+                  "showLegend": true
                 },
                 "tooltip": {
                   "hideZeros": false,
