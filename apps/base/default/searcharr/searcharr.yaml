@@ -29,6 +29,21 @@ spec:
         env:
         - name: TZ
           value: 'Europe/Zurich'
+        # Searcharr's Telegram long-poll can silently stall: the process stays
+        # alive but stops polling and holds no connection to api.telegram.org.
+        # A healthy bot keeps an ESTABLISHED connection on remote port 443 (01BB);
+        # Sonarr/Radarr are plain HTTP/80, so 443 == Telegram. Zero such
+        # connections => polling is dead => restart the pod.
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - 'grep -qE " [0-9A-F]+:01BB 01 " /proc/1/net/tcp'
+          initialDelaySeconds: 120
+          periodSeconds: 60
+          timeoutSeconds: 5
+          failureThreshold: 3
       volumes:
       - name: config
         persistentVolumeClaim:
