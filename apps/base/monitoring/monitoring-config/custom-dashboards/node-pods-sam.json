@@ -4,20 +4,20 @@
   "metadata": {
     "name": "compute-pods-sam",
     "namespace": "default",
-    "uid": "1eb27a81-4291-47e5-a86f-af2fd324d785",
-    "resourceVersion": "1781872921920016",
+    "uid": "b0c9cc36-e2a4-4fe0-9738-4ad1f853d815",
+    "resourceVersion": "1782388416632013",
     "generation": 1,
-    "creationTimestamp": "2026-06-19T12:42:01Z",
+    "creationTimestamp": "2026-06-25T11:53:36Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "798805388660736"
+      "grafana.app/deprecatedInternalID": "2960946923462656"
     },
     "annotations": {
       "grafana.app/createdBy": "access-policy:service",
       "grafana.app/managedBy": "classic-file-provisioning",
       "grafana.app/managerId": "sidecarProvider",
-      "grafana.app/sourceChecksum": "a895788d79b8d09a1d2d2bedd3cfd51d",
+      "grafana.app/sourceChecksum": "11e81e1d192487eba42f21cec8d93c7d",
       "grafana.app/sourcePath": "/tmp/dashboards/node-pods-sam.json",
-      "grafana.app/sourceTimestamp": "1781872909000",
+      "grafana.app/sourceTimestamp": "1782388416000",
       "grafana.app/folder": ""
     }
   },
@@ -61,7 +61,7 @@
             "group": "prometheus",
             "kind": "DataQuery",
             "spec": {
-              "expr": " changes(node_boot_time_seconds{job=\"node-exporter\"}[5m]) > 0",
+              "expr": " changes(node_boot_time_seconds{job=\"node-exporter\"}[$__rate_interval]) > 0",
               "interval": "",
               "refId": "Anno"
             },
@@ -213,7 +213,7 @@
                   "displayMode": "table",
                   "placement": "right",
                   "showLegend": true,
-                  "sortBy": "Max",
+                  "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
@@ -900,7 +900,7 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
+                    "hidden": true,
                     "query": {
                       "datasource": {
                         "name": "$datasource"
@@ -910,7 +910,7 @@
                       "spec": {
                         "editorMode": "code",
                         "exemplar": true,
-                        "expr": "  avg by (namespace, container) (\n    rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[24h])\n  ) > 0.003",
+                        "expr": "  avg by (namespace, container) (\n    rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[24h])\n  ) > 0.002",
                         "format": "time_series",
                         "interval": "",
                         "intervalFactor": 2,
@@ -926,7 +926,7 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
+                    "hidden": true,
                     "query": {
                       "datasource": {
                         "name": "$datasource"
@@ -936,7 +936,7 @@
                       "spec": {
                         "editorMode": "code",
                         "exemplar": true,
-                        "expr": "  sum(\n    avg by (namespace, container) (\n      rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[24h])\n    ) <= 0.003\n  )",
+                        "expr": "  sum(\n    avg by (namespace, container) (\n      rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[24h])\n    ) <= 0.002\n  )",
                         "format": "time_series",
                         "interval": "",
                         "intervalFactor": 2,
@@ -947,6 +947,28 @@
                       "version": "v0"
                     },
                     "refId": "A"
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "$datasource"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "  avg by (namespace, container) (\n    avg_over_time(\n      rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", node=\"$node\"}[$__rate_interval])\n      [24h:5m]\n    )\n  ) > 0.002",
+                        "instant": false,
+                        "legendFormat": "{{container}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "C"
                   }
                 }
               ],
@@ -1034,7 +1056,7 @@
                   "displayMode": "table",
                   "placement": "right",
                   "showLegend": true,
-                  "sortBy": "Max",
+                  "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
