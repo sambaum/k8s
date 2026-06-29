@@ -9,11 +9,11 @@ OUTPUT_FILE="/usr/share/nginx/html/playlist.m3u"
 
 echo "$(date): fetching playlists..."
 TMPFILE=$(mktemp)
-echo "#EXTM3U" > "$TMPFILE"
+echo "#EXTM3U" >"$TMPFILE"
 for url in $PLAYLISTS; do
   [ -z "$url" ] && continue
   echo "  <- $url"
-  wget -q -O - "$url" | grep -v "^#EXTM3U" >> "$TMPFILE" || echo "  warning: failed to fetch $url" >&2
+  wget -q -O - "$url" | grep -v "^#EXTM3U" >>"$TMPFILE" || echo "  warning: failed to fetch $url" >&2
 done
 mv "$TMPFILE" "$OUTPUT_FILE"
 chmod 644 "$OUTPUT_FILE"

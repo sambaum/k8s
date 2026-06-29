@@ -4,4 +4,3 @@ flux bootstrap github \
   --path=./clusters/home \
   --personal \
   --branch=master
-

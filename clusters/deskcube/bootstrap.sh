@@ -9,9 +9,9 @@ BRANCH=master
 ENVIRONMENT=deskcube
 
 flux bootstrap github \
-	--owner=$GITHUB_USER \
-	--repository=$REPOSITORY \
-	--branch=$BRANCH \
-	--path=./clusters/$ENVIRONMENT \
-	--read-write-key \
-	--personal
+  --owner=$GITHUB_USER \
+  --repository=$REPOSITORY \
+  --branch=$BRANCH \
+  --path=./clusters/$ENVIRONMENT \
+  --read-write-key \
+  --personal
