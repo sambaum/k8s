@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: skiptro
-        image: mikesilvo/skiptro:v0.20.3
+        # image: mikesilvo/skiptro:v0.20.3
+        image: mikesilvo/skiptro:v1.0.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /root/.config/Skiptro
@@ -26,15 +27,17 @@ spec:
         - mountPath: /tv
           name: media
           subPath: Video/TV-Shows
+        ports:
+        - containerPort: 8585
         env:
         - name: TZ
           value: 'Europe/Zurich'
         - name: MEDIA_PATHS
           value: '/tv'
-        - name: SCAN_SCHEDULE
-          value: '00 11 * * *'
-        - name: SCAN_ARGS
-          value: '--all --export'
+        # - name: SCAN_SCHEDULE
+        #   value: '00 11 * * *'
+        # - name: SCAN_ARGS
+        #   value: '--all --export'
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -46,3 +49,47 @@ spec:
         options:
         - name: ndots
           value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: skiptro-service
+  namespace: default
+spec:
+  selector:
+    app: skiptro
+  ports:
+  - protocol: TCP
+    port: 8585
+    targetPort: 8585
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: skiptro-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Intro/Outro Skip Detection
+    gethomepage.dev/enabled: 'true'
+    gethomepage.dev/group: Other
+    gethomepage.dev/icon: mdi-skip-next
+    gethomepage.dev/name: Skiptro
+    gethomepage.dev/pod-selector: app=skiptro
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'skiptro.example.com'
+    secretName: skiptro-tls
+  rules:
+  - host: skiptro.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: skiptro-service
+            port:
+              number: 8585
