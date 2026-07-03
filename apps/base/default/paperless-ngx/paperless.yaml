@@ -90,6 +90,10 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
+        lifecycle:
+          preStop:
+            exec:
+              command: ["gosu", "postgres", "pg_ctl", "stop", "-D", "/var/lib/postgresql/18/docker", "-m", "fast"]
         volumeMounts:
         - mountPath: /var/lib/postgresql
           name: config
@@ -111,6 +115,7 @@ spec:
       - name: nas-sam
         persistentVolumeClaim:
           claimName: truenas-sam-pvc
+      terminationGracePeriodSeconds: 60
       dnsConfig:
         options:
         - name: ndots
