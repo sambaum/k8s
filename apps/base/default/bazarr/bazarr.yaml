@@ -29,7 +29,7 @@ spec:
           subPath: bazarr
       containers:
       - name: bazarr
-        image: linuxserver/bazarr:1.5.6
+        image: linuxserver/bazarr:1.6.0
         securityContext: { allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ], add: [ SETUID, SETGID ] } }
         imagePullPolicy: IfNotPresent
         ports:
