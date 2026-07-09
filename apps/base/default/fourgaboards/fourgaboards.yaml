@@ -55,6 +55,10 @@ spec:
         image: pgautoupgrade/pgautoupgrade:18.4-debian
         imagePullPolicy: IfNotPresent
         securityContext: { runAsUser: 999, runAsGroup: 999, runAsNonRoot: true, allowPrivilegeEscalation: false, capabilities: { drop: [ ALL ] } }
+        lifecycle:
+          preStop:
+            exec:
+              command: ["pg_ctl", "stop", "-D", "/var/lib/postgresql/18/docker", "-m", "fast"]
         ports:
         - containerPort: 5432
         volumeMounts:
@@ -72,6 +76,7 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: local-conf-pvc
+      terminationGracePeriodSeconds: 60
       dnsConfig:
         options:
         - name: ndots
