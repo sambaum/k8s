@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flamingo-jiggler-cdn
+  namespace: default
+  labels:
+    app: flamingo-jiggler-cdn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flamingo-jiggler-cdn
+  template:
+    metadata:
+      labels:
+        app: flamingo-jiggler-cdn
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        # Serves /conf/default/flamingo-jiggler-cdn (edit files there live; nginx
+        # reads them read-only). Lets us iterate on flamingo_webui.js without
+        # reflashing the ESP32 — see the -conf.yaml webui_js option.
+        - mountPath: /usr/share/nginx/html
+          name: config
+          subPath: flamingo-jiggler-cdn
+          readOnly: true
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: flamingo-jiggler-cdn-service
+  namespace: default
+spec:
+  selector:
+    app: flamingo-jiggler-cdn
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flamingo-jiggler-cdn-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Flamingo Jiggler web-UI dev CDN
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: nginx.svg
+    gethomepage.dev/name: Flamingo CDN
+    gethomepage.dev/pod-selector: app=flamingo-jiggler-cdn
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'flamingo-jiggler-cdn.example.com'
+    secretName: flamingo-jiggler-cdn-tls
+  rules:
+  - host: flamingo-jiggler-cdn.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: flamingo-jiggler-cdn-service
+            port:
+              number: 80
