@@ -58,6 +58,11 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+    # Let the jiggler page fetch() this JS cross-origin to content-diff it against
+    # the flashed copy (the staging-pending banner). Script-tag loads don't need
+    # this; reading the body via fetch() does.
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
     gethomepage.dev/description: Flamingo Jiggler web-UI dev CDN
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
