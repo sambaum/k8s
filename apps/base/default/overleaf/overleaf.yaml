@@ -68,7 +68,7 @@ spec:
           name: config
           subPath: overleaf/mongodb
       - name: redis
-        image: redis:8.8.0
+        image: redis:8.8.1
         args: ["redis-server", "--hz", "1", "--dynamic-hz", "no"] # default hz=10 runs serverCron 10×/s; 1Hz is the minimum for an idle instance
         ports:
         - containerPort: 6379
