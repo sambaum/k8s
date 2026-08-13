@@ -27,11 +27,13 @@ spec:
       #   enabled: true
       #   storageClass: openebs-local-hostpath-data-placeholder-sc # will be overwritten in overlay
       extraArgs:
-      - --retention.resolution-raw=5d
+      - --retention.resolution-raw=30d
       - --retention.resolution-5m=60d
       - --retention.resolution-1h=720d
     query:
       enabled: true
+      extraArgs:
+      - --query.auto-downsampling
       ingress:
         enabled: true
         ingressClassName: nginx
