@@ -1,12 +1,12 @@
 apiVersion: 1
-# datasources:
-# - name: Thanos
-#   type: prometheus
-#   access: proxy
-#   url: http://thanos-query:10902
-#   isDefault: true
-#   jsonData:
-#     prometheusType: Thanos
-
-deleteDatasources:
+datasources:
 - name: Thanos
+  type: prometheus
+  access: proxy
+  url: http://thanos-query:10902
+  isDefault: true
+  jsonData:
+    prometheusType: Thanos
+
+# deleteDatasources:
+# - name: Thanos
