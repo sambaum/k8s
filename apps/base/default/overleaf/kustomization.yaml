@@ -1,3 +1,4 @@
 resources:
 - overleaf.yaml
+- overleaf-secrets.yaml
 - metrics-patch-configmap.yaml

@@ -48,6 +48,11 @@ spec:
           value: https://overleaf.example.com
         - name: NGINX_WORKER_PROCESSES
           value: '1' # default is auto (= CPU count); 1 is enough for a single-user instance
+        - name: OVERLEAF_INVITE_TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: overleaf-secrets
+              key: OVERLEAF_INVITE_TOKEN_SECRET
       - name: mongo
         image: mongo:8.3
         args:
