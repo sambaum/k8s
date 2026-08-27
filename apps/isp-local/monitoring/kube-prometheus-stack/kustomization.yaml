@@ -1,0 +1,7 @@
+resources:
+- ../../../base/monitoring/kube-prometheus-stack/
+patches:
+- target:
+    kind: HelmRelease
+    name: kube-prometheus-stack
+  path: helmrelease-patch.yaml

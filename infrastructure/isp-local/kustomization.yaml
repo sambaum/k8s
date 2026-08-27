@@ -1,0 +1,12 @@
+resources:
+- ../base
+patches:
+- target:
+    kind: HelmRelease
+    name: ingress-nginx
+  patch: |-
+    - op: replace
+      path: /spec/values/controller/service/type
+      value: ClusterIP
+    - op: remove
+      path: /spec/values/controller/service/loadBalancerIP

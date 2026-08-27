@@ -1,0 +1,36 @@
+resources:
+- ../../../base/monitoring/syslog-ng/
+patches:
+- target:
+    kind: Service
+    name: syslog-ng-service-601-tcp
+  patch: |-
+    - op: replace
+      path: /spec/type
+      value: ClusterIP
+    - op: remove
+      path: /spec/loadBalancerIP
+    - op: remove
+      path: /metadata/annotations
+- target:
+    kind: Service
+    name: syslog-ng-service-514-udp
+  patch: |-
+    - op: replace
+      path: /spec/type
+      value: ClusterIP
+    - op: remove
+      path: /spec/loadBalancerIP
+    - op: remove
+      path: /metadata/annotations
+- target:
+    kind: Service
+    name: syslog-ng-service-514-tcp
+  patch: |-
+    - op: replace
+      path: /spec/type
+      value: ClusterIP
+    - op: remove
+      path: /spec/loadBalancerIP
+    - op: remove
+      path: /metadata/annotations
