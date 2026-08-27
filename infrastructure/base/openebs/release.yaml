@@ -15,9 +15,12 @@ spec:
       version: '4.5.1'
   install:
     crds: Create
+    remediation:
+      retries: 3
   interval: 30m
   releaseName: openebs
   targetNamespace: openebs
+  timeout: 10m
   upgrade:
     crds: CreateReplace
   values:
