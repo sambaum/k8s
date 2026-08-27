@@ -16,8 +16,10 @@ spec:
         namespace: flux-system
   interval: 30m
   targetNamespace: cert-manager
-  # upgrade:
-  #   crds: CreateReplace
+  install:
+    remediation:
+      retries: 3
+  timeout: 10m
   values:
     crds:
       enabled: true
