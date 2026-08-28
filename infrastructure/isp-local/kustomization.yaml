@@ -7,10 +7,15 @@ patches:
   patch: |-
     - op: replace
       path: /spec/values/controller/service/type
-      value: ClusterIP
+      value: NodePort
     - op: remove
       path: /spec/values/controller/service/loadBalancerIP
     - op: add
       path: /spec/values/tcp
       value:
         "3306": "default/mariadb-idm-service:3306"
+    - op: add
+      path: /spec/values/controller/service/nodePorts
+      value:
+        tcp:
+          3306: 30306
