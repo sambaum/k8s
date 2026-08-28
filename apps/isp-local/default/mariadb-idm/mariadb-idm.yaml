@@ -20,6 +20,13 @@ spec:
       containers:
       - name: mariadb
         image: mariadb:11.7
+        args:
+        - --character-set-server=utf8mb4
+        - --collation-server=utf8mb4_bin
+        - --autocommit=0
+        - --transaction-isolation=READ-COMMITTED
+        - --log-bin-trust-function-creators=1
+        - --lower-case-table-names=1
         ports:
         - containerPort: 3306
         volumeMounts:
