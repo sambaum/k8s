@@ -10,3 +10,7 @@ patches:
       value: ClusterIP
     - op: remove
       path: /spec/values/controller/service/loadBalancerIP
+    - op: add
+      path: /spec/values/tcp
+      value:
+        "3306": "default/mariadb-idm-service:3306"

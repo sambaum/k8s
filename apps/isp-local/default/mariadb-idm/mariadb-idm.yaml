@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-idm
+  namespace: default
+  labels:
+    app: mariadb-idm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mariadb-idm
+  template:
+    metadata:
+      labels:
+        app: mariadb-idm
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:12.3.3
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: config
+          subPath: mariadb-idm
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'rootpassword'
+        - name: MYSQL_DATABASE
+          value: 'idm'
+        - name: MYSQL_USER
+          value: 'UIDM01'
+        - name: MYSQL_PASSWORD
+          value: 'password'
+        - name: PGID
+          value: '1000'
+        - name: PUID
+          value: '1000'
+      - name: mariadb-idm-phpmyadmin
+        image: phpmyadmin:5.2.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: PMA_HOST
+          value: mariadb-idm-service
+        - name: PMA_PORT
+          value: "3306"
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpassword
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb-idm-service
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: mariadb-idm
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb-phpmyadmin-idm-service
+  namespace: default
+spec:
+  selector:
+    app: mariadb-idm
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mariadb-idm-ingress
+  namespace: default
+  annotations:
+    gethomepage.dev/description: MariaDB IDM
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: mariadb.svg
+    gethomepage.dev/name: MariaDB IDM
+    gethomepage.dev/pod-selector: app=mariadb-idm
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mariadb-idm.lab.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: mariadb-phpmyadmin-idm-service
+            port:
+              number: 80
