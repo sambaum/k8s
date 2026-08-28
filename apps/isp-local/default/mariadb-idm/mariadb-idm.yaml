@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: mariadb
-        image: mariadb:11.7
+        image: mariadb:11.8
         args:
         - --character-set-server=utf8mb4
         - --collation-server=utf8mb4_bin
