@@ -20,3 +20,4 @@ patches:
       path: /spec/values/tcp
       value:
         "3306": "default/mariadb-idm-service:3306"
+        "2222": "default/gitea-service:22"
