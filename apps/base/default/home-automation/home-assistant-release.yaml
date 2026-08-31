@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: pajikos
         namespace: flux-system
-      version: '0.3.75'
+      version: '0.3.76'
   interval: 30m
   install:
     remediation:
