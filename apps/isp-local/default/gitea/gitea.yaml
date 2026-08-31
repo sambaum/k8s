@@ -36,6 +36,8 @@ spec:
           value: http://gitea.lab.local/
         - name: GITEA__server__DOMAIN
           value: gitea.lab.local
+        - name: GITEA__server__DISABLE_SSH
+          value: 'false'
         - name: GITEA__server__SSH_DOMAIN
           value: ws526-vm
         - name: GITEA__server__SSH_PORT
