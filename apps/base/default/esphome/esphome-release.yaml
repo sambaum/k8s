@@ -21,6 +21,15 @@ spec:
     env:
       TZ: "Europe/Zurich"
       ESPHOME_DASHBOARD_USE_PING: "true"
+      # Force git protocol v0 for every git call the dashboard makes.
+      # Remote `packages:` and `external_components:` are fetched by cloning,
+      # and from this pod that failed with "expected flush after ref listing"
+      # while the same repo listed fine from the host - the signature of
+      # protocol v2 being mangled in transit. v0 avoids the negotiation
+      # entirely. Ignored harmlessly by git < 2.31.
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: "protocol.version"
+      GIT_CONFIG_VALUE_0: "0"
     persistence:
       config:
         enabled: true
