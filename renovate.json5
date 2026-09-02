@@ -118,6 +118,15 @@
         "**/influxdbv1.yaml"
       ],
       "versioning": "regex:^1\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$" // Stick to Version 1
+    },
+    {
+      "matchPackageNames": [
+        "mariadb"
+      ],
+      "matchFileNames": [
+        "**/mariadb-idm.yaml"
+      ],
+      "versioning": "regex:^11\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$" // Stick to Version 11
     }
   ]
 }
