@@ -301,7 +301,7 @@
         group: 'desktop-sam'
 
   - job_name: 'homeassistant'
-    scrape_interval: 30s
+    scrape_interval: 10s
     metrics_path: '/api/prometheus'
     scheme: https
     authorization:
