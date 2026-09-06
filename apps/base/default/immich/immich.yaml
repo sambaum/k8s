@@ -62,7 +62,7 @@ spec:
             command:
             - sh
             - -c
-            - curl -sf -H "x-api-key: $IMMICH_API_KEY" http://localhost:2283/api/users/me
+            - 'curl -sf -H "x-api-key: $IMMICH_API_KEY" http://localhost:2283/api/users/me'
           periodSeconds: 10
           failureThreshold: 3
 
