@@ -38,6 +38,8 @@ spec:
         env:
         - name: TZ
           value: "Europe/Zurich"
+        - name: DB_HOSTNAME
+          value: "localhost"
         - name: DB_DATABASE_NAME
           value: "immich"
         - name: DB_USERNAME
@@ -45,7 +47,7 @@ spec:
         - name: DB_PASSWORD
           value: "postgres"
         - name: REDIS_HOSTNAME
-          value: "immich-redis-service"
+          value: "localhost"
         - name: REDIS_PORT
           value: "6379"
         - name: UPLOAD_LOCATION
