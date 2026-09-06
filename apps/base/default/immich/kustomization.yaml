@@ -1,2 +1,3 @@
 resources:
 - immich.yaml
+- immich-secrets.yaml

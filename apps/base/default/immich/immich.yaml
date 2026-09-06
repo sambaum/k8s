@@ -52,14 +52,24 @@ spec:
           value: "/data"
         - name: IMMICH_PORT
           value: "2283"
+        - name: IMMICH_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: immich-secrets
+              key: IMMICH_API_KEY
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - curl -sf -H "x-api-key: $IMMICH_API_KEY" http://localhost:2283/api/users/me
+          periodSeconds: 10
+          failureThreshold: 3
 
       - name: immich-folder-album-creator-fotos
         image: salvoxia/immich-folder-album-creator:0.25.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /run/secrets/api_key
-          name: config
-          subPath: immich/api_key
         - mountPath: /mnt/photos
           name: nas-sam
           subPath: Personal/Fotos/Publish-Web/Events
@@ -72,11 +82,12 @@ spec:
         - name: API_URL
           value: "http://immich-service:2283/api/"
         - name: API_KEY
-          value: ""
+          valueFrom:
+            secretKeyRef:
+              name: immich-secrets
+              key: IMMICH_API_KEY
         - name: ROOT_PATH
           value: "/mnt/photos"
-        - name: API_KEY_FILE
-          value: "/run/secrets/api_key/api_key.txt"
         - name: RUN_IMMEDIATELY
           value: "true"
         # - name: MODE
@@ -90,9 +101,6 @@ spec:
         image: salvoxia/immich-folder-album-creator:0.25.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /run/secrets/api_key
-          name: config
-          subPath: immich/api_key
         - mountPath: /mnt/videos
           name: nas-media
           subPath: Video/Home-Movies-Flat
@@ -105,11 +113,12 @@ spec:
         - name: API_URL
           value: "http://immich-service:2283/api/"
         - name: API_KEY
-          value: ""
+          valueFrom:
+            secretKeyRef:
+              name: immich-secrets
+              key: IMMICH_API_KEY
         - name: ROOT_PATH
           value: "/mnt/videos"
-        - name: API_KEY_FILE
-          value: "/run/secrets/api_key/api_key.txt"
         - name: RUN_IMMEDIATELY
           value: "true"
         # - name: MODE
@@ -154,6 +163,11 @@ spec:
           value: "--data-checksums"
         - name: TZ
           value: "Europe/Zurich"
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-U", "postgres", "-d", "immich"]
+          periodSeconds: 10
+          failureThreshold: 3
       - name: immich-redis
         image: valkey/valkey:8-bookworm
         imagePullPolicy: IfNotPresent
