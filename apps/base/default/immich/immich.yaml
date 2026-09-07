@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: immich
-        image: ghcr.io/immich-app/immich-server:v2.7.5
+        image: ghcr.io/immich-app/immich-server:v3.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 2283
@@ -69,7 +69,7 @@ spec:
           failureThreshold: 3
 
       - name: immich-folder-album-creator-fotos
-        image: salvoxia/immich-folder-album-creator:0.25.3
+        image: salvoxia/immich-folder-album-creator:1.0.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /mnt/photos
@@ -100,7 +100,7 @@ spec:
           value: "-1"
 
       - name: immich-folder-album-creator-videos
-        image: salvoxia/immich-folder-album-creator:0.25.3
+        image: salvoxia/immich-folder-album-creator:1.0.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /mnt/videos
