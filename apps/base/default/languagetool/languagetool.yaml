@@ -28,9 +28,6 @@ spec:
         - mountPath: /fasttext
           name: data
           subPath: languagetool/fasttext
-        - mountPath: /languagetool/org/languagetool/resource/de/hunspell/spelling_custom.txt
-          name: conf
-          subPath: languagetool/hunspell/spelling_custom.txt
         env:
         - name: download_ngrams_for_langs
           value: "en,de"
@@ -51,9 +48,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-pvc
-      - name: conf
-        persistentVolumeClaim:
-          claimName: local-conf-pvc
       dnsConfig:
         options:
         - name: ndots

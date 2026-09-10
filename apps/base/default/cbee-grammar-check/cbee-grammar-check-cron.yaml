@@ -13,7 +13,7 @@ spec:
       template:
         metadata:
           annotations:
-            # non-root not possible, installs software
+            # runs as root: pip installs into the stock image and the PVC files are root-owned
             polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
             polaris.fairwinds.com/runAsPrivileged-exempt: "true"
             polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
@@ -21,16 +21,16 @@ spec:
         spec:
           containers:
           - name: cbee-grammar-check-job
-            image: bitnami/minideb:bullseye
-            command: [ "/bin/bash", "-c", "apt-get update && apt-get install -y curl jq parallel && /scripts/get-all-products.sh" ]
-            # command: [ "/bin/bash", "-c", "apt-get update && apt-get install -y curl jq parallel; tail -f /dev/null" ]
+            image: python:3.12-slim
+            imagePullPolicy: IfNotPresent
+            command: [ "/app/entrypoint.sh", "check", "--fetch" ]
+            env:
+            - name: TZ
+              value: Europe/Zurich
             volumeMounts:
-            - mountPath: /output
+            - mountPath: /app
               name: config
-              subPath: cbee-grammar-check/output
-            - mountPath: /scripts
-              name: config
-              subPath: cbee-grammar-check/scripts
+              subPath: cbee-grammar-check
           restartPolicy: OnFailure
           volumes:
           - name: config
