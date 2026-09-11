@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
           - name: cbee-grammar-check-job
-            image: python:3.12-slim
+            image: python:3.14-slim
             imagePullPolicy: IfNotPresent
             command: [ "/app/entrypoint.sh", "check", "--fetch" ]
             env:
