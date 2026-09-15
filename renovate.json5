@@ -55,6 +55,13 @@
         "https://charts.jetstack.io" // supress the warning about the helm repository being deprecated
       ]
     },
+    // Pinned to 2026.4.1 for a controlled upgrade later - remove this rule to resume updates
+    {
+      "matchPackageNames": [
+        "ghcr.io/esphome/esphome"
+      ],
+      "enabled": false
+    },
     // Prevent automated major- and minor-upgrades for below packages
     {
       "matchPackageNames": [
