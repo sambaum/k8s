@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome
+  namespace: default
+  labels:
+    app: esphome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esphome
+  template:
+    metadata:
+      labels:
+        app: esphome
+    spec:
+      containers:
+      - name: esphome
+        image: ghcr.io/esphome/esphome:2026.8.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6052
+        volumeMounts:
+        - mountPath: /config
+          name: config
+          subPath: esphome
+        - mountPath: /config/.esphome
+          name: cache
+          subPath: esphome-cache
+        env:
+        - name: TZ
+          value: 'Europe/Zurich'
+        - name: ESPHOME_DASHBOARD_USE_PING
+          value: "true"
+        - name: GIT_CONFIG_COUNT
+          value: "1"
+        - name: GIT_CONFIG_KEY_0
+          value: "protocol.version"
+        - name: GIT_CONFIG_VALUE_0
+          value: "0"
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: cache
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+        - 192.168.1.1
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: esphome-service
+  namespace: default
+spec:
+  selector:
+    app: esphome
+  ports:
+  - protocol: TCP
+    port: 6052
+    targetPort: 6052
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: esphome-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: ESPHome Dashboard
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: esphome.svg
+    gethomepage.dev/name: ESPHome
+    gethomepage.dev/pod-selector: app=esphome
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'esphome.example.com'
+    secretName: esphome-tls
+  rules:
+  - host: esphome.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: esphome-service
+            port:
+              number: 6052

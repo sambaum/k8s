@@ -3,15 +3,15 @@ resources:
 
 patches:
 - target:
-    kind: HelmRelease
-    name: esphome
+    kind: Ingress
+    name: esphome-ingress
   patch: |-
     - op: replace
-      path: /spec/values/ingress/main/hosts/0/host
+      path: /spec/rules/0/host
       value: esphome.int.sambaum.ch
     - op: replace
-      path: /spec/values/ingress/main/tls/0/hosts/0
-      value: esphome.int.sambaum.ch
+      path: /spec/tls/0/hosts
+      value: [esphome.int.sambaum.ch]
     - op: replace
-      path: /spec/values/ingress/main/annotations/cert-manager.io~1cluster-issuer
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
