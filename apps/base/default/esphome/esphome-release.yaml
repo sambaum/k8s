@@ -33,7 +33,7 @@ spec:
             image:
               repository: ghcr.io/esphome/esphome
               # Pinned intentionally - upgrade deliberately, not on every reconcile.
-              tag: "2026.4.1"
+              tag: "2026.8.2"
               pullPolicy: IfNotPresent
             env:
               TZ: "Europe/Zurich"
