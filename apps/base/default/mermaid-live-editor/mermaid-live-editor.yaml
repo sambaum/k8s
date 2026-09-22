@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mermaid-live-editor
-        image: ghcr.io/mermaid-js/mermaid-live-editor@sha256:a15d97938761dcf517a0c99913c7cd999d6b427f41e75e7e1ff4f8a041844f1b
+        image: ghcr.io/mermaid-js/mermaid-live-editor@sha256:059080a40780aa4c3310daf7acf521e6d1d498de26d3f9a738e8b26ef8c20b8b
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
