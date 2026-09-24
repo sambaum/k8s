@@ -1,0 +1,4 @@
+resources:
+- jsonrpc-rest-bridge.yaml
+- jsonrpc-rest-bridge-ingress.yaml
+- jsonrpc-rest-bridge-secret.yaml

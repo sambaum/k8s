@@ -1,0 +1,17 @@
+resources:
+- ../../../base/default/jsonrpc-rest-bridge/
+
+patches:
+- target:
+    kind: Ingress
+    name: jsonrpc-rest-bridge-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: jsonrpc-rest-bridge.deskcube.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [jsonrpc-rest-bridge.deskcube.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production

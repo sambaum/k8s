@@ -1,0 +1,75 @@
+# TrueNAS drops its REST API in 26.04 in favor of JSON-RPC 2.0 over WebSocket, which
+# plain-HTTP clients (ESPHome's http_request, json-exporter's probes) can't speak. This
+# bridge holds the WebSocket/JSON-RPC session and re-serves allowlisted methods as plain
+# HTTP JSON under /call/<method>, so those clients only need a URL/body change.
+# ALLOWED_METHODS below covers: esp32-truenas-fan-control.yaml's disk-temp poll, and the
+# json-exporter probes in apps/home/monitoring/kube-prometheus-stack/helmrelease-patch.yaml.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jsonrpc-rest-bridge
+  namespace: default
+  labels:
+    app: jsonrpc-rest-bridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jsonrpc-rest-bridge
+  template:
+    metadata:
+      labels:
+        app: jsonrpc-rest-bridge
+      annotations:
+        # runs as root: pip installs into the stock image, same as cbee-grammar-check
+        polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
+        polaris.fairwinds.com/runAsPrivileged-exempt: "true"
+        polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
+        polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
+    spec:
+      containers:
+      - name: jsonrpc-rest-bridge
+        image: python:3.14-alpine
+        imagePullPolicy: IfNotPresent
+        command: [ "/app/entrypoint.sh" ]
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        - name: BACKEND_URL
+          value: wss://truenas.int.sambaum.ch/api/current
+        - name: ALLOWED_METHODS
+          value: disk.temperatures,disk.smart_attributes,smart.test.results,pool.dataset.details
+        - name: BACKEND_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jsonrpc-rest-bridge-secrets
+              key: BACKEND_API_KEY
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /app
+          name: config
+          subPath: jsonrpc-rest-bridge
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jsonrpc-rest-bridge-service
+  namespace: default
+spec:
+  selector:
+    app: jsonrpc-rest-bridge
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
