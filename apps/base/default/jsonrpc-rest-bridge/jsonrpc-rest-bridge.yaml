@@ -38,7 +38,7 @@ spec:
         - name: BACKEND_URL
           value: wss://truenas.int.sambaum.ch/api/current
         - name: ALLOWED_METHODS
-          value: disk.temperatures,disk.smart_attributes,smart.test.results,pool.dataset.details
+          value: disk.temperatures,pool.dataset.details
         - name: BACKEND_API_KEY
           valueFrom:
             secretKeyRef:
