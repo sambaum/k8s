@@ -4,6 +4,16 @@
 # HTTP JSON under /call/<method>, so those clients only need a URL/body change.
 # ALLOWED_METHODS below covers: esp32-truenas-fan-control.yaml's disk-temp poll, and the
 # json-exporter probes in apps/home/monitoring/kube-prometheus-stack/helmrelease-patch.yaml.
+#
+# disk.smart_attributes and smart.test.results were dropped entirely during this migration --
+# not renamed, actually removed from TrueNAS (confirmed against the live /api/v2.0/openapi.json,
+# both 404). That killed the Grafana "GiB written" per-disk panel and the "Running S.M.A.R.T
+# Tests" progress panel on the TrueNAS Scale / My Home Dashboard dashboards; their underlying
+# metrics (truenas_smart_attributes_sdX_raw_value, truenas_current_test_percent_done) now have
+# no source. The only way left to get that data is bypassing the API entirely: SSH into TrueNAS
+# and run `smartctl --json=c -a /dev/sdX` directly (smartmontools is still present -- it's what
+# disk.temperatures itself reads under the hood). Not done here; would need its own SSH-key
+# secret and a separate exec-based code path alongside this WebSocket one.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
