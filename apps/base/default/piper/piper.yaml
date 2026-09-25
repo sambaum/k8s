@@ -1,0 +1,80 @@
+# Local text-to-speech for Home Assistant, replacing the Google Translate TTS the
+# bedside clock and the wall clock currently speak through.
+#
+# Piper speaks the WYOMING protocol - a plain TCP protocol, not HTTP - so there is
+# no ingress and no certificate here. Home Assistant runs in this same cluster and
+# namespace, so it reaches this over the cluster network as piper:10200 and the
+# traffic never leaves the node. Nothing on the ESP32 side changes either: the
+# devices still fetch rendered audio from Home Assistant's own proxy.
+#
+# --voice below is only the DEFAULT, not a limit. handler.py takes the voice name
+# off each synthesize request when one is given, and calls ensure_voice_exists()
+# to fetch it, so this one deployment can speak any of Piper's ~155 voices across
+# 43 languages. Home Assistant picks per call. It also resolves a speaker id,
+# which is what makes the multi-speaker models (VCTK, LibriTTS) usable.
+#
+# Each voice is downloaded on first use into the mounted volume, so the pod needs
+# internet the first time it is asked for one and is offline thereafter.
+#
+# Voice names are <language>-<speaker>-<quality>, e.g. en_GB-alba-medium or
+# de_DE-thorsten-medium. Quality is x_low, low, medium or high; medium is the
+# sensible default, and high costs noticeably more CPU for little gain over a
+# small speaker. Samples: https://rhasspy.github.io/piper-samples/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piper
+  namespace: default
+  labels:
+    app.kubernetes.io/name: piper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: piper
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: piper
+    spec:
+      containers:
+      - name: piper
+        image: rhasspy/wyoming-piper:2.5.2
+        args:
+        - --voice
+        - en_US-lessac-medium
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        ports:
+        - containerPort: 10200
+        volumeMounts:
+        - name: data
+          mountPath: /data
+          subPath: piper
+        readinessProbe:
+          tcpSocket:
+            port: 10200
+          initialDelaySeconds: 10
+          periodSeconds: 20
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: piper
+  namespace: default
+spec:
+  selector:
+    app.kubernetes.io/name: piper
+  ports:
+  - protocol: TCP
+    port: 10200
+    targetPort: 10200
