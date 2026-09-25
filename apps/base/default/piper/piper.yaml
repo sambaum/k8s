@@ -1,11 +1,12 @@
-# Local text-to-speech for Home Assistant, replacing the Google Translate TTS the
-# bedside clock and the wall clock currently speak through.
+# Piper speaks the WYOMING protocol - plain TCP, not HTTP - so there is no ingress
+# and no certificate here, just a MetalLB address. Nothing on the ESP32 side
+# changes: the devices still fetch rendered audio from Home Assistant's proxy.
 #
-# Piper speaks the WYOMING protocol - a plain TCP protocol, not HTTP - so there is
-# no ingress and no certificate here. Home Assistant runs in this same cluster and
-# namespace, so it reaches this over the cluster network as piper:10200 and the
-# traffic never leaves the node. Nothing on the ESP32 side changes either: the
-# devices still fetch rendered audio from Home Assistant's own proxy.
+# IT RUNS ON THE **home** CLUSTER, NOT NEXT TO HOME ASSISTANT. Measured on the
+# deskcube Celeron a single sentence took 10-20s at 100% CPU - three to five
+# times realtime - on the same four cores Home Assistant needs. The i7 does the
+# same work in well under a second. The cost is that speech now depends on a
+# second machine being up, which is an acceptable trade for a bedside clock.
 #
 # --voice below is only the DEFAULT, not a limit. handler.py takes the voice name
 # off each synthesize request when one is given, and calls ensure_voice_exists()
@@ -40,9 +41,24 @@ spec:
       containers:
       - name: piper
         image: rhasspy/wyoming-piper:2.5.2
+        # ONE value only - --voice is the fallback for calls that name no voice,
+        # not a list of what is available. Anything else here would be parsed as
+        # a positional argument and the container would refuse to start.
+        #
+        # The shortlist worth trying, any of which can be asked for per call via
+        # the `voice:` option on tts.speak, and is downloaded on first use:
+        #   en_GB-alba-medium
+        #   en_GB-aru-medium
+        #   en_GB-cori-high
+        #   en_GB-semaine-medium
+        #   en_GB-northern_english_male-medium
+        #   en_US-joe-medium
+        #   en_US-l2arctic-medium              (Indian accent)
+        #   en_US-norman-medium
+        #   en_US-ryan-high
         args:
         - --voice
-        - en_US-lessac-medium
+        - en_GB-alba-medium
         env:
         - name: TZ
           value: Europe/Zurich
@@ -71,7 +87,11 @@ kind: Service
 metadata:
   name: piper
   namespace: default
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
 spec:
+  type: LoadBalancer
+  loadBalancerIP: '${PIPER_LOADBALANCER_IP}'
   selector:
     app.kubernetes.io/name: piper
   ports:
