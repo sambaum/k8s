@@ -58,7 +58,11 @@ spec:
         #   en_US-ryan-high
         args:
         - --voice
+        # default voice
         - en_GB-alba-medium
+        # talking speed (1.1 is slower)
+        - --length-scale
+        - "1.1"
         env:
         - name: TZ
           value: Europe/Zurich
