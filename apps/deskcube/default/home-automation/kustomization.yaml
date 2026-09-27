@@ -15,12 +15,11 @@ patches:
     - op: replace
       path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
-    # Serve plain HTTP as well as HTTPS, instead of 308-ing port 80 to TLS.
-    # The Chromecast Audio in the living room can't validate a Let's Encrypt
-    # cert -- its trust store was frozen before ISRG Root X1 became the only
-    # path, so every TTS fetch over HTTPS fails silently. HA's internal_url is
-    # http:// for the same reason, and TTS media URLs are generated from it.
-    # HTTPS is untouched; this only stops the redirect.
+    # Serve plain HTTP as well as HTTPS.
+    # HA's internal_url is http://, and TTS media URLs are generated from it:
+    # old media renderers fetch them over plain HTTP more reliably than TLS,
+    # and ESPHome players in particular would rather not pay for a handshake
+    # inside their fetch budget.
     - op: add
       path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1ssl-redirect
       value: "false"
