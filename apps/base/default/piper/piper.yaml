@@ -62,7 +62,7 @@ spec:
         - en_GB-alba-medium
         # talking speed (1.1 is slower)
         - --length-scale
-        - "1.1"
+        - "1.3"
         env:
         - name: TZ
           value: Europe/Zurich
