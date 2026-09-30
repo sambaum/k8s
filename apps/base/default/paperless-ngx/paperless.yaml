@@ -38,9 +38,9 @@ spec:
           subPath: Paperless
         env:
         - name: USERMAP_UID
-          value: '0'
+          value: '1000'
         - name: USERMAP_GID
-          value: '0'
+          value: '1000'
         - name: PAPERLESS_TIME_ZONE
           value: 'Europe/Zurich'
         - name: PAPERLESS_CONSUMPTION_DIR
