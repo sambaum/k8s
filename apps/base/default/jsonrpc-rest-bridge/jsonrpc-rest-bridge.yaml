@@ -47,6 +47,8 @@ spec:
           value: Europe/Zurich
         - name: BACKEND_URL
           value: wss://truenas.int.sambaum.ch/api/current
+        - name: BACKEND_USERNAME
+          value: root
         - name: ALLOWED_METHODS
           value: disk.temperatures,pool.dataset.details
         - name: BACKEND_API_KEY
