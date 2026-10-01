@@ -48,7 +48,9 @@ spec:
         - name: BACKEND_URL
           value: wss://truenas.int.sambaum.ch/api/current
         - name: BACKEND_USERNAME
-          value: root
+          # TrueNAS SCALE moved local admin login off "root" at some point -- root still
+          # works for SSH (per Ansible), but auth.login_ex needs the actual admin account.
+          value: admin
         - name: ALLOWED_METHODS
           value: disk.temperatures,pool.dataset.details
         - name: BACKEND_API_KEY
