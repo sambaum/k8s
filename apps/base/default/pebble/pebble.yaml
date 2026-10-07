@@ -1,0 +1,144 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pebble-config
+  namespace: default
+# secrets plaintext, only for local lab testing
+data:
+  pebble-config.json: |
+    {
+      "pebble": {
+        "listenAddress": "0.0.0.0:14000",
+        "managementListenAddress": "0.0.0.0:15000",
+        "certificate": "/test/certs/localhost/cert.pem",
+        "privateKey": "/test/certs/localhost/key.pem",
+        "httpPort": 5002,
+        "tlsPort": 5001,
+        "ocspResponderURL": "",
+        "externalAccountBindingRequired": true,
+        "externalAccountMACKeys": {
+          "test-kid-1": "qIM-M2WA1x9w_WkstUuy65SxL4Eoy84FAvDzgrVLHrM"
+        },
+        "retryAfter": {
+          "authz": 3,
+          "order": 5
+        },
+        "keyAlgorithm": "ecdsa",
+        "profiles": {
+          "default": {
+            "description": "Default profile",
+            "validityPeriod": 7776000
+          }
+        }
+      }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pebble
+  namespace: default
+  labels:
+    app: pebble
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pebble
+  template:
+    metadata:
+      labels:
+        app: pebble
+    spec:
+      containers:
+      - name: pebble
+        image: ghcr.io/letsencrypt/pebble:2.10.1
+        args: [ "-config", "/config/pebble-config.json" ]
+        securityContext: { allowPrivilegeEscalation: false, runAsNonRoot: true, runAsUser: 65534, capabilities: { drop: [ ALL ] } }
+        ports:
+        - name: acme
+          containerPort: 14000
+        - name: management
+          containerPort: 15000
+        env:
+        - { name: PEBBLE_VA_ALWAYS_VALID, value: "1" } # no challenges
+        - { name: PEBBLE_VA_NOSLEEP, value: "1" } # no artificial delays
+        - { name: PEBBLE_WFE_NONCEREJECT, value: "0" } # no random nonce rejects
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: pebble-config
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+# Service name must stay "pebble": the bundled TLS cert is only valid for "pebble" and "localhost"
+kind: Service
+apiVersion: v1
+metadata:
+  name: pebble
+  namespace: default
+spec:
+  selector:
+    app: pebble
+  ports:
+  - name: acme
+    protocol: TCP
+    port: 14000
+    targetPort: 14000
+  - name: management
+    protocol: TCP
+    port: 15000
+    targetPort: 15000
+  type: NodePort
+---
+# TLS terminates at ingress-nginx (no secretName -> controller default cert), re-encrypted to pebble
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pebble-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    gethomepage.dev/description: ACME test server
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: letsencrypt.svg
+    gethomepage.dev/name: Pebble
+    gethomepage.dev/pod-selector: app=pebble
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'pebble.example.com'
+  rules:
+  - host: pebble.example.com
+    http:
+      paths:
+      # management API: CA roots/intermediates for verifying issued certs
+      - pathType: Prefix
+        path: '/roots'
+        backend:
+          service:
+            name: pebble
+            port:
+              number: 15000
+      - pathType: Prefix
+        path: '/intermediates'
+        backend:
+          service:
+            name: pebble
+            port:
+              number: 15000
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: pebble
+            port:
+              number: 14000

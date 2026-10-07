@@ -1,0 +1,26 @@
+resources:
+- ../../../base/default/pebble/
+patches:
+- target:
+    kind: Ingress
+    name: pebble-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: pebble.lab.local
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [pebble.lab.local]
+
+# Local lab testing:
+# https://pebble.lab.local/dir
+# certbot certonly --standalone --http-01-port 8888 \
+#   --server https://pebble.lab.local/dir --no-verify-ssl \
+#   --eab-kid test-kid-1 --eab-hmac-key qIM-M2WA1x9w_WkstUuy65SxL4Eoy84FAvDzgrVLHrM \
+#   --register-unsafely-without-email --agree-tos \
+#   --config-dir ./le/conf --work-dir ./le/work --logs-dir ./le/logs \
+#   -d test.lab.local
+
+# certbot renew --force-renewal --no-verify-ssl \
+#   --cert-name test.lab.local \
+#   --config-dir ./le/conf --work-dir ./le/work --logs-dir ./le/logs
