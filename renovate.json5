@@ -72,6 +72,18 @@
         "automerge": true
       }
     },
+    // Prevent automated major- and minor- and patch-upgrades for below packages
+    {
+      "matchPackageNames": [
+        "home-assistant"
+      ],
+      "minor": {
+        "automerge": false
+      },
+      "patch": {
+        "automerge": false
+      }
+    },
     // special versioning
     {
       "matchPackageNames": [
