@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: cbee-grammar-check
-        image: python:3.14-slim
+        image: python:3.15-slim
         imagePullPolicy: IfNotPresent
         command: [ "/app/entrypoint.sh", "serve" ]
         env:
