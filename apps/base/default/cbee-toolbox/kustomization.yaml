@@ -1,0 +1,3 @@
+resources:
+- cbee-toolbox-cron.yaml
+- cbee-toolbox-web.yaml

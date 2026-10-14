@@ -31,7 +31,6 @@ spec:
       labels:
         app: jsonrpc-rest-bridge
       annotations:
-        # runs as root: pip installs into the stock image, same as cbee-grammar-check
         polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
         polaris.fairwinds.com/runAsPrivileged-exempt: "true"
         polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"

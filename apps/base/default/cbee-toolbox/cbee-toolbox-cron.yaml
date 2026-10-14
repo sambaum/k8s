@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: cbee-grammar-check-job
+  name: cbee-toolbox-job
   namespace: default
 spec:
   schedule: "9 9 * * *"
@@ -20,7 +20,7 @@ spec:
             polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
         spec:
           containers:
-          - name: cbee-grammar-check-job
+          - name: cbee-toolbox-job
             image: python:3.14-slim
             imagePullPolicy: IfNotPresent
             command: [ "/app/entrypoint.sh", "check", "--fetch" ]
@@ -30,7 +30,7 @@ spec:
             volumeMounts:
             - mountPath: /app
               name: config
-              subPath: cbee-grammar-check
+              subPath: cbee-toolbox
           restartPolicy: OnFailure
           volumes:
           - name: config

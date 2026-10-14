@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cbee-grammar-check
+  name: cbee-toolbox
   namespace: default
   labels:
-    app: cbee-grammar-check
+    app: cbee-toolbox
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cbee-grammar-check
+      app: cbee-toolbox
   template:
     metadata:
       labels:
-        app: cbee-grammar-check
+        app: cbee-toolbox
       annotations:
         # runs as root: pip installs into the stock image and the PVC files are root-owned
         polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
@@ -22,7 +22,7 @@ spec:
         polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
     spec:
       containers:
-      - name: cbee-grammar-check
+      - name: cbee-toolbox
         image: python:3.14-slim
         imagePullPolicy: IfNotPresent
         command: [ "/app/entrypoint.sh", "serve" ]
@@ -40,7 +40,7 @@ spec:
         volumeMounts:
         - mountPath: /app
           name: config
-          subPath: cbee-grammar-check
+          subPath: cbee-toolbox
       volumes:
       - name: config
         persistentVolumeClaim:
@@ -53,11 +53,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: cbee-grammar-check-service
+  name: cbee-toolbox-service
   namespace: default
 spec:
   selector:
-    app: cbee-grammar-check
+    app: cbee-toolbox
   ports:
   - protocol: TCP
     port: 80
@@ -66,30 +66,30 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cbee-grammar-check-ingress
+  name: cbee-toolbox-ingress
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
-    gethomepage.dev/description: LanguageTool check of WooCommerce product names
+    gethomepage.dev/description: Spelling, consistency, health checks and bulk tools for the cbee.ch WooCommerce shop
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
-    gethomepage.dev/icon: https://cbee.ch/wp-content/uploads/2025/04/pumphose-aus-musselin-mit-hasen-gr6268-neu-600x600.jpg
-    gethomepage.dev/name: cbee-grammar-check
-    gethomepage.dev/pod-selector: app=cbee-grammar-check
+    gethomepage.dev/icon: https://cbee-toolbox.int.sambaum.ch/static/favicon.png
+    gethomepage.dev/name: cbee-toolbox
+    gethomepage.dev/pod-selector: app=cbee-toolbox
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - 'cbee-grammar-check.example.com'
-    secretName: cbee-grammar-check-tls
+    - 'cbee-toolbox.example.com'
+    secretName: cbee-toolbox-tls
   rules:
-  - host: cbee-grammar-check.example.com
+  - host: cbee-toolbox.example.com
     http:
       paths:
       - pathType: Prefix
         path: '/'
         backend:
           service:
-            name: cbee-grammar-check-service
+            name: cbee-toolbox-service
             port:
               number: 80
