@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: tdarr
-        image: ghcr.io/haveagitgat/tdarr:2.96.01
+        image: ghcr.io/haveagitgat/tdarr:3.01.00
         imagePullPolicy: IfNotPresent
         resources:
           limits:
