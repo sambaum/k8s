@@ -21,6 +21,8 @@ spec:
         polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
         polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
     spec:
+      # a restart asks running tasks to stop after their current item (up to 100 s, see app/__main__.py)
+      terminationGracePeriodSeconds: 120
       containers:
       - name: cbee-toolbox
         image: python:3.15-slim
