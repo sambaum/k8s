@@ -5,6 +5,7 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+    monitoring.gatus.dev/path: /healthz
 spec:
   ingressClassName: nginx
   tls:
