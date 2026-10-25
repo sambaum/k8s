@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metube
+  namespace: default
+  labels:
+    app: metube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metube
+  template:
+    metadata:
+      labels:
+        app: metube
+    spec:
+      containers:
+      - name: metube
+        image: alexta69/metube:2026.10.23
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+        - mountPath: /downloads
+          name: nas-temp
+          subPath: youtube
+        env:
+        - name: UID
+          value: '0'
+        - name: GID
+          value: '0'
+        - name: TZ
+          value: 'Europe/Zurich'
+      volumes:
+      - name: nas-temp
+        persistentVolumeClaim:
+          claimName: truenas-temp-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: metube-service
+  namespace: default
+spec:
+  selector:
+    app: metube
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: metube-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600'
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: YouTube downloader
+    gethomepage.dev/enabled: 'true'
+    gethomepage.dev/group: Other
+    gethomepage.dev/icon: metube.png
+    gethomepage.dev/name: MeTube
+    gethomepage.dev/pod-selector: app=metube
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'metube.example.com'
+    secretName: metube-tls
+  rules:
+  - host: metube.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: metube-service
+            port:
+              number: 8081
