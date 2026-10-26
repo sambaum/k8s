@@ -1,0 +1,96 @@
+# Receives transactions read by the userscripts on the ZKB, Revolut and Viseca e-banking pages and posts them to YNAB.
+# Same layout as cbee-toolbox: stock python image, code and data on the local-conf PVC (/app), deps installed by entrypoint.sh.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ynab-bridge
+  namespace: default
+  labels:
+    app: ynab-bridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ynab-bridge
+  template:
+    metadata:
+      labels:
+        app: ynab-bridge
+      annotations:
+        # runs as root: pip installs into the stock image and the PVC files are root-owned
+        polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
+        polaris.fairwinds.com/runAsPrivileged-exempt: "true"
+        polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
+        polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
+    spec:
+      containers:
+      - name: ynab-bridge
+        image: python:3.15-slim
+        imagePullPolicy: IfNotPresent
+        command: [ "/app/entrypoint.sh", "serve" ]
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /app
+          name: config
+          subPath: ynab-bridge
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ynab-bridge-service
+  namespace: default
+spec:
+  selector:
+    app: ynab-bridge
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ynab-bridge-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    gethomepage.dev/description: Brings ZKB, Revolut and Viseca transactions into YNAB
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/name: ynab-bridge
+    gethomepage.dev/pod-selector: app=ynab-bridge
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'ynab-bridge.example.com'
+    secretName: ynab-bridge-tls
+  rules:
+  - host: ynab-bridge.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: ynab-bridge-service
+            port:
+              number: 80
