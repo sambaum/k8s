@@ -70,3 +70,6 @@ patches:
     - op: replace
       path: /metadata/annotations/gethomepage.dev~1pod-selector
       value: app=paperless-test2
+    - op: replace
+      path: /metadata/annotations/gethomepage.dev~1description
+      value: Paperless-NGX Test2

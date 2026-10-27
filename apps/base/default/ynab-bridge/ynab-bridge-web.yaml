@@ -75,6 +75,7 @@ metadata:
     gethomepage.dev/description: Brings ZKB, Revolut and Viseca transactions into YNAB
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: ynab.svg
     gethomepage.dev/name: ynab-bridge
     gethomepage.dev/pod-selector: app=ynab-bridge
 spec:

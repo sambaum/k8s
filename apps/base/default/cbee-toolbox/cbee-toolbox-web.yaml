@@ -74,7 +74,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-staging
     gethomepage.dev/description: Spelling, consistency, health checks and bulk tools for the cbee.ch WooCommerce shop
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: More Apps
+    gethomepage.dev/group: cbee.ch-links
     gethomepage.dev/icon: https://cbee-toolbox.int.sambaum.ch/static/favicon.png
     gethomepage.dev/name: cbee-toolbox
     gethomepage.dev/pod-selector: app=cbee-toolbox

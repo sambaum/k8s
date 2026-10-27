@@ -64,5 +64,8 @@ patches:
       path: /metadata/annotations/gethomepage.dev~1pod-selector
       value: app=paperless-official
     - op: replace
+      path: /metadata/annotations/gethomepage.dev~1description
+      value: Paperless-NGX Official
+    - op: replace
       path: /spec/rules/0/host
       value: paperless-official.int.sambaum.ch
