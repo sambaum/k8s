@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitea-ssh-service
+  namespace: default
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${GITEA_LOADBALANCER_IP}'
+  selector:
+    app: gitea
+  ports:
+  - name: ssh
+    protocol: TCP
+    port: 22
+    targetPort: 22

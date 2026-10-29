@@ -1,2 +1,28 @@
 resources:
-- gitea.yaml
+- ../../../base/default/gitea/
+patches:
+- target:
+    kind: Deployment
+    name: gitea
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/4/value
+      value: http://gitea.lab.local/
+    - op: replace
+      path: /spec/template/spec/containers/0/env/5/value
+      value: gitea.lab.local
+    - op: replace
+      path: /spec/template/spec/containers/0/env/7/value
+      value: ws526-vm
+- target:
+    kind: Ingress
+    name: gitea-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: gitea.lab.local
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [gitea.lab.local]
+    - op: remove
+      path: /spec/tls

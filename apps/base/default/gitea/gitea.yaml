@@ -33,13 +33,13 @@ spec:
         - name: GITEA__database__DB_TYPE
           value: sqlite3
         - name: GITEA__server__ROOT_URL
-          value: http://gitea.lab.local/
+          value: https://gitea.example.com/
         - name: GITEA__server__DOMAIN
-          value: gitea.lab.local
+          value: gitea.example.com
         - name: GITEA__server__DISABLE_SSH
           value: 'false'
         - name: GITEA__server__SSH_DOMAIN
-          value: ws526-vm
+          value: gitea.example.com
         - name: GITEA__server__SSH_PORT
           value: '2222'
         - name: GITEA__server__SSH_LISTEN_PORT
@@ -87,6 +87,7 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     gethomepage.dev/description: Git Server
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: More Apps
@@ -95,8 +96,12 @@ metadata:
     gethomepage.dev/pod-selector: app=gitea
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'gitea.example.com'
+    secretName: gitea-tls
   rules:
-  - host: gitea.lab.local
+  - host: gitea.example.com
     http:
       paths:
       - pathType: Prefix

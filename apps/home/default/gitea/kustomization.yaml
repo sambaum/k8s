@@ -1,0 +1,33 @@
+resources:
+- ../../../base/default/gitea/
+- ssh-service.yaml
+patches:
+- target:
+    kind: Deployment
+    name: gitea
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/4/value
+      value: https://gitea.int.sambaum.ch/
+    - op: replace
+      path: /spec/template/spec/containers/0/env/5/value
+      value: gitea.int.sambaum.ch
+    - op: replace
+      path: /spec/template/spec/containers/0/env/7/value
+      value: git.int.sambaum.ch
+    - op: replace
+      path: /spec/template/spec/containers/0/env/8/value
+      value: '22'
+- target:
+    kind: Ingress
+    name: gitea-ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: gitea.int.sambaum.ch
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: [gitea.int.sambaum.ch]
+    - op: replace
+      path: /metadata/annotations/cert-manager.io~1cluster-issuer
+      value: letsencrypt-production
