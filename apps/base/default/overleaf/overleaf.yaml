@@ -54,7 +54,7 @@ spec:
               name: overleaf-secrets
               key: OVERLEAF_INVITE_TOKEN_SECRET
       - name: mongo
-        image: mongo:8.3
+        image: mongo:9.0
         args:
         - "--replSet"
         - "overleaf"
