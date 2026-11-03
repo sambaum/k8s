@@ -80,7 +80,7 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: local-conf-pvc
+          claimName: local-data-pvc
       dnsConfig:
         options:
         - name: ndots
