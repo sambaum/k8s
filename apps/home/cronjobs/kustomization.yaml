@@ -1,5 +1,5 @@
-resources:
-- bank2ynab.yaml
+resources: []
+# - bank2ynab.yaml
 
 # - rsync-home-videos.yaml
 # - rsync-home-videos-flattened.yaml
