@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: lidarr
-        image: linuxserver/lidarr:3.2.0-develop
+        image: linuxserver/lidarr:3.2.1-develop
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8686
