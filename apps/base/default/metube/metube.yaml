@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: metube
-        image: alexta69/metube:2026.11.06
+        image: alexta69/metube:2026.11.10
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
