@@ -104,7 +104,12 @@ spec:
           value: kokoro
         # First voice is the default when HA names none.
         - name: TTS_VOICES
-          value: bf_emma bf_isabella bf_alice bf_lily bm_george bm_lewis bm_daniel bm_fable
+          value: bf_isabella bf_emma bf_alice bf_lily bm_george bm_lewis bm_daniel bm_fable
+        # Speaking speed for every voice and room (1.0 = normal). Piper ran
+        # --length-scale 1.2, about 0.83 here. 0.7 is a deliberate test of how
+        # far slowing down stays natural.
+        - name: TTS_SPEED
+          value: "0.9"
         ports:
         - containerPort: 10300
         readinessProbe:
