@@ -31,6 +31,9 @@ patches:
     - op: replace
       path: /spec/tls/0/hosts
       value: [immich.int.sambaum.ch]
+    - op: add
+      path: /metadata/annotations/gethomepage.dev~1href
+      value: https://immich.int.sambaum.ch
     - op: replace
       path: /metadata/annotations/cert-manager.io~1cluster-issuer
       value: letsencrypt-production
