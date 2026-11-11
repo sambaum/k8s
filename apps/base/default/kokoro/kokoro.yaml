@@ -1,0 +1,135 @@
+# Kokoro-82M for Home Assistant, run beside Piper for A/B comparison.
+#
+# Two pods, because Kokoro-FastAPI speaks the OpenAI TTS HTTP API and Home
+# Assistant speaks Wyoming (plain TCP, like Piper):
+#   HA --Wyoming 192.168.1.37:10201--> wyoming-openai --HTTP--> kokoro-fastapi
+# Both projects are actively maintained (Kokoro-FastAPI ~5.7k stars, a release
+# every few weeks; wyoming_openai likewise). Add it in HA as a second Wyoming
+# integration at the MetalLB address below, port 10201. Piper keeps 10200.
+#
+# Runs on the home (i7) cluster for the same reason as Piper.
+#
+# The Kokoro image ships with the model and voice packs baked in, so there is no
+# volume. If its log ever shows it downloading something at start, add a
+# /data subPath mount like Piper's rather than relying on the network.
+#
+# Kokoro speaks no German. Voice list:
+# https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md
+# British: bf_alice bf_emma bf_isabella bf_lily bm_daniel bm_fable bm_george bm_lewis
+# A voice can be blended in a request as "bf_emma+bf_isabella" (Kokoro-FastAPI).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kokoro-fastapi
+  namespace: default
+  labels:
+    app.kubernetes.io/name: kokoro-fastapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kokoro-fastapi
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: kokoro-fastapi
+    spec:
+      containers:
+      - name: kokoro-fastapi
+        image: ghcr.io/remsky/kokoro-fastapi-cpu:v0.9.2
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        - name: API_LOG_LEVEL
+          value: INFO
+        ports:
+        - containerPort: 8880
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8880
+          initialDelaySeconds: 20
+          periodSeconds: 20
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kokoro-fastapi
+  namespace: default
+spec:
+  selector:
+    app.kubernetes.io/name: kokoro-fastapi
+  ports:
+  - protocol: TCP
+    port: 8880
+    targetPort: 8880
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kokoro
+  namespace: default
+  labels:
+    app.kubernetes.io/name: kokoro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kokoro
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: kokoro
+    spec:
+      containers:
+      - name: kokoro
+        image: ghcr.io/roryeckel/wyoming_openai:0.9.0
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        - name: WYOMING_URI
+          value: tcp://0.0.0.0:10300
+        - name: WYOMING_LANGUAGES
+          value: en
+        - name: TTS_OPENAI_URL
+          value: http://kokoro-fastapi:8880/v1
+        # Ignored by Kokoro-FastAPI unless API_KEYS is set there, but required.
+        - name: TTS_OPENAI_KEY
+          value: not-needed
+        - name: TTS_MODELS
+          value: kokoro
+        # First voice is the default when HA names none.
+        - name: TTS_VOICES
+          value: bf_emma bf_isabella bf_alice bf_lily bm_george bm_lewis bm_daniel bm_fable
+        ports:
+        - containerPort: 10300
+        readinessProbe:
+          tcpSocket:
+            port: 10300
+          initialDelaySeconds: 10
+          periodSeconds: 20
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kokoro
+  namespace: default
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'share-syslog-ng'
+spec:
+  type: LoadBalancer
+  loadBalancerIP: '${PIPER_LOADBALANCER_IP}'
+  selector:
+    app.kubernetes.io/name: kokoro
+  ports:
+  - protocol: TCP
+    port: 10201
+    targetPort: 10300
