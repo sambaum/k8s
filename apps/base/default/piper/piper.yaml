@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: piper
-        image: rhasspy/wyoming-piper:2.5.2
+        image: rhasspy/wyoming-piper:2.5.3
         # ONE value only - --voice is the fallback for calls that name no voice,
         # not a list of what is available. Anything else here would be parsed as
         # a positional argument and the container would refuse to start.
