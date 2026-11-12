@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: httpd:2.4.70
+        image: httpd:2.4.71
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
