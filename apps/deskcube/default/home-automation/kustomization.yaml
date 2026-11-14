@@ -23,6 +23,20 @@ patches:
     - op: add
       path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1ssl-redirect
       value: "false"
+    # The TTS cache (/config/tts) goes to /data/default/home-assistant/tts
+    # rather than the backed-up conf volume: it is regenerated on demand.
+    - op: add
+      path: /spec/values/additionalVolumes
+      value:
+      - name: data
+        persistentVolumeClaim:
+          claimName: local-data-pvc
+    - op: add
+      path: /spec/values/additionalMounts
+      value:
+      - name: data
+        mountPath: /config/tts
+        subPath: home-assistant/tts
 - target:
     kind: Ingress
     name: zigbee2mqtt-ingress
