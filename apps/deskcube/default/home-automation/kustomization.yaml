@@ -25,18 +25,32 @@ patches:
       value: "false"
     # The TTS cache (/config/tts) goes to /data/default/home-assistant/tts
     # rather than the backed-up conf volume: it is regenerated on demand.
+    # Pre-rendered stories come from the NAS (other/HA/stories), where the
+    # renderer writes them: mp3s served as /local/stories, scene graphs
+    # imported as stories/rendered.jinja.
     - op: add
       path: /spec/values/additionalVolumes
       value:
       - name: data
         persistentVolumeClaim:
           claimName: local-data-pvc
+      - name: nas-other
+        persistentVolumeClaim:
+          claimName: truenas-other-pvc
     - op: add
       path: /spec/values/additionalMounts
       value:
       - name: data
         mountPath: /config/tts
         subPath: home-assistant/tts
+      - name: nas-other
+        mountPath: /config/www/stories
+        subPath: HA/stories/audio
+        readOnly: true
+      - name: nas-other
+        mountPath: /config/custom_templates/stories
+        subPath: HA/stories/templates
+        readOnly: true
 - target:
     kind: Ingress
     name: zigbee2mqtt-ingress

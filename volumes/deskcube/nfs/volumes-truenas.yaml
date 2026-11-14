@@ -28,3 +28,34 @@ spec:
     path: "/mnt/pool1/backup"
   mountOptions:
   - nfsvers=4.1
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: truenas-other-pvc
+  namespace: default
+spec:
+  volumeName: truenas-other-pv
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-other-pv
+  namespace: default
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas-databus2.int.sambaum.ch
+    path: "/mnt/pool1/other"
+  mountOptions:
+  - nfsvers=4.1
