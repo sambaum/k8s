@@ -1,0 +1,107 @@
+# Writes, renders and publishes the wall clock's interactive stories (Kokoro voices, Freesound sounds, AI jobs).
+# Same layout as ynab-bridge: stock python image, code on the local-conf PVC (/app), deps installed by entrypoint.sh.
+# Stories, renders and caches live on the NAS (other/HA/stories), which Home Assistant on deskcube mounts as well.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-designer
+  namespace: default
+  labels:
+    app: story-designer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: story-designer
+  template:
+    metadata:
+      labels:
+        app: story-designer
+      annotations:
+        # runs as root: apt and pip install into the stock image and the PVC files are root-owned
+        polaris.fairwinds.com/runAsRootAllowed-exempt: "true"
+        polaris.fairwinds.com/runAsPrivileged-exempt: "true"
+        polaris.fairwinds.com/notReadOnlyRootFilesystem-exempt: "true"
+        polaris.fairwinds.com/privilegeEscalationAllowed-exempt: "true"
+    spec:
+      containers:
+      - name: story-designer
+        image: python:3.13-slim
+        imagePullPolicy: IfNotPresent
+        command: [ "/app/entrypoint.sh", "serve" ]
+        env:
+        - name: TZ
+          value: Europe/Zurich
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - mountPath: /app
+          name: config
+          subPath: story-designer
+        - mountPath: /stories
+          name: nas-other
+          subPath: HA/stories
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: local-conf-pvc
+      - name: nas-other
+        persistentVolumeClaim:
+          claimName: truenas-other-pvc
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: story-designer-service
+  namespace: default
+spec:
+  selector:
+    app: story-designer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: story-designer-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+    gethomepage.dev/description: Writes and renders the wall clock's interactive stories
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: More Apps
+    gethomepage.dev/icon: mdi-book-open-page-variant
+    gethomepage.dev/name: story-designer
+    gethomepage.dev/pod-selector: app=story-designer
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 'story-designer.example.com'
+    secretName: story-designer-tls
+  rules:
+  - host: story-designer.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: story-designer-service
+            port:
+              number: 80
