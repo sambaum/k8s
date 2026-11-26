@@ -468,7 +468,7 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "probe_http_status_code{job=~\"$job\", instance=~\"$instance\"} > 0",
+                    "expr": "probe_http_status_code{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"} > 0",
                     "format": "table",
                     "instant": true,
                     "interval": "",
@@ -480,7 +480,7 @@
                         "type": "prometheus",
                         "uid": "P5DCFC7561CCDE821"
                     },
-                    "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
+                    "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\", stage=~\"$stage\"}[1m])",
                     "format": "table",
                     "instant": false,
                     "interval": "",
@@ -884,24 +884,6 @@
                 "type": "query"
             },
             {
-                "allValue": ".+",
-                "current": {
-                    "text": "All",
-                    "value": "$__all"
-                },
-                "definition": "label_values(probe_success{job=~\"$job\"}, instance)",
-                "includeAll": true,
-                "label": "Instance",
-                "name": "instance",
-                "options": [],
-                "query": "label_values(probe_success{job=~\"$job\"}, instance)",
-                "refresh": 1,
-                "regex": "",
-                "regexApplyTo": "value",
-                "sort": 2,
-                "type": "query"
-            },
-            {
                 "current": {
                     "text": "production",
                     "value": "production"
@@ -922,6 +904,24 @@
                 "refresh": 1,
                 "regex": "",
                 "regexApplyTo": "value",
+                "type": "query"
+            },
+            {
+                "allValue": ".+",
+                "current": {
+                    "text": "All",
+                    "value": "$__all"
+                },
+                "definition": "label_values(probe_success{job=~\"$job\", stage=~\"$stage\"}, instance)",
+                "includeAll": true,
+                "label": "Instance",
+                "name": "instance",
+                "options": [],
+                "query": "label_values(probe_success{job=~\"$job\", stage=~\"$stage\"}, instance)",
+                "refresh": 1,
+                "regex": "",
+                "regexApplyTo": "value",
+                "sort": 2,
                 "type": "query"
             }
         ]
